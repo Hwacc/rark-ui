@@ -4,7 +4,7 @@ import { Checkbox } from '@ark-ui/vue/checkbox'
 
 <template>
   <Checkbox.Root>
-    <Checkbox.Control class="test"></Checkbox.Control>
-    <Checkbox.Label class="test"></Checkbox.Label>
+    <Checkbox.Control class="test" />
+    <Checkbox.Label class="test" />
   </Checkbox.Root>
 </template>

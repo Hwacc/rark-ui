@@ -1,6 +1,8 @@
+@import '@rui-ark/themes/razer/index.css';
+
 body {
   margin: 0;
   color: #fff;
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  background-image: linear-gradient(to bottom, #020917, #101725);
+  background-color: var(--color-h00)
 }

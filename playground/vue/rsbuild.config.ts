@@ -18,8 +18,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@core': '../../packages/vue/core',
-      '@addons': '../../packages/vue/addons',
+      '@': './src',
+      '@rui-ark/vue-core': '../../packages/vue/core',
+      '@rui-ark/themes': '../../packages/themes/src',
     },
   },
   plugins: [

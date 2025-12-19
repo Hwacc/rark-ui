@@ -1,0 +1,26 @@
+{
+  "name": "@rui-ark/themes",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "exports": {
+    "./mould/*": "./src/mould/*.ts",
+    "./utils/*": "./src/utils/*.ts",
+    "./razer/index.css": "./src/razer/index.css"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "tailwind-merge": "^3.4.0",
+    "tailwind-variants": "^3.2.2",
+    "tailwindcss": "^4.1.18",
+    "tailwindcss-animated": "^2.0.0",
+    "tailwindcss-motion": "^1.1.1"
+  }
+}

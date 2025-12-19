@@ -1,5 +1,4 @@
-@import '../_base/static.css';
-@import '../_base/animations.css';
+@import '../base/index.css';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant success (&:where([data-variant=success], [data-variant=success] *));
@@ -8,6 +7,8 @@
 @custom-variant info (&:where([data-variant=info], [data-variant=info] *));
 @custom-variant arrow-css (&:where([data-arrow-variant="css"]));
 @custom-variant arrow-svg (&:where([data-arrow-variant="svg"]));
+
+@config './tailwind.config.ts';
 
 @theme {
   /* Spacing */
@@ -115,18 +116,18 @@
   --color-rui-parimary: var(--color-rz-green);
   --color-rui-parimary-hover: var(--color-rz-green-dark-hover);
   --color-rui-parimary-active: var(--color-rz-green-dark-active);
-    
+
   --color-rui-border: var(--color-h54);
-    
+
   --color-rui-toggle-text: var(--color-h88);
   --color-rui-toggle-text-hover: var(--color-hff);
   --color-rui-toggle-text-active: var(--color-hff);
-    
+
   --color-rui-success: var(--color-rz-green);
   --color-rui-error: var(--color-rz-red);
   --color-rui-info: var(--color-h88);
   --color-rui-warning: var(--color-rz-orange);
-    
+
   --color-rui-close: var(--color-h88);
   --color-rui-close-hover: var(--color-hff);
 
@@ -137,9 +138,11 @@
   --shadow-rui-popper: 0 0.25rem 0.375rem 0 oklch(0% 0 0 / 80%);
 }
 
-@theme inline {}
+@theme inline {
+}
 
-@theme static {}
+@theme static {
+}
 
 @layer base {
   *,
@@ -218,14 +221,13 @@
   }
 }
 
-
 @utility webkit-small-scrollbar {
   ::-webkit-scrollbar {
-    @apply size-[3px]
+    @apply size-[3px];
   }
 
   ::-webkit-scrollbar-track-piece {
-    @apply bg-transparent rounded-[1px]
+    @apply bg-transparent rounded-[1px];
   }
 
   ::-webkit-scrollbar-thumb {
@@ -235,11 +237,11 @@
 
 @utility webkit-small-scrollbar-self {
   &::-webkit-scrollbar {
-    @apply size-[3px]
+    @apply size-[3px];
   }
 
   &::-webkit-scrollbar-track-piece {
-    @apply bg-transparent rounded-[1px]
+    @apply bg-transparent rounded-[1px];
   }
 
   &::-webkit-scrollbar-thumb {
