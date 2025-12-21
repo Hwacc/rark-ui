@@ -2,6 +2,7 @@
 import BadgeExample from './examples/badge/index.vue'
 import ButtonExample from './examples/buttons/index.vue'
 import CheckboxExample from './examples/checkbox/index.vue'
+import CollapsiableExample from './examples/collapsiable/index.vue'
 </script>
 
 <template>
@@ -9,5 +10,6 @@ import CheckboxExample from './examples/checkbox/index.vue'
     <ButtonExample />
     <BadgeExample />
     <CheckboxExample />
+    <CollapsiableExample />
   </div>
 </template>
