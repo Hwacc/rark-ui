@@ -15,6 +15,7 @@
   },
   "peerDependencies": {
     "@ark-ui/vue": "^5.30.0",
+    "@rui-ark/shared": "workspace:*",
     "@rui-ark/themes": "workspace:*",
     "@vueuse/core": "^14.1.0",
     "lucide-vue-next": "^0.562.0",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@ark-ui/vue": "^5.30.0",
+    "@rui-ark/shared": "workspace:*",
     "@rui-ark/themes": "workspace:*",
     "@vueuse/core": "^14.1.0",
     "lucide-vue-next": "^0.562.0",

@@ -19,6 +19,7 @@ import type { CheckboxRootEmits, CheckboxRootProps } from '@ark-ui/vue/checkbox'
 import type { CheckboxVariants } from '@rui-ark/themes/crafts/checkbox'
 import type { HTMLAttributes } from 'vue'
 import { Checkbox, useCheckbox } from '@ark-ui/vue/checkbox'
+import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvCheckbox } from '@rui-ark/themes/crafts/checkbox'
 import { Check, Minus } from 'lucide-vue-next'
 import { computed } from 'vue'
@@ -31,15 +32,14 @@ const {
   size = 'base',
   ...props
 } = defineProps<CheckboxProps>()
-
 const emit = defineEmits<CheckboxRootEmits>()
-
 defineSlots<{
   indicator: (props: { checkedState: CheckedState }) => any
   label: () => any
 }>()
 
-const checkbox = useCheckbox(props, emit)
+const forwarded = useForwardProps(props)
+const checkbox = useCheckbox(forwarded, emit)
 const { root, control, indicator, label: tvLabel } = tvCheckbox()
 
 defineExpose({

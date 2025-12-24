@@ -25,10 +25,10 @@ export interface ButtonProps {
 import type { ButtonVariants } from '@rui-ark/themes/crafts/button'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
+import { getNodeCssVar } from '@rui-ark/shared/css'
 import { tvButton } from '@rui-ark/themes/crafts/button'
 import { useRipple } from '@rui-ark/vue-core/composables/useRipple'
 import { useForwardExpose } from '@rui-ark/vue-core/libs/useForwardExpose'
-import { getNodeCssVar } from '@rui-ark/vue-core/utils/css'
 import { LoaderCircle } from 'lucide-vue-next'
 import { computed } from 'vue'
 

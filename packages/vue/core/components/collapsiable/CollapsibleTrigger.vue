@@ -28,9 +28,8 @@ const {
   ui,
   ...props
 } = defineProps<CollapsibleTriggerProps>()
-
-const context = useCollapsibleContext()
 const forwarded = useForwardProps(props)
+const context = useCollapsibleContext()
 
 const { trigger, indicator: tvIndicator } = tvCollapsible()
 </script>

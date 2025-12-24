@@ -107,7 +107,7 @@ const { root, inner, clearable: tvClearable } = tvInput()
       @input="(e: Event) => emits('input', e, modelValue)"
       @change="(e: Event) => emits('change', e, modelValue)"
     >
-    <div
+    <ark.div
       v-if="inputState === 'focused' && clearable && modelValue"
       :class="tvClearable({ size, unstyled, class: ui?.clearable })"
       @mousedown.stop="
@@ -119,7 +119,7 @@ const { root, inner, clearable: tvClearable } = tvInput()
       "
     >
       <CircleX />
-    </div>
+    </ark.div>
     <slot name="suffix" />
   </ark.div>
 </template>

@@ -16,7 +16,8 @@
     "moduleResolution": "Bundler",
     "paths": {
       "@rui-ark/vue-core/*": ["./*"],
-      "@rui-ark/themes/*": ["../../themes/src/*"]
+      "@rui-ark/themes/*": ["../../themes/src/*"],
+      "@rui-ark/shared/*": ["../../shared/src/*"]
     },
 
     "allowImportingTsExtensions": true,
@@ -29,7 +30,7 @@
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  "references": [{ "path": "../../themes" }],
+  "references": [{ "path": "../../themes" }, { "path": "../../shared" }],
   "include": [
     "components/**/*.ts",
     "components/**/*.tsx",

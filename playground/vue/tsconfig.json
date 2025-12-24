@@ -24,11 +24,7 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
-
-  "references": [
-    { "path": "../../packages/vue/core/tsconfig.build.json" },
-    { "path": "../../packages/themes/tsconfig.json" }
-  ],
+  "references": [{ "path": "../../packages/vue/core/tsconfig.build.json" }],
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

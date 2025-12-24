@@ -11,17 +11,18 @@ import type {
   CollapsibleRootProps,
 } from '@ark-ui/vue/collapsible'
 import { Collapsible, useCollapsible } from '@ark-ui/vue/collapsible'
+import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvCollapsible } from '@rui-ark/themes/crafts/collapsible'
 
 const {
   class: propsClass,
   unstyled,
   asChild,
-  open = undefined,
   ...props
 } = defineProps<CollapsibleProps>()
 const emit = defineEmits<CollapsibleRootEmits>()
-const collapsiable = useCollapsible({ ...props, open }, emit)
+const forwarded = useForwardProps(props)
+const collapsiable = useCollapsible(forwarded, emit)
 const { root } = tvCollapsible()
 </script>
 

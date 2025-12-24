@@ -1,0 +1,16 @@
+{
+  "name": "@rui-ark/shared",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "exports": {
+    "./css": "./src/css.ts",
+    "./dom": "./src/dom.ts"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

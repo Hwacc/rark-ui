@@ -28,7 +28,6 @@ const {
   },
   ...props
 } = defineProps<ReadMoreProps>()
-
 const forwarded = useForwardProps(props)
 const { root, content, trigger } = tvReadMore()
 </script>

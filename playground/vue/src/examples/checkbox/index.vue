@@ -2,7 +2,7 @@
 import { Checkbox, CheckboxGroup } from '@rui-ark/vue-core/components/checkbox'
 import { ref, watch } from 'vue'
 
-const checkboxState = ref<boolean | 'indeterminate'>(false)
+const checkboxState = ref<boolean | 'indeterminate'>(true)
 
 const groupItems = [
   { label: 'React', value: 'react' },
@@ -11,7 +11,6 @@ const groupItems = [
   { label: 'Svelte', value: 'svelte' },
 ]
 const groupState = ref<string[]>([])
-
 watch(groupState, (newVal) => {
   console.log('groupState', newVal)
 })
@@ -23,13 +22,22 @@ watch(groupState, (newVal) => {
       v-model:checked="checkboxState"
       label="Checkbox"
     />
-    <Checkbox default-checked="indeterminate" label="Checkbox" />
+    <Checkbox
+      default-checked="indeterminate"
+      label="Checkbox"
+    />
     <Checkbox
       label="Checkbox"
       disabled
     />
     <CheckboxGroup v-model:value="groupState">
-      <Checkbox v-for="item in groupItems" :key="item.value" :label="item.label" :name="item.value" :value="item.value" />
+      <Checkbox
+        v-for="item in groupItems"
+        :key="item.value"
+        :label="item.label"
+        :name="item.value"
+        :value="item.value"
+      />
     </CheckboxGroup>
   </div>
 </template>

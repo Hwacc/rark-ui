@@ -8,16 +8,8 @@ import {
 
 <template>
   <div class="flex gap-4">
-    <EditableRoot
-      placeholder="Edit me"
-      clearable
-      @interact-outside="
-        () => {
-          console.log('interact-outside')
-        }
-      "
-    >
-      <EditableInput />
+    <EditableRoot placeholder="Edit me" clearable>
+      <EditableInput clearable size="sm" />
       <EditablePreview />
     </EditableRoot>
   </div>

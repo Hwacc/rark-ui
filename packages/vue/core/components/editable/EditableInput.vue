@@ -1,50 +1,84 @@
 <script lang="ts">
 export interface EditableInputProps extends ArkEditableInputProps {
-  class?: string
+  class?: HTMLAttributes['class']
+  size?: EditableVariants['size']
   unstyled?: boolean
+  clearable?: boolean
 }
 </script>
 
 <script setup lang="ts">
 import type { EditableInputProps as ArkEditableInputProps } from '@ark-ui/vue/editable'
+import type { EditableVariants } from '@rui-ark/themes/crafts/editable'
+import type { HTMLAttributes } from 'vue'
 import { EditableInput, useEditableContext } from '@ark-ui/vue/editable'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvEditable } from '@rui-ark/themes/crafts/editable'
-import { nextTick } from 'vue'
-import { injectEditableContext } from '.'
+import { tvEditableInput } from '@rui-ark/themes/crafts/editable'
+import { CircleX } from 'lucide-vue-next'
+import { ref } from 'vue'
 
 const {
   class: propsClass,
   unstyled,
+  clearable = false,
+  size = 'base',
   ...props
 } = defineProps<EditableInputProps>()
 
-const { clearable } = injectEditableContext()
-const context = useEditableContext()
 const forwarded = useForwardProps(props)
+const context = useEditableContext()
+const inputRef = ref<{ $el: HTMLInputElement } | null>(null)
 
-function onClear() {
-  console.log('context', context.value)
-  context.value.clearValue()
-  context.value.edit()
+const isFocus = ref(false)
+function onFocus() {
+  isFocus.value = true
+}
+function onBlur() {
+  isFocus.value = false
 }
 
-const { input } = tvEditable()
+function onClear() {
+  context.value.clearValue()
+  // we reforcus on next microtask to avoid blur event
+  setTimeout(() => {
+    inputRef.value?.$el.focus()
+    isFocus.value = true
+  })
+}
+
+const { root, inner, clearable: tvClearable } = tvEditableInput()
 </script>
 
 <template>
-  <ark.div>
+  <ark.div
+    :class="
+      root({
+        class: [!context.editing && 'hidden', propsClass],
+        unstyled,
+        size,
+      })
+    "
+    data-scope="editable"
+    data-part="input-area"
+    :data-state="isFocus ? 'focused' : 'idle'"
+  >
     <EditableInput
       v-bind="forwarded"
-      :class="input({ class: [propsClass], unstyled })"
+      ref="inputRef"
+      :class="inner({ class: [propsClass], unstyled, size })"
+      :data-state="isFocus ? 'focused' : 'idle'"
+      @focus="onFocus"
+      @blur="onBlur"
     />
-    <button
-      v-if="clearable && context.editing"
-      v-bind="context.getCancelTriggerProps()"
-      @click="onClear"
-    >
-      clear
-    </button>
+    <slot name="clearable">
+      <CircleX
+        v-if="clearable && context.editing && !context.empty"
+        data-scope="editable"
+        data-part="clear-button"
+        :class="tvClearable({ class: [propsClass], unstyled, size })"
+        @pointerdown.stop="onClear"
+      />
+    </slot>
   </ark.div>
 </template>
