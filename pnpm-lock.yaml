@@ -22,6 +22,8 @@ importers:
         specifier: ^9.39.2
         version: 9.39.2(jiti@2.6.1)
 
+  packages/shared: {}
+
   packages/themes:
     dependencies:
       tailwind-merge:
@@ -45,6 +47,9 @@ importers:
       '@ark-ui/vue':
         specifier: ^5.30.0
         version: 5.30.0(vue@3.5.25(typescript@5.9.3))
+      '@rui-ark/shared':
+        specifier: workspace:*
+        version: link:../../shared
       '@rui-ark/themes':
         specifier: workspace:*
         version: link:../../themes
@@ -66,6 +71,9 @@ importers:
       '@rui-ark/vue-core':
         specifier: workspace:*
         version: link:../../packages/vue/core
+      lucide-vue-next:
+        specifier: ^0.562.0
+        version: 0.562.0(vue@3.5.25(typescript@5.9.3))
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18

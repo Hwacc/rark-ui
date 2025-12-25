@@ -12,22 +12,29 @@ import type { EditableVariants } from '@rui-ark/themes/crafts/editable'
 import { EditablePreview } from '@ark-ui/vue/editable'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvEditable } from '@rui-ark/themes/crafts/editable'
+import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
 const {
   class: propsClass,
   unstyled,
-  size = 'base',
+  size,
   ...props
 } = defineProps<EditablePreviewProps>()
-
 const forwarded = useForwardProps(props)
+
+const theme = useTheme({ size, unstyled })
 const { preview } = tvEditable()
 </script>
 
 <template>
   <EditablePreview
     v-bind="forwarded"
-    :class="preview({ class: [propsClass], unstyled, size })"
+    :class="
+      preview({
+        class: [propsClass],
+        ...theme,
+      })
+    "
   >
     <slot />
   </EditablePreview>

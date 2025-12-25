@@ -11,6 +11,7 @@
   "dependencies": {
     "@rui-ark/themes": "workspace:*",
     "@rui-ark/vue-core": "workspace:*",
+    "lucide-vue-next": "^0.562.0",
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.25"
   },

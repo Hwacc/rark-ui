@@ -38,6 +38,9 @@
     "composables/**/*.ts",
     "composables/**/*.tsx",
     "utils/**/*.ts",
+    "providers/**/*.ts",
+    "providers/**/*.tsx",
+    "providers/**/*.vue",
     "libs/**/*.ts",
     "types/**/*.d.ts"
   ],

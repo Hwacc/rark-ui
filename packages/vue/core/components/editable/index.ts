@@ -1,5 +1,11 @@
+export { default as Editable } from './Editable.vue'
 export { default as EditableInput } from './EditableInput.vue'
 export { default as EditablePreview } from './EditablePreview.vue'
-export { default as EditableRoot } from './EditableRoot.vue'
 
-export { EditableContext, EditableControl } from '@ark-ui/vue/editable'
+export {
+  EditableCancelTrigger,
+  EditableContext,
+  EditableControl,
+  EditableEditTrigger,
+  EditableSubmitTrigger,
+} from '@ark-ui/vue/editable'

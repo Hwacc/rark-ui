@@ -15,6 +15,7 @@ import { EditableInput, useEditableContext } from '@ark-ui/vue/editable'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvEditableInput } from '@rui-ark/themes/crafts/editable'
+import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { CircleX } from 'lucide-vue-next'
 import { ref } from 'vue'
 
@@ -22,7 +23,7 @@ const {
   class: propsClass,
   unstyled,
   clearable = false,
-  size = 'base',
+  size,
   ...props
 } = defineProps<EditableInputProps>()
 
@@ -47,6 +48,7 @@ function onClear() {
   })
 }
 
+const theme = useTheme({ size, unstyled })
 const { root, inner, clearable: tvClearable } = tvEditableInput()
 </script>
 
@@ -55,8 +57,7 @@ const { root, inner, clearable: tvClearable } = tvEditableInput()
     :class="
       root({
         class: [!context.editing && 'hidden', propsClass],
-        unstyled,
-        size,
+        ...theme,
       })
     "
     data-scope="editable"
@@ -66,7 +67,7 @@ const { root, inner, clearable: tvClearable } = tvEditableInput()
     <EditableInput
       v-bind="forwarded"
       ref="inputRef"
-      :class="inner({ class: [propsClass], unstyled, size })"
+      :class="inner({ class: [propsClass], ...theme })"
       :data-state="isFocus ? 'focused' : 'idle'"
       @focus="onFocus"
       @blur="onBlur"
@@ -76,7 +77,7 @@ const { root, inner, clearable: tvClearable } = tvEditableInput()
         v-if="clearable && context.editing && !context.empty"
         data-scope="editable"
         data-part="clear-button"
-        :class="tvClearable({ class: [propsClass], unstyled, size })"
+        :class="tvClearable({ class: [propsClass], ...theme })"
         @pointerdown.stop="onClear"
       />
     </slot>

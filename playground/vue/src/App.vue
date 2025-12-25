@@ -5,6 +5,7 @@ import CheckboxExample from './examples/checkbox/index.vue'
 import CollapsiableExample from './examples/collapsiable/index.vue'
 import EditableExample from './examples/editable/index.vue'
 import InputExample from './examples/input/index.vue'
+import TooltipExample from './examples/tooltip/index.vue'
 </script>
 
 <template>
@@ -15,5 +16,6 @@ import InputExample from './examples/input/index.vue'
     <CollapsiableExample />
     <InputExample />
     <EditableExample />
+    <TooltipExample />
   </div>
 </template>

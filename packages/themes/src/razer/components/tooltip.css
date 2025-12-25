@@ -1,0 +1,18 @@
+@layer components {
+
+  .rui-tooltip-content {
+    @apply data-bordered:border-h00;
+    @apply dark:data-bordered:border-hff;
+  }
+
+  .rui-tooltip-content-inner {
+    @apply bg-hff data-bordered:border-h00 text-h00;
+    @apply dark:bg-h00 dark:data-bordered:border-hff dark:text-hff;
+  }
+
+  .rui-tooltip-arrow {
+    --arrow-size: .5rem;
+    @apply bg-hff data-bordered:border-h00;
+    @apply dark:bg-h00 dark:data-bordered:border-hff;
+  }
+}
