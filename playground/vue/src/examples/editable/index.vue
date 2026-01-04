@@ -12,15 +12,14 @@ import {
 import { Check, Pencil, X } from 'lucide-vue-next'
 import { ref } from 'vue'
 
+const text = ref('')
 const size = ref<'base' | 'sm' | 'lg'>('base')
 </script>
 
 <template>
   <div class="flex gap-4">
-    <Editable
-      placeholder="Edit me"
-      :size="size"
-    >
+    <p>{{ text }}</p>
+    <Editable v-model="text" placeholder="Edit me" :size="size">
       <EditableInput clearable />
       <EditablePreview />
     </Editable>
@@ -46,10 +45,7 @@ const size = ref<'base' | 'sm' | 'lg'>('base')
             </Button>
           </EditableSubmitTrigger>
           <EditableCancelTrigger v-if="editing" as-child>
-            <Button
-              variant="text"
-              class="p-0 size-5"
-            >
+            <Button variant="text" class="p-0 size-5">
               <X class="size-3" />
             </Button>
           </EditableCancelTrigger>

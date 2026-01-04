@@ -5,6 +5,7 @@ export type DialogOpenChangeDetails = OpenChangeDetails & {
 }
 export interface DialogProps extends DialogRootProps {
   class?: HTMLAttributes['class']
+  size?: DialogVariants['size']
   unstyled?: boolean
 }
 type UseDialogPropsEx = UseDialogProps & {
@@ -27,6 +28,7 @@ import type {
   DialogRootProps,
   UseDialogProps,
 } from '@ark-ui/vue/dialog'
+import type { DialogVariants } from '@rui-ark/themes/crafts/dialog'
 import type { HTMLAttributes } from 'vue'
 import type {
   DialogInterceptContext,
@@ -41,60 +43,58 @@ import { useForwardProps } from '@ark-ui/vue'
 import { Dialog, useDialog } from '@ark-ui/vue/dialog'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { TriggerFrom } from './dialog-intercept-context'
 import DialogInterceptProvider from './DialogInterceptProvider.vue'
 
-const { class: propsClass, unstyled, ...props } = defineProps<DialogProps>()
+const {
+  class: propsClass,
+  unstyled,
+  size,
+  ...props
+} = defineProps<DialogProps>()
 const emits = defineEmits<DialogEmits>()
 const forwarded = useForwardProps<DialogRootProps, UseDialogPropsEx>(props)
 
 const triggerFrom = ref<DialogTriggerFrom>(undefined)
-const dialogInterceptContext: DialogInterceptContext = {
-  triggerFrom,
-  onOpenChange: (details: OpenChangeDetails) => {
-    emits('openChange', { ...details, from: triggerFrom.value })
-    emits('update:open', details.open)
-    forwarded.value.onOpenChange?.({ ...details, from: triggerFrom.value })
-  },
-  onEscapeKeyDown: (event: KeyboardEvent) => {
-    triggerFrom.value = TriggerFrom.ESCAPE
-    emits('escapeKeyDown', event)
-    forwarded.value.onEscapeKeyDown?.(event)
-  },
-  onFocusOutside: (event: FocusOutsideEvent) => {
-    emits('focusOutside', event)
-    forwarded.value.onFocusOutside?.(event)
-  },
-  onInteractOutside: (event: InteractOutsideEvent) => {
-    triggerFrom.value = TriggerFrom.OUTSIDE
-    emits('interactOutside', event)
-    forwarded.value.onInteractOutside?.(event)
-  },
-  onPointerDownOutside: (event: PointerDownOutsideEvent) => {
-    emits('pointerDownOutside', event)
-    forwarded.value.onPointerDownOutside?.(event)
-  },
-  onRequestDismiss: (event: RequestDismissEvent) => {
-    emits('requestDismiss', event)
-    forwarded.value.onRequestDismiss?.(event)
-  },
-}
-const propsEx = computed<UseDialogProps>(() => {
-  return {
+const dialogInterceptContext: DialogInterceptContext = { triggerFrom }
+const dialog = useDialog(
+  computed(() => ({
     ...forwarded.value,
-    onOpenChange: dialogInterceptContext.onOpenChange,
-    onEscapeKeyDown: dialogInterceptContext.onEscapeKeyDown,
-    onFocusOutside: dialogInterceptContext.onFocusOutside,
-    onInteractOutside: dialogInterceptContext.onInteractOutside,
-    onPointerDownOutside: dialogInterceptContext.onPointerDownOutside,
-    onRequestDismiss: dialogInterceptContext.onRequestDismiss,
-  }
+    onOpenChange: (details: OpenChangeDetails) => {
+      emits('openChange', { ...details, from: triggerFrom.value })
+      emits('update:open', details.open)
+      forwarded.value.onOpenChange?.({ ...details, from: triggerFrom.value })
+    },
+    onEscapeKeyDown: (event: KeyboardEvent) => {
+      triggerFrom.value = TriggerFrom.ESCAPE
+      emits('escapeKeyDown', event)
+      forwarded.value.onEscapeKeyDown?.(event)
+    },
+    onFocusOutside: (event: FocusOutsideEvent) => {
+      emits('focusOutside', event)
+      forwarded.value.onFocusOutside?.(event)
+    },
+    onInteractOutside: (event: InteractOutsideEvent) => {
+      triggerFrom.value = TriggerFrom.OUTSIDE
+      emits('interactOutside', event)
+      forwarded.value.onInteractOutside?.(event)
+    },
+    onPointerDownOutside: (event: PointerDownOutsideEvent) => {
+      emits('pointerDownOutside', event)
+      forwarded.value.onPointerDownOutside?.(event)
+    },
+    onRequestDismiss: (event: RequestDismissEvent) => {
+      emits('requestDismiss', event)
+      forwarded.value.onRequestDismiss?.(event)
+    },
+  })),
+)
+watch(forwarded, ({ open }) => {
+  dialog.value.setOpen(open ?? false)
 })
-const dialog = useDialog(propsEx)
 
-const theme = useTheme({ unstyled })
-
+const theme = useTheme({ size, unstyled })
 defineExpose({
   open: dialog.value.open,
   setOpen: (open: boolean, from?: DialogTriggerFrom) => {

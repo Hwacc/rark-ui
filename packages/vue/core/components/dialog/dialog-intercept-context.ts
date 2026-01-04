@@ -14,18 +14,14 @@ export enum TriggerFrom {
   ESCAPE = 'escape',
   OPEN_TRIGGER = 'open_trigger',
   CLOSE_TRIGGER = 'close_trigger',
+  CANCEL_BUTTON = 'cancel_button',
+  OK_BUTTON = 'ok_button',
   OUTSIDE = 'outside',
 }
 export type DialogTriggerFrom = TriggerFrom | string | null | undefined
 
 export interface DialogInterceptContext {
   triggerFrom: Ref<DialogTriggerFrom>
-  onOpenChange: (details: OpenChangeDetails) => void
-  onEscapeKeyDown: (event: KeyboardEvent) => void
-  onFocusOutside: (event: FocusOutsideEvent) => void
-  onInteractOutside: (event: InteractOutsideEvent) => void
-  onPointerDownOutside: (event: PointerDownOutsideEvent) => void
-  onRequestDismiss: (event: RequestDismissEvent) => void
 }
 
 export const [provideDialogInterceptContext, injectDialogInterceptContext]

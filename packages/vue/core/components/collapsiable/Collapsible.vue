@@ -32,6 +32,11 @@ const collapsiable = useCollapsible(forwarded, emit)
 
 const theme = useTheme({ size, unstyled })
 const { root } = tvCollapsible()
+
+defineExpose({
+  open: collapsiable.value.open,
+  setOpen: collapsiable.value.setOpen,
+})
 </script>
 
 <template>

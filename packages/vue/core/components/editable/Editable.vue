@@ -54,28 +54,30 @@ defineSlots<{
 
 // useForwardProps 收窄传递的props
 const forwarded = useForwardProps<EditableRootProps, UseEditableProps>(props)
-const propsEx = computed<UseEditableProps>(() => {
-  return {
-    ...forwarded.value,
-    onInteractOutside: (event) => {
-      // event.detail.target could be element triggered the event
-      const target = event.detail.target as HTMLElement
-      const exceptParts = ['input-area', 'clear-button']
-      if (
-        findUp(target, (node) => {
-          return (
-            node.dataset.scope === 'editable'
-            && exceptParts.includes(node.dataset.part ?? '')
-          )
-        })
-      ) {
-        event.preventDefault()
-        forwarded.value.onInteractOutside?.(event)
-      }
-    },
-  }
-})
-const editable = useEditable(propsEx, emits)
+const editable = useEditable(
+  computed(() => {
+    return {
+      ...forwarded.value,
+      onInteractOutside: (event) => {
+        // event.detail.target could be element triggered the event
+        const target = event.detail.target as HTMLElement
+        const exceptParts = ['input-area', 'clear-button']
+        if (
+          findUp(target, (node) => {
+            return (
+              node.dataset.scope === 'editable'
+              && exceptParts.includes(node.dataset.part ?? '')
+            )
+          })
+        ) {
+          event.preventDefault()
+          forwarded.value.onInteractOutside?.(event)
+        }
+      },
+    }
+  }),
+  emits,
+)
 const slotProps = computed<SlotProps>(() => {
   return {
     editing: editable.value.editing,
@@ -86,9 +88,8 @@ const slotProps = computed<SlotProps>(() => {
 
 const theme = useTheme({ size, unstyled })
 const { root, area } = tvEditable()
-
 defineExpose(
-  pick(editable, ['edit', 'clearValue', 'setValue', 'cancel', 'submit']),
+  pick(editable.value, ['edit', 'clearValue', 'setValue', 'cancel', 'submit']),
 )
 </script>
 

@@ -1,24 +1,38 @@
 @import './animation-easing.css';
 
 @plugin 'tailwindcss-motion';
-@plugin 'tailwindcss-animated';
 
 @theme {
-  --animate-accordion-down: accordion-down var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-out);
-  --animate-accordion-up: accordion-up var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-out);
-  --animate-collapsible-down: collapsible-down var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-in-out);
-  --animate-collapsible-up: collapsible-up var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-in-out);
-  --animate-quick-squeeze-x: squeeze-x var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-in-out);
+  --animate-accordion-down: accordion-down var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out);
+  --animate-accordion-up: accordion-up var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out);
+  --animate-collapsible-down: collapsible-down var(--tw-duration, 200ms)
+    var(--tw-timing, ease-in-out);
+  --animate-collapsible-up: collapsible-up var(--tw-duration, 200ms)
+    var(--tw-timing, ease-in-out);
+  --animate-quick-squeeze-x: squeeze-x var(--tw-duration, 200ms)
+    var(--tw-timing, ease-in-out);
   --animate-rippling: rippling var(--tw-ripple-duration, 600ms) ease-out;
   --animate-spin: spin 1s linear infinite;
-  --animate-fade-scale-in: fade-scale-in var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-out);
-  --animate-fade-scale-out: fade-scale-out var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-out);
+  --animate-fade-scale-in: fade-scale-in var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out);
+  --animate-fade-scale-out: fade-scale-out var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out);
+  --animate-backdrop-blur-in: backdrop-blur-in var(--tw-duration, 200ms) 
+    var(--tw-timing, ease-out) forwards;
+  --animate-backdrop-blur-out: backdrop-blur-out var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out) forwards;
 
   /* toast exit animations */
-  --animate-toast-exit-right: toast-exit-right var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-out);
-  --animate-toast-exit-left: toast-exit-left var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-out);
-  --animate-toast-exit-top: toast-exit-top var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-out);
-  --animate-toast-exit-bottom: toast-exit-bottom var(--tw-animate-duration, 200ms) var(--tw-animate-easing, ease-out);
+  --animate-toast-exit-right: toast-exit-right var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out);
+  --animate-toast-exit-left: toast-exit-left var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out);
+  --animate-toast-exit-top: toast-exit-top var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out);
+  --animate-toast-exit-bottom: toast-exit-bottom var(--tw-duration, 200ms)
+    var(--tw-timing, ease-out);
 
   /* Keyframes */
   @keyframes accordion-down {
@@ -169,11 +183,15 @@
   }
 
   @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
-  @keyframes fade-scale-in{
+  @keyframes fade-scale-in {
     from {
       opacity: 0;
       transform: scale(0.95);
@@ -184,7 +202,7 @@
     }
   }
 
-  @keyframes fade-scale-out{
+  @keyframes fade-scale-out {
     from {
       opacity: 1;
       transform: scale(1);
@@ -195,24 +213,33 @@
     }
   }
 
+  @keyframes backdrop-blur-in {
+    from {
+      backdrop-filter: blur(0);
+    }
+    to {
+      backdrop-filter: blur(.3125rem);
+    }
+  }
+  @keyframes backdrop-blur-out {
+    from {
+      backdrop-filter: blur(.3125rem);
+    }
+    to {
+      backdrop-filter: blur(0);
+    }
+  }
 }
 
 @utility animate-check-dash {
   stroke-dasharray: 50;
   stroke-dashoffset: -50;
-  animation: path-dash var(--tw-animate-duration, 150ms) var(--tw-animate-easing, ease-out) forwards;
+  animation: path-dash var(--tw-duration, 150ms) var(--tw-easing, ease-out)
+    forwards;
 }
 
 @utility animate-indeterminate-dash {
   stroke-dasharray: 50;
   stroke-dashoffset: 50;
-  animation: path-dash var(--tw-animate-duration, 150ms) linear forwards;
-}
-
-@utility animate-fade-down-in {
-  @apply animate-fade-down;
-}
-
-@utility animate-fade-down-out {
-  animation: fade-down-out var(--tw-animate-duration, 150ms) var(--tw-animate-easing, ease-out) forwards;
+  animation: path-dash var(--tw-duration, 150ms) linear forwards;
 }

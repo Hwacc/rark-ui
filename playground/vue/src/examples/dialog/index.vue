@@ -2,10 +2,15 @@
 import { Button } from '@rui-ark/vue-core/components/button'
 import {
   Dialog,
-  DialogCloseTrigger,
+  dialog,
+  DialogBody,
   DialogContent,
+  DialogFooter,
+  DialogHeader,
   DialogTrigger,
 } from '@rui-ark/vue-core/components/dialog'
+import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { ref } from 'vue'
 
 function handleOpenChange(details: any) {
   console.log('open change', details)
@@ -14,10 +19,23 @@ function handleOpenChange(details: any) {
 function handleEscapeKeyDown(event: KeyboardEvent) {
   console.log('escape key down', event)
 }
+
+const open = ref(false)
+function handleVModelOpen() {
+  open.value = true
+  console.log('handleVModelOpen', open.value)
+}
+
+function handleOpenDialog() {
+  dialog({
+    title: 'Functional Dialog',
+    content: 'Functional Dialog Content',
+  })
+}
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
+  <div class="flex items-center gap-4">
     <Dialog
       @open-change="handleOpenChange"
       @escape-key-down="handleEscapeKeyDown"
@@ -27,14 +45,53 @@ function handleEscapeKeyDown(event: KeyboardEvent) {
           Open Dialog
         </Button>
       </DialogTrigger>
-      <DialogContent>
-        Dialog Content
-        <DialogCloseTrigger as-child>
-          <Button class="w-fit">
-            Close Dialog
-          </Button>
-        </DialogCloseTrigger>
+      <DialogContent class="w-100">
+        <DialogHeader> Dialog Title </DialogHeader>
+        <DialogBody> Dialog Body </DialogBody>
+        <DialogFooter />
       </DialogContent>
     </Dialog>
+
+    <Dialog>
+      <DialogTrigger as-child>
+        <Button class="w-fit">
+          Open No Header Dialog
+        </Button>
+      </DialogTrigger>
+      <DialogContent class="w-100">
+        <DialogBody> Dialog Body </DialogBody>
+        <DialogFooter />
+      </DialogContent>
+    </Dialog>
+
+    <Dialog>
+      <DialogTrigger as-child>
+        <Button class="w-fit">
+          Open Small Dialog
+        </Button>
+      </DialogTrigger>
+      <ThemeProvider :value="{ size: 'sm' }">
+        <DialogContent class="w-100">
+          <DialogHeader> Dialog Title </DialogHeader>
+          <DialogBody> Dialog Body </DialogBody>
+          <DialogFooter />
+        </DialogContent>
+      </ThemeProvider>
+    </Dialog>
+
+    <Button @click="handleVModelOpen">
+      Open V-Model Dialog
+    </Button>
+    <Dialog v-model:open="open">
+      <DialogContent class="w-100">
+        <DialogHeader> Dialog Title </DialogHeader>
+        <DialogBody> Dialog Body </DialogBody>
+        <DialogFooter />
+      </DialogContent>
+    </Dialog>
+
+    <Button @click="handleOpenDialog">
+      Open Functional Dialog
+    </Button>
   </div>
 </template>

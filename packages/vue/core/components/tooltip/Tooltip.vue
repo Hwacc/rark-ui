@@ -19,7 +19,6 @@ const { size, bordered, unstyled, ...props } = defineProps<TooltipProps>()
 const forwarded = useForwardProps(props)
 
 const ruiConfig = useConfig()
-console.log('ruiConfig', ruiConfig.value)
 const theme = useTheme({ size, bordered, unstyled })
 </script>
 

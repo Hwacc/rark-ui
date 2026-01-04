@@ -2,24 +2,18 @@
   /* tw default duration */
   --tw-duration: var(--motion-duration);
   --default-transition-duration: var(--motion-duration);
-
-  /* tailwind animated plugin duration */
-  --tw-animate-duration: var(--motion-duration);
-  --default-animation-duration: var(--motion-duration);
-
-  /* tailwind default easing */
-  --tw-ease: var(--motion-timing);
+  --tw-timing: var(--motion-timing);
   --default-transition-timing-function: var(--motion-timing);
-  --default-animation-timing-function: var(--motion-timing);
-
-  /* tailwind animated plugin easing */
-  --tw-animate-easing: var(--motion-timing);
-  --default-animation-easing: var(--motion-timing);
 }
 
-@layer components {
-  * {
-    /* tailwind motion duration */
-    --motion-duration: 200ms;
-  }
+@property --motion-duration {
+  syntax: '<time>';
+  inherits: false;
+  initial-value: 200ms;
+}
+
+@property --motion-timing {
+  syntax: '*';
+  inherits: false;
+  initial-value: cubic-bezier(0, 0, 0.2, 1);
 }

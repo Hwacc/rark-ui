@@ -22,4 +22,8 @@
   .rui-dialog-body{
     @apply -outline-offset-2;
   }
+
+  .rui-dialog-content-close{
+    @apply text-rui-close hover:text-rui-close-hover;
+  }
 }
