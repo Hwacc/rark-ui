@@ -26,7 +26,7 @@ const { class: propsClass, unstyled, size } = defineProps<DialogHeaderProps>()
 
 const id = useId()
 const theme = useTheme({ size, unstyled })
-const { header, close } = tvDialog()
+const { header, title, close } = tvDialog()
 </script>
 
 <template>
@@ -36,7 +36,7 @@ const { header, close } = tvDialog()
     data-part="header"
     :class="header({ class: [ui?.root, propsClass], ...theme })"
   >
-    <Dialog.Title>
+    <Dialog.Title :class="title({ class: ui?.title, ...theme })">
       <slot />
     </Dialog.Title>
     <DialogCloseTrigger as-child>

@@ -14,16 +14,25 @@ import { useForwardProps } from '@ark-ui/vue/utils'
 import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { computed } from 'vue'
 
-const { size, bordered, unstyled, ...props } = defineProps<TooltipProps>()
+const {
+  size,
+  bordered,
+  unstyled,
+  lazyMount = undefined,
+  unmountOnExit = undefined,
+  ...props
+} = defineProps<TooltipProps>()
+const ruiConfig = useConfig(
+  computed(() => ({ tooltip: { lazyMount, unmountOnExit } })),
+)
 const forwarded = useForwardProps(props)
-
-const ruiConfig = useConfig()
 const theme = useTheme({ size, bordered, unstyled })
 </script>
 
 <template>
-  <TooltipRoot v-bind="{ ...(ruiConfig.tooltip ?? {}), ...forwarded }">
+  <TooltipRoot v-bind="{ ...ruiConfig.tooltip, ...forwarded }">
     <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>

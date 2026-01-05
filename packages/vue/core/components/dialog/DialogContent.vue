@@ -23,8 +23,12 @@ import { cn } from '@rui-ark/themes/utils/cn'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { someVNode } from '@rui-ark/vue-core/utils/vnode'
 import { X } from 'lucide-vue-next'
-import { computed, useSlots } from 'vue'
+import { computed, useAttrs, useSlots } from 'vue'
 import { DialogBackdrop, DialogCloseTrigger } from '.'
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const {
   class: propsClass,
@@ -43,6 +47,7 @@ const hasDialogHeader = computed(() =>
 )
 const showContentClose = computed(() => showClose && !hasDialogHeader.value)
 
+const attrs = useAttrs()
 const theme = useTheme({ size, unstyled })
 const { positioner, content, close } = tvDialog()
 </script>
@@ -52,6 +57,7 @@ const { positioner, content, close } = tvDialog()
     <DialogBackdrop :class="ui?.backdrop" :unstyled="theme.unstyled" />
     <Dialog.Positioner :class="positioner({ class: ui?.positioner, ...theme })">
       <Dialog.Content
+        v-bind="attrs"
         :class="content({ class: [ui?.content, propsClass], ...theme })"
       >
         <slot />

@@ -50,6 +50,7 @@ export const tvDialog = tv(
         'pr-4',
         'text-sm',
       ],
+      title: [],
       body: ['flex-1', 'p-5', 'text-base', 'overflow-y-auto'],
       footer: [
         'flex',
@@ -104,6 +105,7 @@ export const tvDialog = tv(
       content: `${prefix}-content`,
       header: `${prefix}-header`,
       close: `${prefix}-close`,
+      title: `${prefix}-title`,
       body: `${prefix}-body`,
       footer: `${prefix}-footer`,
     },

@@ -9,6 +9,7 @@ const props = withDefaults(
   defineProps<{
     theme?: RUIConfigContext['theme']
     tooltip?: RUIConfigContext['tooltip']
+    dialog?: RUIConfigContext['dialog']
     iconify?: RUIConfigContext['iconify']
   }>(),
   {
@@ -21,6 +22,10 @@ const props = withDefaults(
     tooltip: () => ({
       openDelay: 0,
       closeDelay: 0,
+      lazyMount: false,
+      unmountOnExit: false,
+    }),
+    dialog: () => ({
       lazyMount: false,
       unmountOnExit: false,
     }),

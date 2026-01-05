@@ -41,6 +41,7 @@ import type {
 } from './dialog-intercept-context'
 import { useForwardProps } from '@ark-ui/vue'
 import { Dialog, useDialog } from '@ark-ui/vue/dialog'
+import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { computed, ref, watch } from 'vue'
@@ -51,9 +52,12 @@ const {
   class: propsClass,
   unstyled,
   size,
+  lazyMount = undefined,
+  unmountOnExit = undefined,
   ...props
 } = defineProps<DialogProps>()
 const emits = defineEmits<DialogEmits>()
+const ruiConfig = useConfig(computed(() => ({ dialog: { lazyMount, unmountOnExit } })))
 const forwarded = useForwardProps<DialogRootProps, UseDialogPropsEx>(props)
 
 const triggerFrom = ref<DialogTriggerFrom>(undefined)
@@ -90,9 +94,12 @@ const dialog = useDialog(
     },
   })),
 )
-watch(forwarded, ({ open }) => {
-  dialog.value.setOpen(open ?? false)
-})
+watch(
+  () => forwarded.value.open,
+  (val) => {
+    dialog.value.setOpen(val ?? false)
+  },
+)
 
 const theme = useTheme({ size, unstyled })
 defineExpose({
@@ -105,7 +112,11 @@ defineExpose({
 </script>
 
 <template>
-  <Dialog.RootProvider :value="dialog">
+  <Dialog.RootProvider
+    :value="dialog"
+    :lazy-mount="ruiConfig?.dialog?.lazyMount ?? lazyMount"
+    :unmount-on-exit="ruiConfig?.dialog?.unmountOnExit ?? unmountOnExit"
+  >
     <DialogInterceptProvider :value="dialogInterceptContext">
       <ThemeProvider :value="theme">
         <slot />

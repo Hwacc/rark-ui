@@ -34,7 +34,10 @@ const {
   ui,
   widget,
 } = defineProps<DialogFooterProps>()
-
+const emits = defineEmits<{
+  ok: [event: MouseEvent]
+  cancel: [event: MouseEvent]
+}>()
 const id = useId()
 const theme = useTheme({ size, unstyled })
 const { footer } = tvDialog()
@@ -53,12 +56,17 @@ const { footer } = tvDialog()
           variant="text"
           v-bind="widget?.cancel"
           :class="cn('min-w-22.5 uppercase', ui?.cancel)"
+          @click="emits('cancel', $event)"
         >
           {{ widget?.cancel?.text ?? 'Cancel' }}
         </Button>
       </DialogCloseTrigger>
       <DialogCloseTrigger as-child :from="TriggerFrom.OK_BUTTON">
-        <Button v-bind="widget?.ok" :class="cn('min-w-22.5 uppercase', ui?.ok)">
+        <Button
+          v-bind="widget?.ok"
+          :class="cn('min-w-22.5 uppercase', ui?.ok)"
+          @click="emits('ok', $event)"
+        >
           {{ widget?.ok?.text ?? 'OK' }}
         </Button>
       </DialogCloseTrigger>

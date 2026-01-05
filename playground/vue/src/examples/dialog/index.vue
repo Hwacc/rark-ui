@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { Button } from '@rui-ark/vue-core/components/button'
 import {
   Dialog,
@@ -29,7 +29,16 @@ function handleVModelOpen() {
 function handleOpenDialog() {
   dialog({
     title: 'Functional Dialog',
-    content: 'Functional Dialog Content',
+    content: () => <div>Render Content</div>,
+    onOpenChange: (details) => {
+      console.log('functional dialog onOpenChange', details)
+    },
+    onOk: () => {
+      console.log('im ok')
+    },
+    onCancel: () => {
+      console.log('im cancel')
+    },
   })
 }
 </script>
@@ -37,6 +46,8 @@ function handleOpenDialog() {
 <template>
   <div class="flex items-center gap-4">
     <Dialog
+      :lazy-mount="true"
+      :unmount-on-exit="true"
       @open-change="handleOpenChange"
       @escape-key-down="handleEscapeKeyDown"
     >
