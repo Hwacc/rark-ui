@@ -10,12 +10,11 @@ export const tvSwitch = tv({
       'items-center',
       'gap-2',
       'w-fit',
+      'group/switch',
     ],
     control: [
-      'peer',
-      'inline-flex',
+      'block',
       'shrink-0',
-      'items-center',
       'rounded-full',
       'border-2',
       'transition-colors',
@@ -31,6 +30,7 @@ export const tvSwitch = tv({
       'data-[state=checked]:translate-x-full',
       'data-[state=unchecked]:translate-x-0',
     ],
+    label: '',
   },
   variants: {
     size: {
@@ -48,6 +48,7 @@ export const tvSwitch = tv({
       class: {
         control: 'w-8 h-[1.125rem]',
         thumb: 'size-3.5',
+        label: 'text-sm',
       },
     },
     {
@@ -55,6 +56,7 @@ export const tvSwitch = tv({
       class: {
         control: 'w-[1.75rem] h-4',
         thumb: 'size-3',
+        label: 'text-xs',
       },
     },
     {
@@ -62,6 +64,7 @@ export const tvSwitch = tv({
       class: {
         control: 'w-[2.25rem] h-5',
         thumb: 'size-4',
+        label: 'text-base',
       },
     },
   ],
@@ -70,6 +73,7 @@ export const tvSwitch = tv({
     root: prefix,
     control: `${prefix}-control`,
     thumb: `${prefix}-thumb`,
+    label: `${prefix}-label`,
   },
 })
 

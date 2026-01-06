@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Switch } from '@rui-ark/vue-core/components/switch'
+import { Switch, SwitchLabel } from '@rui-ark/vue-core/components/switch'
 </script>
 
 <template>
@@ -9,5 +9,8 @@ import { Switch } from '@rui-ark/vue-core/components/switch'
     <Switch size="lg" />
     <Switch disabled />
     <Switch disabled checked />
+    <Switch>
+      <SwitchLabel>Switch with label</SwitchLabel>
+    </Switch>
   </div>
 </template>
