@@ -21,10 +21,10 @@ import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvMenu } from '@rui-ark/themes/crafts/menu'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import {
-  contextVNodeWarning,
+  checkContextVNodePosition,
   findVNodeByName,
 } from '@rui-ark/vue-core/utils/vnode'
-import { useSlots } from 'vue'
+import { computed, useSlots } from 'vue'
 
 const {
   class: propsClass,
@@ -39,12 +39,10 @@ const forwarded = useForwardProps<MenuContentProps, { asChild?: boolean }>(
 )
 
 const slots = useSlots()
-const defaultSlots = slots.default?.()
-contextVNodeWarning(defaultSlots, 'MenuContext', 'MenuContent')
-const arrowNode = findVNodeByName(defaultSlots, 'MenuArrow')
-const otherNodes = defaultSlots?.filter(n => n !== arrowNode) ?? []
-
-console.log('otherNodes', otherNodes)
+const defaultSlots = computed(() => slots.default?.())
+checkContextVNodePosition(defaultSlots.value, 'MenuContext', 'MenuContent')
+const arrowNode = computed(() => findVNodeByName(defaultSlots.value, 'MenuArrow'))
+const otherNodes = computed(() => defaultSlots.value?.filter(n => n !== arrowNode.value) ?? [])
 
 const theme = useTheme({ size, unstyled, bordered })
 const { content, contentInner } = tvMenu()

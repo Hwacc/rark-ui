@@ -5,11 +5,8 @@ import {
 import { createArrow } from '../arrow/createArrow'
 
 export { default as Menu, type MenuProps } from './Menu.vue'
-export {
-  default as MenuContent,
-  type MenuContentProps,
-} from './MenuContent.vue'
-
+export { default as MenuCheckboxItem, type MenuCheckboxItemProps } from './MenuCheckboxItem.vue'
+export { default as MenuContent, type MenuContentProps } from './MenuContent.vue'
 export { default as MenuItem, type MenuItemProps } from './MenuItem.vue'
 export { default as MenuItemGroup, type MenuItemGroupProps } from './MenuItemGroup.vue'
 export { default as MenuTriggerItem, type MenuTriggerItemProps } from './MenuTriggerItem.vue'

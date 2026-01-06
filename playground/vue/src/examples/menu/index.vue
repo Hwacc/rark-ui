@@ -4,6 +4,7 @@ import { Button } from '@rui-ark/vue-core/components/button'
 import {
   Menu,
   MenuArrow,
+  MenuCheckboxItem,
   MenuContent,
   MenuItem,
   MenuItemGroup,
@@ -15,7 +16,7 @@ import { ref } from 'vue'
 
 const vegetables = Array.from({ length: 5 }, () => fakerEN.food.vegetable())
 const fruits = Array.from({ length: 5 }, () => fakerEN.food.fruit())
-const selected = ref<string>()
+const selected = ref<string | undefined>(vegetables[0])
 </script>
 
 <template>
@@ -84,6 +85,25 @@ const selected = ref<string>()
             </MenuContent>
           </Teleport>
         </Menu>
+      </MenuContent>
+    </Menu>
+
+    <Menu>
+      <MenuTrigger as-child>
+        <Button>Menu Checkbox</Button>
+      </MenuTrigger>
+      <MenuContent>
+        <MenuCheckboxItem
+          v-for="vegetable in vegetables"
+          :key="vegetable"
+          :value="vegetable"
+          :checked="selected === vegetable"
+          @update:checked="(val) => {
+            selected = val ? vegetable : ''
+          }"
+        >
+          <MenuItemText>{{ vegetable }}</MenuItemText>
+        </MenuCheckboxItem>
       </MenuContent>
     </Menu>
   </div>

@@ -40,7 +40,7 @@ export function findVNodeByName(
   })
 }
 
-export function contextVNodeWarning(
+export function checkContextVNodePosition(
   nodes: VNode[] | undefined,
   contextName: string,
   componentName?: string,

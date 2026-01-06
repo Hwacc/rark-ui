@@ -22,10 +22,10 @@ import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvPopover } from '@rui-ark/themes/crafts/popover'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import {
-  contextVNodeWarning,
+  checkContextVNodePosition,
   findVNodeByName,
 } from '@rui-ark/vue-core/utils/vnode'
-import { useSlots } from 'vue'
+import { computed, useSlots } from 'vue'
 
 const {
   class: propsClass,
@@ -39,10 +39,10 @@ const {
 const forwarded = useForwardProps(props)
 
 const slots = useSlots()
-const defaultSlots = slots.default?.()
-contextVNodeWarning(defaultSlots, 'PopoverContext', 'PopoverContent')
-const arrowNode = findVNodeByName(defaultSlots, 'PopoverArrow')
-const otherNodes = defaultSlots?.filter(n => n !== arrowNode) ?? []
+const defaultSlots = computed(() => slots.default?.())
+checkContextVNodePosition(defaultSlots.value, 'PopoverContext', 'PopoverContent')
+const arrowNode = computed(() => findVNodeByName(defaultSlots.value, 'PopoverArrow'))
+const otherNodes = computed(() => defaultSlots.value?.filter(n => n !== arrowNode.value) ?? [])
 
 const theme = useTheme({ size, unstyled, bordered, skin })
 const { content, contentInner } = tvPopover()

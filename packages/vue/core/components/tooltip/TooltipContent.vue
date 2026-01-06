@@ -22,10 +22,10 @@ import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvTooltip } from '@rui-ark/themes/crafts/tooltip'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import {
-  contextVNodeWarning,
+  checkContextVNodePosition,
   findVNodeByName,
 } from '@rui-ark/vue-core/utils/vnode'
-import { useSlots } from 'vue'
+import { computed, useSlots } from 'vue'
 
 const {
   class: propsClass,
@@ -41,10 +41,10 @@ const forwarded = useForwardProps<TooltipContentProps, { asChild?: boolean }>(
 )
 
 const slots = useSlots()
-const defaultSlots = slots.default?.()
-contextVNodeWarning(defaultSlots, 'TooltipContext', 'TooltipContent')
-const arrowNode = findVNodeByName(defaultSlots, 'TooltipArrow')
-const otherNodes = defaultSlots?.filter(n => n !== arrowNode) ?? []
+const defaultSlots = computed(() => slots.default?.())
+checkContextVNodePosition(defaultSlots.value, 'TooltipContext', 'TooltipContent')
+const arrowNode = computed(() => findVNodeByName(defaultSlots.value, 'TooltipArrow'))
+const otherNodes = computed(() => defaultSlots.value?.filter(n => n !== arrowNode.value) ?? [])
 
 const theme = useTheme({ size, unstyled, skin, bordered })
 const { content, contentInner } = tvTooltip()
