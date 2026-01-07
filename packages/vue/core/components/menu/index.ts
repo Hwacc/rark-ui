@@ -13,6 +13,7 @@ export { default as MenuTriggerItem, type MenuTriggerItemProps } from './MenuTri
 
 export {
   MenuContextTrigger,
+  MenuItemIndicator,
   MenuItemText,
   MenuTrigger,
 } from '@ark-ui/vue/menu'

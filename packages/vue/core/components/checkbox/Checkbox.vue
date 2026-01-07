@@ -61,10 +61,7 @@ defineExpose({
       <Checkbox.Indicator
         :class="indicator({ class: ui?.indicator, ...theme })"
       >
-        <slot
-          name="indicator"
-          v-bind="{ checkedState: checkbox.checkedState }"
-        >
+        <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
           <Check
             class="size-full stroke-black stroke-[.125rem] [&_path]:animate-check-dash"
           />
@@ -74,10 +71,7 @@ defineExpose({
         :class="indicator({ class: ui?.indicator, ...theme })"
         indeterminate
       >
-        <slot
-          name="indicator"
-          v-bind="{ checkedState: checkbox.checkedState }"
-        >
+        <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
           <Minus
             class="size-full stroke-black stroke-[.125rem] [&_path]:animate-indeterminate-dash"
           />
@@ -85,13 +79,12 @@ defineExpose({
       </Checkbox.Indicator>
     </Checkbox.Control>
     <Checkbox.Label
+      v-if="label"
       :class="tvLabel({ class: ui?.label, ...theme })"
       :as-child="!!label"
     >
       <slot name="label">
-        <span v-if="label">
-          {{ label }}
-        </span>
+        <span>{{ label }}</span>
       </slot>
     </Checkbox.Label>
     <Checkbox.HiddenInput />

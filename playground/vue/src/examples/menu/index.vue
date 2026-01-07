@@ -97,6 +97,7 @@ const selected = ref<string | undefined>(vegetables[0])
           v-for="vegetable in vegetables"
           :key="vegetable"
           :value="vegetable"
+          :close-on-select="false"
           :checked="selected === vegetable"
           @update:checked="(val) => {
             selected = val ? vegetable : ''
