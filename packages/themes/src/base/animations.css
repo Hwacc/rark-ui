@@ -90,8 +90,11 @@
   }
 
   @keyframes path-dash {
+    from {
+      stroke-dashoffset: var(--dash-offset-from, 0);
+    }
     to {
-      stroke-dashoffset: 0;
+      stroke-dashoffset: var(--dash-offset-to, 0);
     }
   }
 
@@ -232,14 +235,18 @@
 }
 
 @utility animate-check-dash {
+  --dash-offset-from: -50;
+  --dash-offset-to: 0;
   stroke-dasharray: 50;
-  stroke-dashoffset: -50;
-  animation: path-dash var(--tw-duration, 150ms) var(--tw-easing, ease-out)
+  stroke-dashoffset: var(--dash-offset-from);
+  animation: path-dash var(--tw-duration, 150ms) var(--tw-timing, ease-out)
     forwards;
 }
 
 @utility animate-indeterminate-dash {
+  --dash-offset-from: 50;
+  --dash-offset-to: 0;
   stroke-dasharray: 50;
-  stroke-dashoffset: 50;
+  stroke-dashoffset: var(--dash-offset-from);
   animation: path-dash var(--tw-duration, 150ms) linear forwards;
 }

@@ -29,6 +29,12 @@
     data-highlighted:text-hff
     data-[state=open]:bg-hff/10
     data-[state=open]:text-hff;
+
+    &[data-type='radio'] {
+      & .rui-radio-group-item-indicator[data-variant='checkbox'] {
+        @apply fill-transparent stroke-rz-green;
+      }
+    }
   }
 
   .rui-menu-item-group-label {

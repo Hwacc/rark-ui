@@ -63,7 +63,7 @@ defineExpose({
       >
         <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
           <Check
-            class="size-full stroke-black stroke-[.125rem] [&_path]:animate-check-dash"
+            class="size-full stroke-black stroke-[.125rem] [&>path]:animate-check-dash"
           />
         </slot>
       </Checkbox.Indicator>

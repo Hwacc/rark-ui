@@ -116,7 +116,12 @@ const selected = ref<string | undefined>(vegetables[0])
       </MenuTrigger>
       <MenuContent>
         <MenuRadioItemGroup v-model="selected">
-          <MenuRadioItem v-for="vegetable in vegetables" :key="vegetable" :value="vegetable">
+          <MenuRadioItem
+            v-for="(vegetable, index) in vegetables"
+            :key="vegetable"
+            :value="vegetable" :close-on-select="false"
+            :variant="index % 2 === 0 ? 'default' : 'checkbox'"
+          >
             <MenuItemText>{{ vegetable }}</MenuItemText>
           </MenuRadioItem>
         </MenuRadioItemGroup>
