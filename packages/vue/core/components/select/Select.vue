@@ -1,5 +1,6 @@
 <script lang="ts">
-export interface SelectProps<T extends CollectionItem> extends SelectRootProps<T> {
+export interface SelectProps<T extends CollectionItem>
+  extends SelectRootProps<T> {
   class?: HTMLAttributes['class']
   unstyled?: boolean
 }
@@ -32,7 +33,7 @@ const { class: propsClass, unstyled, ...props } = defineProps<SelectProps<T>>()
 const emits = defineEmits<SelectEmits<T>>()
 const forwarded = useForwardPropsEmits(props, emits)
 
-const theme = useTheme({ size, unstyled })
+const theme = useTheme({ unstyled })
 </script>
 
 <template>
@@ -40,5 +41,6 @@ const theme = useTheme({ size, unstyled })
     <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>
+    <Select.HiddenSelect />
   </Select.Root>
 </template>

@@ -1,0 +1,4 @@
+export { default as Select, type SelectProps } from './Select.vue'
+export { default as SelectContent, type SelectContentProps } from './SelectContent.vue'
+export { default as SelectItem, type SelectItemProps } from './SelectItem.vue'
+export { default as SelectTrigger, type SelectTriggerProps } from './SelectTrigger.vue'

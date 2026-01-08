@@ -8,6 +8,7 @@ import DialogExample from './examples/dialog/index.vue'
 import EditableExample from './examples/editable/index.vue'
 import InputExample from './examples/input/index.vue'
 import MenuExample from './examples/menu/index.vue'
+import SelectExample from './examples/select/index.vue'
 import SwitchExample from './examples/switch/index.vue'
 import TooltipExample from './examples/tooltip/index.vue'
 </script>
@@ -31,6 +32,7 @@ import TooltipExample from './examples/tooltip/index.vue'
       <DialogExample />
       <SwitchExample />
       <MenuExample />
+      <SelectExample />
     </div>
   </RUIConfig>
 </template>

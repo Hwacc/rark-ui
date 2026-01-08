@@ -40,7 +40,12 @@ const selected = ref<string | undefined>(vegetables[0])
           </MenuItem>
         </MenuItemGroup>
         <MenuItemGroup label="Fruits">
-          <MenuItem v-for="fruit in fruits" :key="fruit" :value="fruit">
+          <MenuItem
+            v-for="(fruit, index) in fruits"
+            :key="fruit"
+            :value="fruit"
+            :disabled="index % 2 === 0"
+          >
             <MenuItemText>{{ fruit }}</MenuItemText>
           </MenuItem>
         </MenuItemGroup>
@@ -101,9 +106,11 @@ const selected = ref<string | undefined>(vegetables[0])
           :value="vegetable"
           :close-on-select="false"
           :checked="selected === vegetable"
-          @update:checked="(val) => {
-            selected = val ? vegetable : ''
-          }"
+          @update:checked="
+            (val) => {
+              selected = val ? vegetable : ''
+            }
+          "
         >
           <MenuItemText>{{ vegetable }}</MenuItemText>
         </MenuCheckboxItem>
@@ -119,7 +126,8 @@ const selected = ref<string | undefined>(vegetables[0])
           <MenuRadioItem
             v-for="(vegetable, index) in vegetables"
             :key="vegetable"
-            :value="vegetable" :close-on-select="false"
+            :value="vegetable"
+            :close-on-select="false"
             :variant="index % 2 === 0 ? 'default' : 'checkbox'"
           >
             <MenuItemText>{{ vegetable }}</MenuItemText>
