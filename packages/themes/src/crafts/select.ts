@@ -61,6 +61,7 @@ export const tvSelect = tv(
       itemGroup: '',
       itemGroupLabel: 'relative',
       itemGroupMarker: 'absolute left-0 w-0.5',
+      clearTrigger: ['flex', 'items-center', 'justify-center'],
     },
     variants: {
       size: {
@@ -72,6 +73,7 @@ export const tvSelect = tv(
           itemIndicator: '[&>svg]:size-3',
           itemGroupLabel: 'text-sm px-2 py-2',
           itemGroupMarker: 'top-2 bottom-2',
+          clearTrigger: '[&>svg]:size-3.5',
         },
         sm: {
           trigger: 'text-xs',
@@ -81,6 +83,7 @@ export const tvSelect = tv(
           itemIndicator: '[&>svg]:size-3.5',
           itemGroupLabel: 'text-xs px-1.5 py-1.5',
           itemGroupMarker: 'top-1.5 bottom-1.5',
+          clearTrigger: '[&>svg]:size-3',
         },
         lg: {
           trigger: 'text-base',
@@ -90,6 +93,7 @@ export const tvSelect = tv(
           itemIndicator: '[&>svg]:size-4',
           itemGroupLabel: 'text-base px-2.5 py-2.5',
           itemGroupMarker: 'top-2.5 bottom-2.5',
+          clearTrigger: '[&>svg]:size-4',
         },
       },
       bordered: {
@@ -118,6 +122,7 @@ export const tvSelect = tv(
       itemGroup: `${prefix}-item-group`,
       itemGroupLabel: `${prefix}-item-group-label`,
       itemGroupMarker: `${prefix}-item-group-marker`,
+      clearTrigger: `${prefix}-clear-trigger`,
     },
   },
 )

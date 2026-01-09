@@ -26,4 +26,10 @@
   .rui-select-separator {
     @apply border-h11;
   }
+
+  .rui-select-clear-trigger {
+    @apply [&>svg]:fill-rui-close
+    [&>svg]:stroke-black
+    [&>svg]:hover:fill-rui-close-hover;
+  }
 }

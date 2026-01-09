@@ -68,7 +68,7 @@ const groupCollection = createListCollection({
     </Select>
 
     <Select :collection="collection" multiple>
-      <SelectTrigger>
+      <SelectTrigger clearable>
         <SelectValue placeholder="Select an animal" />
       </SelectTrigger>
       <SelectContent>

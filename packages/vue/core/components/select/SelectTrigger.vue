@@ -4,6 +4,7 @@ export interface SelectTriggerProps extends ArkSelectTriggerProps {
   size?: SelectVariants['size']
   bordered?: SelectVariants['bordered']
   unstyled?: boolean
+  clearable?: boolean
 }
 </script>
 
@@ -15,19 +16,20 @@ import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvSelect } from '@rui-ark/themes/crafts/select'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ChevronDown } from 'lucide-vue-next'
+import { ChevronDown, CircleX } from 'lucide-vue-next'
 
 const {
   class: propsClass,
   unstyled,
   size,
   bordered,
+  clearable,
   ...props
 } = defineProps<SelectTriggerProps>()
 const forwarded = useForwardProps(props)
 
 const theme = useTheme({ size, unstyled, bordered })
-const { trigger, indicator } = tvSelect()
+const { trigger, indicator, clearTrigger } = tvSelect()
 </script>
 
 <template>
@@ -37,6 +39,9 @@ const { trigger, indicator } = tvSelect()
       :class="trigger({ class: [propsClass], ...theme })"
     >
       <slot />
+      <Select.ClearTrigger v-if="clearable" :class="clearTrigger({ ...theme })">
+        <CircleX />
+      </Select.ClearTrigger>
       <Select.Indicator :class="indicator({ ...theme })">
         <slot name="indicator">
           <ChevronDown />
