@@ -1,7 +1,7 @@
 <script lang="ts">
-export interface MenuItemGroupProps extends MenuItemGroupBaseProps {
+export interface SelectItemGroupProps extends SelectItemGroupBaseProps {
   class?: HTMLAttributes['class']
-  size?: MenuVariants['size']
+  size?: SelectVariants['size']
   unstyled?: boolean
   label?: string
   ui?: {
@@ -13,12 +13,12 @@ export interface MenuItemGroupProps extends MenuItemGroupBaseProps {
 </script>
 
 <script setup lang="ts">
-import type { MenuItemGroupBaseProps } from '@ark-ui/vue/menu'
-import type { MenuVariants } from '@rui-ark/themes/crafts/menu'
+import type { SelectItemGroupBaseProps } from '@ark-ui/vue/select'
+import type { SelectVariants } from '@rui-ark/themes/crafts/select'
 import type { HTMLAttributes } from 'vue'
-import { Menu } from '@ark-ui/vue/menu'
+import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvMenu } from '@rui-ark/themes/crafts/menu'
+import { tvSelect } from '@rui-ark/themes/crafts/select'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
 const {
@@ -28,32 +28,32 @@ const {
   label,
   ui,
   ...props
-} = defineProps<MenuItemGroupProps>()
+} = defineProps<SelectItemGroupProps>()
 const forwarded = useForwardProps(props)
 const theme = useTheme({ size, unstyled })
 
-const { itemGroup, itemGroupMarker, itemGroupLabel } = tvMenu()
+const { itemGroup, itemGroupLabel, itemGroupMarker } = tvSelect()
 </script>
 
 <template>
-  <Menu.ItemGroup
+  <Select.ItemGroup
     v-bind="forwarded"
     :class="itemGroup({ class: [ui?.root, propsClass], ...theme })"
   >
     <slot name="label">
-      <Menu.ItemGroupLabel
-        :class="itemGroupLabel({ class: ui?.label, ...theme })"
+      <Select.ItemGroupLabel
+        :class="itemGroupLabel({ class: [ui?.label], ...theme })"
       >
         <slot name="marker">
           <div
-            data-scope="menu"
+            :class="itemGroupMarker({ class: [ui?.marker], ...theme })"
+            data-scope="select"
             data-part="item-group-marker"
-            :class="itemGroupMarker({ class: ui?.marker, ...theme })"
           />
         </slot>
         {{ label }}
-      </Menu.ItemGroupLabel>
+      </Select.ItemGroupLabel>
     </slot>
     <slot />
-  </Menu.ItemGroup>
+  </Select.ItemGroup>
 </template>

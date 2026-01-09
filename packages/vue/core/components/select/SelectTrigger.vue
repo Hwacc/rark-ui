@@ -2,6 +2,7 @@
 export interface SelectTriggerProps extends ArkSelectTriggerProps {
   class?: HTMLAttributes['class']
   size?: SelectVariants['size']
+  bordered?: SelectVariants['bordered']
   unstyled?: boolean
 }
 </script>
@@ -20,11 +21,12 @@ const {
   class: propsClass,
   unstyled,
   size,
+  bordered,
   ...props
 } = defineProps<SelectTriggerProps>()
 const forwarded = useForwardProps(props)
 
-const theme = useTheme({ size, unstyled })
+const theme = useTheme({ size, unstyled, bordered })
 const { trigger, indicator } = tvSelect()
 </script>
 

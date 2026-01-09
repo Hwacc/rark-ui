@@ -14,4 +14,16 @@
   .rui-select-item {
     @apply bg-transparent data-highlighted:bg-h28 text-hbb data-[state=checked]:text-rz-green;
   }
+
+  .rui-select-item-group-label {
+    @apply text-hff font-rz-bold;
+  }
+
+  .rui-select-item-group-marker {
+    @apply bg-rz-green;
+  }
+
+  .rui-select-separator {
+    @apply border-h11;
+  }
 }
