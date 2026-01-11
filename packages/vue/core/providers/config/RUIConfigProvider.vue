@@ -2,7 +2,7 @@
 import type { CreateToasterReturn } from '@ark-ui/vue'
 import type { RUIConfigContext } from './rui-config-context'
 import { addAPIProvider, addCollection, addIcon } from '@iconify/vue'
-import { Toaster, ToasterStore } from '@rui-ark/vue-core/components/toast'
+import { ToasterStore } from '@rui-ark/vue-core/components/toast'
 import { computed, ref } from 'vue'
 import { ThemeProvider } from '../theme'
 import { provideRUIConfigContext } from './rui-config-context'
