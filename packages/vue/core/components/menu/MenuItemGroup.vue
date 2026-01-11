@@ -32,7 +32,7 @@ const {
 const forwarded = useForwardProps(props)
 const theme = useTheme({ size, unstyled })
 
-const { itemGroup, itemGroupMarker, itemGroupLabel } = tvMenu()
+const { itemGroup, itemGroupLabel } = tvMenu()
 </script>
 
 <template>
@@ -44,13 +44,6 @@ const { itemGroup, itemGroupMarker, itemGroupLabel } = tvMenu()
       <Menu.ItemGroupLabel
         :class="itemGroupLabel({ class: ui?.label, ...theme })"
       >
-        <slot name="marker">
-          <div
-            data-scope="menu"
-            data-part="item-group-marker"
-            :class="itemGroupMarker({ class: ui?.marker, ...theme })"
-          />
-        </slot>
         {{ label }}
       </Menu.ItemGroupLabel>
     </slot>

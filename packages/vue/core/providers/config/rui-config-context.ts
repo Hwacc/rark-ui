@@ -1,14 +1,15 @@
+import type { CreateToasterReturn } from '@ark-ui/vue'
 import type {
   IconifyIcon,
   IconifyJSON,
   PartialIconifyAPIConfig,
 } from '@iconify/vue'
 import type { ComputedRef } from 'vue'
-import type { ThemeContext } from '../theme/theme-context'
+import type { ThemeProps } from '../theme/theme-props'
 import { createContext } from '@ark-ui/vue'
 
 export interface RUIConfigContext {
-  'theme'?: ThemeContext
+  'theme'?: ThemeProps
   'tooltip'?: {
     closeDelay?: number
     openDelay?: number
@@ -33,10 +34,17 @@ export interface RUIConfigContext {
     lazyMount?: boolean
     unmountOnExit?: boolean
   }
+  'select'?: {
+    lazyMount?: boolean
+    unmountOnExit?: boolean
+  }
   'iconify'?: {
     addIcons?: Array<[string, IconifyIcon | null]>
     addCollections?: Array<[IconifyJSON, string | undefined]>
     addAPIProviders?: Array<[string, PartialIconifyAPIConfig]>
+  }
+  'toasters'?: {
+    toasters: { toaster: CreateToasterReturn }[]
   }
 }
 

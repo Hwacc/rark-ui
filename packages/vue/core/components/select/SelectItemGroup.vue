@@ -7,7 +7,6 @@ export interface SelectItemGroupProps extends SelectItemGroupBaseProps {
   ui?: {
     root?: HTMLAttributes['class']
     label?: HTMLAttributes['class']
-    marker?: HTMLAttributes['class']
   }
 }
 </script>
@@ -32,7 +31,7 @@ const {
 const forwarded = useForwardProps(props)
 const theme = useTheme({ size, unstyled })
 
-const { itemGroup, itemGroupLabel, itemGroupMarker } = tvSelect()
+const { itemGroup, itemGroupLabel } = tvSelect()
 </script>
 
 <template>
@@ -44,13 +43,6 @@ const { itemGroup, itemGroupLabel, itemGroupMarker } = tvSelect()
       <Select.ItemGroupLabel
         :class="itemGroupLabel({ class: [ui?.label], ...theme })"
       >
-        <slot name="marker">
-          <div
-            :class="itemGroupMarker({ class: [ui?.marker], ...theme })"
-            data-scope="select"
-            data-part="item-group-marker"
-          />
-        </slot>
         {{ label }}
       </Select.ItemGroupLabel>
     </slot>

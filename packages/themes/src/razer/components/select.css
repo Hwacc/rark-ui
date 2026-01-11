@@ -16,11 +16,7 @@
   }
 
   .rui-select-item-group-label {
-    @apply text-hff font-rz-bold;
-  }
-
-  .rui-select-item-group-marker {
-    @apply bg-rz-green;
+    @apply text-hff font-rz-bold border-h11;
   }
 
   .rui-select-separator {

@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { CreateToasterReturn } from '@ark-ui/vue'
 import type { RUIConfigContext } from './rui-config-context'
 import { addAPIProvider, addCollection, addIcon } from '@iconify/vue'
-import { computed } from 'vue'
+import { Toaster, ToasterStore } from '@rui-ark/vue-core/components/toast'
+import { computed, ref } from 'vue'
 import { ThemeProvider } from '../theme'
 import { provideRUIConfigContext } from './rui-config-context'
 
@@ -46,6 +48,10 @@ const props = withDefaults(
       lazyMount: true,
       unmountOnExit: true,
     }),
+    select: () => ({
+      lazyMount: false,
+      unmountOnExit: false,
+    }),
     iconify: () => ({
       addIcons: [],
       addCollections: [],
@@ -64,11 +70,15 @@ props.iconify?.addAPIProviders?.forEach(([provider, config]) => {
   addAPIProvider(provider, config)
 })
 
-provideRUIConfigContext(computed(() => props))
+const toasters = ref<{ toasters: { toaster: CreateToasterReturn }[] }>({ toasters: [] })
+provideRUIConfigContext(computed(() => ({ ...props, toasters: toasters.value })))
 </script>
 
 <template>
   <ThemeProvider :value="props.theme">
     <slot />
+    <ToasterStore ref="toasters">
+      <slot name="toaster" />
+    </ToasterStore>
   </ThemeProvider>
 </template>

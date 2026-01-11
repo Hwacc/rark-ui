@@ -38,11 +38,7 @@
   }
 
   .rui-menu-item-group-label {
-    @apply text-hff font-rz-bold;
-  }
-
-  .rui-menu-item-group-marker {
-    @apply bg-rz-green;
+    @apply text-hff font-rz-bold border-h11;
   }
 
   .rui-menu-separator {

@@ -29,19 +29,25 @@ import type { HTMLAttributes } from 'vue'
 import { Select } from '@ark-ui/vue/select'
 import { useForwardPropsEmits } from '@ark-ui/vue/utils'
 import { tvSelect } from '@rui-ark/themes/crafts/select'
+import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { computed } from 'vue'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<SelectProps<T>>()
+const { class: propsClass, size, unstyled, lazyMount = undefined, unmountOnExit = undefined, ...props } = defineProps<SelectProps<T>>()
 const emits = defineEmits<SelectEmits<T>>()
 const forwarded = useForwardPropsEmits(props, emits)
+const selectConfig = useConfig(
+  'select',
+  computed(() => ({ lazyMount, unmountOnExit })),
+)
 
 const theme = useTheme({ size, unstyled })
 const { root } = tvSelect()
 </script>
 
 <template>
-  <Select.Root v-bind="forwarded" :class="root({ class: [propsClass], ...theme })">
+  <Select.Root v-bind="{ ...selectConfig, ...forwarded }" :class="root({ class: [propsClass], ...theme })">
     <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>
