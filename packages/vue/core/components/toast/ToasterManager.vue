@@ -47,7 +47,6 @@ defineExpose({
     v-slot="{ toast }"
     ref="defaultToaster"
     placement="bottom-end"
-    offsets="2rem"
     overlap
     :unique-id="DEFAULT_TOASTER_UNIQUE"
   >
