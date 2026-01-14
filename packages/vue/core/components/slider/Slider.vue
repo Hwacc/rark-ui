@@ -32,6 +32,7 @@ const {
 const emit = defineEmits<SliderRootEmits>()
 const forwarded = useForwardProps(props)
 const slider = useSlider(forwarded, emit)
+
 console.log('slider', slider.value)
 
 const theme = useTheme({ size, unstyled })

@@ -10,31 +10,48 @@ export const tvSlider = tv(
       control: '',
       track: '',
       range: '',
-      thumb: '',
+      thumb: 'rounded-full data-dragging:scale-120 transition-transform',
     },
     variants: {
       size: {
-        base: '',
-        sm: '',
-        lg: '',
+        base: {
+          control: 'h-[max(var(--slider-thumb-height),.875rem)]',
+          track: 'h-1 rounded-md',
+          range: 'rounded-md',
+          thumb: [
+            'w-[max(var(--slider-thumb-width),.875rem)]',
+            'h-[max(var(--slider-thumb-height),.875rem)]',
+          ],
+        },
+        sm: {
+          control: 'h-[max(var(--slider-thumb-height),.75rem)]',
+          track: 'h-0.5 rounded',
+          range: 'rounded',
+          thumb: [
+            'w-[max(var(--slider-thumb-width),.625rem)]',
+            'h-[max(var(--slider-thumb-height),.625rem)]',
+          ],
+        },
+        lg: {
+          control: 'h-[max(var(--slider-thumb-height),1rem)]',
+          track: 'h-1.5 rounded-lg',
+          range: 'rounded-lg',
+          thumb: [
+            'w-[max(var(--slider-thumb-width),1.125rem)]',
+            'h-[max(var(--slider-thumb-height),1.125rem)]',
+          ],
+        },
       },
       orientation: {
         horizontal: {
           root: 'flex flex-col',
           control: 'w-full flex items-center',
+          track: 'w-full',
+          range: 'h-full',
         },
         vertical: '',
       },
     },
-    compoundVariants: [
-      {
-        size: 'base',
-        orientation: 'horizontal',
-        class: {
-          control: 'test h-[var(--slider-thumb-height,.875rem)]',
-        },
-      },
-    ],
     defaultVariants: {
       size: 'base',
       orientation: 'horizontal',

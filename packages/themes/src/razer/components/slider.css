@@ -1,0 +1,14 @@
+@layer components {
+  .rui-slider-track {
+    @apply bg-h33;
+  }
+
+  .rui-slider-range {
+    @apply bg-rz-green;
+  }
+
+  .rui-slider-thumb {
+    @apply data-[size=base]:border-[.1563rem] data-[size=sm]:border-2 data-[size=lg]:border-3;
+    @apply border-rz-green bg-h00;
+  }
+}

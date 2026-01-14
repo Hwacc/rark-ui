@@ -12,3 +12,22 @@ export function findUp(
   }
   return false
 }
+
+export function findParentElementByScope(
+  el: HTMLElement | null | undefined,
+  scope: string,
+  part?: string,
+): HTMLElement | null | undefined {
+  let cur: HTMLElement | null | undefined = el
+  if (!cur)
+    return null
+  while (cur) {
+    if (cur.dataset.scope === scope) {
+      if (part && cur.dataset.part === part)
+        return cur
+      else return cur
+    }
+    cur = cur.parentElement
+  }
+  return null
+}

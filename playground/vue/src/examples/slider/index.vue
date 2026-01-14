@@ -1,10 +1,22 @@
 <script setup lang="ts">
-import { Slider } from '@rui-ark/vue-core/components/slider'
+import { Slider, SliderThumb, SliderTooltipThumb } from '@rui-ark/vue-core/components/slider'
 import { ref } from 'vue'
 
 const value = ref([0])
 </script>
 
 <template>
-  <Slider v-model="value" />
+  <div class="flex items-center gap-2">
+    <Slider v-model="value" class="w-75">
+      <SliderTooltipThumb :index="0" />
+    </Slider>
+
+    <Slider class="w-75" size="sm" :default-value="[10, 20]">
+      <SliderThumb :index="0" />
+      <SliderThumb :index="1" />
+    </Slider>
+    <Slider v-model="value" class="w-75" size="lg">
+      <SliderThumb :index="0" />
+    </Slider>
+  </div>
 </template>
