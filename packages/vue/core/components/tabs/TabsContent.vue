@@ -1,0 +1,28 @@
+<script lang="ts">
+export interface TabsContentProps extends TabContentBaseProps, ThemeProps {
+  class?: HTMLAttributes['class']
+}
+</script>
+
+<script setup lang="ts">
+import type { TabContentBaseProps } from '@ark-ui/vue/tabs'
+import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
+import type { HTMLAttributes } from 'vue'
+import { useForwardProps } from '@ark-ui/vue'
+import { Tabs } from '@ark-ui/vue/tabs'
+import { tvTabs } from '@rui-ark/themes/crafts/tabs'
+import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { computed } from 'vue'
+
+const { class: propsClass, size, unstyled, ...props } = defineProps<TabsContentProps>()
+const forwarded = useForwardProps(props)
+
+const theme = useTheme(computed(() => ({ size, unstyled })))
+const { content: tvContent } = tvTabs()
+</script>
+
+<template>
+  <Tabs.Content v-bind="forwarded" :class="tvContent({ class: [propsClass], ...theme })">
+    <slot />
+  </Tabs.Content>
+</template>

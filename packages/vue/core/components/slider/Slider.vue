@@ -19,7 +19,7 @@ import { Slider, useSlider } from '@ark-ui/vue/slider'
 import { tvSlider } from '@rui-ark/themes/crafts/slider'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
-import { computed, useTemplateRef, watch } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 import SliderBoundaryProvider from './SliderBoundaryProvider.vue'
 
 const {
@@ -33,9 +33,6 @@ const emit = defineEmits<SliderRootEmits>()
 const forwarded = useForwardProps(props)
 const slider = useSlider(forwarded, emit)
 const controlRef = useTemplateRef('control')
-watch(controlRef, (el) => {
-  console.log('el', el)
-})
 
 const theme = useTheme(computed(() => ({ size, unstyled })))
 const { root, control: tvControl, track, range } = tvSlider()

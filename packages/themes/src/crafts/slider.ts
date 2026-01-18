@@ -10,7 +10,7 @@ export const tvSlider = tv(
       control: '',
       track: '',
       range: '',
-      thumb: 'rounded-full data-dragging:scale-120 transition-transform',
+      thumb: 'z-10 rounded-full data-dragging:scale-120 transition-transform',
       marker: '',
       markerDot: 'absolute left-1/2 -translate-x-1/2 rounded-full',
     },

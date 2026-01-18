@@ -12,6 +12,7 @@ import MenuExample from './examples/menu/index.vue'
 import SelectExample from './examples/select/index.vue'
 import SliderExample from './examples/slider/index.vue'
 import SwitchExample from './examples/switch/index.vue'
+import TabsExample from './examples/tabs/index.vue'
 import ToastExample from './examples/toast/index.vue'
 import TooltipExample from './examples/tooltip/index.vue'
 </script>
@@ -38,6 +39,7 @@ import TooltipExample from './examples/tooltip/index.vue'
       <SelectExample />
       <ToastExample />
       <SliderExample />
+      <TabsExample />
     </div>
 
     <template #toaster>
