@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@rui-ark/vue-core/components/tabs'
+import { Tabs, TabsContent, TabsIndicator, TabsList, TabsTrigger } from '@rui-ark/vue-core/components/tabs'
 import { ref } from 'vue'
 
-const tab = ref('tab-1')
+const tab = ref('tab-7')
 </script>
 
 <template>
@@ -12,15 +12,10 @@ const tab = ref('tab-1')
         <TabsTrigger v-for="index in 10" :key="index" :value="`tab-${index}`">
           Tab {{ index }}
         </TabsTrigger>
+        <TabsIndicator />
       </TabsList>
-      <TabsContent value="tab-1">
-        Content 1
-      </TabsContent>
-      <TabsContent value="tab-2">
-        Content 2
-      </TabsContent>
-      <TabsContent value="tab-3">
-        Content 3
+      <TabsContent v-for="index in 10" :key="index" :value="`tab-${index}`">
+        Content {{ index }}
       </TabsContent>
     </Tabs>
   </div>

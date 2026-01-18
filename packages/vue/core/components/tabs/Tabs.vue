@@ -21,9 +21,7 @@ const forwarded = useForwardProps(props)
 
 const tabs = useTabs(forwarded, emit)
 
-console.log('tabs', tabs.value)
-
-const theme = useTheme(computed(() => ({ size, unstyled })))
+const theme = useTheme(computed(() => ({ size, unstyled, orientation: forwarded.value.orientation ?? 'horizontal' })))
 const { root } = tvTabs()
 </script>
 

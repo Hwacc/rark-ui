@@ -6,8 +6,6 @@
     @apply text-rui-toggle-text hover:text-rui-toggle-text-hover data-[state=active]:text-rui-toggle-text-active;
   }
   .rui-tabs-indicator{
-    &>div{
-      @apply bg-rz-green;
-    }
+    @apply bg-rz-green;
   }
 }

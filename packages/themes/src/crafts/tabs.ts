@@ -18,22 +18,57 @@ export const tvTabs = tv({
       'disabled:pointer-events-none',
       'disabled:opacity-(--disabled-opacity)',
     ],
-    content: ['mt-2', 'data-[state=active]:animate-duration-200'],
+    content: ['mt-2', 'data-[state=open]:motion-translate-x-in', 'data-[state=closed]:motion-translate-x-out'],
+    indicator: [],
   },
 
   variants: {
     size: {
       base: {
-        trigger: 'px-3.75 py-2.5 text-sm',
+        trigger: 'text-sm',
       },
       sm: {
-        trigger: 'px-3 py-2 text-xs',
+        trigger: 'text-xs',
       },
       lg: {
-        trigger: 'px-4.5 py-3 text-base',
+        trigger: 'text-base',
+      },
+    },
+    orientation: {
+      horizontal: {
+        indicator: 'w-(--width) bottom-0',
+      },
+      vertical: {
+        indicator: 'h-(--height)',
       },
     },
   },
+  compoundVariants: [
+    {
+      orientation: 'horizontal',
+      size: 'base',
+      class: {
+        trigger: 'px-3.75 py-2.5',
+        indicator: 'h-1',
+      },
+    },
+    {
+      orientation: 'horizontal',
+      size: 'sm',
+      class: {
+        trigger: 'px-3 py-2',
+        indicator: 'h-0.75',
+      },
+    },
+    {
+      orientation: 'horizontal',
+      size: 'lg',
+      class: {
+        trigger: 'px-4.5 py-3',
+        indicator: 'h-1.5',
+      },
+    },
+  ],
   defaultVariants: {
     size: 'base',
   },
@@ -43,6 +78,7 @@ export const tvTabs = tv({
     list: `${prefix}-list`,
     trigger: `${prefix}-trigger`,
     content: `${prefix}-content`,
+    indicator: `${prefix}-indicator`,
   },
 })
 

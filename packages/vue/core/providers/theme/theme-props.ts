@@ -2,7 +2,7 @@ import type { ComputedRef } from 'vue'
 import { createContext } from '@ark-ui/vue/utils'
 
 export type Skin = 'dark' | 'light' | (string & {})
-export interface ThemeProps {
+export interface ThemeProps extends Record<string, any> {
   skin?: Skin
   size?: 'base' | 'sm' | 'lg'
   unstyled?: boolean

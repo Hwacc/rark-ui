@@ -2,8 +2,10 @@
   /* tw default duration */
   --tw-duration: var(--motion-duration);
   --default-transition-duration: var(--motion-duration);
+  --transition-duration: var(--motion-duration);
   --tw-timing: var(--motion-timing);
   --default-transition-timing-function: var(--motion-timing);
+  --transition-timing-function: var(--motion-timing);
 }
 
 @property --motion-duration {
