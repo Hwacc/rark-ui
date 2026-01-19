@@ -13,7 +13,7 @@ export interface CheckboxProps extends CheckboxRootProps, ThemeProps {
 </script>
 
 <script setup lang="ts">
-import type { CheckboxRootEmits, CheckboxRootProps } from '@ark-ui/vue/checkbox'
+import type { CheckboxRootEmits, CheckboxRootProps, UseCheckboxReturn } from '@ark-ui/vue/checkbox'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Checkbox, useCheckbox } from '@ark-ui/vue/checkbox'
@@ -28,13 +28,14 @@ defineSlots<{
   indicator: (props: { checkedState: CheckedState }) => any
   label: () => any
 }>()
+const checkbox = useCheckbox(useForwardProps(props), emit)
 
-const forwarded = useForwardProps(props)
-const checkbox = useCheckbox(forwarded, emit)
+// theme
 const theme = useTheme(() => ({ size, unstyled }))
 const { root, control, indicator, label: tvLabel } = tvCheckbox()
 
-defineExpose({ $api: checkbox })
+// expose
+defineExpose({ $api: checkbox as UseCheckboxReturn })
 useForwardExpose()
 </script>
 
@@ -45,21 +46,12 @@ useForwardExpose()
   >
     <Checkbox.Control :class="control({ class: ui?.control, ...theme })">
       <Checkbox.Indicator :class="indicator({ class: ui?.indicator, ...theme })">
-        <slot
-          name="indicator"
-          v-bind="{ checkedState: checkbox.checkedState }"
-        >
+        <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
           <Check class="size-full stroke-black stroke-[.125rem] [&>path]:animate-check-dash" />
         </slot>
       </Checkbox.Indicator>
-      <Checkbox.Indicator
-        :class="indicator({ class: ui?.indicator, ...theme })"
-        indeterminate
-      >
-        <slot
-          name="indicator"
-          v-bind="{ checkedState: checkbox.checkedState }"
-        >
+      <Checkbox.Indicator :class="indicator({ class: ui?.indicator, ...theme })" indeterminate>
+        <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
           <Minus
             class="size-full stroke-black stroke-[.125rem] [&_path]:animate-indeterminate-dash"
           />

@@ -1,7 +1,7 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type { RUIConfigContext } from '../providers/config/rui-config-context'
 import { camelCase, defaults } from 'lodash-es'
-import { computed, unref } from 'vue'
+import { computed, toValue } from 'vue'
 import { injectRUIConfigContext } from '../providers/config/rui-config-context'
 
 export function useConfig<T extends keyof RUIConfigContext>(
@@ -9,9 +9,10 @@ export function useConfig<T extends keyof RUIConfigContext>(
   props?: MaybeRefOrGetter<RUIConfigContext[T]>,
 ): ComputedRef<RUIConfigContext[T]> {
   const ruiConfig = injectRUIConfigContext(computed(() => ({})))
+  const propsConfig = computed(() => toValue(props))
   return computed(() =>
     defaults(
-      unref(props),
+      propsConfig.value,
       ruiConfig.value[camelCase(scope) as keyof RUIConfigContext] ?? {},
     ),
   )

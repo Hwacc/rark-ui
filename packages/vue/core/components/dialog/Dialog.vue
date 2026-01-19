@@ -25,6 +25,7 @@ import type {
   DialogRootEmits,
   DialogRootProps,
   UseDialogProps,
+  UseDialogReturn,
 } from '@ark-ui/vue/dialog'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
@@ -102,9 +103,11 @@ watch(
   },
 )
 
+// theme
 const theme = useTheme(() => ({ size, unstyled }))
 
-defineExpose({ $api: dialog })
+// expose
+defineExpose({ $api: dialog as UseDialogReturn })
 useForwardExpose()
 </script>
 

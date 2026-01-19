@@ -83,9 +83,11 @@ const slotProps = computed<SlotProps>(() => {
   }
 })
 
+// theme
 const theme = useTheme(() => ({ size, unstyled }))
 const { root, area } = tvEditable()
 
+// expose
 defineExpose({ $api: editable })
 useForwardExpose()
 </script>

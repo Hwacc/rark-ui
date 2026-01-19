@@ -75,6 +75,7 @@ function onClick(event: MouseEvent) {
   emits('click', event)
 }
 
+// theme
 const theme = useTheme(() => ({ size, unstyled }))
 const { base, loading: tvLoading } = tvButton()
 </script>

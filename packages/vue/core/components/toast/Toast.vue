@@ -3,7 +3,14 @@
  * deal with ts-2742
  */
 import type * as toast from '@zag-js/toast'
-import type { ComputedRef, CSSProperties, HTMLAttributes, NativeElements, ReservedProps, UnwrapRef } from 'vue'
+import type {
+  ComputedRef,
+  CSSProperties,
+  HTMLAttributes,
+  NativeElements,
+  ReservedProps,
+  UnwrapRef,
+} from 'vue'
 
 type Attrs<T> = T & ReservedProps
 type PropTypes = NativeElements & {
@@ -36,24 +43,10 @@ import { ark } from '@ark-ui/vue/factory'
 import { Toast, useToastContext } from '@ark-ui/vue/toast'
 import { tvToast } from '@rui-ark/themes/crafts/toast'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import {
-  CircleAlert,
-  CircleCheck,
-  CircleX,
-  Info,
-  LoaderCircle,
-  X,
-} from 'lucide-vue-next'
+import { CircleAlert, CircleCheck, CircleX, Info, LoaderCircle, X } from 'lucide-vue-next'
 import { computed, h } from 'vue'
 
-const {
-  class: propsClass,
-  options,
-  ui,
-  size,
-  unstyled,
-  ...props
-} = defineProps<ToastProps>()
+const { class: propsClass, options, ui, size, unstyled, ...props } = defineProps<ToastProps>()
 defineSlots<{
   default: (props: UnwrapRef<typeof slotBindings>) => any
   icon: (props: UnwrapRef<typeof slotBindings>) => any
@@ -113,10 +106,7 @@ const iconVNode = computed(() => {
 </script>
 
 <template>
-  <Toast.Root
-    v-bind="forwarded"
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
-  >
+  <Toast.Root v-bind="forwarded" :class="root({ class: [ui?.root, propsClass], ...theme })">
     <ark.div
       :class="content({ class: ui?.content, ...theme })"
       data-scope="toast"
@@ -147,9 +137,7 @@ const iconVNode = computed(() => {
               <component :is="options?.description(toastContext)" />
             </template>
             <template v-else>
-              <Toast.Description
-                :class="description({ class: ui?.description, ...theme })"
-              >
+              <Toast.Description :class="description({ class: ui?.description, ...theme })">
                 {{ options?.description }}
               </Toast.Description>
             </template>

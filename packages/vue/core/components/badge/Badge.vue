@@ -25,8 +25,9 @@ const {
   asChild,
   ...props
 } = defineProps<BadgeProps>()
-
 const forwarded = useForwardProps(props)
+
+// theme
 const theme = useTheme(() => ({ size, unstyled }))
 </script>
 

@@ -8,12 +8,11 @@ export interface MenuProps extends MenuRootProps, ThemeProps {
 import type { MenuRootEmits, MenuRootProps } from '@ark-ui/vue/menu'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
-import { Menu } from '@ark-ui/vue/menu'
-import { useForwardPropsEmits } from '@ark-ui/vue/utils'
+import { Menu, useMenu } from '@ark-ui/vue/menu'
+import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
-import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -25,18 +24,25 @@ const {
   ...props
 } = defineProps<MenuProps>()
 const emits = defineEmits<MenuRootEmits>()
-const forwarded = useForwardPropsEmits(props, emits)
-const menuConfig = useConfig(
-  'menu',
-  computed(() => ({ lazyMount, unmountOnExit })),
-)
+const menuConfig = useConfig('menu', () => ({ lazyMount, unmountOnExit }))
+const menu = useMenu(useForwardProps(props), emits)
+
+// theme
 const theme = useTheme(() => ({ size, unstyled, bordered }))
+
+// expose
+defineExpose({ $api: menu })
+useForwardExpose()
 </script>
 
 <template>
-  <Menu.Root v-bind="{ ...menuConfig, ...forwarded }">
+  <Menu.RootProvider
+    :value="menu"
+    :lazy-mount="menuConfig?.lazyMount"
+    :unmount-on-exit="menuConfig?.unmountOnExit"
+  >
     <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>
-  </Menu.Root>
+  </Menu.RootProvider>
 </template>

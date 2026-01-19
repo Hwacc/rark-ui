@@ -19,12 +19,12 @@ export interface SelectEmits<T extends CollectionItem> {
 </script>
 
 <script setup lang="ts" generic="T extends CollectionItem">
-import type { CollectionItem, SelectRootBaseProps } from '@ark-ui/vue/select'
+import type { CollectionItem, SelectRootBaseProps, UseSelectProps } from '@ark-ui/vue/select'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type * as select from '@zag-js/select'
 import type { HTMLAttributes } from 'vue'
-import { Select } from '@ark-ui/vue/select'
-import { useForwardPropsEmits } from '@ark-ui/vue/utils'
+import { Select, useSelect } from '@ark-ui/vue/select'
+import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { tvSelect } from '@rui-ark/themes/crafts/select'
 import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
@@ -40,24 +40,32 @@ const {
   ...props
 } = defineProps<SelectProps<T>>()
 const emits = defineEmits<SelectEmits<T>>()
-const forwarded = useForwardPropsEmits(props, emits)
-const selectConfig = useConfig(
-  'select',
-  computed(() => ({ lazyMount, unmountOnExit })),
-)
+const selectConfig = useConfig('select', () => ({ lazyMount, unmountOnExit }))
+const selectProps = computed<UseSelectProps<T>>({
+  get: () => useForwardProps(props).value as unknown as UseSelectProps<T>,
+  set: () => {}, // 仅用于满足 WritableComputedRef
+})
+const selectRoot = useSelect<T>(selectProps, emits)
 
+// theme
 const theme = useTheme(() => ({ size, unstyled }))
 const { root } = tvSelect()
+
+// expose
+defineExpose({ $api: selectRoot })
+useForwardExpose()
 </script>
 
 <template>
-  <Select.Root
-    v-bind="{ ...selectConfig, ...forwarded }"
+  <Select.RootProvider
+    :value="selectRoot"
+    :lazy-mount="selectConfig?.lazyMount"
+    :unmount-on-exit="selectConfig?.unmountOnExit"
     :class="root({ class: [propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>
     <Select.HiddenSelect />
-  </Select.Root>
+  </Select.RootProvider>
 </template>

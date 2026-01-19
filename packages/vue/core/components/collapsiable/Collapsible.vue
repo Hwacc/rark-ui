@@ -19,18 +19,17 @@ const emit = defineEmits<CollapsibleRootEmits>()
 const forwarded = useForwardProps(props)
 const collapsiable = useCollapsible(forwarded, emit)
 
+// theme
 const theme = useTheme(() => ({ size, unstyled }))
 const { root } = tvCollapsible()
 
+// expose
 defineExpose({ $api: collapsiable })
 useForwardExpose()
 </script>
 
 <template>
-  <Collapsible.RootProvider
-    :value="collapsiable"
-    :class="root({ class: [propsClass], ...theme })"
-  >
+  <Collapsible.RootProvider :value="collapsiable" :class="root({ class: [propsClass], ...theme })">
     <ThemeProvider :value="theme">
       <slot v-bind="collapsiable" />
     </ThemeProvider>

@@ -14,28 +14,25 @@ export interface SwitchProps extends SwitchRootProps, ThemeProps {
 import type { SwitchRootEmits, SwitchRootProps } from '@ark-ui/vue'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HtmlHTMLAttributes } from 'vue'
-import { Switch, useForwardPropsEmits } from '@ark-ui/vue'
+import { Switch, useForwardExpose, useForwardProps, useSwitch } from '@ark-ui/vue'
 import { tvSwitch } from '@rui-ark/themes/crafts/switch'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
-const {
-  class: propsClass,
-  size,
-  unstyled,
-  ui,
-  ...props
-} = defineProps<SwitchProps>()
+const { class: propsClass, size, unstyled, ui, ...props } = defineProps<SwitchProps>()
 const emit = defineEmits<SwitchRootEmits>()
-const forwarded = useForwardPropsEmits(props, emit)
+const switchRoot = useSwitch(useForwardProps(props), emit)
 
 const theme = useTheme(() => ({ size, unstyled }))
 const { root, control, thumb } = tvSwitch()
+
+defineExpose({ $api: switchRoot })
+useForwardExpose()
 </script>
 
 <template>
-  <Switch.Root
-    v-bind="forwarded"
+  <Switch.RootProvider
+    :value="switchRoot"
     :class="root({ class: [ui?.root, propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">
@@ -45,5 +42,5 @@ const { root, control, thumb } = tvSwitch()
       <Switch.HiddenInput />
       <slot />
     </ThemeProvider>
-  </Switch.Root>
+  </Switch.RootProvider>
 </template>

@@ -1,15 +1,11 @@
 <script lang="ts">
-export interface RadioGroupProps extends RadioGroupRootProps, ThemeProps {
+export interface RadioGroupProps extends RadioGroupRootBaseProps, ThemeProps {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
-import type {
-  RadioGroupRootBaseProps,
-  RadioGroupRootEmits,
-  RadioGroupRootProps,
-} from '@ark-ui/vue/radio-group'
+import type { RadioGroupRootBaseProps, RadioGroupRootEmits } from '@ark-ui/vue/radio-group'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { RadioGroup, useRadioGroup } from '@ark-ui/vue/radio-group'
@@ -18,17 +14,9 @@ import { tvRadioGroup } from '@rui-ark/themes/crafts/radio-group'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
-const {
-  class: propsClass,
-  size,
-  unstyled,
-  ...props
-} = defineProps<RadioGroupProps>()
+const { class: propsClass, size, unstyled, ...props } = defineProps<RadioGroupProps>()
 const emit = defineEmits<RadioGroupRootEmits>()
-const forwarded = useForwardProps<RadioGroupProps, RadioGroupRootBaseProps>(
-  props,
-)
-const radioGroup = useRadioGroup(forwarded, emit)
+const radioGroup = useRadioGroup(useForwardProps(props), emit)
 
 const theme = useTheme(() => ({ size, unstyled }))
 const { root } = tvRadioGroup()
@@ -38,10 +26,7 @@ useForwardExpose()
 </script>
 
 <template>
-  <RadioGroup.RootProvider
-    :value="radioGroup"
-    :class="root({ class: [propsClass], ...theme })"
-  >
+  <RadioGroup.RootProvider :value="radioGroup" :class="root({ class: [propsClass], ...theme })">
     <ThemeProvider :value="theme">
       <slot name="label" />
       <slot />

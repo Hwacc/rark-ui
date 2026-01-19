@@ -43,6 +43,7 @@ checkContextVNodePosition(defaultSlots.value, 'HoverCardContext', 'HoverCardCont
 const arrowNode = computed(() => findVNodeByName(defaultSlots.value, 'HoverCardArrow'))
 const otherNodes = computed(() => excludeVNodesByName(defaultSlots.value, 'HoverCardArrow'))
 
+// theme
 const theme = useTheme(() => ({ size, unstyled, skin, bordered }))
 const { content, contentInner } = tvHoverCard()
 </script>

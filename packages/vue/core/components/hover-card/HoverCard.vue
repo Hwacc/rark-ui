@@ -8,12 +8,12 @@ export interface HoverCardProps extends HoverCardRootProps, ThemeProps {}
 <script setup lang="ts">
 import type { HoverCardRootEmits, HoverCardRootProps } from '@ark-ui/vue/hover-card'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme/theme-props'
-import { HoverCardRoot } from '@ark-ui/vue/hover-card'
-import { useForwardPropsEmits } from '@ark-ui/vue/utils'
+import { HoverCard, useHoverCard } from '@ark-ui/vue/hover-card'
+import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
-import { computed } from 'vue'
+import { computed, mergeProps } from 'vue'
 
 const {
   size,
@@ -25,22 +25,40 @@ const {
   ...props
 } = defineProps<HoverCardProps>()
 const emit = defineEmits<HoverCardRootEmits>()
-const forwarded = useForwardPropsEmits(props, emit)
-
-const hoverCardConfig = useConfig(
-  'hover-card',
-  computed(() => ({
-    lazyMount,
-    unmountOnExit,
-  })),
+const hoverCardConfig = useConfig('hover-card', () => ({
+  lazyMount,
+  unmountOnExit,
+}))
+const forwarded = useForwardProps(props)
+const hoverCard = useHoverCard(
+  computed(() =>
+    mergeProps(
+      {
+        openDelay: hoverCardConfig.value?.openDelay,
+        closeDelay: hoverCardConfig.value?.closeDelay,
+      },
+      forwarded.value,
+    ),
+  ),
+  emit,
 )
-const theme = useTheme((() => ({ size, unstyled, bordered, skin })))
+
+// theme
+const theme = useTheme(() => ({ size, unstyled, bordered, skin }))
+
+// expose
+defineExpose({ $api: hoverCard })
+useForwardExpose()
 </script>
 
 <template>
-  <HoverCardRoot v-bind="{ ...hoverCardConfig, ...forwarded }">
+  <HoverCard.RootProvider
+    :value="hoverCard"
+    :lazy-mount="hoverCardConfig?.lazyMount"
+    :unmount-on-exit="hoverCardConfig?.unmountOnExit"
+  >
     <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>
-  </HoverCardRoot>
+  </HoverCard.RootProvider>
 </template>
