@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { Slider, SliderMarker, SliderMarkerGroup, SliderThumb, SliderTooltipMarker, SliderTooltipThumb } from '@rui-ark/vue-core/components/slider'
-import { ref } from 'vue'
+import { ref, useTemplateRef, watch } from 'vue'
 
 const testValue = ref([0])
+
+const sliderRef = useTemplateRef('slider')
+console.log('slider expose', sliderRef.value)
+watch(sliderRef, (newVal) => {
+  console.log('slider expose', newVal)
+})
 </script>
 
 <template>
   <div class="flex items-center gap-2">
-    <Slider v-model="testValue" class="w-75">
+    <Slider ref="slider" v-model="testValue" class="w-75">
       <SliderTooltipThumb :index="0" />
     </Slider>
 

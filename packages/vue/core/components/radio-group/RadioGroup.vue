@@ -13,11 +13,10 @@ import type {
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { RadioGroup, useRadioGroup } from '@ark-ui/vue/radio-group'
-import { useForwardProps } from '@ark-ui/vue/utils'
+import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { tvRadioGroup } from '@rui-ark/themes/crafts/radio-group'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
-import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -34,11 +33,8 @@ const radioGroup = useRadioGroup(forwarded, emit)
 const theme = useTheme(() => ({ size, unstyled }))
 const { root } = tvRadioGroup()
 
-defineExpose({
-  value: computed(() => radioGroup.value.value),
-  setValue: radioGroup.value.setValue,
-  clearValue: radioGroup.value.clearValue,
-})
+defineExpose({ $api: radioGroup })
+useForwardExpose()
 </script>
 
 <template>

@@ -13,7 +13,7 @@ export interface TooltipContentProps extends ArkTooltipContentProps, ThemeProps 
 import type { TooltipContentProps as ArkTooltipContentProps } from '@ark-ui/vue/tooltip'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
-import { TooltipContent, TooltipPositioner } from '@ark-ui/vue/tooltip'
+import { Tooltip } from '@ark-ui/vue/tooltip'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvTooltip } from '@rui-ark/themes/crafts/tooltip'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
@@ -48,11 +48,11 @@ const { content, contentInner } = tvTooltip()
 </script>
 
 <template>
-  <TooltipPositioner
+  <Tooltip.Positioner
     :class="ui?.positioner"
     :style="{ zIndex: `var(--z-tooltip, --z-index)` }"
   >
-    <TooltipContent
+    <Tooltip.Content
       v-bind="forwarded"
       :class="content({ class: [ui?.content, propsClass], ...theme })"
       :data-bordered="theme.bordered ? 'true' : undefined"
@@ -69,6 +69,6 @@ const { content, contentInner } = tvTooltip()
           <component :is="node" />
         </template>
       </div>
-    </TooltipContent>
-  </TooltipPositioner>
+    </Tooltip.Content>
+  </Tooltip.Positioner>
 </template>

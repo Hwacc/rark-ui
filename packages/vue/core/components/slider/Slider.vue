@@ -14,7 +14,7 @@ export interface SliderProps extends SliderRootBaseProps, ThemeProps {
 import type { SliderRootBaseProps, SliderRootEmits } from '@ark-ui/vue/slider'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
-import { useForwardProps } from '@ark-ui/vue'
+import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Slider, useSlider } from '@ark-ui/vue/slider'
 import { tvSlider } from '@rui-ark/themes/crafts/slider'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
@@ -22,13 +22,7 @@ import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { useTemplateRef } from 'vue'
 import SliderBoundaryProvider from './SliderBoundaryProvider.vue'
 
-const {
-  class: propsClass,
-  unstyled,
-  size,
-  ui,
-  ...props
-} = defineProps<SliderProps>()
+const { class: propsClass, unstyled, size, ui, ...props } = defineProps<SliderProps>()
 const emit = defineEmits<SliderRootEmits>()
 const forwarded = useForwardProps(props)
 const slider = useSlider(forwarded, emit)
@@ -36,6 +30,10 @@ const controlRef = useTemplateRef('control')
 
 const theme = useTheme(() => ({ size, unstyled }))
 const { root, control: tvControl, track, range } = tvSlider()
+
+// expose
+defineExpose({ $api: slider })
+useForwardExpose()
 </script>
 
 <template>

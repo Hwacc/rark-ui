@@ -37,7 +37,7 @@ import type {
   PointerDownOutsideEvent,
   RequestDismissEvent,
 } from './dialog-intercept-context'
-import { useForwardProps } from '@ark-ui/vue'
+import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Dialog, useDialog } from '@ark-ui/vue/dialog'
 import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
@@ -103,13 +103,9 @@ watch(
 )
 
 const theme = useTheme(() => ({ size, unstyled }))
-defineExpose({
-  open: dialog.value.open,
-  setOpen: (open: boolean, from?: DialogTriggerFrom) => {
-    triggerFrom.value = from ?? undefined
-    dialog.value.setOpen(open)
-  },
-})
+
+defineExpose({ $api: dialog })
+useForwardExpose()
 </script>
 
 <template>

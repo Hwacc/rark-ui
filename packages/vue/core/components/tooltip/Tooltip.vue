@@ -5,7 +5,7 @@ export interface TooltipProps extends TooltipRootProps, ThemeProps {}
 <script setup lang="ts">
 import type { TooltipRootEmits, TooltipRootProps } from '@ark-ui/vue/tooltip'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
-import { TooltipRoot } from '@ark-ui/vue/tooltip'
+import { Tooltip } from '@ark-ui/vue/tooltip'
 import { useForwardPropsEmits } from '@ark-ui/vue/utils'
 import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
@@ -31,9 +31,9 @@ const theme = useTheme(() => ({ size, bordered, unstyled, skin }))
 </script>
 
 <template>
-  <TooltipRoot v-bind="{ ...tooltipConfig, ...forwarded }">
+  <Tooltip.Root v-bind="{ ...tooltipConfig, ...forwarded }">
     <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>
-  </TooltipRoot>
+  </Tooltip.Root>
 </template>

@@ -1,6 +1,5 @@
 <script lang="ts">
-export interface SelectProps<T extends CollectionItem>
-  extends SelectRootProps<T>, ThemeProps {
+export interface SelectProps<T extends CollectionItem> extends SelectRootBaseProps<T>, ThemeProps {
   class?: HTMLAttributes['class']
 }
 // 这里我们必须重新定义SelectEmits类型, 否则Volar/VLS在推断ts时会报错ts-plugin(2742)
@@ -20,7 +19,7 @@ export interface SelectEmits<T extends CollectionItem> {
 </script>
 
 <script setup lang="ts" generic="T extends CollectionItem">
-import type { CollectionItem, SelectRootProps } from '@ark-ui/vue/select'
+import type { CollectionItem, SelectRootBaseProps } from '@ark-ui/vue/select'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type * as select from '@zag-js/select'
 import type { HTMLAttributes } from 'vue'
@@ -32,7 +31,14 @@ import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { computed } from 'vue'
 
-const { class: propsClass, size, unstyled, lazyMount = undefined, unmountOnExit = undefined, ...props } = defineProps<SelectProps<T>>()
+const {
+  class: propsClass,
+  size,
+  unstyled,
+  lazyMount = undefined,
+  unmountOnExit = undefined,
+  ...props
+} = defineProps<SelectProps<T>>()
 const emits = defineEmits<SelectEmits<T>>()
 const forwarded = useForwardPropsEmits(props, emits)
 const selectConfig = useConfig(
@@ -45,7 +51,10 @@ const { root } = tvSelect()
 </script>
 
 <template>
-  <Select.Root v-bind="{ ...selectConfig, ...forwarded }" :class="root({ class: [propsClass], ...theme })">
+  <Select.Root
+    v-bind="{ ...selectConfig, ...forwarded }"
+    :class="root({ class: [propsClass], ...theme })"
+  >
     <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>

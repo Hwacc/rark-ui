@@ -27,7 +27,7 @@ import {
   EditableRootProvider,
   useEditable,
 } from '@ark-ui/vue/editable'
-import { useForwardProps } from '@ark-ui/vue/utils'
+import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { findUp } from '@rui-ark/shared/dom'
 import { tvEditable } from '@rui-ark/themes/crafts/editable'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
@@ -84,11 +84,11 @@ const slotProps = computed<SlotProps>(() => {
   }
 })
 
-const theme = useTheme((() => ({ size, unstyled })))
+const theme = useTheme(() => ({ size, unstyled }))
 const { root, area } = tvEditable()
-defineExpose(
-  pick(editable.value, ['edit', 'clearValue', 'setValue', 'cancel', 'submit']),
-)
+
+defineExpose({ $api: editable })
+useForwardExpose()
 </script>
 
 <template>

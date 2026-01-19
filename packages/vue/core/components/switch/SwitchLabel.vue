@@ -8,7 +8,7 @@ export interface SwitchLabelProps extends ThemeProps {
 <script setup lang="ts">
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
-import { SwitchLabel } from '@ark-ui/vue/switch'
+import { Switch } from '@ark-ui/vue/switch'
 import { tvSwitch } from '@rui-ark/themes/crafts/switch'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
@@ -24,10 +24,10 @@ const { label } = tvSwitch()
 </script>
 
 <template>
-  <SwitchLabel
+  <Switch.Label
     :class="label({ class: [propsClass], ...theme })"
     :as-child="asChild"
   >
     <slot />
-  </SwitchLabel>
+  </Switch.Label>
 </template>

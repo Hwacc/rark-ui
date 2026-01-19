@@ -17,20 +17,12 @@ import type { CheckboxRootEmits, CheckboxRootProps } from '@ark-ui/vue/checkbox'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Checkbox, useCheckbox } from '@ark-ui/vue/checkbox'
-import { useForwardProps } from '@ark-ui/vue/utils'
+import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { tvCheckbox } from '@rui-ark/themes/crafts/checkbox'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { Check, Minus } from 'lucide-vue-next'
-import { computed } from 'vue'
 
-const {
-  class: propsClass,
-  label,
-  size,
-  unstyled,
-  ui,
-  ...props
-} = defineProps<CheckboxProps>()
+const { class: propsClass, label, size, unstyled, ui, ...props } = defineProps<CheckboxProps>()
 const emit = defineEmits<CheckboxRootEmits>()
 defineSlots<{
   indicator: (props: { checkedState: CheckedState }) => any
@@ -42,12 +34,8 @@ const checkbox = useCheckbox(forwarded, emit)
 const theme = useTheme(() => ({ size, unstyled }))
 const { root, control, indicator, label: tvLabel } = tvCheckbox()
 
-defineExpose({
-  checked: computed(() => checkbox.value.checked),
-  checkedState: computed(() => checkbox.value.checkedState),
-  toggle: checkbox.value.toggleChecked,
-  setChecked: checkbox.value.setChecked,
-})
+defineExpose({ $api: checkbox })
+useForwardExpose()
 </script>
 
 <template>
@@ -56,20 +44,22 @@ defineExpose({
     :class="root({ class: [ui?.root, propsClass], ...theme })"
   >
     <Checkbox.Control :class="control({ class: ui?.control, ...theme })">
-      <Checkbox.Indicator
-        :class="indicator({ class: ui?.indicator, ...theme })"
-      >
-        <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
-          <Check
-            class="size-full stroke-black stroke-[.125rem] [&>path]:animate-check-dash"
-          />
+      <Checkbox.Indicator :class="indicator({ class: ui?.indicator, ...theme })">
+        <slot
+          name="indicator"
+          v-bind="{ checkedState: checkbox.checkedState }"
+        >
+          <Check class="size-full stroke-black stroke-[.125rem] [&>path]:animate-check-dash" />
         </slot>
       </Checkbox.Indicator>
       <Checkbox.Indicator
         :class="indicator({ class: ui?.indicator, ...theme })"
         indeterminate
       >
-        <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
+        <slot
+          name="indicator"
+          v-bind="{ checkedState: checkbox.checkedState }"
+        >
           <Minus
             class="size-full stroke-black stroke-[.125rem] [&_path]:animate-indeterminate-dash"
           />
