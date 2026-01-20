@@ -6,11 +6,7 @@ export function someVNode(
   children: VNodeChild | VNodeChild[] | undefined,
   pred: (v: VNode) => boolean,
 ): boolean {
-  const arr = Array.isArray(children)
-    ? children
-    : children != null
-      ? [children]
-      : []
+  const arr = Array.isArray(children) ? children : children != null ? [children] : []
   for (const n of arr) {
     if (n && typeof n === 'object') {
       const v = n as VNode
@@ -24,10 +20,7 @@ export function someVNode(
   return false
 }
 
-export function findVNodeByName(
-  nodes: VNode[] | undefined,
-  name: string,
-): VNode | undefined {
+export function findVNodeByName(nodes: VNode[] | undefined, name: string): VNode | undefined {
   const target = camelCase(name)
   if (isEmpty(nodes))
     return undefined
@@ -67,8 +60,10 @@ export function findVNodesByName(nodes: VNode[] | undefined, name: string): VNod
   return result
 }
 
-export function excludeVNodesByName(node: VNode, name: string): VNode[] {
-  return excludeVNodesByNames([node], [camelCase(name)])
+export function excludeVNodesByName(node: VNode | VNode[] | undefined, name: string): VNode[] {
+  if (!node)
+    return []
+  return excludeVNodesByNames(Array.isArray(node) ? node : [node], [camelCase(name)])
 }
 export function excludeVNodesByNames(nodes: VNode[] | undefined, name: string[]): VNode[] {
   const targets = name.map(camelCase)
@@ -119,9 +114,7 @@ export function checkContextVNodePosition(
     return
   if (nodes.length === 1) {
     const _targetName = camelCase(contextName)
-    const _srcName = camelCase(
-      (nodes[0].type as any).name || (nodes[0].type as any).__name,
-    )
+    const _srcName = camelCase((nodes[0].type as any).name || (nodes[0].type as any).__name)
     _srcName === _targetName
     && console.warn(
       `\<${contextName}\> can not be a direct child of \<${componentName}\>, it may cause unexpected style behavior, consider lift it up or use it closer to where you want to use it `,
