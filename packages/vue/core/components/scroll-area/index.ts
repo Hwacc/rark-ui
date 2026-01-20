@@ -3,6 +3,10 @@ import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 
 export { default as ScrollArea } from './ScrollArea.vue'
 export type { ScrollAreaProps } from './ScrollArea.vue'
+
+export { default as ScrollAreaCorner } from './ScrollAreaCorner.vue'
+export type { ScrollAreaCornerProps } from './ScrollAreaCorner.vue'
+
 export { default as ScrollAreaScrollbar } from './ScrollAreaScrollbar.vue'
 export type { ScrollAreaScrollbarProps } from './ScrollAreaScrollbar.vue'
 
