@@ -3,7 +3,6 @@ export interface ButtonProps extends ThemeProps {
   variant?: ButtonVariants['variant'] | string
   class?: HTMLAttributes['class']
   disabled?: boolean
-  checked?: boolean
   tooltip?: string
   ripple?: boolean
   loading?: boolean
@@ -37,7 +36,6 @@ const {
   size,
   class: propsClass,
   disabled,
-  checked = false,
   unstyled,
   ripple = false,
   loading = false,
@@ -77,7 +75,7 @@ function onClick(event: MouseEvent) {
 
 // theme
 const theme = useTheme(() => ({ size, unstyled }))
-const { base, loading: tvLoading } = tvButton()
+const { root, loading: tvLoading } = tvButton()
 </script>
 
 <template>
@@ -88,7 +86,7 @@ const { base, loading: tvLoading } = tvButton()
         rippleReferenceRef = r
       }
     "
-    :class="base({
+    :class="root({
       variant: variant as ButtonVariants['variant'],
       loading,
       class: [ui?.root?.class, propsClass],
@@ -98,9 +96,6 @@ const { base, loading: tvLoading } = tvButton()
     :data-variant="variant"
     :data-ripple="ripple ? true : undefined"
     :data-loading="loading ? true : undefined"
-    :data-switch-state="
-      variant === 'switch' ? (checked ? 'checked' : 'unchecked') : undefined
-    "
     :data-size="theme.size"
     :as-child="asChild"
     @click="onClick"

@@ -5,24 +5,21 @@ const prefix = 'rui-btn'
 
 export const tvButton = tv(
   {
-    base: [
-      'inline-flex',
-      'items-center',
-      'justify-center',
-      'px-4',
-      'gap-2',
-      'whitespace-nowrap',
-      'rounded',
-      'border',
-      'ring',
-      'ring-transparent',
-      'transition-all',
-      'disabled:pointer-events-none',
-      'disabled:opacity-(--disabled-opacity)',
-      '[&_svg]:pointer-events-none',
-      '[&_svg]:shrink-0',
-    ],
     slots: {
+      root: [
+        'inline-flex',
+        'items-center',
+        'justify-center',
+        'px-4',
+        'gap-2',
+        'rounded',
+        'border',
+        'transition-all',
+        'disabled:pointer-events-none',
+        'disabled:opacity-(--disabled-opacity)',
+        '[&_svg]:pointer-events-none',
+        '[&_svg]:shrink-0',
+      ],
       loading: 'animate-spin',
     },
     variants: {
@@ -31,16 +28,28 @@ export const tvButton = tv(
         normal: '',
         outline: '',
         text: '',
-        icon: ['px-0', 'aspect-square', 'border-none'],
-        switch: ['justify-start', 'gap-[.6875rem]', 'px-3', 'text-xs'],
+        icon: {
+          root: ['p-0', 'aspect-square', 'border-none'],
+        },
       },
       size: {
-        base: 'h-[1.75rem] text-sm',
-        sm: 'h-[1.5rem] text-xs',
-        lg: 'h-[2rem] text-base',
+        base: {
+          root: 'h-[1.75rem] text-sm',
+          loading: 'size-4',
+        },
+        sm: {
+          root: 'h-[1.5rem] text-xs',
+          loading: 'size-3.5',
+        },
+        lg: {
+          root: 'h-[2rem] text-base',
+          loading: 'size-4.5',
+        },
       },
       loading: {
-        true: 'pointer-events-none',
+        true: {
+          root: 'pointer-events-none',
+        },
         false: '',
       },
     },
@@ -49,27 +58,10 @@ export const tvButton = tv(
       size: 'base',
       loading: false,
     },
-    compoundSlots: [
-      {
-        slots: ['loading'],
-        size: 'base',
-        class: 'size-4',
-      },
-      {
-        slots: ['loading'],
-        size: 'sm',
-        class: 'size-3.5',
-      },
-      {
-        slots: ['loading'],
-        size: 'lg',
-        class: 'text-4.5',
-      },
-    ],
   },
   {
-    class: prefix,
     slots: {
+      root: prefix,
       loading: `${prefix}-loading`,
     },
   },
