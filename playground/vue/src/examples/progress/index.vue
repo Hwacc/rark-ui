@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import { Button } from '@rui-ark/vue-core/components/button'
-import { Progress, ProgressCircle, ProgressLinear } from '@rui-ark/vue-core/components/progress'
+import {
+  Progress,
+  ProgressArc,
+  ProgressCircle,
+  ProgressLinear,
+} from '@rui-ark/vue-core/components/progress'
 import { onUnmounted, ref } from 'vue'
 
 const progressValue = ref(0)
@@ -60,13 +65,22 @@ onUnmounted(() => {
           </Progress>
         </div>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex flex-col items-center justify-center gap-4">
         <Progress
           class="w-75 shrink-0"
           :model-value="progressValue"
         >
           <ProgressLinear variant="robbin" />
         </Progress>
+        <div class="flex items-center gap-4">
+          <Progress
+            v-for="size in ['sm', 'base', 'lg']"
+            :key="size"
+            :model-value="progressValue"
+          >
+            <ProgressArc :size="size as ThemeProps['size']" variant="transfer" />
+          </Progress>
+        </div>
       </div>
       <div class="flex flex-col items-center justify-center gap-4">
         <Progress
@@ -81,7 +95,10 @@ onUnmounted(() => {
             :key="size"
             :model-value="progressValue"
           >
-            <ProgressCircle :size="size as any" variant="transfer" />
+            <ProgressCircle
+              :size="size as any"
+              variant="transfer"
+            />
           </Progress>
         </div>
       </div>

@@ -1,19 +1,19 @@
 <script lang="ts">
-interface ProgressCircleTheme extends Omit<ThemeProps, 'size'> {
-  size?: ProgressVariantProps['size'] | number
-}
-
 export interface ProgressCircleProps extends ProgressCircleBaseProps, ProgressCircleTheme {
   class?: HTMLAttributes['class']
   variant?: 'default' | 'transfer'
+  ui?: {
+    circle?: HTMLAttributes['class']
+    circleTrack?: HTMLAttributes['class']
+    circleRange?: HTMLAttributes['class']
+  }
 }
 </script>
 
 <script setup lang="ts">
 import type { ProgressCircleBaseProps } from '@ark-ui/vue/progress'
-import type { ProgressVariantProps } from '@rui-ark/themes/crafts/progress'
-import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
+import type { ProgressCircleTheme } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { Progress } from '@ark-ui/vue/progress'
 import { tvProgress } from '@rui-ark/themes/crafts/progress'
@@ -27,6 +27,7 @@ const {
   size,
   unstyled,
   variant = 'default',
+  ui,
   ...props
 } = defineProps<ProgressCircleProps>()
 const forwarded = useForwardProps(props)
@@ -49,21 +50,21 @@ const { circle: tvCircle, circleTrack, circleRange } = tvProgress()
     v-bind="forwarded"
     :class="
       tvCircle({
-        class: propsClass,
+        class: [ui?.circle, propsClass],
         size: typeof theme.size === 'string' ? theme.size : 'base',
         ...themeRest,
       })
     "
-    :style="typeof theme.size === 'number' && { '--size': `${theme.size}px` }"
     :data-variant="variant"
+    :style="typeof theme.size === 'number' && { '--size': `${theme.size}px` }"
   >
     <Progress.CircleTrack
-      :class="circleTrack({ class: propsClass, ...themeRest })"
+      :class="circleTrack({ class: ui?.circleTrack, ...themeRest })"
       :data-variant="variant"
     />
     <Progress.CircleRange
       ref="range"
-      :class="circleRange({ class: propsClass, ...themeRest })"
+      :class="circleRange({ class: ui?.circleRange, ...themeRest })"
       :data-variant="variant"
       :style="transferStyles"
     />

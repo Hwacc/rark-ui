@@ -18,17 +18,17 @@ export const tvProgress = tv(
         base: {
           track: 'rounded-[calc(var(--spacing)*1.5)]',
           range: 'rounded-[calc(var(--spacing)*1.5)]',
-          circle: ['[--size:calc(var(--spacing)*12.5)]', '[--thickness:calc(var(--spacing)*1.5)]'],
+          circle: ['[--size:calc(var(--spacing)*12.5)]', '[--thickness:calc(var(--spacing)*1)]'],
         },
         sm: {
           track: 'rounded-[calc(var(--spacing))]',
           range: 'rounded-[calc(var(--spacing))]',
-          circle: ['[--size:calc(var(--spacing)*10.5)]', '[--thickness:calc(var(--spacing))]'],
+          circle: ['[--size:calc(var(--spacing)*10.5)]', '[--thickness:calc(var(--spacing)*0.5)]'],
         },
         lg: {
           track: 'rounded-[calc(var(--spacing)*2)]',
           range: 'rounded-[calc(var(--spacing)*2)]',
-          circle: ['[--size:calc(var(--spacing)*14.5)]', '[--thickness:calc(var(--spacing)*2)]'],
+          circle: ['[--size:calc(var(--spacing)*14.5)]', '[--thickness:calc(var(--spacing)*1.5)]'],
         },
       },
 

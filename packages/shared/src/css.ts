@@ -1,3 +1,5 @@
+import { isNil } from 'es-toolkit'
+
 export function px2rem(px: number | string) {
   if (typeof px === 'string') {
     if (px.endsWith('rem'))
@@ -6,9 +8,7 @@ export function px2rem(px: number | string) {
   }
   if (!px)
     px = 0
-  const base = parseFloat(
-    window.getComputedStyle(document.documentElement).fontSize || '16px',
-  )
+  const base = parseFloat(window.getComputedStyle(document.documentElement).fontSize || '16px')
   return px / base
 }
 
@@ -23,9 +23,7 @@ export function rem2px(rem: number | string) {
   }
   if (!rem)
     rem = 0
-  const base = parseFloat(
-    window.getComputedStyle(document.documentElement).fontSize || '16px',
-  )
+  const base = parseFloat(window.getComputedStyle(document.documentElement).fontSize || '16px')
   return rem * base
 }
 
@@ -34,6 +32,11 @@ export function spaceTimes(times: number) {
   return times * rem2px(spacing)
 }
 
+export function alignPx(px: number, dpr = window.devicePixelRatio, round = true) {
+  return round ? Math.round(Math.round(px * dpr) / dpr) : Math.round(px * dpr) / dpr
+}
+
+const CSS_DYNAMIC_VALUE_REG = /(?:^|[^\w-])(?:calc|var)\(|\b\d*\.?\d+(?:rem|em|%)\b/i
 export function getNodeCssVar(
   node: HTMLElement | null | undefined,
   varName: string,
@@ -48,10 +51,25 @@ export function getNodeCssVar(
   varName: string,
   fallback?: string,
 ): string | undefined {
+  if (isNil(window))
+    return fallback !== undefined ? fallback : undefined
   node = node ?? document.documentElement
   const value = getComputedStyle(node).getPropertyValue(varName).trim()
-  if (value)
+  if (value) {
+    if (CSS_DYNAMIC_VALUE_REG.test(value)) {
+      const el = document.createElement('div')
+      el.style.position = 'absolute'
+      el.style.visibility = 'hidden'
+      el.style.width = value
+      document.body.appendChild(el)
+      const px = getComputedStyle(el).width.trim()
+      document.body.removeChild(el)
+      console.log('px', px)
+      return px && px !== 'auto' ? `${alignPx(parseFloat(px))}` : value
+    }
     return value
+  }
+
   return fallback !== undefined ? fallback : undefined
 }
 

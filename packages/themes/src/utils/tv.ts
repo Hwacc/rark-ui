@@ -74,7 +74,6 @@ export function tv<
   })
   options.compoundSlots = concat(options.compoundSlots ?? [], unstyledCompoundSlots)
 
-  console.log('options', options)
   return originTv<
     mergedV,
     TVCompoundVariants<mergedV, S, B, EV, ES>,
