@@ -13,17 +13,12 @@ export interface RUIConfigProps {
 </script>
 
 <script setup lang="ts">
-import type {
-  MessagerExpose,
-  MessagerProps,
-} from '@rui-ark/vue-core/components/message'
-import type {
-  ToasterManagerExpose,
-  ToasterManagerProps,
-} from '@rui-ark/vue-core/components/toast'
+import type { MessagerExpose, MessagerProps } from '@rui-ark/vue-core/components/message'
+import type { ToasterManagerExpose, ToasterManagerProps } from '@rui-ark/vue-core/components/toast'
 import type { RUIConfigContext } from './rui-config-context'
 import { addAPIProvider, addCollection, addIcon } from '@iconify/vue'
 import { Message, Messager } from '@rui-ark/vue-core/components/message'
+import { OverlayProvider } from '@rui-ark/vue-core/components/overlay'
 import { ToasterManager } from '@rui-ark/vue-core/components/toast'
 import { omit } from 'es-toolkit'
 import { computed, useTemplateRef } from 'vue'
@@ -87,8 +82,7 @@ props.iconify?.addAPIProviders?.forEach(([provider, config]) => {
   addAPIProvider(provider, config)
 })
 
-const toasterManagerExpose
-  = useTemplateRef<ToasterManagerExpose>('toasterManager')
+const toasterManagerExpose = useTemplateRef<ToasterManagerExpose>('toasterManager')
 const messagerExpose = useTemplateRef<MessagerExpose>('messager')
 
 provideRUIConfigContext(
@@ -103,7 +97,10 @@ provideRUIConfigContext(
 <template>
   <ThemeProvider :value="props.theme">
     <slot />
-    <ToasterManager ref="toasterManager" v-bind="props.toasterManager">
+    <ToasterManager
+      ref="toasterManager"
+      v-bind="props.toasterManager"
+    >
       <slot name="toaster" />
     </ToasterManager>
     <Messager
@@ -116,5 +113,6 @@ provideRUIConfigContext(
         <Message :options="message" />
       </slot>
     </Messager>
+    <OverlayProvider />
   </ThemeProvider>
 </template>

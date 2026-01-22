@@ -1,3 +1,5 @@
+/// <reference types="@rsbuild/core/types" />
+
 declare type EventDetails<T> = {
   originalEvent: T
   contextmenu: boolean

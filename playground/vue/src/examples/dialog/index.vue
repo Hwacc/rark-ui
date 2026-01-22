@@ -9,8 +9,10 @@ import {
   DialogHeader,
   DialogTrigger,
 } from '@rui-ark/vue-core/components/dialog'
+import { useOverlay } from '@rui-ark/vue-core/components/overlay'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { ref } from 'vue'
+import TestDialog from './TestDialog.vue'
 
 function handleOpenChange(details: any) {
   console.log('open change', details)
@@ -40,6 +42,12 @@ function handleOpenDialog() {
       console.log('im cancel')
     },
   })
+}
+
+const overlay = useOverlay()
+const overlayDialog = overlay.create(TestDialog)
+function handleOpenOverlayDialog() {
+  overlayDialog.open()
 }
 </script>
 
@@ -103,6 +111,10 @@ function handleOpenDialog() {
 
     <Button @click="handleOpenDialog">
       Open Functional Dialog
+    </Button>
+
+    <Button @click="handleOpenOverlayDialog">
+      Open Overlay Dialog
     </Button>
   </div>
 </template>
