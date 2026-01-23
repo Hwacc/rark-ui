@@ -63,44 +63,40 @@ const dialogConfig = useConfig(
   computed(() => ({ lazyMount, unmountOnExit })),
 )
 const forwarded = useForwardProps<DialogRootProps, UseDialogPropsEx>(props)
-console.log('forwarded', lazyMount, unmountOnExit, forwarded.value)
 
 const triggerFrom = ref<DialogTriggerFrom>(undefined)
 const dialogInterceptContext: DialogInterceptContext = { triggerFrom }
 const dialog = useDialog(
-  computed(() => {
-    console.log('dialog computed', forwarded.value)
-    return {
-      ...forwarded.value,
-      onOpenChange: (details: OpenChangeDetails) => {
-        emits('openChange', { ...details, from: triggerFrom.value })
-        emits('update:open', details.open)
-        forwarded.value.onOpenChange?.({ ...details, from: triggerFrom.value })
-      },
-      onEscapeKeyDown: (event: KeyboardEvent) => {
-        triggerFrom.value = TriggerFrom.ESCAPE
-        emits('escapeKeyDown', event)
-        forwarded.value.onEscapeKeyDown?.(event)
-      },
-      onFocusOutside: (event: FocusOutsideEvent) => {
-        emits('focusOutside', event)
-        forwarded.value.onFocusOutside?.(event)
-      },
-      onInteractOutside: (event: InteractOutsideEvent) => {
-        triggerFrom.value = TriggerFrom.OUTSIDE
-        emits('interactOutside', event)
-        forwarded.value.onInteractOutside?.(event)
-      },
-      onPointerDownOutside: (event: PointerDownOutsideEvent) => {
-        emits('pointerDownOutside', event)
-        forwarded.value.onPointerDownOutside?.(event)
-      },
-      onRequestDismiss: (event: RequestDismissEvent) => {
-        emits('requestDismiss', event)
-        forwarded.value.onRequestDismiss?.(event)
-      },
-    }
-  }),
+  computed(() => ({
+    ...forwarded.value,
+    onOpenChange: (details: OpenChangeDetails) => {
+      emits('openChange', { ...details, from: triggerFrom.value })
+      emits('update:open', details.open)
+      forwarded.value.onOpenChange?.({ ...details, from: triggerFrom.value })
+    },
+    onEscapeKeyDown: (event: KeyboardEvent) => {
+      triggerFrom.value = TriggerFrom.ESCAPE
+      emits('escapeKeyDown', event)
+      forwarded.value.onEscapeKeyDown?.(event)
+    },
+    onFocusOutside: (event: FocusOutsideEvent) => {
+      emits('focusOutside', event)
+      forwarded.value.onFocusOutside?.(event)
+    },
+    onInteractOutside: (event: InteractOutsideEvent) => {
+      triggerFrom.value = TriggerFrom.OUTSIDE
+      emits('interactOutside', event)
+      forwarded.value.onInteractOutside?.(event)
+    },
+    onPointerDownOutside: (event: PointerDownOutsideEvent) => {
+      emits('pointerDownOutside', event)
+      forwarded.value.onPointerDownOutside?.(event)
+    },
+    onRequestDismiss: (event: RequestDismissEvent) => {
+      emits('requestDismiss', event)
+      forwarded.value.onRequestDismiss?.(event)
+    },
+  })),
 )
 watch(
   () => forwarded.value.open,
@@ -124,7 +120,6 @@ useForwardExpose()
     :unmount-on-exit="dialogConfig?.unmountOnExit ?? unmountOnExit"
     @exit-complete="
       () => {
-        console.log('exit complete', forwarded)
         forwarded.onExitComplete?.()
         emits('exitComplete')
       }

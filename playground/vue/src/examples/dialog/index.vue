@@ -55,7 +55,7 @@ function handleOpenOverlayDialog() {
 
 <template>
   <div class="flex items-center gap-4">
-    <Dialog
+    <!-- <Dialog
       :lazy-mount="true"
       :unmount-on-exit="true"
       @open-change="handleOpenChange"
@@ -114,7 +114,7 @@ function handleOpenOverlayDialog() {
 
     <Button @click="handleOpenDialog">
       Open Functional Dialog
-    </Button>
+    </Button> -->
 
     <Button @click="handleOpenOverlayDialog">
       Open Overlay Dialog

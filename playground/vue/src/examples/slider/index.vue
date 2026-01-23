@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { Slider, SliderMarker, SliderMarkerGroup, SliderThumb, SliderTooltipMarker, SliderTooltipThumb } from '@rui-ark/vue-core/components/slider'
-import { ref, useTemplateRef, watch } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 
 const testValue = ref([0])
-
 const sliderRef = useTemplateRef('slider')
-console.log('slider expose', sliderRef.value)
-watch(sliderRef, (newVal) => {
-  console.log('slider expose', newVal)
-})
 </script>
 
 <template>

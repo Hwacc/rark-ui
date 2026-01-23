@@ -64,7 +64,6 @@ export function getNodeCssVar(
       document.body.appendChild(el)
       const px = getComputedStyle(el).width.trim()
       document.body.removeChild(el)
-      console.log('px', px)
       return px && px !== 'auto' ? `${alignPx(parseFloat(px))}` : value
     }
     return value

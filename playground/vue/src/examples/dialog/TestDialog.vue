@@ -9,7 +9,7 @@ import {
 </script>
 
 <template>
-  <Dialog lazy-mount unmount-on-exit>
+  <Dialog>
     <DialogContent>
       <DialogHeader> Overlay Dialog </DialogHeader>
       <DialogBody> Overlay Dialog Body </DialogBody>

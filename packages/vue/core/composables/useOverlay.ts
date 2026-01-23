@@ -105,6 +105,7 @@ function _useOverlay() {
 
     overlay.isOpen = true
     overlay.isMounted = true
+
     const result = new Promise<any>(resolve => overlay.resolvePromise = resolve)
 
     return Object.assign(result, {

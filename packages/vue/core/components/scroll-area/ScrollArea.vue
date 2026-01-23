@@ -44,7 +44,6 @@ useForwardExpose()
 <template>
   <ScrollArea.RootProvider
     :value="scrollArea"
-    v-bind="scrollArea.getRootProps()"
     :class="root({ class: [ui?.root, propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">

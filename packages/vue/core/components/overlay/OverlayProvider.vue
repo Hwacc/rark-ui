@@ -6,11 +6,15 @@
 <script setup lang="ts">
 import type { Overlay } from '@rui-ark/vue-core/composables/useOverlay'
 import { useOverlay } from '@rui-ark/vue-core/composables/useOverlay'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 const { overlays, unmount, close } = useOverlay()
 
 const mountedOverlays = computed(() => overlays.filter((overlay: Overlay) => overlay.isMounted))
+
+watch(mountedOverlays, (newVal) => {
+  console.log('mountedOverlays', newVal)
+})
 
 function onExitComplete(id: symbol) {
   close(id)
@@ -25,10 +29,12 @@ function onClose(id: symbol) {
 <template>
   <component
     :is="overlay.component"
-    v-for="overlay in mountedOverlays"
+    v-for="overlay in overlays"
     :key="overlay.id"
     v-model:open="overlay.isOpen"
-    @open-change="({ open } : {open: boolean}) => { !open && onClose(overlay.id) }"
+    @open-change="({ open } : {open: boolean}) => {
+      !open && onClose(overlay.id)
+    }"
     @exit-complete="onExitComplete(overlay.id)"
   />
 </template>
