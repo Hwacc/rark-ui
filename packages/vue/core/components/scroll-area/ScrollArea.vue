@@ -21,7 +21,13 @@ import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { excludeVNodesByNames, findVNodesByName } from '@rui-ark/vue-core/utils/vnode'
 import { computed, useSlots } from 'vue'
 
-const { class: propsClass, size, unstyled, ui, ...props } = defineProps<ScrollAreaProps>()
+const {
+  class: propsClass,
+  size,
+  unstyled = undefined,
+  ui,
+  ...props
+} = defineProps<ScrollAreaProps>()
 const scrollArea = useScrollArea(useForwardProps(props))
 
 const slots = useSlots()
@@ -49,23 +55,11 @@ useForwardExpose()
     <ThemeProvider :value="theme">
       <ScrollArea.Viewport :class="viewport({ class: [ui?.viewport], ...theme })">
         <ScrollArea.Content :class="content({ class: [ui?.content], ...theme })">
-          <component
-            :is="node"
-            v-for="node in otherNodes"
-            :key="node.key"
-          />
+          <component :is="node" v-for="node in otherNodes" :key="node.key" />
         </ScrollArea.Content>
       </ScrollArea.Viewport>
-      <component
-        :is="node"
-        v-for="node in scrollbarNodes"
-        :key="node.key"
-      />
-      <component
-        :is="node"
-        v-for="node in cornerNodes"
-        :key="node.key"
-      />
+      <component :is="node" v-for="node in scrollbarNodes" :key="node.key" />
+      <component :is="node" v-for="node in cornerNodes" :key="node.key" />
     </ThemeProvider>
   </ScrollArea.RootProvider>
 </template>

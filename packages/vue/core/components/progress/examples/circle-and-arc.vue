@@ -1,0 +1,51 @@
+<script setup lang="ts">
+import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
+import { ref } from 'vue'
+import { Progress, ProgressArc, ProgressCircle } from '../index'
+
+const value = ref(70)
+const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
+</script>
+
+<template>
+  <div class="w-full flex flex-col gap-6">
+    <div class="flex flex-col gap-3">
+      <div class="text-sm text-hff">
+        Circle (default)
+      </div>
+      <div class="flex items-center gap-4">
+        <Progress v-for="size in sizes" :key="String(size)" :model-value="value">
+          <ProgressCircle :size="size" />
+        </Progress>
+        <Progress :model-value="value">
+          <ProgressCircle :size="120" />
+        </Progress>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <div class="text-sm text-hff">
+        Circle (transfer)
+      </div>
+      <div class="flex items-center gap-4">
+        <Progress v-for="size in sizes" :key="`t-${String(size)}`" :model-value="value">
+          <ProgressCircle :size="size" variant="transfer" />
+        </Progress>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <div class="text-sm text-hff">
+        Arc (transfer + theta)
+      </div>
+      <div class="flex items-center gap-4">
+        <Progress v-for="size in sizes" :key="`a-${String(size)}`" :model-value="value">
+          <ProgressArc :size="size" variant="transfer" :theta="60" />
+        </Progress>
+        <Progress :model-value="value">
+          <ProgressArc :size="120" variant="transfer" :theta="120" />
+        </Progress>
+      </div>
+    </div>
+  </div>
+</template>

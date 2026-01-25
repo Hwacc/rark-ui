@@ -17,8 +17,8 @@ import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 const {
   class: propsClass,
   size,
-  unstyled,
-  bordered,
+  unstyled = undefined,
+  bordered = undefined,
   lazyMount = undefined,
   unmountOnExit = undefined,
   ...props

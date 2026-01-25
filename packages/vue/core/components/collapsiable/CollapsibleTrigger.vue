@@ -23,7 +23,7 @@ const {
   class: propsClass,
   indicator = true,
   size,
-  unstyled,
+  unstyled = undefined,
   ui,
   ...props
 } = defineProps<CollapsibleTriggerProps>()

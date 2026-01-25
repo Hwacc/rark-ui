@@ -17,7 +17,7 @@ import { tvIcon } from '@rui-ark/themes/crafts/icon'
 
 const {
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
   icon,
   size,
   ...props

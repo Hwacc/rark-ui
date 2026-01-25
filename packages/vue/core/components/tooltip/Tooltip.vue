@@ -14,8 +14,8 @@ import { computed, mergeProps } from 'vue'
 
 const {
   size,
-  bordered,
-  unstyled,
+  bordered = undefined,
+  unstyled = undefined,
   skin,
   lazyMount = undefined,
   unmountOnExit = undefined,

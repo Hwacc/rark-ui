@@ -15,7 +15,7 @@ import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
 const {
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
   ...props
 } = defineProps<DialogBackdropProps>()
 const forwarded = useForwardProps(props)

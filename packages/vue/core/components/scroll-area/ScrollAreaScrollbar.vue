@@ -17,7 +17,13 @@ import { ScrollArea } from '@ark-ui/vue/scroll-area'
 import { tvScrollArea } from '@rui-ark/themes/crafts/scroll-area'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
-const { class: propsClass, size, unstyled, ui, ...props } = defineProps<ScrollAreaScrollbarProps>()
+const {
+  class: propsClass,
+  size,
+  unstyled = undefined,
+  ui,
+  ...props
+} = defineProps<ScrollAreaScrollbarProps>()
 const forwarded = useForwardProps(props)
 
 // theme

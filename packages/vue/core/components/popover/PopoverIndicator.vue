@@ -13,7 +13,12 @@ import { tvPopover } from '@rui-ark/themes/crafts/popover'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ChevronDown } from 'lucide-vue-next'
 
-const { class: propsClass, size, unstyled, asChild = true } = defineProps<PopoverIndicatorProps>()
+const {
+  class: propsClass,
+  size,
+  unstyled = undefined,
+  asChild = true,
+} = defineProps<PopoverIndicatorProps>()
 const theme = useTheme(() => ({ size, unstyled }))
 const { indicator } = tvPopover()
 </script>

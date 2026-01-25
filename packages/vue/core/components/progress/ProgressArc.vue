@@ -30,7 +30,7 @@ const {
   theta = 60,
   ui,
   size,
-  unstyled,
+  unstyled = undefined,
   variant = 'default',
   ...props
 } = defineProps<ProgressArcProps>()

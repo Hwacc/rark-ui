@@ -36,7 +36,7 @@ const {
   size,
   class: propsClass,
   disabled,
-  unstyled,
+  unstyled = undefined,
   ripple = false,
   loading = false,
   asChild = false,

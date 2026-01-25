@@ -17,7 +17,7 @@ import { Check } from 'lucide-vue-next'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
   ...props
 } = defineProps<SelectItemProps>()
 const forwarded = useForwardProps(props)

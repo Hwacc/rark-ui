@@ -7,9 +7,22 @@
   "license": "ISC",
   "keywords": [],
   "scripts": {
+    "dev": "storybook dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "@rsbuild/core": "^1.6.15"
+    "@faker-js/faker": "^10.1.0",
+    "@rsbuild/core": "^1.6.15",
+    "@rsbuild/plugin-babel": "^1.0.6",
+    "@rsbuild/plugin-vue": "^1.2.2",
+    "@rsbuild/plugin-vue-jsx": "^1.1.1",
+    "@storybook/addon-a11y": "^10.2.0",
+    "@storybook/addon-docs": "^10.2.0",
+    "@storybook/addon-themes": "^10.2.0",
+    "@tailwindcss/postcss": "^4.1.18",
+    "storybook": "^10.2.0",
+    "storybook-vue3-rsbuild": "^3.2.2",
+    "tailwindcss": "^4.1.18",
+    "vue": "^3.5.27"
   }
 }

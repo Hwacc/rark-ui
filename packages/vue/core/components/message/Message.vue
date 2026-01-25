@@ -56,7 +56,7 @@ const {
   options,
   ui,
   size,
-  unstyled,
+  unstyled = undefined,
   ...props
 } = defineProps<MessageProps>()
 defineSlots<{

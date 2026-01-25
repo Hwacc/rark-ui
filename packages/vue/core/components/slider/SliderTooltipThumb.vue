@@ -34,7 +34,7 @@ import { injectSliderBoundaryContext } from './SliderBoundaryProvider.vue'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
   index, // thumb prop
   name, // thumb prop
   open, // tooltip prop

@@ -23,7 +23,7 @@ export const tvRadioGroup = tv(
     variants: {
       size: {
         sm: {
-          itemControl: 'size-3 size-1',
+          itemControl: 'size-3',
           itemIndicator: 'size-1.5',
           itemText: 'text-xs',
         },

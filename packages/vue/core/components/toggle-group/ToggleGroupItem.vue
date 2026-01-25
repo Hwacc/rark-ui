@@ -14,7 +14,12 @@ import { tvToggleGroup } from '@rui-ark/themes/crafts/toggle-group'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { computed } from 'vue'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<ToggleGroupItemProps>()
+const {
+  class: propsClass,
+  size,
+  unstyled = undefined,
+  ...props
+} = defineProps<ToggleGroupItemProps>()
 const forwarded = useForwardProps(props)
 const context = useToggleGroupContext()
 const itemProps = computed<any>(() => context.value.getItemProps(forwarded.value))

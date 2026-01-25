@@ -14,7 +14,7 @@ import { tvSlider } from '@rui-ark/themes/crafts/slider'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { pick } from 'es-toolkit'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<SliderMarkerProps>()
+const { class: propsClass, size, unstyled = undefined, ...props } = defineProps<SliderMarkerProps>()
 const forwarded = useForwardProps(props)
 const context = useSliderContext()
 

@@ -28,7 +28,7 @@ import { injectSliderBoundaryContext } from './SliderBoundaryProvider.vue'
 
 const {
   size,
-  unstyled,
+  unstyled = undefined,
   skin,
   value,
   open, // tooltip prop

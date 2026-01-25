@@ -1,19 +1,20 @@
 @layer components {
   *:where([data-part='arrow']) {
+    --arrow-border: var(--color-h00);
     --arrow-background: var(--color-hff);
 
     &[data-skin='dark'] {
+      --arrow-border: var(--color-h33);
       --arrow-background: var(--color-h00);
     }
 
     &[data-skin='razer'] {
+      --arrow-border: var(--color-h00);
       --arrow-background: var(--color-rz-green);
     }
   }
 
   *:where([data-part='arrow-tip']) {
-    @apply bg-hff data-bordered:border-h00;
-    @apply dark:bg-h00 dark:data-bordered:border-h33;
-    @apply razer:bg-rz-green razer:data-bordered:border-h00;
+    @apply bg-(--arrow-background) data-bordered:border-(--arrow-border);
   }
 }

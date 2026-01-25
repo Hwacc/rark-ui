@@ -35,11 +35,12 @@ const radioGroupState = ref<string[]>([])
     <Checkbox label="Checkbox" disabled />
     <CheckboxGroup v-model:value="groupState">
       <Checkbox
-        v-for="item in groupItems"
+        v-for="(item, index) in groupItems"
         :key="item.value"
         :label="item.label"
         :name="item.value"
         :value="item.value"
+        :disabled="index === 4"
       />
     </CheckboxGroup>
 

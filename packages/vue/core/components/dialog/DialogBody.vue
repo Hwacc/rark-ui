@@ -9,7 +9,7 @@ import { useId } from 'vue'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
 } = defineProps<{
   class?: HTMLAttributes['class']
 } & ThemeProps>()

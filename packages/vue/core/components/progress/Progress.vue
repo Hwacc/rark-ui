@@ -14,7 +14,7 @@ import { tvProgress } from '@rui-ark/themes/crafts/progress'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<ProgressProps>()
+const { class: propsClass, size, unstyled = undefined, ...props } = defineProps<ProgressProps>()
 const emit = defineEmits<ProgressRootEmits>()
 const forwarded = useForwardProps(props)
 const progress = useProgress(forwarded, emit)

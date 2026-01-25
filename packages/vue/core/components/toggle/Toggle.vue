@@ -13,7 +13,7 @@ import { Toggle } from '@ark-ui/vue/toggle'
 import { tvToggle } from '@rui-ark/themes/crafts/toggle'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<ToggleProps>()
+const { class: propsClass, size, unstyled = undefined, ...props } = defineProps<ToggleProps>()
 const emit = defineEmits<ToggleRootEmits>()
 const forwarded = useForwardPropsEmits(props, emit)
 

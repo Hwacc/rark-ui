@@ -32,7 +32,7 @@ const {
   class: propsClass,
   size,
   clearable = false,
-  unstyled,
+  unstyled = undefined,
   ui,
   disabled,
   readonly,

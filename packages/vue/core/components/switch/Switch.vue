@@ -19,7 +19,7 @@ import { tvSwitch } from '@rui-ark/themes/crafts/switch'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
-const { class: propsClass, size, unstyled, ui, ...props } = defineProps<SwitchProps>()
+const { class: propsClass, size, unstyled = undefined, ui, ...props } = defineProps<SwitchProps>()
 const emit = defineEmits<SwitchRootEmits>()
 const switchRoot = useSwitch(useForwardProps(props), emit)
 

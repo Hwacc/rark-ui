@@ -14,7 +14,7 @@ import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { defaults } from 'es-toolkit/compat'
 
 const {
-  unstyled,
+  unstyled = undefined,
   size,
   showClose = true,
   ...props

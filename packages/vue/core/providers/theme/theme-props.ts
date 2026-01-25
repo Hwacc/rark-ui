@@ -4,7 +4,7 @@ import { createContext } from '@ark-ui/vue/utils'
 export type Skin = 'dark' | 'light' | (string & {})
 export interface ThemeProps {
   skin?: Skin
-  size?: 'base' | 'sm' | 'lg'
+  size?: 'base' | 'sm' | 'lg' | undefined
   unstyled?: boolean
   bordered?: boolean
 }

@@ -1,4 +1,4 @@
 {
-  "files": [],
-  "references": [{ "path": "./packages/vue/core" }]
+  "references": [{ "path": "./packages/vue/core" }],
+  "files": []
 }

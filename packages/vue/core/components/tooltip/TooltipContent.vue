@@ -27,10 +27,10 @@ import { computed, useSlots } from 'vue'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
+  bordered = undefined,
   ui,
   skin,
-  bordered,
   ...props
 } = defineProps<TooltipContentProps>()
 const forwarded = useForwardProps<TooltipContentProps, { asChild?: boolean }>(

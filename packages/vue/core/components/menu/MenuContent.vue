@@ -27,9 +27,9 @@ import { computed, useSlots } from 'vue'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
+  bordered = undefined,
   ui,
-  bordered,
   ...props
 } = defineProps<MenuContentProps>()
 const forwarded = useForwardProps<MenuContentProps, { asChild?: boolean }>(

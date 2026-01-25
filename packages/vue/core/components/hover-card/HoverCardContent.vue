@@ -27,9 +27,9 @@ import { computed, useSlots } from 'vue'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
+  bordered = undefined,
   skin,
-  bordered,
   ui,
   ...props
 } = defineProps<HoverCardContentProps>()

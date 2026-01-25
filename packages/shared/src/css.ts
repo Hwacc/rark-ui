@@ -13,17 +13,17 @@ export function px2rem(px: number | string) {
 }
 
 export function rem2px(rem: number | string) {
+  const base = parseFloat(window.getComputedStyle(document.documentElement).fontSize || '16px')
   if (typeof rem === 'string') {
     if (rem.endsWith('px')) {
       return parseFloat(rem)
     }
     else {
-      rem = parseFloat(rem)
+      rem = parseFloat(rem) * base
     }
   }
   if (!rem)
     rem = 0
-  const base = parseFloat(window.getComputedStyle(document.documentElement).fontSize || '16px')
   return rem * base
 }
 

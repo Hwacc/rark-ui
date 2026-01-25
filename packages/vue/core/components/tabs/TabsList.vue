@@ -14,7 +14,7 @@ import { tvTabs } from '@rui-ark/themes/crafts/tabs'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { useTemplateRef, watchEffect } from 'vue'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<TabsListProps>()
+const { class: propsClass, size, unstyled = undefined, ...props } = defineProps<TabsListProps>()
 const forwarded = useForwardProps(props)
 const context = useTabsContext()
 const tabsListRef = useTemplateRef('tabsList')

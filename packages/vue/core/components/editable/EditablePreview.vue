@@ -14,7 +14,7 @@ import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
 const {
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
   size,
   ...props
 } = defineProps<EditablePreviewProps>()

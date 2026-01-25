@@ -16,7 +16,7 @@ import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { computed, useTemplateRef } from 'vue'
 import TabsProviderEx from './TabsProviderEx.vue'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<TabsProps>()
+const { class: propsClass, size, unstyled = undefined, ...props } = defineProps<TabsProps>()
 const emit = defineEmits<TabsRootEmits>()
 const forwarded = useForwardProps(props)
 const tabs = useTabs(forwarded, emit)

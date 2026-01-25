@@ -27,7 +27,7 @@ import { DialogCloseTrigger, TriggerFrom } from '.'
 
 const {
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
   size,
   ui,
   widget,

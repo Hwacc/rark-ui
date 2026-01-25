@@ -13,8 +13,8 @@ import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
 const {
   size,
-  unstyled,
-  bordered,
+  unstyled = undefined,
+  bordered = undefined,
   skin,
   unmountOnExit = undefined,
   lazyMount = undefined,
@@ -25,7 +25,9 @@ const popoverConfig = useConfig('popover', () => ({ unmountOnExit, lazyMount }))
 const popover = usePopover(useForwardProps(props), emit)
 
 // theme
+console.log('popover props', bordered)
 const theme = useTheme(() => ({ size, unstyled, bordered, skin }))
+console.log('popover theme', theme.value)
 
 // expose
 defineExpose({ $api: popover as UsePopoverReturn })

@@ -20,7 +20,7 @@ import { X } from 'lucide-vue-next'
 import { useId } from 'vue'
 import { DialogCloseTrigger } from '.'
 
-const { class: propsClass, unstyled, size } = defineProps<DialogHeaderProps>()
+const { class: propsClass, unstyled = undefined, size } = defineProps<DialogHeaderProps>()
 
 const id = useId()
 const theme = useTheme(() => ({ size, unstyled }))

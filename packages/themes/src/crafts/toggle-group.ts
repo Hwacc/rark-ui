@@ -6,8 +6,8 @@ const prefix = 'rui-toggle-group'
 export const tvToggleGroup = tv(
   {
     slots: {
-      root: ['flex', 'items-center', 'group/toggle-group', 'border', 'rounded'],
-      item: ['aspect-square'],
+      root: ['w-fit', 'inline-flex', 'items-center', 'group/toggle-group', 'border', 'rounded'],
+      item: ['flex', 'items-center', 'justify-center', 'aspect-square'],
     },
     variants: {
       size: {

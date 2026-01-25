@@ -27,8 +27,8 @@ import { computed, useSlots } from 'vue'
 const {
   class: propsClass,
   size,
-  unstyled,
-  bordered,
+  unstyled = undefined,
+  bordered = undefined,
   skin,
   ui,
   ...props

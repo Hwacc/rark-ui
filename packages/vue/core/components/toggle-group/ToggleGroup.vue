@@ -14,7 +14,7 @@ import { tvToggleGroup } from '@rui-ark/themes/crafts/toggle-group'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<ToggleGroupProps>()
+const { class: propsClass, size, unstyled = undefined, ...props } = defineProps<ToggleGroupProps>()
 const emit = defineEmits<ToggleGroupRootEmits>()
 const forwarded = useForwardProps(props)
 const toggleGroup = useToggleGroup(forwarded, emit)

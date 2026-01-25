@@ -1,6 +1,7 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type { ThemeProps } from '../providers/theme/theme-props'
-import { merge } from 'es-toolkit/compat'
+import { omitBy } from 'es-toolkit'
+import { isNil } from 'es-toolkit/compat'
 import { computed, toValue } from 'vue'
 import { injectThemeContext } from '../providers/theme/theme-props'
 import { useConfig } from './useConfig'
@@ -13,17 +14,15 @@ export function useTheme<T>(props?: MaybeRefOrGetter<Partial<T>>): ComputedRef<T
   const configTheme = useConfig('theme')
   const contextTheme = injectThemeContext(computed(() => ({})))
   const propsTheme = computed(() => toValue(props) ?? {})
+  const clean = (obj: ComputedRef<ThemeProps | undefined>) => {
+    return omitBy(obj.value ?? {}, value => isNil(value))
+  }
   return computed(() => {
-    const cleaned: Partial<ThemeProps> = {}
-    for (const [k, v] of Object.entries(propsTheme.value))
-      cleaned[k as keyof ThemeProps] = (v === false ? undefined : v) as any
-
-    return merge(
-      {},
+    return Object.assign(
       { skin: undefined, size: 'base', unstyled: false, bordered: true },
-      configTheme.value ?? {},
-      contextTheme.value ?? {},
-      cleaned,
+      clean(configTheme),
+      clean(contextTheme),
+      clean(propsTheme),
     ) as unknown as T
   })
 }

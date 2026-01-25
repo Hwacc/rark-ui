@@ -22,11 +22,7 @@ import type {
 } from '@ark-ui/vue/editable'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
-import {
-  EditableArea,
-  EditableRootProvider,
-  useEditable,
-} from '@ark-ui/vue/editable'
+import { EditableArea, EditableRootProvider, useEditable } from '@ark-ui/vue/editable'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { findUp } from '@rui-ark/shared/dom'
 import { tvEditable } from '@rui-ark/themes/crafts/editable'
@@ -37,8 +33,8 @@ import { computed } from 'vue'
 const {
   class: propsClass,
   size,
-  unstyled,
-  clearable = false,
+  unstyled = undefined,
+  clearable,
   ui,
   ...props
 } = defineProps<EditableRootProps>()
@@ -62,8 +58,7 @@ const editable = useEditable(
         if (
           findUp(target, (node) => {
             return (
-              node.dataset.scope === 'editable'
-              && exceptParts.includes(node.dataset.part ?? '')
+              node.dataset.scope === 'editable' && exceptParts.includes(node.dataset.part ?? '')
             )
           })
         ) {

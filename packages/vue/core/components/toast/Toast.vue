@@ -46,7 +46,14 @@ import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { CircleAlert, CircleCheck, CircleX, Info, LoaderCircle, X } from 'lucide-vue-next'
 import { computed, h } from 'vue'
 
-const { class: propsClass, options, ui, size, unstyled, ...props } = defineProps<ToastProps>()
+const {
+  class: propsClass,
+  options,
+  ui,
+  size,
+  unstyled = undefined,
+  ...props
+} = defineProps<ToastProps>()
 defineSlots<{
   default: (props: UnwrapRef<typeof slotBindings>) => any
   icon: (props: UnwrapRef<typeof slotBindings>) => any

@@ -54,7 +54,12 @@ export const tvSlider = tv(
           track: 'w-full',
           range: 'h-full',
         },
-        vertical: '',
+        vertical: {
+          root: 'flex items-center justify-center',
+          control: 'h-full flex items-center',
+          track: 'h-full',
+          range: 'w-full',
+        },
       },
     },
     defaultVariants: {

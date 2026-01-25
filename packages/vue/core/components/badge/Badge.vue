@@ -20,7 +20,7 @@ const {
   variant,
   size,
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
   as = 'div',
   asChild,
   ...props

@@ -31,7 +31,7 @@ defineOptions({
 const {
   class: propsClass,
   ui,
-  unstyled,
+  unstyled = undefined,
   size,
   showClose = true,
 } = defineProps<DialogContentProps>()

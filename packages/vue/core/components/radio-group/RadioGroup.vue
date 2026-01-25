@@ -14,7 +14,7 @@ import { tvRadioGroup } from '@rui-ark/themes/crafts/radio-group'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<RadioGroupProps>()
+const { class: propsClass, size, unstyled = undefined, ...props } = defineProps<RadioGroupProps>()
 const emit = defineEmits<RadioGroupRootEmits>()
 const radioGroup = useRadioGroup(useForwardProps(props), emit)
 

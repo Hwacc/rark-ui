@@ -19,8 +19,8 @@ import { ref } from 'vue'
 
 const {
   class: propsClass,
-  unstyled,
-  clearable = false,
+  unstyled = undefined,
+  clearable,
   size,
   ...props
 } = defineProps<EditableInputProps>()

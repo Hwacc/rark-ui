@@ -22,9 +22,16 @@ import { tvCheckbox } from '@rui-ark/themes/crafts/checkbox'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { Check, Minus } from 'lucide-vue-next'
 
-const { class: propsClass, label, size, unstyled, ui, ...props } = defineProps<CheckboxProps>()
+const {
+  class: propsClass,
+  label,
+  size,
+  unstyled = undefined,
+  ui,
+  ...props
+} = defineProps<CheckboxProps>()
 const emit = defineEmits<CheckboxRootEmits>()
-defineSlots<{
+const slots = defineSlots<{
   indicator: (props: { checkedState: CheckedState }) => any
   label: () => any
 }>()
@@ -59,7 +66,7 @@ useForwardExpose()
       </Checkbox.Indicator>
     </Checkbox.Control>
     <Checkbox.Label
-      v-if="label"
+      v-if="label || slots.label?.()"
       :class="tvLabel({ class: ui?.label, ...theme })"
       :as-child="!!label"
     >

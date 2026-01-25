@@ -17,9 +17,9 @@ import { ChevronDown, CircleX } from 'lucide-vue-next'
 
 const {
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
+  bordered = undefined,
   size,
-  bordered,
   clearable,
   ...props
 } = defineProps<SelectTriggerProps>()

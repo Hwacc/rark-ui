@@ -20,9 +20,9 @@ import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
 const {
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
+  bordered = undefined,
   ui,
-  bordered,
   ...props
 } = defineProps<SelectContentProps>()
 const forwarded = useForwardProps(props)

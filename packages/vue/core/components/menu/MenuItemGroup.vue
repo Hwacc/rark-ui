@@ -22,7 +22,7 @@ import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
   label,
   ui,
   ...props

@@ -17,7 +17,7 @@ import { useForwardPropsEmits } from '@ark-ui/vue/utils'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
   ...props
 } = defineProps<MenuRadioItemGroupProps>()
 const emit = defineEmits<MenuRadioItemGroupEmits>()

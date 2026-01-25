@@ -29,23 +29,18 @@ import { tvSelect } from '@rui-ark/themes/crafts/select'
 import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
-import { computed } from 'vue'
 
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
   lazyMount = undefined,
   unmountOnExit = undefined,
   ...props
 } = defineProps<SelectProps<T>>()
 const emits = defineEmits<SelectEmits<T>>()
 const selectConfig = useConfig('select', () => ({ lazyMount, unmountOnExit }))
-const selectProps = computed<UseSelectProps<T>>({
-  get: () => useForwardProps(props).value as unknown as UseSelectProps<T>,
-  set: () => {}, // 仅用于满足 WritableComputedRef
-})
-const selectRoot = useSelect<T>(selectProps, emits)
+const selectRoot = useSelect<T>(useForwardProps(props) as unknown as UseSelectProps<T>, emits)
 
 // theme
 const theme = useTheme(() => ({ size, unstyled }))

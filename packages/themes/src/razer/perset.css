@@ -14,6 +14,7 @@
 
 @theme {
   /* Spacing */
+  --spacing: 0.25rem;
 
   /* Breakpoints */
   --break-point-sm: 1024px;

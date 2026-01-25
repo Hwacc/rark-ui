@@ -18,7 +18,7 @@ import { ChevronRight } from 'lucide-vue-next'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
   ...props
 } = defineProps<MenuTriggerItemProps>()
 const forwarded = useForwardProps<

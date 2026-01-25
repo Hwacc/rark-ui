@@ -14,7 +14,7 @@ import { tvTabs } from '@rui-ark/themes/crafts/tabs'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { injectTabsContextEx } from './TabsProviderEx.vue'
 
-const { class: propsClass, size, unstyled, ...props } = defineProps<TabsIndicatorProps>()
+const { class: propsClass, size, unstyled = undefined, ...props } = defineProps<TabsIndicatorProps>()
 const forwarded = useForwardProps(props)
 
 const contextEx = injectTabsContextEx()

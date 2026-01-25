@@ -16,7 +16,7 @@ import { X } from 'lucide-vue-next'
 
 const {
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
   size,
   skin,
   asChild,

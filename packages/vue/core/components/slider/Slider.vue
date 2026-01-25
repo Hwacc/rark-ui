@@ -22,7 +22,7 @@ import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { useTemplateRef } from 'vue'
 import SliderBoundaryProvider from './SliderBoundaryProvider.vue'
 
-const { class: propsClass, unstyled, size, ui, ...props } = defineProps<SliderProps>()
+const { class: propsClass, unstyled = undefined, size, ui, ...props } = defineProps<SliderProps>()
 const emit = defineEmits<SliderRootEmits>()
 const forwarded = useForwardProps(props)
 const slider = useSlider(forwarded, emit)

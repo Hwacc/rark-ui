@@ -8,27 +8,24 @@ export interface ToasterManagerProps {
 <script setup lang="ts">
 import type { VNode } from 'vue'
 import type { ToasterProps, ToasterWrap } from '.'
-import { isNil } from 'es-toolkit'
-import { isEmpty } from 'es-toolkit/compat'
 import { computed, ref, useSlots } from 'vue'
 import { DEFAULT_TOASTER_ID, Toast, Toaster } from '.'
 
-const { disableDefaultToaster = false, defaultToasterProps }
-  = defineProps<ToasterManagerProps>()
+const { disableDefaultToaster = false, defaultToasterProps } = defineProps<ToasterManagerProps>()
 
 const slots = useSlots()
-let defaultSlots = slots.default?.()
-// if default-slot is a slot with children
-if (
-  !isEmpty(defaultSlots)
-  && isNil(defaultSlots?.[0].component)
-  && !isEmpty(defaultSlots?.[0].children)
-) {
-  defaultSlots = defaultSlots?.[0].children as VNode[]
-}
-else {
-  defaultSlots = []
-}
+const defaultSlots = computed(() => slots.default?.())
+const toasterVNodes = computed(() => {
+  if (
+    defaultSlots.value?.length === 1
+    && typeof defaultSlots.value?.[0] === 'object'
+    && Array.isArray((defaultSlots.value?.[0] as VNode)?.children)
+  ) {
+    // is slot node
+    return (defaultSlots.value?.[0] as any).children as VNode[]
+  }
+  return defaultSlots.value
+})
 
 const slotsToasters = ref<ToasterWrap[]>([])
 const defaultToaster = ref<ToasterWrap>()
@@ -41,11 +38,11 @@ defineExpose({
 </script>
 
 <template>
-  <template v-if="defaultSlots?.length">
+  <template v-if="toasterVNodes?.length">
     <component
-      :is="slot"
-      v-for="(slot, index) in defaultSlots"
-      :key="slot.key"
+      :is="node"
+      v-for="(node, index) in toasterVNodes"
+      :key="node.key"
       :ref="(el: ToasterWrap) => { slotsToasters[index] = el }"
     />
   </template>

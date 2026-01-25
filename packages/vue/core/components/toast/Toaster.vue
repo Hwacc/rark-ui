@@ -12,7 +12,7 @@ import { createToaster, Toaster } from '@ark-ui/vue/toast'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
-const { toasterId, unstyled, size, ...props } = defineProps<ToasterProps>()
+const { toasterId, unstyled = undefined, size, ...props } = defineProps<ToasterProps>()
 defineSlots<{
   default: (props: { toast: ToastOptions }) => any
 }>()

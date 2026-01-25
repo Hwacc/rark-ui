@@ -28,7 +28,7 @@ import { Check, Circle } from 'lucide-vue-next'
 const {
   class: propsClass,
   size,
-  unstyled,
+  unstyled = undefined,
   variant = 'default',
   ui,
   ...props

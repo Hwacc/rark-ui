@@ -51,7 +51,7 @@ import DialogInterceptProvider from './DialogInterceptProvider.vue'
 
 const {
   class: propsClass,
-  unstyled,
+  unstyled = undefined,
   size,
   lazyMount = undefined,
   unmountOnExit = undefined,
