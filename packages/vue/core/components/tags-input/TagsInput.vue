@@ -20,6 +20,7 @@ import { TagsInput, useTagsInput } from '@ark-ui/vue/tags-input'
 import { tvTagsInput } from '@rui-ark/themes/crafts/tags-input'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { nextTick, unref, useTemplateRef, watch } from 'vue'
 import { ScrollArea, ScrollAreaScrollbar } from '../scroll-area'
 
 const {
@@ -34,9 +35,31 @@ const emits = defineEmits<TagsInputRootEmits>()
 const forwarded = useForwardProps(props)
 const tagsInput = useTagsInput(forwarded, emits)
 
+const scrollAreaRef = useTemplateRef('scrollArea')
+watch(
+  () => tagsInput.value.value,
+  (newValue, oldValue) => {
+    nextTick(() => {
+      if (newValue.length > oldValue.length) {
+        // add items
+        scrollAreaRef.value?.$el.querySelector('[data-part="viewport"]')?.scrollTo({
+          left: 9999,
+          behavior: 'smooth',
+        })
+      }
+    })
+  },
+)
+
 // theme
 const theme = useTheme(() => ({ size, unstyled }))
-const { root, control, input, scrollArea, scrollAreaContent } = tvTagsInput()
+const {
+  root,
+  control,
+  input,
+  scrollArea: tvScrollArea,
+  scrollAreaContent: tvScrollAreaContent,
+} = tvTagsInput()
 
 // expose
 defineExpose({ $api: tagsInput })
@@ -53,9 +76,9 @@ useForwardExpose()
       <TagsInput.Control :class="control({ class: ui?.control, ...theme })">
         <ScrollArea
           v-if="inline"
-          :class="scrollArea()"
-          :ui="{ content: scrollAreaContent() }"
-          @scroll="() => console.log('scroll')"
+          ref="scrollArea"
+          :class="tvScrollArea()"
+          :ui="{ content: tvScrollAreaContent() }"
         >
           <slot :items="tagsInput.value" />
           <ScrollAreaScrollbar orientation="horizontal" />

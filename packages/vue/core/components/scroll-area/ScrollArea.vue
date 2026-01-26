@@ -62,11 +62,7 @@ const theme = useCustomTheme<ScrollAreaTheme>(() => ({ size, unstyled }))
 const { root, viewport: tvViewport, content: tvContent } = tvScrollArea()
 
 // expose
-defineExpose({
-  $api: scrollArea,
-  scrollTo: viewportRef.value?.$el?.scrollTo,
-  scrollBy: viewportRef.value?.$el?.scrollBy,
-})
+defineExpose({ $api: scrollArea })
 useForwardExpose()
 </script>
 
