@@ -5,7 +5,7 @@ const prefix = 'rui-scroll-area'
 
 export const tvScrollArea = tv({
   slots: {
-    root: '',
+    root: 'overflow-hidden',
     viewport: 'size-full scrollbar-none scrollbar-none::-webkit-scrollbar',
     content: '',
     scrollbar: '',

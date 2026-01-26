@@ -7,6 +7,11 @@ export interface ScrollAreaProps extends ScrollAreaRootBaseProps, ScrollAreaThem
     content?: HTMLAttributes['class']
   }
 }
+export type ScrollAreaEmits = {
+  scrollstart: [event: Event]
+  scrollend: [event: Event]
+  scroll: [event: Event]
+}
 </script>
 
 <script setup lang="ts">
@@ -19,7 +24,8 @@ import { tvScrollArea } from '@rui-ark/themes/crafts/scroll-area'
 import { useCustomTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 import { excludeVNodesByNames, findVNodesByName } from '@rui-ark/vue-core/utils/vnode'
-import { computed, useSlots } from 'vue'
+import { useElementSize } from '@vueuse/core'
+import { computed, useSlots, useTemplateRef } from 'vue'
 
 const {
   class: propsClass,
@@ -28,6 +34,7 @@ const {
   ui,
   ...props
 } = defineProps<ScrollAreaProps>()
+const emits = defineEmits<ScrollAreaEmits>()
 const scrollArea = useScrollArea(useForwardProps(props))
 
 const slots = useSlots()
@@ -38,12 +45,28 @@ const otherNodes = computed(() =>
   excludeVNodesByNames(defaultSlots.value, ['ScrollAreaScrollbar', 'ScrollAreaCorner']),
 )
 
+const viewportRef = useTemplateRef('viewport')
+const contentRef = useTemplateRef('content')
+
+const { width: viewportWidth, height: viewportHeight } = useElementSize(
+  () => viewportRef.value?.$el,
+)
+const { width: contentWidth, height: contentHeight } = useElementSize(() => contentRef.value?.$el)
+const isShowScrollbars = computed(() => ({
+  vertical: viewportHeight.value < contentHeight.value,
+  horizontal: viewportWidth.value < contentWidth.value,
+}))
+
 // theme
 const theme = useCustomTheme<ScrollAreaTheme>(() => ({ size, unstyled }))
-const { root, viewport, content } = tvScrollArea()
+const { root, viewport: tvViewport, content: tvContent } = tvScrollArea()
 
 // expose
-defineExpose({ $api: scrollArea })
+defineExpose({
+  $api: scrollArea,
+  scrollTo: viewportRef.value?.$el?.scrollTo,
+  scrollBy: viewportRef.value?.$el?.scrollBy,
+})
 useForwardExpose()
 </script>
 
@@ -53,13 +76,48 @@ useForwardExpose()
     :class="root({ class: [ui?.root, propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">
-      <ScrollArea.Viewport :class="viewport({ class: [ui?.viewport], ...theme })">
-        <ScrollArea.Content :class="content({ class: [ui?.content], ...theme })">
-          <component :is="node" v-for="node in otherNodes" :key="node.key" />
+      <ScrollArea.Viewport
+        ref="viewport"
+        :class="tvViewport({ class: [ui?.viewport], ...theme })"
+        @scrollstart="emits('scrollstart', $event)"
+        @scrollend="emits('scrollend', $event)"
+        @scroll="emits('scroll', $event)"
+      >
+        <ScrollArea.Content
+          ref="content"
+          :class="tvContent({ class: [ui?.content], ...theme })"
+        >
+          <component
+            :is="node"
+            v-for="node in otherNodes"
+            :key="node.key"
+          />
         </ScrollArea.Content>
       </ScrollArea.Viewport>
-      <component :is="node" v-for="node in scrollbarNodes" :key="node.key" />
-      <component :is="node" v-for="node in cornerNodes" :key="node.key" />
+      <template
+        v-for="node in scrollbarNodes"
+        :key="node.key"
+      >
+        <component
+          :is="node"
+          v-if="
+            isShowScrollbars.vertical
+              && (node.props?.orientation === 'vertical' || !node.props?.orientation)
+          "
+          :key="node.key"
+        />
+        <component
+          :is="node"
+          v-if="isShowScrollbars.horizontal && node.props?.orientation === 'horizontal'"
+          :key="node.key"
+          :data-test="node.props?.orientation"
+        />
+      </template>
+      <component
+        :is="node"
+        v-for="node in cornerNodes"
+        :key="node.key"
+      />
     </ThemeProvider>
   </ScrollArea.RootProvider>
 </template>
