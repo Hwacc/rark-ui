@@ -19,6 +19,7 @@ import type { RUIConfigContext } from './rui-config-context'
 import { addAPIProvider, addCollection, addIcon } from '@iconify/vue'
 import { Message, Messager } from '@rui-ark/vue-core/components/message'
 import { OverlayProvider } from '@rui-ark/vue-core/components/overlay'
+import { SpinProvider } from '@rui-ark/vue-core/components/spin'
 import { ToasterManager } from '@rui-ark/vue-core/components/toast'
 import { omit } from 'es-toolkit'
 import { computed, useTemplateRef } from 'vue'
@@ -114,5 +115,6 @@ provideRUIConfigContext(
       </slot>
     </Messager>
     <OverlayProvider />
+    <SpinProvider />
   </ThemeProvider>
 </template>

@@ -13,3 +13,10 @@ declare type LayerDismissEventDetail = {
   originalIndex: number
   targetIndex: number
 }
+
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue'
+
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
