@@ -12,7 +12,7 @@
     @apply data-[state=disabled]:hover:border-(--default-border-color) data-[state=disabled]:bg-h1d;
     @apply data-[state=readonly]:bg-h1d;
 
-    &[data-focused] {
+    &[data-focus] {
       @apply border-(--focus-border-color) hover:border-(--focus-border-color) ring-2 ring-(--focus-border-color)/30;
     }
   }

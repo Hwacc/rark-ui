@@ -17,10 +17,12 @@ import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { TagsInput, useTagsInput } from '@ark-ui/vue/tags-input'
+import { tvInput } from '@rui-ark/themes/crafts/input'
 import { tvTagsInput } from '@rui-ark/themes/crafts/tags-input'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
-import { nextTick, unref, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, provide, useTemplateRef, watch } from 'vue'
+import { TAGS_INPUT_PROVIDE_KEY } from '.'
 import { ScrollArea, ScrollAreaScrollbar } from '../scroll-area'
 
 const {
@@ -53,6 +55,7 @@ watch(
 
 // theme
 const theme = useTheme(() => ({ size, unstyled }))
+const { root: tvInputRoot, inner: tvInputInner } = tvInput()
 const {
   root,
   control,
@@ -60,6 +63,11 @@ const {
   scrollArea: tvScrollArea,
   scrollAreaContent: tvScrollAreaContent,
 } = tvTagsInput()
+
+// provide
+provide(TAGS_INPUT_PROVIDE_KEY, {
+  inline: computed(() => inline),
+})
 
 // expose
 defineExpose({ $api: tagsInput })
@@ -69,25 +77,37 @@ useForwardExpose()
 <template>
   <TagsInput.RootProvider
     :value="tagsInput"
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="root({ class: [ui?.root, propsClass], inline, ...theme })"
   >
     <ThemeProvider :value="theme">
       <slot name="prefix" />
-      <TagsInput.Control :class="control({ class: ui?.control, ...theme })">
+      <TagsInput.Control
+        :class="
+          tvInputRoot({
+            class: [control({ inline, ...theme }), ui?.control],
+            ...theme,
+          })
+        "
+      >
         <ScrollArea
           v-if="inline"
           ref="scrollArea"
-          :class="tvScrollArea()"
+          :class="tvScrollArea({ empty: tagsInput.value.length === 0, inline, ...theme })"
           :ui="{ content: tvScrollAreaContent() }"
         >
           <slot :items="tagsInput.value" />
-          <ScrollAreaScrollbar orientation="horizontal" />
+          <ScrollAreaScrollbar
+            orientation="horizontal"
+            :size="theme.size === 'sm' ? 'xs' : 'sm'"
+          />
         </ScrollArea>
         <slot
           v-else
           :items="tagsInput.value"
         />
-        <TagsInput.Input :class="input({ class: ui?.input, ...theme })" />
+        <TagsInput.Input
+          :class="tvInputInner({ class: [input({ inline, ...theme }), ui?.input], ...theme })"
+        />
       </TagsInput.Control>
       <slot name="suffix" />
     </ThemeProvider>
