@@ -12,7 +12,7 @@ const { class: propsClass, ...props } = defineProps<PaginationGotoProps>()
 </script>
 
 <template>
-  <div :class="propsClass">
-    <input v-model="page" type="number">
+  <div>
+    <input type="number">
   </div>
 </template>

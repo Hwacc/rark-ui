@@ -2,7 +2,7 @@
 /**
  * deal with ts-2742
  */
-import type * as toast from '@zag-js/toast'
+import type * as ZagToast from '@zag-js/toast'
 import type {
   ComputedRef,
   CSSProperties,
@@ -17,7 +17,7 @@ type PropTypes = NativeElements & {
   element: Attrs<HTMLAttributes>
   style: CSSProperties
 }
-interface UseToastContext extends ComputedRef<toast.Api<PropTypes>> {}
+interface UseToastContext extends ComputedRef<ZagToast.Api<PropTypes>> {}
 
 export interface ToastProps extends ToastRootBaseProps, ThemeProps {
   options: ToastOptions

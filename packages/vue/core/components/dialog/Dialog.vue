@@ -102,12 +102,12 @@ const dialog = useDialog(
 watch(
   () => [forwarded.value.open, forwarded.value.defaultOpen],
   ([open, defaultOpen]) => {
-    if (defaultOpen) {
+    if (defaultOpen && typeof open === 'undefined') {
       nextTick(() => {
         dialog.value.setOpen(true)
       })
     }
-    else if (open !== undefined) {
+    else {
       nextTick(() => {
         dialog.value.setOpen(open ?? false)
       })
