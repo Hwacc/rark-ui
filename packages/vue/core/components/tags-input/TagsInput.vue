@@ -55,7 +55,7 @@ watch(
 
 // theme
 const theme = useTheme(() => ({ size, unstyled }))
-const { root: tvInputRoot, inner: tvInputInner } = tvInput()
+const { root: tvInputRoot, input: tvInputInput } = tvInput()
 const {
   root,
   control,
@@ -106,7 +106,7 @@ useForwardExpose()
           :items="tagsInput.value"
         />
         <TagsInput.Input
-          :class="tvInputInner({ class: [input({ inline, ...theme }), ui?.input], ...theme })"
+          :class="tvInputInput({ class: [input({ inline, ...theme }), ui?.input], ...theme })"
         />
       </TagsInput.Control>
       <slot name="suffix" />

@@ -79,7 +79,7 @@ export const tvEditableInput = tv(
   {
     slots: {
       root: `${prefix}-input`,
-      inner: `${prefix}-input-inner`,
+      input: `${prefix}-input-input`,
       clearable: `${prefix}-input-clearable`,
     },
   },

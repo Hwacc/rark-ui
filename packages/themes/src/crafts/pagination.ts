@@ -21,15 +21,15 @@ export const tvPagination = tv(
     variants: {
       size: {
         base: {
-          item: ['h-8', 'min-w-8', 'text-sm'],
+          item: ['h-8', 'min-w-8', 'text-sm', '[&>svg]:size-4'],
           ellipsis: 'size-8',
         },
         sm: {
-          item: ['h-6', 'min-w-6', 'text-xs'],
+          item: ['h-6', 'min-w-6', 'text-xs', '[&>svg]:size-3.5'],
           ellipsis: 'size-6',
         },
         lg: {
-          item: ['h-10', 'min-w-10', 'text-base'],
+          item: ['h-10', 'min-w-10', 'text-base', '[&>svg]:size-4.5'],
           ellipsis: 'size-10',
         },
       },

@@ -18,7 +18,7 @@ export const tvInput = tv({
       'data-[state=disabled]:pointer-events-none',
       'data-[state=disabled]:opacity-(--disabled-opacity)',
     ],
-    inner: ['flex-1', 'w-0', 'outline-hidden', 'border-none', 'bg-transparent'],
+    input: ['flex-1', 'w-0', 'outline-hidden', 'border-none', 'bg-transparent'],
     clearable: ['flex', 'items-center', 'justify-center'],
   },
   variants: {
@@ -34,7 +34,7 @@ export const tvInput = tv({
       size: 'base',
       class: {
         root: 'text-sm',
-        inner: 'placeholder:text-sm',
+        input: 'placeholder:text-sm',
         clearable: '[&_svg]:size-3.5',
       },
     },
@@ -42,7 +42,7 @@ export const tvInput = tv({
       size: 'sm',
       class: {
         root: 'text-xs',
-        inner: 'placeholder:text-xs',
+        input: 'placeholder:text-xs',
         clearable: '[&_svg]:size-3',
       },
     },
@@ -50,7 +50,7 @@ export const tvInput = tv({
       size: 'lg',
       class: {
         root: 'text-base',
-        inner: 'placeholder:text-base',
+        input: 'placeholder:text-base',
         clearable: '[&_svg]:size-4',
       },
     },
@@ -58,7 +58,7 @@ export const tvInput = tv({
 }, {
   slots: {
     root: prefix,
-    inner: `${prefix}-inner`,
+    input: `${prefix}-input`,
     clearable: `${prefix}-clearable`,
   },
 })

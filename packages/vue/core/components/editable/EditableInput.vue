@@ -47,7 +47,7 @@ function onClear() {
 }
 
 const theme = useTheme(() => ({ size, unstyled }))
-const { root, inner, clearable: tvClearable } = tvEditableInput()
+const { root, input, clearable: tvClearable } = tvEditableInput()
 </script>
 
 <template>
@@ -65,7 +65,7 @@ const { root, inner, clearable: tvClearable } = tvEditableInput()
     <EditableInput
       v-bind="forwarded"
       ref="inputRef"
-      :class="inner({ class: [propsClass], ...theme })"
+      :class="input({ class: [propsClass], ...theme })"
       :data-state="isFocus ? 'focused' : 'idle'"
       @focus="onFocus"
       @blur="onBlur"

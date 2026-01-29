@@ -10,8 +10,8 @@ export interface InputProps extends ThemeProps {
   readonly?: boolean
   maxlength?: number
   ui?: {
-    base?: HTMLAttributes['class']
-    inner?: HTMLAttributes['class']
+    root?: HTMLAttributes['class']
+    input?: HTMLAttributes['class']
     clearable?: HTMLAttributes['class']
   }
 }
@@ -78,13 +78,13 @@ function onBlur(event: Event) {
 }
 
 const theme = useTheme(() => ({ size, unstyled }))
-const { root, inner, clearable: tvClearable } = tvInput()
+const { root, input, clearable: tvClearable } = tvInput()
 </script>
 
 <template>
   <ark.div
     :as-child="false"
-    :class="root({ class: [ui?.base, propsClass], ...theme })"
+    :class="root({ class: [ui?.root, propsClass], ...theme })"
     :data-state="inputState"
   >
     <slot name="prefix" />
@@ -92,7 +92,7 @@ const { root, inner, clearable: tvClearable } = tvInput()
       :id="id ?? inputId"
       ref="input"
       v-model="modelValue"
-      :class="inner({ class: [ui?.inner], ...theme })"
+      :class="input({ class: [ui?.input], ...theme })"
       :placeholder="placeholder"
       :data-state="inputState"
       :disabled="disabled ? true : undefined"

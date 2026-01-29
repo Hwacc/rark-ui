@@ -7,7 +7,7 @@ export interface HotkeyProps extends PolymorphicProps, ThemeProps {
   readonly?: boolean
   ui?: {
     root?: HTMLAttributes['class']
-    inner?: HTMLAttributes['class']
+    input?: HTMLAttributes['class']
   }
 }
 </script>
@@ -276,7 +276,7 @@ watchEffect((cleanup) => {
 
 // theme
 const theme = useTheme(() => ({ size, unstyled }))
-const { root, inner } = tvHotkey()
+const { root, input } = tvHotkey()
 </script>
 
 <template>
@@ -287,7 +287,7 @@ const { root, inner } = tvHotkey()
   >
     <ark.input
       :ref="forwardRef"
-      :class="inner({ class: ui?.inner, ...theme })"
+      :class="input({ class: ui?.input, ...theme })"
       :disabled="disabled ? true : undefined"
       :spellcheck="false"
       :data-state="inputState"
