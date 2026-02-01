@@ -33,6 +33,7 @@
     "@zag-js/date-picker": "^1.33.1",
     "@zag-js/select": "^1.33.1",
     "@zag-js/toast": "^1.33.1",
+    "@zag-js/tree-view": "^1.33.1",
     "lucide-vue-next": "^0.562.0",
     "vue-component-type-helpers": "^3.2.1"
   }
