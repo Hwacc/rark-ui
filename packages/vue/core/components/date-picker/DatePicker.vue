@@ -17,12 +17,16 @@ export type DatePickerRootEmits = {
 <script setup lang="ts">
 import type { DatePickerRootBaseProps, UseDatePickerProps } from '@ark-ui/vue'
 import type { Theme } from '@rui-ark/vue-core/providers/theme'
-import { DatePicker, useDatePicker, useForwardProps } from '@ark-ui/vue'
+import { DatePicker, useDatePicker, useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
 
 const { theme, ...props } = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerRootEmits>()
 const datePicker = useDatePicker(useForwardProps<DatePickerProps, UseDatePickerProps>(props), emit)
+
+// expose
+defineExpose({ $api: datePicker })
+useForwardExpose()
 </script>
 
 <template>

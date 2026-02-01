@@ -26,6 +26,7 @@
   "devDependencies": {
     "@ark-ui/vue": "npm:@hwacc/ark-ui-vue@5.30.0-leading.2",
     "@iconify/vue": "^5.0.0",
+    "@internationalized/date": "^3.10.1",
     "@rui-ark/shared": "workspace:*",
     "@rui-ark/themes": "workspace:*",
     "@vueuse/core": "^14.1.0",

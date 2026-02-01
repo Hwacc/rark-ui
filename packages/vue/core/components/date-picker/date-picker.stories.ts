@@ -1,6 +1,7 @@
 import type { Meta } from 'storybook-vue3-rsbuild'
 
 import BasicExample from './examples/basic.vue'
+import DisabledDateExample from './examples/disabled-date.vue'
 import EventsExample from './examples/events.vue'
 import RangeExample from './examples/range.vue'
 import ViewsExample from './examples/views.vue'
@@ -39,3 +40,9 @@ export const Events = {
   }),
 }
 
+export const DisabledDate = {
+  render: () => ({
+    components: { Component: DisabledDateExample },
+    template: '<Component />',
+  }),
+}

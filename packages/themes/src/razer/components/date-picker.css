@@ -7,6 +7,10 @@
     @apply text-hff font-rob-bold;
   }
 
+  .rui-date-picker-view-trigger, .rui-date-picker-view-control-trigger {
+    @apply hover:bg-h33;
+  }
+
   .rui-date-picker-table-cell-trigger {
     &[data-selected],
     &[data-selected][data-outside-range] {
@@ -33,6 +37,10 @@
 
     &[data-range-end], &[data-hover-range-end] {
       @apply bg-rz-green text-h00;
+    }
+
+    &[data-disabled] {
+      @apply bg-h47 text-h88;
     }
   }
 }

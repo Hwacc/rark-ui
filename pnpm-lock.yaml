@@ -85,14 +85,17 @@ importers:
     dependencies:
       vue:
         specifier: ^3.5.0
-        version: 3.5.25(typescript@5.9.3)
+        version: 3.5.27(typescript@5.9.3)
     devDependencies:
       '@ark-ui/vue':
         specifier: npm:@hwacc/ark-ui-vue@5.30.0-leading.2
-        version: '@hwacc/ark-ui-vue@5.30.0-leading.2(vue@3.5.25(typescript@5.9.3))'
+        version: '@hwacc/ark-ui-vue@5.30.0-leading.2(vue@3.5.27(typescript@5.9.3))'
       '@iconify/vue':
         specifier: ^5.0.0
-        version: 5.0.0(vue@3.5.25(typescript@5.9.3))
+        version: 5.0.0(vue@3.5.27(typescript@5.9.3))
+      '@internationalized/date':
+        specifier: ^3.10.1
+        version: 3.10.1
       '@rui-ark/shared':
         specifier: workspace:*
         version: link:../../shared
@@ -101,10 +104,10 @@ importers:
         version: link:../../themes
       '@vueuse/core':
         specifier: ^14.1.0
-        version: 14.1.0(vue@3.5.25(typescript@5.9.3))
+        version: 14.1.0(vue@3.5.27(typescript@5.9.3))
       '@zag-js/date-picker':
         specifier: ^1.33.1
-        version: 1.33.1(@internationalized/date@3.10.0)
+        version: 1.33.1(@internationalized/date@3.10.1)
       '@zag-js/select':
         specifier: ^1.33.1
         version: 1.33.1
@@ -113,7 +116,7 @@ importers:
         version: 1.33.1
       lucide-vue-next:
         specifier: ^0.562.0
-        version: 0.562.0(vue@3.5.25(typescript@5.9.3))
+        version: 0.562.0(vue@3.5.27(typescript@5.9.3))
       vue-component-type-helpers:
         specifier: ^3.2.1
         version: 3.2.1
@@ -737,6 +740,9 @@ packages:
 
   '@internationalized/date@3.10.0':
     resolution: {integrity: sha512-oxDR/NTEJ1k+UFVQElaNIk65E/Z83HK1z1WI3lQyhTtnNg4R5oVXaPzK3jcpKG8UHKDVuDQHzn+wsxSz8RP3aw==}
+
+  '@internationalized/date@3.10.1':
+    resolution: {integrity: sha512-oJrXtQiAXLvT9clCf1K4kxp3eKsQhIaZqxEyowkBcsvZDdZkbWrVmnGknxs5flTD0VGsxrxKgBCZty1EzoiMzA==}
 
   '@internationalized/number@3.6.5':
     resolution: {integrity: sha512-6hY4Kl4HPBvtfS62asS/R22JzNNy8vi/Ssev7x6EobfCp+9QIB2hKvI2EtbdJ0VSQacxVNtqhE/NmF/NZ0gm6g==}
@@ -4960,7 +4966,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@hwacc/ark-ui-vue@5.30.0-leading.2(vue@3.5.25(typescript@5.9.3))':
+  '@hwacc/ark-ui-vue@5.30.0-leading.2(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@internationalized/date': 3.10.0
       '@zag-js/accordion': 1.33.1
@@ -5025,17 +5031,21 @@ snapshots:
       '@zag-js/tree-view': 1.33.1
       '@zag-js/types': 1.33.1
       '@zag-js/utils': 1.33.1
-      '@zag-js/vue': 1.33.1(vue@3.5.25(typescript@5.9.3))
-      vue: 3.5.25(typescript@5.9.3)
+      '@zag-js/vue': 1.33.1(vue@3.5.27(typescript@5.9.3))
+      vue: 3.5.27(typescript@5.9.3)
 
   '@iconify/types@2.0.0': {}
 
-  '@iconify/vue@5.0.0(vue@3.5.25(typescript@5.9.3))':
+  '@iconify/vue@5.0.0(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@iconify/types': 2.0.0
-      vue: 3.5.25(typescript@5.9.3)
+      vue: 3.5.27(typescript@5.9.3)
 
   '@internationalized/date@3.10.0':
+    dependencies:
+      '@swc/helpers': 0.5.17
+
+  '@internationalized/date@3.10.1':
     dependencies:
       '@swc/helpers': 0.5.17
 
@@ -5940,18 +5950,18 @@ snapshots:
 
   '@vue/shared@3.5.27': {}
 
-  '@vueuse/core@14.1.0(vue@3.5.25(typescript@5.9.3))':
+  '@vueuse/core@14.1.0(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@types/web-bluetooth': 0.0.21
       '@vueuse/metadata': 14.1.0
-      '@vueuse/shared': 14.1.0(vue@3.5.25(typescript@5.9.3))
-      vue: 3.5.25(typescript@5.9.3)
+      '@vueuse/shared': 14.1.0(vue@3.5.27(typescript@5.9.3))
+      vue: 3.5.27(typescript@5.9.3)
 
   '@vueuse/metadata@14.1.0': {}
 
-  '@vueuse/shared@14.1.0(vue@3.5.25(typescript@5.9.3))':
+  '@vueuse/shared@14.1.0(vue@3.5.27(typescript@5.9.3))':
     dependencies:
-      vue: 3.5.25(typescript@5.9.3)
+      vue: 3.5.27(typescript@5.9.3)
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -6303,6 +6313,19 @@ snapshots:
       '@zag-js/types': 1.33.1
       '@zag-js/utils': 1.33.1
 
+  '@zag-js/date-picker@1.33.1(@internationalized/date@3.10.1)':
+    dependencies:
+      '@internationalized/date': 3.10.1
+      '@zag-js/anatomy': 1.33.1
+      '@zag-js/core': 1.33.1
+      '@zag-js/date-utils': 1.33.1(@internationalized/date@3.10.1)
+      '@zag-js/dismissable': 1.33.1
+      '@zag-js/dom-query': 1.33.1
+      '@zag-js/live-region': 1.33.1
+      '@zag-js/popper': 1.33.1
+      '@zag-js/types': 1.33.1
+      '@zag-js/utils': 1.33.1
+
   '@zag-js/date-utils@1.31.1(@internationalized/date@3.10.0)':
     dependencies:
       '@internationalized/date': 3.10.0
@@ -6310,6 +6333,10 @@ snapshots:
   '@zag-js/date-utils@1.33.1(@internationalized/date@3.10.0)':
     dependencies:
       '@internationalized/date': 3.10.0
+
+  '@zag-js/date-utils@1.33.1(@internationalized/date@3.10.1)':
+    dependencies:
+      '@internationalized/date': 3.10.1
 
   '@zag-js/dialog@1.31.1':
     dependencies:
@@ -7103,13 +7130,13 @@ snapshots:
       '@zag-js/utils': 1.31.1
       vue: 3.5.25(typescript@5.9.3)
 
-  '@zag-js/vue@1.33.1(vue@3.5.25(typescript@5.9.3))':
+  '@zag-js/vue@1.33.1(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@zag-js/core': 1.33.1
       '@zag-js/store': 1.33.1
       '@zag-js/types': 1.33.1
       '@zag-js/utils': 1.33.1
-      vue: 3.5.25(typescript@5.9.3)
+      vue: 3.5.27(typescript@5.9.3)
 
   acorn-import-phases@1.0.4(acorn@8.15.0):
     dependencies:
@@ -8244,6 +8271,10 @@ snapshots:
   lucide-vue-next@0.562.0(vue@3.5.25(typescript@5.9.3)):
     dependencies:
       vue: 3.5.25(typescript@5.9.3)
+
+  lucide-vue-next@0.562.0(vue@3.5.27(typescript@5.9.3)):
+    dependencies:
+      vue: 3.5.27(typescript@5.9.3)
 
   lz-string@1.5.0: {}
 
