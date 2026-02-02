@@ -1,4 +1,4 @@
-import type { ProgressVariantProps } from '@rui-ark/themes/crafts/progress'
+import type { ProgressVariants } from '@rui-ark/themes/crafts/progress'
 import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
 
 export { default as Progress, type ProgressProps } from './Progress.vue'
@@ -8,5 +8,5 @@ export { default as ProgressLinear, type ProgressLinearProps } from './ProgressL
 
 export { ProgressLabel, ProgressValueText, ProgressView } from '@ark-ui/vue/progress'
 export interface ProgressCircleTheme extends Omit<ThemeProps, 'size'> {
-  size?: ProgressVariantProps['size'] | number
+  size?: ProgressVariants['size'] | number
 }

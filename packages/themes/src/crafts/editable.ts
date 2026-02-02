@@ -62,21 +62,21 @@ export const tvEditableInput = tv(
         size: 'base',
         class: {
           root: 'px-1 py-0.5',
-          clearable: 'size-3.5',
+          clearable: 'text-sm size-[1lh]',
         },
       },
       {
         size: 'sm',
         class: {
           root: 'px-0.5 py-0.25',
-          clearable: 'size-3',
+          clearable: 'text-xs size-[1lh]',
         },
       },
       {
         size: 'lg',
         class: {
           root: 'px-1.5 py-0.75',
-          clearable: 'size-4',
+          clearable: 'text-base size-[1lh]',
         },
       },
     ],

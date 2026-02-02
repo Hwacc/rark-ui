@@ -41,7 +41,7 @@ const { item, triggerItem, triggerItemIndicator } = tvMenu()
       <slot />
     </Menu.ItemText>
     <Menu.Indicator :class="triggerItemIndicator({ ...theme })">
-      <ChevronRight />
+      <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
     </Menu.Indicator>
   </Menu.TriggerItem>
 </template>

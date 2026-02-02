@@ -39,14 +39,14 @@ const {
         as-child
         :class="viewControlTrigger({ ...theme })"
       >
-        <ChevronLeft />
+        <ChevronLeft :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.PrevTrigger>
       <DatePicker.RangeText />
       <DatePicker.NextTrigger
         as-child
         :class="viewControlTrigger({ ...theme })"
       >
-        <ChevronRight />
+        <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.NextTrigger>
     </DatePicker.ViewControl>
 

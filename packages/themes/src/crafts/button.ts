@@ -20,7 +20,7 @@ export const tvButton = tv(
         '[&_svg]:pointer-events-none',
         '[&_svg]:shrink-0',
       ],
-      loading: 'animate-spin',
+      loading: 'size-[1lh] animate-spin',
     },
     variants: {
       variant: {
@@ -35,15 +35,12 @@ export const tvButton = tv(
       size: {
         base: {
           root: 'h-7 text-sm',
-          loading: 'size-4',
         },
         sm: {
           root: 'h-6 text-xs',
-          loading: 'size-3.5',
         },
         lg: {
           root: 'h-8 text-base',
-          loading: 'size-4.5',
         },
       },
       loading: {

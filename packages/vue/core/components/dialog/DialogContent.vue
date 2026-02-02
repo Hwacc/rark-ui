@@ -64,7 +64,7 @@ const { backdrop, positioner, content, close } = tvDialog()
               :class="cn(['absolute', 'top-0', 'right-0'], close({ class: ui?.close, ...theme }))"
               data-variant="content-close"
             >
-              <X />
+              <X :style="{ width: '1lh', height: '1lh' }" />
               <span class="sr-only">Close</span>
             </ark.button>
           </DialogCloseTrigger>

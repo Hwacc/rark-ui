@@ -105,4 +105,4 @@ export const tvProgress = tv(
   },
 )
 
-export type ProgressVariantProps = VariantProps<typeof tvProgress>
+export type ProgressVariants = VariantProps<typeof tvProgress>

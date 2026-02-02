@@ -15,15 +15,15 @@ export const tvPagination = tv(
     variants: {
       size: {
         base: {
-          item: ['h-8', 'min-w-8', 'text-sm', '[&>svg]:size-4'],
+          item: ['h-8', 'min-w-8', 'text-sm'],
           ellipsis: 'size-8',
         },
         sm: {
-          item: ['h-6', 'min-w-6', 'text-xs', '[&>svg]:size-3.5'],
+          item: ['h-6', 'min-w-6', 'text-xs'],
           ellipsis: 'size-6',
         },
         lg: {
-          item: ['h-10', 'min-w-10', 'text-base', '[&>svg]:size-4.5'],
+          item: ['h-10', 'min-w-10', 'text-base'],
           ellipsis: 'size-10',
         },
       },
@@ -109,4 +109,4 @@ export const tvPaginationPageSize = tv(
     },
   },
 )
-export type PaginationPageSizeVariantProps = VariantProps<typeof tvPaginationPageSize>
+export type PaginationPageSizeVariants = VariantProps<typeof tvPaginationPageSize>

@@ -15,14 +15,7 @@ export const tvDialog = tv(
         'data-[state=closed]:motion-opacity-out',
         'data-[state=closed]:animate-backdrop-blur-out',
       ],
-      positioner: [
-        'fixed',
-        'inset-0',
-        'z-(--z-modal)',
-        'flex',
-        'items-center',
-        'justify-center',
-      ],
+      positioner: ['fixed', 'inset-0', 'z-(--z-modal)', 'flex', 'items-center', 'justify-center'],
       content: [
         'relative',
         'max-w-full',
@@ -34,69 +27,51 @@ export const tvDialog = tv(
         'data-[state=closed]:motion-opacity-out',
         'data-[state=closed]:motion-translate-y-out',
       ],
-      close: [
-        'p-0.5',
-        '[&_svg]:size-4',
-        'data-[variant=content-close]:p-0',
-        'data-[variant=content-close]:pt-2',
-        'data-[variant=content-close]:pr-2',
-      ],
-      header: [
-        'flex',
-        'items-center',
-        'justify-between',
-        'py-2.5',
-        'pl-5',
-        'pr-4',
-        'text-sm',
-      ],
+      close: '',
+      header: ['flex', 'items-center', 'justify-between'],
       title: [],
-      body: ['flex-1', 'p-5', 'text-base', 'overflow-y-auto'],
-      footer: [
-        'flex',
-        'items-center',
-        'justify-end',
-        'gap-5',
-        'p-4',
-        'text-sm',
-      ],
+      body: ['flex-1', 'overflow-y-auto'],
+      footer: ['flex', 'items-center', 'justify-end'],
     },
     variants: {
       size: {
-        base: '',
-        sm: '',
-        lg: '',
-      },
-    },
-
-    compoundVariants: [
-      {
-        size: 'sm',
-        class: {
-          body: 'p-4 text-sm',
-          footer: 'p-3 text-xs',
-          header: 'py-1.5 pl-4 pr-3 text-xs',
+        base: {
+          body: 'p-5 text-sm',
+          footer: 'p-4 gap-5 text-sm',
+          header: 'py-2.5 pl-5 pr-4 text-sm',
           close: [
-            '[&_svg]:size-3',
-            'data-[variant=content-close]:pt-1.5',
-            'data-[variant=content-close]:pr-1.5',
+            'p-0.5',
+            'text-sm',
+            'data-[variant=content-close]:p-0',
+            'data-[variant=content-close]:pt-2',
+            'data-[variant=content-close]:pr-2',
           ],
         },
-      },
-      {
-        size: 'lg',
-        class: {
+        sm: {
           body: 'p-6 text-xl',
           footer: 'p-4 text-base',
           header: 'py-2.5 pl-6 pr-4 text-base',
           close: [
-            '[&_svg]:size-4.5',
+            'text-base',
+            'data-[variant=content-close]:pt-2.5',
+            'data-[variant=content-close]:pr-2.5',
+          ],
+        },
+        lg: {
+          body: 'p-6 text-xl',
+          footer: 'p-4 text-base',
+          header: 'py-2.5 pl-6 pr-4 text-base',
+          close: [
+            'text-base',
             'data-[variant=content-close]:pt-2.5',
             'data-[variant=content-close]:pr-2.5',
           ],
         },
       },
-    ],
+    },
+    defaultVariants: {
+      size: 'base',
+    },
   },
   {
     slots: {

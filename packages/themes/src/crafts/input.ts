@@ -19,7 +19,7 @@ export const tvInput = tv({
       'data-[state=disabled]:opacity-(--disabled-opacity)',
     ],
     input: ['flex-1', 'w-0', 'outline-hidden', 'border-none', 'bg-transparent'],
-    clearable: ['flex', 'items-center', 'justify-center'],
+    clearable: ['size-[1lh]', 'flex', 'items-center', 'justify-center'],
   },
   variants: {
     size: {
@@ -35,7 +35,6 @@ export const tvInput = tv({
       class: {
         root: 'text-sm',
         input: 'placeholder:text-sm',
-        clearable: '[&_svg]:size-3.5',
       },
     },
     {
@@ -43,7 +42,6 @@ export const tvInput = tv({
       class: {
         root: 'text-xs',
         input: 'placeholder:text-xs',
-        clearable: '[&_svg]:size-3',
       },
     },
     {
@@ -51,7 +49,6 @@ export const tvInput = tv({
       class: {
         root: 'text-base',
         input: 'placeholder:text-base',
-        clearable: '[&_svg]:size-4',
       },
     },
   ],

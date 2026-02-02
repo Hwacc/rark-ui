@@ -48,24 +48,24 @@ export const tvPopover = tv(
         size: 'sm',
         class: {
           contentInner: 'px-1.5 py-0.5 text-xs',
-          close: 'p-1 [&_svg]:size-3',
-          indicator: 'size-3',
+          close: 'p-1 text-xs',
+          indicator: 'text-xs',
         },
       },
       {
         size: 'base',
         class: {
           contentInner: 'px-2 py-1 text-sm',
-          close: 'p-1.5 [&_svg]:size-4',
-          indicator: 'size-4',
+          close: 'p-1.5 text-sm',
+          indicator: 'text-sm',
         },
       },
       {
         size: 'lg',
         class: {
           contentInner: 'px-2.5 py-1.5 text-base',
-          close: 'p-2 [&_svg]:size-4.5',
-          indicator: 'size-4.5',
+          close: 'p-2 text-base',
+          indicator: 'text-base',
         },
       },
       {

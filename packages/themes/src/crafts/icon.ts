@@ -5,17 +5,7 @@ const prefix = 'rui-icon'
 
 export const tvIcon = tv(
   {
-    base: '',
-    variants: {
-      size: {
-        sm: 'text-sm',
-        base: 'text-base',
-        lg: 'text-lg',
-      },
-    },
-    defaultVariants: {
-      size: 'base',
-    },
+    base: 'w-[1em] w-[1lh] h-[1em] h-[1lh]',
   },
   {
     class: prefix,

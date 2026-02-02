@@ -40,7 +40,7 @@ const { header, title, close } = tvDialog()
     </Dialog.Title>
     <DialogCloseTrigger as-child>
       <ark.button :class="close({ class: ui?.close, ...theme })">
-        <X />
+        <X :style="{ width: '1lh', height: '1lh' }" />
         <span class="sr-only">Close</span>
       </ark.button>
     </DialogCloseTrigger>

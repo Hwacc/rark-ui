@@ -25,7 +25,7 @@ const { indicator } = tvPopover()
 <template>
   <PopoverIndicator :as-child="asChild" :class="indicator({ class: propsClass, ...theme })">
     <slot>
-      <ChevronDown />
+      <ChevronDown :style="{ width: '1lh', height: '1lh' }" />
     </slot>
   </PopoverIndicator>
 </template>

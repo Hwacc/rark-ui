@@ -39,7 +39,7 @@ const checkbox = useCheckbox(forwarded, emit)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, control, indicator, label: tvLabel } = tvCheckbox()
+const { root, control, indicator, indicatorChecked, indicatorMinus, label: tvLabel } = tvCheckbox()
 
 // expose
 defineExpose({ $api: checkbox as UseCheckboxReturn })
@@ -54,13 +54,13 @@ useForwardExpose()
     <Checkbox.Control :class="control({ class: ui?.control, ...theme })">
       <Checkbox.Indicator :class="indicator({ class: ui?.indicator, ...theme })">
         <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
-          <Check class="size-full stroke-black stroke-[.125rem] [&>path]:animate-check-dash" />
+          <Check :class="indicatorChecked()" />
         </slot>
       </Checkbox.Indicator>
       <Checkbox.Indicator :class="indicator({ class: ui?.indicator, ...theme })" indeterminate>
         <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
           <Minus
-            class="size-full stroke-black stroke-[.125rem] [&_path]:animate-indeterminate-dash"
+            :class="indicatorMinus()"
           />
         </slot>
       </Checkbox.Indicator>

@@ -66,7 +66,6 @@ export const tvMenu = tv(
           contentInner: 'px-2 py-1.5',
           item: 'text-sm px-2 py-1.5',
           itemGroupLabel: 'text-base px-2 py-2 mb-1',
-          triggerItemIndicator: '[&>svg]:size-3.5',
         },
       },
       {
@@ -75,7 +74,6 @@ export const tvMenu = tv(
           contentInner: 'px-1.5 py-1',
           item: 'text-xs px-1.5 py-1',
           itemGroupLabel: 'text-sm px-1.5 py-1.5 mb-0.5',
-          triggerItemIndicator: '[&>svg]:size-3',
         },
       },
       {
@@ -84,7 +82,6 @@ export const tvMenu = tv(
           contentInner: 'px-2.5 py-1.5',
           item: 'text-base px-2.5 py-1.5',
           itemGroupLabel: 'text-xl px-2.5 py-2.5 mb-1.5',
-          triggerItemIndicator: '[&>svg]:size-4',
         },
       },
       {

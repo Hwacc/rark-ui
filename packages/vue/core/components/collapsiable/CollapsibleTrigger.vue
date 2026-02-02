@@ -48,7 +48,7 @@ const { trigger, indicator: tvIndicator } = tvCollapsible()
         v-if="indicator"
         :class="tvIndicator({ class: ui?.indicator, ...theme })"
       >
-        <ChevronDown />
+        <ChevronDown :style="{ width: '1lh', height: '1lh' }" />
       </Collapsible.Indicator>
     </slot>
   </Collapsible.Trigger>

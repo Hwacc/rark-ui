@@ -111,4 +111,4 @@ export const tvScrollArea = tv({
   },
 })
 
-export type ScrollAreaVariantProps = VariantProps<typeof tvScrollArea>
+export type ScrollAreaVariants = VariantProps<typeof tvScrollArea>

@@ -30,10 +30,13 @@ const { viewsState } = inject<DatePickerContentProvide>(DATE_PICKER_CONTENT_PROV
   })),
 })
 const context = useDatePickerContext()
-watch(() => context.value.visibleRangeText, (text) => {
-  console.log('visibleRangeText', text)
-  console.log('view', context.value.view)
-})
+watch(
+  () => context.value.visibleRangeText,
+  (text) => {
+    console.log('visibleRangeText', text)
+    console.log('view', context.value.view)
+  },
+)
 
 // theme
 const theme = useTheme(() =>
@@ -64,7 +67,7 @@ const {
         as-child
         :class="viewControlTrigger({ ...theme })"
       >
-        <ChevronLeft />
+        <ChevronLeft :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.PrevTrigger>
       <DatePicker.ViewTrigger
         v-if="viewsState.count > 1 && viewsState.hasYearView"
@@ -77,7 +80,7 @@ const {
         as-child
         :class="viewControlTrigger({ ...theme })"
       >
-        <ChevronRight />
+        <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.NextTrigger>
     </DatePicker.ViewControl>
 

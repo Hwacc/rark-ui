@@ -73,4 +73,4 @@ export const tvTagsInput = tv(
   },
 )
 
-export type TagsInputVariantProps = VariantProps<typeof tvTagsInput>
+export type TagsInputVariants = VariantProps<typeof tvTagsInput>

@@ -66,30 +66,21 @@ export const tvSelect = tv(
       size: {
         base: {
           trigger: 'text-sm',
-          indicator: '[&>svg]:size-3.5',
           item: 'text-sm px-2 py-1.5',
           contentInner: 'px-2 py-1.5',
-          itemIndicator: '[&>svg]:size-3',
           itemGroupLabel: 'text-base px-2 py-2 mb-2',
-          clearTrigger: '[&>svg]:size-3.5',
         },
         sm: {
           trigger: 'text-xs',
-          indicator: '[&>svg]:size-3',
           item: 'text-xs px-1.5 py-1',
           contentInner: 'px-1.5 py-1',
-          itemIndicator: '[&>svg]:size-3.5',
           itemGroupLabel: 'text-sm px-1.5 py-1.5 mb-1.5',
-          clearTrigger: '[&>svg]:size-3',
         },
         lg: {
           trigger: 'text-base',
-          indicator: '[&>svg]:size-4.5',
           item: 'text-base px-2.5 py-1.5',
           contentInner: 'px-2.5 py-1.5',
-          itemIndicator: '[&>svg]:size-4',
           itemGroupLabel: 'text-xl px-2.5 py-2.5 mb-2.5',
-          clearTrigger: '[&>svg]:size-4',
         },
       },
       bordered: {

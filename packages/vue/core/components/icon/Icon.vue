@@ -3,7 +3,7 @@ import type { IconifyIcon } from '@iconify/vue'
 import type { Theme } from '@rui-ark/vue-core/providers/theme'
 import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
 
-export interface IconProps extends Theme {
+export interface IconProps extends Omit<Theme, 'size'> {
   icon: string | IconifyIcon
   class?: HTMLAttributes['class']
 }

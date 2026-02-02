@@ -22,15 +22,12 @@ export const tvCollapsible = tv({
     size: {
       sm: {
         trigger: ['text-xs gap-3'],
-        indicator: ['[&>svg]:size-3'],
       },
       base: {
         trigger: ['text-sm gap-4'],
-        indicator: ['[&>svg]:size-4'],
       },
       lg: {
         trigger: ['text-base gap-4.5'],
-        indicator: ['[&>svg]:size-4.5'],
       },
     },
   },

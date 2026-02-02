@@ -33,7 +33,7 @@ const { close } = tvPopover()
         :data-theme-skin="theme.skin"
         :data-theme-surface="theme.surface"
       >
-        <X />
+        <X :style="{ width: '1lh', height: '1lh' }" />
       </ark.button>
     </slot>
   </PopoverCloseTrigger>

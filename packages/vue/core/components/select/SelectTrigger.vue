@@ -34,12 +34,15 @@ const { trigger, indicator, clearTrigger } = tvSelect()
       :class="trigger({ class: [propsClass], ...theme })"
     >
       <slot />
-      <Select.ClearTrigger v-if="clearable" :class="clearTrigger({ ...theme })">
-        <CircleX />
+      <Select.ClearTrigger
+        v-if="clearable"
+        :class="clearTrigger({ ...theme })"
+      >
+        <CircleX :style="{ width: '1lh', height: '1lh' }" />
       </Select.ClearTrigger>
       <Select.Indicator :class="indicator({ ...theme })">
         <slot name="indicator">
-          <ChevronDown />
+          <ChevronDown :style="{ width: '1lh', height: '1lh' }" />
         </slot>
       </Select.Indicator>
     </Select.Trigger>

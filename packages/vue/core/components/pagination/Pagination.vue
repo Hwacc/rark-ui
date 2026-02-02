@@ -63,10 +63,10 @@ useForwardExpose()
           :class="cn(itemClx, ui?.firstPage)"
           @click="pagination.goToFirstPage"
         >
-          <ChevronsLeft />
+          <ChevronsLeft :style="{ width: '1lh', height: '1lh' }" />
         </ark.button>
         <Pagination.PrevTrigger :class="cn(itemClx, ui?.prevPage)">
-          <ChevronLeft />
+          <ChevronLeft :style="{ width: '1lh', height: '1lh' }" />
         </Pagination.PrevTrigger>
         <template
           v-for="(page, index) in pagination.pages"
@@ -88,13 +88,13 @@ useForwardExpose()
           </Pagination.Ellipsis>
         </template>
         <Pagination.NextTrigger :class="cn(itemClx, ui?.nextPage)">
-          <ChevronRight />
+          <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
         </Pagination.NextTrigger>
         <ark.button
           :class="cn(itemClx, ui?.lastPage)"
           @click="pagination.goToLastPage"
         >
-          <ChevronsRight />
+          <ChevronsRight :style="{ width: '1lh', height: '1lh' }" />
         </ark.button>
       </ark.div>
       <slot />

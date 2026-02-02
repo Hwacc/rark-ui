@@ -64,7 +64,7 @@ const {
         as-child
         :class="viewControlTrigger({ ...theme })"
       >
-        <ChevronLeft />
+        <ChevronLeft :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.PrevTrigger>
       <DatePicker.ViewTrigger
         v-if="viewsState.count > 1 && viewsState.hasMonthView"
@@ -77,7 +77,7 @@ const {
         as-child
         :class="viewControlTrigger({ ...theme })"
       >
-        <ChevronRight />
+        <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.NextTrigger>
     </DatePicker.ViewControl>
     <DatePicker.Table :class="table({ ...theme })">
@@ -105,9 +105,7 @@ const {
           :class="tableCell({ ...theme })"
         >
           <DatePicker.TableCellTrigger
-            :class="
-              tableCellTrigger({ ...context.getDayTableCellState({ value: day }), ...theme })
-            "
+            :class="tableCellTrigger({ ...context.getDayTableCellState({ value: day }), ...theme })"
           >
             {{ day.day }}
           </DatePicker.TableCellTrigger>
