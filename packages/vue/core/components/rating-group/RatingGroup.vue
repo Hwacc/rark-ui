@@ -10,13 +10,13 @@ export interface RatingGroupProps extends RatingGroupRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { RatingGroupRootBaseProps, RatingGroupRootEmits } from '@ark-ui/vue/rating-group'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { RatingGroup, useRatingGroup } from '@ark-ui/vue/rating-group'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { tvRatingGroup } from '@rui-ark/themes/crafts/rating-group'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 
 const {
   class: propsClass,

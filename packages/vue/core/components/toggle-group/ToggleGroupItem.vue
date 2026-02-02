@@ -6,12 +6,12 @@ export interface ToggleGroupItemProps extends ToggleGroupItemBaseProps, Theme {
 
 <script setup lang="ts">
 import type { ToggleGroupItemBaseProps } from '@ark-ui/vue/toggle-group'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { ToggleGroup, useToggleGroupContext } from '@ark-ui/vue/toggle-group'
 import { tvToggleGroup } from '@rui-ark/themes/crafts/toggle-group'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed } from 'vue'
 
 const {

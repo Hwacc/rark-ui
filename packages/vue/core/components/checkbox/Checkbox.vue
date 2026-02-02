@@ -14,12 +14,12 @@ export interface CheckboxProps extends CheckboxRootProps, Theme {
 
 <script setup lang="ts">
 import type { CheckboxRootEmits, CheckboxRootProps, UseCheckboxReturn } from '@ark-ui/vue/checkbox'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Checkbox, useCheckbox } from '@ark-ui/vue/checkbox'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { tvCheckbox } from '@rui-ark/themes/crafts/checkbox'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { Check, Minus } from 'lucide-vue-next'
 
 const {

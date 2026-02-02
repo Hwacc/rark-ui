@@ -1,7 +1,7 @@
-import type { Theme, ThemeProps } from '@rui-ark/vue-core/providers/theme'
+import type { Theme, ThemeProps } from '@rui-ark/vue/providers/theme'
 import type { DefineComponent, HTMLAttributes, PropType } from 'vue'
 import { cn } from '@rui-ark/themes/utils/cn'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed, defineComponent } from 'vue'
 
 export interface ArrowProps extends Theme {

@@ -4,12 +4,12 @@ export interface TooltipProps extends TooltipRootProps, Theme {}
 
 <script setup lang="ts">
 import type { TooltipRootEmits, TooltipRootProps } from '@ark-ui/vue/tooltip'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import { Tooltip, useTooltip } from '@ark-ui/vue/tooltip'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useConfig } from '@rui-ark/vue/composables/useConfig'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { computed, mergeProps } from 'vue'
 
 const {

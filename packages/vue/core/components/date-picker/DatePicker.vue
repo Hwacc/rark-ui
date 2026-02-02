@@ -16,9 +16,9 @@ export type DatePickerRootEmits = {
 
 <script setup lang="ts">
 import type { DatePickerRootBaseProps, UseDatePickerProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import { DatePicker, useDatePicker, useForwardExpose, useForwardProps } from '@ark-ui/vue'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 
 const { theme, ...props } = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerRootEmits>()

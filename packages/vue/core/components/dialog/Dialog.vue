@@ -29,7 +29,7 @@ import type {
   UseDialogProps,
   UseDialogReturn,
 } from '@ark-ui/vue/dialog'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type {
   DialogInterceptContext,
@@ -42,9 +42,9 @@ import type {
 } from './dialog-intercept-context'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Dialog, useDialog } from '@ark-ui/vue/dialog'
-import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useConfig } from '@rui-ark/vue/composables/useConfig'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { computed, nextTick, ref, watch } from 'vue'
 import { TriggerFrom } from './dialog-intercept-context'
 import DialogInterceptProvider from './DialogInterceptProvider.vue'

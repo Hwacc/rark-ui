@@ -18,11 +18,11 @@ export interface InputProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { tvInput } from '@rui-ark/themes/crafts/input'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useVModel } from '@vueuse/core'
 import { CircleX } from 'lucide-vue-next'
 import { computed, ref, useId, useTemplateRef } from 'vue'

@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { IconifyIcon } from '@iconify/vue'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 export interface IconProps extends Omit<Theme, 'size'> {
   icon: string | IconifyIcon

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UnwrapRef } from 'vue'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 defineSlots<{
   default: (props: UnwrapRef<ReturnType<typeof useTheme>>) => any

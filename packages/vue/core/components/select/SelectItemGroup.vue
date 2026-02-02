@@ -11,12 +11,12 @@ export interface SelectItemGroupProps extends SelectItemGroupBaseProps, Theme {
 
 <script setup lang="ts">
 import type { SelectItemGroupBaseProps } from '@ark-ui/vue/select'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvSelect } from '@rui-ark/themes/crafts/select'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const {
   class: propsClass,

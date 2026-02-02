@@ -15,7 +15,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "@rui-ark/vue-core/*": ["./*"],
+      "@rui-ark/vue/*": ["./*"],
       "@rui-ark/themes/*": ["../../themes/src/*"],
       "@rui-ark/shared/*": ["../../shared/src/*"]
     },

@@ -6,13 +6,13 @@ export interface MenuProps extends MenuRootProps, Theme {
 
 <script setup lang="ts">
 import type { MenuRootEmits, MenuRootProps } from '@ark-ui/vue/menu'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu, useMenu } from '@ark-ui/vue/menu'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useConfig } from '@rui-ark/vue/composables/useConfig'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 
 const {
   class: propsClass,

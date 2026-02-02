@@ -6,11 +6,11 @@ export interface MessagerProps extends Omit<ToastStoreProps, 'placement'>, Theme
 
 <script setup lang="ts">
 import type { ToastStoreProps } from '@ark-ui/vue/toast'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { MessageOptions } from '.'
 import { createToaster, Toaster } from '@ark-ui/vue/toast'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { defaults } from 'es-toolkit/compat'
 
 const {

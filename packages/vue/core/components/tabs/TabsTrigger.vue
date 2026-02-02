@@ -6,12 +6,12 @@ export interface TabsTriggerProps extends TabTriggerBaseProps, Theme {
 
 <script setup lang="ts">
 import type { TabTriggerBaseProps } from '@ark-ui/vue/tabs'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs } from '@ark-ui/vue/tabs'
 import { tvTabs } from '@rui-ark/themes/crafts/tabs'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { injectTabsContextEx } from './TabsProviderEx.vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<TabsTriggerProps>()

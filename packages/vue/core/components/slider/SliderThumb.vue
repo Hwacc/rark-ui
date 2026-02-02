@@ -6,12 +6,12 @@ export interface SliderThumbProps extends SliderThumbBaseProps, Theme {
 
 <script setup lang="ts">
 import type { SliderThumbBaseProps } from '@ark-ui/vue/slider'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider } from '@ark-ui/vue/slider'
 import { tvSlider } from '@rui-ark/themes/crafts/slider'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const {
   class: propsClass,

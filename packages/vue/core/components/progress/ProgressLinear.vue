@@ -11,12 +11,12 @@ export interface ProgressLinearProps extends ProgressTrackBaseProps, Theme {
 
 <script setup lang="ts">
 import type { ProgressTrackBaseProps } from '@ark-ui/vue/progress'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Progress, useProgressContext } from '@ark-ui/vue/progress'
 import { tvProgress } from '@rui-ark/themes/crafts/progress'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed, useTemplateRef } from 'vue'
 import { useRangeTransfer } from './useRangeTransfer'
 

@@ -9,7 +9,7 @@ import type {
   MenuRadioItemGroupProps as ArkMenuRadioItemGroupProps,
   MenuRadioItemGroupEmits,
 } from '@ark-ui/vue/menu'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardPropsEmits } from '@ark-ui/vue/utils'

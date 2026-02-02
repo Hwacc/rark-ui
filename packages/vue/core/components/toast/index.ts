@@ -1,5 +1,5 @@
 import type { CreateToasterReturn, UseToastContext } from '@ark-ui/vue'
-import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
+import type { ThemeProps } from '@rui-ark/vue/providers/theme'
 
 export { default as Toast, type ToastProps } from './Toast.vue'
 export { default as Toaster, type ToasterProps } from './Toaster.vue'

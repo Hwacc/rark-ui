@@ -1,5 +1,5 @@
 import type { ScrollAreaVariants } from '@rui-ark/themes/crafts/scroll-area'
-import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
+import type { ThemeProps } from '@rui-ark/vue/providers/theme'
 
 export { default as ScrollArea } from './ScrollArea.vue'
 export type { ScrollAreaProps } from './ScrollArea.vue'

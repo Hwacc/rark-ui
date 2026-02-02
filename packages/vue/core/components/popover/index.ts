@@ -2,7 +2,7 @@ import {
   PopoverArrow as ArkPopoverArrow,
   PopoverArrowTip as ArkPopoverArrowTip,
 } from '@ark-ui/vue/popover'
-import { createArrow } from '@rui-ark/vue-core/components/arrow/createArrow'
+import { createArrow } from '@rui-ark/vue/components/arrow/createArrow'
 
 export { default as Popover, type PopoverProps } from './Popover.vue'
 export {

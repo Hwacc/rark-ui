@@ -12,7 +12,7 @@ import type { ScrollAreaTheme } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { ScrollArea } from '@ark-ui/vue/scroll-area'
 import { tvScrollArea } from '@rui-ark/themes/crafts/scroll-area'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const {
   class: propsClass,

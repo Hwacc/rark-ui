@@ -10,14 +10,14 @@ export interface TreeProps<T> extends TreeViewRootBaseProps<T>, Theme {
 
 <script setup lang="ts" generic="T = TreeNode">
 import type { TreeNode, TreeViewRootBaseProps } from '@ark-ui/vue/tree-view'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { TreeViewRootEmits } from './tree'
 import { useForwardProps } from '@ark-ui/vue'
 import { TreeView, useTreeView } from '@ark-ui/vue/tree-view'
 import { tvTree } from '@rui-ark/themes/crafts/tree'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 
 const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<TreeProps<T>>()
 const emits = defineEmits<TreeViewRootEmits<T>>()

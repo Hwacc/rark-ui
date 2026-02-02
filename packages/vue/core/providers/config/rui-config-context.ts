@@ -3,8 +3,8 @@ import type {
   IconifyJSON,
   PartialIconifyAPIConfig,
 } from '@iconify/vue'
-import type { MessagerExpose } from '@rui-ark/vue-core/components/message'
-import type { ToasterManagerExpose } from '@rui-ark/vue-core/components/toast'
+import type { MessagerExpose } from '@rui-ark/vue/components/message'
+import type { ToasterManagerExpose } from '@rui-ark/vue/components/toast'
 import type { ComputedRef } from 'vue'
 import type { ThemeProps } from '../theme/theme-props'
 import { createContext } from '@ark-ui/vue'

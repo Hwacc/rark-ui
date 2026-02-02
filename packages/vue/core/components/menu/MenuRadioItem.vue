@@ -15,14 +15,14 @@ import type {
   UseMenuItemContext,
 } from '@ark-ui/vue/menu'
 import type { RadioGroupVariants } from '@rui-ark/themes/crafts/radio-group'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, UnwrapRef } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvMenu } from '@rui-ark/themes/crafts/menu'
 import { tvRadioGroup } from '@rui-ark/themes/crafts/radio-group'
 import { cn } from '@rui-ark/themes/utils/cn'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { Check, Circle } from 'lucide-vue-next'
 
 const {

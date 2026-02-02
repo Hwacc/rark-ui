@@ -13,13 +13,13 @@ import type {
   MenuCheckboxItemBaseProps,
   MenuCheckboxItemEmits,
 } from '@ark-ui/vue/menu'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardPropsEmits } from '@ark-ui/vue/utils'
 import { tvMenu } from '@rui-ark/themes/crafts/menu'
-import { Checkbox } from '@rui-ark/vue-core/components/checkbox'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { Checkbox } from '@rui-ark/vue/components/checkbox'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const {
   class: propsClass,

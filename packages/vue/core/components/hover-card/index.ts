@@ -2,7 +2,7 @@ import {
   HoverCardArrow as ArkHoverCardArrow,
   HoverCardArrowTip as ArkHoverCardArrowTip,
 } from '@ark-ui/vue/hover-card'
-import { createArrow } from '@rui-ark/vue-core/components/arrow/createArrow'
+import { createArrow } from '@rui-ark/vue/components/arrow/createArrow'
 
 export { default as HoverCard, type HoverCardProps } from './HoverCard.vue'
 export {

@@ -11,12 +11,12 @@ export interface CollapsibleTriggerProps extends ArkCollapsibleTriggerProps, The
 
 <script setup lang="ts">
 import type { CollapsibleTriggerProps as ArkCollapsibleTriggerProps } from '@ark-ui/vue/collapsible'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Collapsible, useCollapsibleContext } from '@ark-ui/vue/collapsible'
 import { tvCollapsible } from '@rui-ark/themes/crafts/collapsible'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronDown } from 'lucide-vue-next'
 
 const {

@@ -6,13 +6,13 @@ export interface ProgressProps extends ProgressRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { ProgressRootBaseProps, ProgressRootEmits } from '@ark-ui/vue/progress'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Progress, useProgress } from '@ark-ui/vue/progress'
 import { tvProgress } from '@rui-ark/themes/crafts/progress'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<ProgressProps>()
 const emit = defineEmits<ProgressRootEmits>()

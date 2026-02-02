@@ -4,8 +4,8 @@
   * @see https://github.com/nuxt/ui/blob/v3/src/runtime/components/OverlayProvider.vue
 -->
 <script setup lang="ts">
-import type { Overlay } from '@rui-ark/vue-core/composables/useOverlay'
-import { useOverlay } from '@rui-ark/vue-core/composables/useOverlay'
+import type { Overlay } from '@rui-ark/vue/composables/useOverlay'
+import { useOverlay } from '@rui-ark/vue/composables/useOverlay'
 import { computed, watch } from 'vue'
 
 const { overlays, unmount, close } = useOverlay()

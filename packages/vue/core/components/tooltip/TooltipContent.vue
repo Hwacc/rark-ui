@@ -11,17 +11,17 @@ export interface TooltipContentProps extends ArkTooltipContentProps, Theme {
 
 <script setup lang="ts">
 import type { TooltipContentProps as ArkTooltipContentProps } from '@ark-ui/vue/tooltip'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Tooltip } from '@ark-ui/vue/tooltip'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvTooltip } from '@rui-ark/themes/crafts/tooltip'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import {
   checkContextVNodePosition,
   excludeVNodesByName,
   findVNodeByName,
-} from '@rui-ark/vue-core/utils/vnode'
+} from '@rui-ark/vue/utils/vnode'
 import { computed, useSlots } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<TooltipContentProps>()

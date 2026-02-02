@@ -6,13 +6,13 @@ export interface TabsProps extends TabsRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { TabsRootBaseProps, TabsRootEmits } from '@ark-ui/vue/tabs'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Tabs, useTabs } from '@ark-ui/vue/tabs'
 import { tvTabs } from '@rui-ark/themes/crafts/tabs'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { computed, useTemplateRef } from 'vue'
 import TabsProviderEx from './TabsProviderEx.vue'
 

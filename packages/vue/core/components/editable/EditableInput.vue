@@ -7,13 +7,13 @@ export interface EditableInputProps extends EditableInputBaseProps, Theme {
 
 <script setup lang="ts">
 import type { EditableInputBaseProps } from '@ark-ui/vue/editable'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Editable, useEditableContext } from '@ark-ui/vue/editable'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvEditableInput } from '@rui-ark/themes/crafts/editable'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { CircleX } from 'lucide-vue-next'
 import { ref } from 'vue'
 

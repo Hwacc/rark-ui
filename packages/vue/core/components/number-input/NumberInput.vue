@@ -14,13 +14,13 @@ export interface NumberInputProps extends NumberInputRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { NumberInputRootBaseProps, NumberInputRootEmits } from '@ark-ui/vue/number-input'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { NumberInput, useNumberInput } from '@ark-ui/vue/number-input'
 import { tvInput } from '@rui-ark/themes/crafts/input'
 import { tvNumberInput } from '@rui-ark/themes/crafts/number-input'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronDown, ChevronUp } from 'lucide-vue-next'
 
 const {

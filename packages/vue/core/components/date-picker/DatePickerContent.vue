@@ -6,15 +6,15 @@ export interface DatePickerContentProps extends DatePickerContentBaseProps, Them
 
 <script setup lang="ts">
 import type { DatePickerContentBaseProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { DatePickerContentProvide } from '.'
 import { DatePicker } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvDatePicker } from '@rui-ark/themes/crafts/date-picker'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { findVNodeByName, findVNodesByName } from '@rui-ark/vue-core/utils/vnode'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { findVNodeByName, findVNodesByName } from '@rui-ark/vue/utils/vnode'
 import { compact, isNil } from 'es-toolkit'
 import { computed, provide, useSlots } from 'vue'
 import { DATE_PICKER_CONTENT_PROVIDE_KEY } from '.'

@@ -12,14 +12,14 @@ export interface DialogContentProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Dialog } from '@ark-ui/vue/dialog'
 import { ark } from '@ark-ui/vue/factory'
 import { tvDialog } from '@rui-ark/themes/crafts/dialog'
 import { cn } from '@rui-ark/themes/utils/cn'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { someVNode } from '@rui-ark/vue-core/utils/vnode'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { someVNode } from '@rui-ark/vue/utils/vnode'
 import { X } from 'lucide-vue-next'
 import { computed, useAttrs, useSlots } from 'vue'
 import { DialogCloseTrigger } from '.'

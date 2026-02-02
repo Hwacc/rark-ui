@@ -22,14 +22,14 @@ export interface SelectEmits<T extends CollectionItem> {
 
 <script setup lang="ts" generic="T extends CollectionItem">
 import type { CollectionItem, SelectRootBaseProps, UseSelectProps } from '@ark-ui/vue/select'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Select, useSelect } from '@ark-ui/vue/select'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { tvSelect } from '@rui-ark/themes/crafts/select'
-import { useConfig } from '@rui-ark/vue-core/composables/useConfig'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useConfig } from '@rui-ark/vue/composables/useConfig'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 
 const {
   class: propsClass,

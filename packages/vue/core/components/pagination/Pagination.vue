@@ -16,15 +16,15 @@ export interface PaginationProps extends PaginationRootProps, Theme {
 
 <script setup lang="ts">
 import type { PaginationRootEmits, PaginationRootProps } from '@ark-ui/vue/pagination'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
 import { Pagination, usePagination } from '@ark-ui/vue/pagination'
 import { tvPagination } from '@rui-ark/themes/crafts/pagination'
 import { cn } from '@rui-ark/themes/utils/cn'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-vue-next'
 import { computed } from 'vue'
 

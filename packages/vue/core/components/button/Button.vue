@@ -20,14 +20,14 @@ export interface ButtonProps extends Theme {
 
 <script setup lang="ts">
 import type { ButtonVariants } from '@rui-ark/themes/crafts/button'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { getNodeCssVar } from '@rui-ark/shared/css'
 import { tvButton } from '@rui-ark/themes/crafts/button'
-import { useRipple } from '@rui-ark/vue-core/composables/useRipple'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { useForwardExpose } from '@rui-ark/vue-core/libs/useForwardExpose'
+import { useRipple } from '@rui-ark/vue/composables/useRipple'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useForwardExpose } from '@rui-ark/vue/libs/useForwardExpose'
 import { LoaderCircle } from 'lucide-vue-next'
 import { computed } from 'vue'
 

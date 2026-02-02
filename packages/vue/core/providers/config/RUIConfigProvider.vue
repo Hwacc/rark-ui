@@ -13,14 +13,14 @@ export interface RUIConfigProps {
 </script>
 
 <script setup lang="ts">
-import type { MessagerExpose, MessagerProps } from '@rui-ark/vue-core/components/message'
-import type { ToasterManagerExpose, ToasterManagerProps } from '@rui-ark/vue-core/components/toast'
+import type { MessagerExpose, MessagerProps } from '@rui-ark/vue/components/message'
+import type { ToasterManagerExpose, ToasterManagerProps } from '@rui-ark/vue/components/toast'
 import type { RUIConfigContext } from './rui-config-context'
 import { addAPIProvider, addCollection, addIcon } from '@iconify/vue'
-import { Message, Messager } from '@rui-ark/vue-core/components/message'
-import { OverlayProvider } from '@rui-ark/vue-core/components/overlay'
-import { SpinProvider } from '@rui-ark/vue-core/components/spin'
-import { ToasterManager } from '@rui-ark/vue-core/components/toast'
+import { Message, Messager } from '@rui-ark/vue/components/message'
+import { OverlayProvider } from '@rui-ark/vue/components/overlay'
+import { SpinProvider } from '@rui-ark/vue/components/spin'
+import { ToasterManager } from '@rui-ark/vue/components/toast'
 import { omit } from 'es-toolkit'
 import { computed, useTemplateRef } from 'vue'
 import { ThemeProvider } from '../theme'

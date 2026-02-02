@@ -18,12 +18,12 @@ import type {
   UseRadioGroupItemContext,
 } from '@ark-ui/vue/radio-group'
 import type { RadioGroupVariants } from '@rui-ark/themes/crafts/radio-group'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, UnwrapRef } from 'vue'
 import { RadioGroup } from '@ark-ui/vue/radio-group'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { tvRadioGroup } from '@rui-ark/themes/crafts/radio-group'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { Check, Circle } from 'lucide-vue-next'
 
 const {

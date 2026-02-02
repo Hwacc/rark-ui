@@ -6,12 +6,12 @@ export interface DialogBackdropProps extends ArkDialogBackdropProps, Theme {
 
 <script setup lang="ts">
 import type { DialogBackdropProps as ArkDialogBackdropProps } from '@ark-ui/vue/dialog'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Dialog } from '@ark-ui/vue/dialog'
 import { tvDialog } from '@rui-ark/themes/crafts/dialog'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<DialogBackdropProps>()
 const forwarded = useForwardProps(props)

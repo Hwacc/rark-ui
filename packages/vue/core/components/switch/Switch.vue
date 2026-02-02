@@ -12,12 +12,12 @@ export interface SwitchProps extends SwitchRootProps, Theme {
 
 <script setup lang="ts">
 import type { SwitchRootEmits, SwitchRootProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue-core/providers/theme'
+import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HtmlHTMLAttributes } from 'vue'
 import { Switch, useForwardExpose, useForwardProps, useSwitch } from '@ark-ui/vue'
 import { tvSwitch } from '@rui-ark/themes/crafts/switch'
-import { useTheme } from '@rui-ark/vue-core/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue-core/providers/theme'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 
 const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<SwitchProps>()
 const emit = defineEmits<SwitchRootEmits>()
