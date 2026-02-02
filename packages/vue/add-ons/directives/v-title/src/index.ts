@@ -1,5 +1,6 @@
 import type { DirectiveBinding } from 'vue'
 import { computePosition, flip, hide, offset, shift } from '@floating-ui/vue'
+import { tvVTitle } from '@rui-ark/themes/crafts/add-ons/v-title'
 
 class TitleTooltip {
   titleTipNode: HTMLDivElement
@@ -8,7 +9,7 @@ class TitleTooltip {
 
   constructor() {
     this.titleTipNode = document.createElement('div')
-    this.titleTipNode.className = titleTipVariants()
+    this.titleTipNode.className = tvVTitle()
     this.titleTipTextNode = document.createTextNode('')
     this.titleTipNode.appendChild(this.titleTipTextNode)
     document.body.appendChild(this.titleTipNode)
@@ -27,16 +28,15 @@ class TitleTooltip {
         this.titleTipTextNode = document.createTextNode(binding.value)
         this.titleTipNode.appendChild(this.titleTipTextNode)
         const getClassName = (hidden: boolean = false, visible: boolean = false) => {
-          return titleTipVariants({
-            theme: (binding.arg as any) ?? 'default',
-            size: binding.modifiers.lg ? 'lg' : undefined,
+          return tvVTitle({
+            size: binding.modifiers.lg ? 'lg' : 'base',
             unstyled: binding.modifiers.unstyled,
             hidden,
             visible,
           })
         }
         this.titleTipNode.className = getClassName(false)
-        this.titleTipNode.dataset.theme = binding.arg ?? 'default'
+        this.titleTipNode.setAttribute('data-theme-surface', binding.arg ?? 'default')
 
         const { x, y, middlewareData } = await computePosition(el, this.titleTipNode, {
           placement: 'bottom',
@@ -65,7 +65,7 @@ class TitleTooltip {
       clearTimeout(this.showTimer)
       this.showTimer = 0
     }
-    this.titleTipNode.className = titleTipVariants({
+    this.titleTipNode.className = tvVTitle({
       visible: false,
       hidden: true,
     })

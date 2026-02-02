@@ -7,7 +7,7 @@
   "license": "ISC",
   "keywords": [],
   "exports": {
-    ".": "./index.ts"
+    ".": "./src/index.ts"
   },
   "main": "index.ts",
   "scripts": {
