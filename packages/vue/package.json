@@ -8,7 +8,7 @@
   "keywords": [],
   "scripts": {
     "dev": "storybook dev --host 0.0.0.0 --port 4399",
-    "build:storybook": "storybook build",
+    "build:story": "storybook build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
