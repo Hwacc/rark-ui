@@ -19,7 +19,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': './src',
-      '@rui-ark/vue-core': '../../packages/vue/core',
+      '@rui-ark/vue': '../../packages/vue/core',
       '@rui-ark/themes': '../../packages/themes/src',
       '@rui-ark/shared': '../../packages/shared/src',
     },

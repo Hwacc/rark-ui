@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
-import { Button } from '@rui-ark/vue-core/components/button'
+import type { ThemeProps } from '@rui-ark/vue/providers/theme'
+import { Button } from '@rui-ark/vue/components/button'
 import {
   Progress,
   ProgressArc,
   ProgressCircle,
   ProgressLinear,
-} from '@rui-ark/vue-core/components/progress'
+} from '@rui-ark/vue/components/progress'
 import { onUnmounted, ref } from 'vue'
 
 const progressValue = ref(0)

@@ -12,7 +12,7 @@
     "moduleResolution": "bundler",
     "paths": {
       "@/*": ["./*"],
-      "@rui-ark/vue-core/*": ["../../packages/vue/core/*"]
+      "@rui-ark/vue/*": ["../../packages/vue/core/*"]
     },
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,

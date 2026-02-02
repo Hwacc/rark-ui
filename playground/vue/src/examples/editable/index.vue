@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button } from '@rui-ark/vue-core/components/button'
+import { Button } from '@rui-ark/vue/components/button'
 import {
   Editable,
   EditableCancelTrigger,
@@ -8,7 +8,7 @@ import {
   EditableInput,
   EditablePreview,
   EditableSubmitTrigger,
-} from '@rui-ark/vue-core/components/editable'
+} from '@rui-ark/vue/components/editable'
 import { Check, Pencil, X } from 'lucide-vue-next'
 import { ref } from 'vue'
 

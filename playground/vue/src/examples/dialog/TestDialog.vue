@@ -5,7 +5,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-} from '@rui-ark/vue-core/components/dialog'
+} from '@rui-ark/vue/components/dialog'
 </script>
 
 <template>

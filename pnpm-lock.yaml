@@ -132,7 +132,7 @@ importers:
       '@rui-ark/themes':
         specifier: workspace:*
         version: link:../../packages/themes
-      '@rui-ark/vue-core':
+      '@rui-ark/vue':
         specifier: workspace:*
         version: link:../../packages/vue/core
       lucide-vue-next:

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Switch, SwitchLabel } from '@rui-ark/vue-core/components/switch'
+import { Switch, SwitchLabel } from '@rui-ark/vue/components/switch'
 import { ref } from 'vue'
 
 const checked = ref(false)

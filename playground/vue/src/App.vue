@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Toast, Toaster } from '@rui-ark/vue-core/components/toast'
-import { RUIConfig } from '@rui-ark/vue-core/providers/config'
+import { Toast, Toaster } from '@rui-ark/vue/components/toast'
+import { RUIConfig } from '@rui-ark/vue/providers/config'
 import BadgeExample from './examples/badge/index.vue'
 import ButtonExample from './examples/buttons/index.vue'
 import CheckboxExample from './examples/checkbox/index.vue'

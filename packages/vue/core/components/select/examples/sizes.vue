@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
+import type { ThemeProps } from '@rui-ark/vue/providers/theme'
 import { createListCollection } from '@ark-ui/vue/select'
 import { fakerEN } from '@faker-js/faker'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../index'

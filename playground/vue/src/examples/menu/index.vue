@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { fakerEN } from '@faker-js/faker'
-import { Button } from '@rui-ark/vue-core/components/button'
+import { Button } from '@rui-ark/vue/components/button'
 import {
   Menu,
   MenuArrow,
@@ -13,7 +13,7 @@ import {
   MenuRadioItemGroup,
   MenuTrigger,
   MenuTriggerItem,
-} from '@rui-ark/vue-core/components/menu'
+} from '@rui-ark/vue/components/menu'
 import { ref } from 'vue'
 
 const vegetables = Array.from({ length: 5 }, () => fakerEN.food.vegetable())

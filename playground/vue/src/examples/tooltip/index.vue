@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { PopoverContext } from '@ark-ui/vue/popover'
-import { Button } from '@rui-ark/vue-core/components/button'
+import { Button } from '@rui-ark/vue/components/button'
 import {
   HoverCard,
   HoverCardArrow,
   HoverCardContent,
   HoverCardTrigger,
-} from '@rui-ark/vue-core/components/hover-card'
+} from '@rui-ark/vue/components/hover-card'
 import {
   Popover,
   PopoverArrow,
@@ -14,14 +14,14 @@ import {
   PopoverContent,
   PopoverIndicator,
   PopoverTrigger,
-} from '@rui-ark/vue-core/components/popover'
-import { Switch } from '@rui-ark/vue-core/components/switch'
+} from '@rui-ark/vue/components/popover'
+import { Switch } from '@rui-ark/vue/components/switch'
 import {
   Tooltip,
   TooltipArrow,
   TooltipContent,
   TooltipTrigger,
-} from '@rui-ark/vue-core/components/tooltip'
+} from '@rui-ark/vue/components/tooltip'
 import { ref } from 'vue'
 
 const toggle = ref(true)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ThemeProps } from '@rui-ark/vue-core/providers/theme'
+import type { ThemeProps } from '@rui-ark/vue/providers/theme'
 import { ref } from 'vue'
 import { Progress, ProgressLinear } from '../index'
 

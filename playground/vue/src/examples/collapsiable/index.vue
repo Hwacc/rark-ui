@@ -5,7 +5,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
   ReadMore,
-} from '@rui-ark/vue-core/components/collapsiable'
+} from '@rui-ark/vue/components/collapsiable'
 
 const content = fakerEN.lorem.sentences(3)
 const readMoreContent = fakerEN.lorem.sentences(10)
