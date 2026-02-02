@@ -15,7 +15,7 @@ import type { SwitchRootEmits, SwitchRootProps } from '@ark-ui/vue'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HtmlHTMLAttributes } from 'vue'
 import { Switch, useForwardExpose, useForwardProps, useSwitch } from '@ark-ui/vue'
-import { tvSwitch } from '@rui-ark/themes/crafts/switch'
+import { tvSwitch } from '@rui-ark/themes/crafts/core/switch'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 

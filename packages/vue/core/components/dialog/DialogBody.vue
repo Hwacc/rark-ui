@@ -2,7 +2,7 @@
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
-import { tvDialog } from '@rui-ark/themes/crafts/dialog'
+import { tvDialog } from '@rui-ark/themes/crafts/core/dialog'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useId } from 'vue'
 

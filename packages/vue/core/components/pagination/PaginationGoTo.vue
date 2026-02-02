@@ -12,7 +12,7 @@ export interface PaginationGoToProps extends Theme {
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { usePaginationContext } from '@ark-ui/vue'
-import { tvPaginationGoto } from '@rui-ark/themes/crafts/pagination'
+import { tvPaginationGoto } from '@rui-ark/themes/crafts/core/pagination'
 import { NumberInput } from '@rui-ark/vue/components/number-input'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { provide, ref, watch } from 'vue'

@@ -14,7 +14,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { RatingGroup, useRatingGroup } from '@ark-ui/vue/rating-group'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { tvRatingGroup } from '@rui-ark/themes/crafts/rating-group'
+import { tvRatingGroup } from '@rui-ark/themes/crafts/core/rating-group'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 

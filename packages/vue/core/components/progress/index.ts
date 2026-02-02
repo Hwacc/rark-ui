@@ -1,4 +1,4 @@
-import type { ProgressVariants } from '@rui-ark/themes/crafts/progress'
+import type { ProgressVariants } from '@rui-ark/themes/crafts/core/progress'
 import type { ThemeProps } from '@rui-ark/vue/providers/theme'
 
 export { default as Progress, type ProgressProps } from './Progress.vue'

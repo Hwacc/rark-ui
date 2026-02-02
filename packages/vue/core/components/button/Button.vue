@@ -19,12 +19,12 @@ export interface ButtonProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { ButtonVariants } from '@rui-ark/themes/crafts/button'
+import type { ButtonVariants } from '@rui-ark/themes/crafts/core/button'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { getNodeCssVar } from '@rui-ark/shared/css'
-import { tvButton } from '@rui-ark/themes/crafts/button'
+import { tvButton } from '@rui-ark/themes/crafts/core/button'
 import { useRipple } from '@rui-ark/vue/composables/useRipple'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useForwardExpose } from '@rui-ark/vue/libs/useForwardExpose'

@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { DatePicker } from '@ark-ui/vue'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvDatePicker } from '@rui-ark/themes/crafts/date-picker'
+import { tvDatePicker } from '@rui-ark/themes/crafts/core/date-picker'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<DatePickerControlProps>()

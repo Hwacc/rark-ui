@@ -11,7 +11,7 @@ import type {
   ReservedProps,
   UnwrapRef,
 } from 'vue'
-import { tvMessage } from '@rui-ark/themes/crafts/message'
+import { tvMessage } from '@rui-ark/themes/crafts/core/message'
 
 type Attrs<T> = T & ReservedProps
 type PropTypes = NativeElements & {

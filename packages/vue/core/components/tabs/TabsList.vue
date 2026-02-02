@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs, useTabsContext } from '@ark-ui/vue/tabs'
-import { tvTabs } from '@rui-ark/themes/crafts/tabs'
+import { tvTabs } from '@rui-ark/themes/crafts/core/tabs'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useTemplateRef, watchEffect } from 'vue'
 

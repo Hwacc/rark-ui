@@ -12,13 +12,13 @@ export interface TagsInputProps extends TagsInputRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { TagsInputRootBaseProps, TagsInputRootEmits } from '@ark-ui/vue/tags-input'
-import type { TagsInputVariants } from '@rui-ark/themes/crafts/tags-input'
+import type { TagsInputVariants } from '@rui-ark/themes/crafts/core/tags-input'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { TagsInput, useTagsInput } from '@ark-ui/vue/tags-input'
-import { tvInput } from '@rui-ark/themes/crafts/input'
-import { tvTagsInput } from '@rui-ark/themes/crafts/tags-input'
+import { tvInput } from '@rui-ark/themes/crafts/core/input'
+import { tvTagsInput } from '@rui-ark/themes/crafts/core/tags-input'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { computed, nextTick, provide, useTemplateRef, watch } from 'vue'

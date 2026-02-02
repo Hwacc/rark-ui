@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Collapsible, useCollapsible } from '@ark-ui/vue/collapsible'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { tvCollapsible } from '@rui-ark/themes/crafts/collapsible'
+import { tvCollapsible } from '@rui-ark/themes/crafts/core/collapsible'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 

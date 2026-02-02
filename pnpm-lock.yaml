@@ -131,6 +131,12 @@ importers:
 
   packages/vue/core:
     dependencies:
+      '@rui-ark/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@rui-ark/themes':
+        specifier: workspace:*
+        version: link:../../themes
       '@vueuse/core':
         specifier: ^14.1.0
         version: 14.1.0(vue@3.5.27(typescript@5.9.3))
@@ -147,12 +153,6 @@ importers:
       '@internationalized/date':
         specifier: ^3.10.1
         version: 3.10.1
-      '@rui-ark/shared':
-        specifier: workspace:*
-        version: link:../../shared
-      '@rui-ark/themes':
-        specifier: workspace:*
-        version: link:../../themes
       '@zag-js/date-picker':
         specifier: ^1.33.1
         version: 1.33.1(@internationalized/date@3.10.1)
@@ -171,6 +171,33 @@ importers:
       vue-component-type-helpers:
         specifier: ^3.2.1
         version: 3.2.1
+
+  packages/vue/v-aria:
+    dependencies:
+      '@rui-ark/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@rui-ark/themes':
+        specifier: workspace:*
+        version: link:../../themes
+      vue:
+        specifier: ^3.5.27
+        version: 3.5.27(typescript@5.9.3)
+
+  packages/vue/v-title:
+    dependencies:
+      '@floating-ui/vue':
+        specifier: ^1.1.10
+        version: 1.1.10(vue@3.5.27(typescript@5.9.3))
+      '@rui-ark/shared':
+        specifier: workspace:*
+        version: link:../../shared
+      '@rui-ark/themes':
+        specifier: workspace:*
+        version: link:../../themes
+      vue:
+        specifier: ^3.5.27
+        version: 3.5.27(typescript@5.9.3)
 
   playground/vue:
     dependencies:

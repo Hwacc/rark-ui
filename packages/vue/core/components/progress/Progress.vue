@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Progress, useProgress } from '@ark-ui/vue/progress'
-import { tvProgress } from '@rui-ark/themes/crafts/progress'
+import { tvProgress } from '@rui-ark/themes/crafts/core/progress'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 

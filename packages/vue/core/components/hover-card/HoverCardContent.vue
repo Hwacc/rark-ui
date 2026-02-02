@@ -15,7 +15,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { HoverCard } from '@ark-ui/vue/hover-card'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvHoverCard } from '@rui-ark/themes/crafts/hover-card'
+import { tvHoverCard } from '@rui-ark/themes/crafts/core/hover-card'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import {
   checkContextVNodePosition,

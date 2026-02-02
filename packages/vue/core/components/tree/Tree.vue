@@ -15,7 +15,7 @@ import type { HTMLAttributes } from 'vue'
 import type { TreeViewRootEmits } from './tree'
 import { useForwardProps } from '@ark-ui/vue'
 import { TreeView, useTreeView } from '@ark-ui/vue/tree-view'
-import { tvTree } from '@rui-ark/themes/crafts/tree'
+import { tvTree } from '@rui-ark/themes/crafts/core/tree'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 

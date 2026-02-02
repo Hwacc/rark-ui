@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { MenuItem } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvMenu } from '@rui-ark/themes/crafts/menu'
+import { tvMenu } from '@rui-ark/themes/crafts/core/menu'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const {

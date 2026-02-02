@@ -9,7 +9,7 @@ export interface PopoverIndicatorProps extends Theme {
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HtmlHTMLAttributes } from 'vue'
 import { PopoverIndicator } from '@ark-ui/vue'
-import { tvPopover } from '@rui-ark/themes/crafts/popover'
+import { tvPopover } from '@rui-ark/themes/crafts/core/popover'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronDown } from 'lucide-vue-next'
 

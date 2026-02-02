@@ -15,7 +15,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Tooltip } from '@ark-ui/vue/tooltip'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvTooltip } from '@rui-ark/themes/crafts/tooltip'
+import { tvTooltip } from '@rui-ark/themes/crafts/core/tooltip'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import {
   checkContextVNodePosition,

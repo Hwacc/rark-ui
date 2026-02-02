@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { PopoverCloseTrigger } from '@ark-ui/vue/popover'
-import { tvPopover } from '@rui-ark/themes/crafts/popover'
+import { tvPopover } from '@rui-ark/themes/crafts/core/popover'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { X } from 'lucide-vue-next'
 

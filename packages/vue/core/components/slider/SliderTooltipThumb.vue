@@ -18,7 +18,7 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Slider, useSliderContext } from '@ark-ui/vue/slider'
 import { TooltipRootProvider, useTooltip } from '@ark-ui/vue/tooltip'
-import { tvSlider } from '@rui-ark/themes/crafts/slider'
+import { tvSlider } from '@rui-ark/themes/crafts/core/slider'
 import {
   TooltipArrow,
   TooltipContent,

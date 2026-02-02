@@ -9,7 +9,7 @@ export interface SwitchLabelProps extends ThemeProps {
 import type { ThemeProps } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Switch } from '@ark-ui/vue/switch'
-import { tvSwitch } from '@rui-ark/themes/crafts/switch'
+import { tvSwitch } from '@rui-ark/themes/crafts/core/switch'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const {

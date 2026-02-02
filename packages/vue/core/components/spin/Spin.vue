@@ -19,7 +19,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, VNode } from 'vue'
 import type { SpinRenderProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
-import { tvSpin } from '@rui-ark/themes/crafts/spin'
+import { tvSpin } from '@rui-ark/themes/crafts/core/spin'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed, getCurrentInstance, inject, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 

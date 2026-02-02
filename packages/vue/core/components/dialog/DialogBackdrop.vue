@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Dialog } from '@ark-ui/vue/dialog'
-import { tvDialog } from '@rui-ark/themes/crafts/dialog'
+import { tvDialog } from '@rui-ark/themes/crafts/core/dialog'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<DialogBackdropProps>()

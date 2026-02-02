@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardPropsEmits } from '@ark-ui/vue'
 import { Toggle } from '@ark-ui/vue/toggle'
-import { tvToggle } from '@rui-ark/themes/crafts/toggle'
+import { tvToggle } from '@rui-ark/themes/crafts/core/toggle'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<ToggleProps>()

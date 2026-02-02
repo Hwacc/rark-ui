@@ -2,7 +2,7 @@
 import type { VNode } from 'vue'
 import type { SpinRenderProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
-import { tvSpin } from '@rui-ark/themes/crafts/spin'
+import { tvSpin } from '@rui-ark/themes/crafts/core/spin'
 import { LoaderCircle } from 'lucide-vue-next'
 import { provide } from 'vue'
 

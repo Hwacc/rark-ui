@@ -9,7 +9,7 @@ import type { EditablePreviewBaseProps } from '@ark-ui/vue/editable'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import { EditablePreview } from '@ark-ui/vue/editable'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvEditable } from '@rui-ark/themes/crafts/editable'
+import { tvEditable } from '@rui-ark/themes/crafts/core/editable'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const {

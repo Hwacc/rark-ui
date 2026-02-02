@@ -8,11 +8,11 @@ export interface BadgeProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { BadgeVariants } from '@rui-ark/themes/crafts/badge'
+import type { BadgeVariants } from '@rui-ark/themes/crafts/core/badge'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
-import { tvBadge } from '@rui-ark/themes/crafts/badge'
+import { tvBadge } from '@rui-ark/themes/crafts/core/badge'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useForwardProps } from '@rui-ark/vue/libs/useForwardProps'
 

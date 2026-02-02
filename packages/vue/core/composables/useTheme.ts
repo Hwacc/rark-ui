@@ -1,7 +1,7 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type { ThemeProps } from '../providers/theme/theme-props'
 import { omitBy } from 'es-toolkit'
-import { isNil, shuffle } from 'es-toolkit/compat'
+import { isNil } from 'es-toolkit/compat'
 import { computed, toValue } from 'vue'
 import { injectThemeContext } from '../providers/theme/theme-props'
 import { useConfig } from './useConfig'

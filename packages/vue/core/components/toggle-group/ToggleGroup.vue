@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ToggleGroup, useToggleGroup } from '@ark-ui/vue/toggle-group'
-import { tvToggleGroup } from '@rui-ark/themes/crafts/toggle-group'
+import { tvToggleGroup } from '@rui-ark/themes/crafts/core/toggle-group'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 

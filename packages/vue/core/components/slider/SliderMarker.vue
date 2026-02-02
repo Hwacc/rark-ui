@@ -10,7 +10,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider, useSliderContext } from '@ark-ui/vue/slider'
-import { tvSlider } from '@rui-ark/themes/crafts/slider'
+import { tvSlider } from '@rui-ark/themes/crafts/core/slider'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { pick } from 'es-toolkit'
 

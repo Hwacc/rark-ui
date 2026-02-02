@@ -11,7 +11,7 @@ import type { HTMLAttributes } from 'vue'
 import type { ScrollAreaTheme } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { ScrollArea } from '@ark-ui/vue/scroll-area'
-import { tvScrollArea } from '@rui-ark/themes/crafts/scroll-area'
+import { tvScrollArea } from '@rui-ark/themes/crafts/core/scroll-area'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 const {

@@ -15,7 +15,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Popover } from '@ark-ui/vue/popover'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvPopover } from '@rui-ark/themes/crafts/popover'
+import { tvPopover } from '@rui-ark/themes/crafts/core/popover'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import {
   checkContextVNodePosition,

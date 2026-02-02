@@ -13,7 +13,7 @@ export interface IconProps extends Omit<Theme, 'size'> {
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { Icon } from '@iconify/vue'
-import { tvIcon } from '@rui-ark/themes/crafts/icon'
+import { tvIcon } from '@rui-ark/themes/crafts/core/icon'
 
 const {
   class: propsClass,
