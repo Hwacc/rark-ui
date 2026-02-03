@@ -3,7 +3,7 @@ import type { Meta } from 'storybook-vue3-rsbuild'
 import BasicExample from './examples/basic.vue'
 
 const meta: Meta = {
-  title: 'Add-ons/Directives/v-title',
+  title: 'Addons/Directives/v-title',
 }
 
 export default meta

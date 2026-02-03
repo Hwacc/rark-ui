@@ -1,6 +1,6 @@
 import type { DirectiveBinding } from 'vue'
 import { computePosition, flip, hide, offset, shift } from '@floating-ui/vue'
-import { tvVTitle } from '@rui-ark/themes/crafts/add-ons/v-title'
+import { tvVTitle } from '@rui-ark/themes/crafts/addons/v-title'
 
 class TitleTooltip {
   titleTipNode: HTMLDivElement

@@ -6,7 +6,7 @@ import BasicExample from './examples/basic.vue'
 import ScrollContainerExample from './examples/scroll-container.vue'
 
 const meta: Meta = {
-  title: 'Add-ons/Directives/v-lazy',
+  title: 'Addons/Directives/v-lazy',
 }
 
 export default meta
@@ -38,4 +38,3 @@ export const ArraySrc = {
     template: '<Component />',
   }),
 }
-

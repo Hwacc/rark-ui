@@ -1,5 +1,6 @@
 {
   "name": "@rui-ark/vue-storybook",
+  "type": "module",
   "author": "razer.hua",
   "scripts": {
     "dev": "storybook dev --host 0.0.0.0 --port 4399",

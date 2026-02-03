@@ -5,7 +5,7 @@ trustPolicy: no-downgrade
 packages:
   - packages/*
   - packages/vue/core
-  - packages/vue/add-ons
+  - packages/vue/addons
   - playground/*
 ignoredBuiltDependencies:
   - core-js

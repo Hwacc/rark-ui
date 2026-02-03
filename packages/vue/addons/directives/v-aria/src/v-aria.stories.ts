@@ -4,7 +4,7 @@ import BasicExample from './examples/basic.vue'
 import PtTargetExample from './examples/pt-target.vue'
 
 const meta: Meta = {
-  title: 'Add-ons/Directives/v-aria',
+  title: 'Addons/Directives/v-aria',
 }
 
 export default meta
@@ -22,4 +22,3 @@ export const PtTarget = {
     template: '<Component />',
   }),
 }
-

@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import { svgDataUri } from './_utils'
-
-const loading = svgDataUri({ text: 'loading...', bg: '#444', fg: '#fff' })
-const error = svgDataUri({ text: 'error', bg: '#7f1d1d', fg: '#fff' })
-
-const srcs = Array.from({ length: 8 }, (_, i) =>
-  svgDataUri({ text: `item ${i + 1}`, bg: '#1f2937', fg: '#fff' }))
+const srcs = Array.from({ length: 8 }, (_, i) => { return '' })
 </script>
 
 <template>
@@ -19,11 +13,7 @@ const srcs = Array.from({ length: 8 }, (_, i) =>
         <img
           v-for="(src, i) in srcs"
           :key="src"
-          v-lazy.scroller:src="{
-            src,
-            loading,
-            error,
-          }"
+          v-lazy.scroller:src="{}"
           class="w-full h-28 rounded border border-h55 object-cover"
           :alt="`lazy-${i}`"
         >

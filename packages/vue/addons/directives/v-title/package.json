@@ -1,5 +1,5 @@
 {
-  "name": "@rui-ark/vue/add-ons/v-lazy",
+  "name": "@rui-ark/vue/addons/v-title",
   "version": "1.0.0",
   "packageManager": "pnpm@10.13.1",
   "description": "",
@@ -14,12 +14,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "@rui-ark/shared": "workspace:*",
+    "@floating-ui/vue": "^1.1.10",
     "@rui-ark/themes": "workspace:*",
     "vue": "^3.5.27"
   },
-  "dependencies": {
-    "es-toolkit": "^1.44.0",
-    "vue-lazyload": "^3.0.0"
+  "devDependencies": {
+    "@floating-ui/vue": "^1.1.10"
   }
 }
