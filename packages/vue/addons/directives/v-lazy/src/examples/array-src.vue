@@ -1,16 +1,34 @@
 <script setup lang="ts">
-// 第一个为空触发“加载下一个”的逻辑
-const src = ['']
+import { vLazy } from '../index'
 </script>
 
 <template>
   <div class="flex flex-col gap-3">
     <p class="text-sm text-hcc">
-      数组 src（内部会依次尝试，命中后缓存）
+      src 数组用法
     </p>
     <img
-      v-lazy:src="{}"
-      class="w-72 h-40 rounded border border-h55 object-cover"
+      v-lazy="{
+        src: [
+          'http://iph.href.lu/240x160?text=Loaded0',
+          'http://iph.href.lu/240x160?text=Loaded1',
+        ],
+        loading: 'http://iph.href.lu/240x160?text=Loading&bg=000088',
+        error: 'http://iph.href.lu/240x160?text=Error&bg=aa0000',
+      }"
+      class="w-60 h-40 rounded border border-h55 object-cover"
+      alt="array-src"
+    >
+    <img
+      v-lazy="{
+        src: [
+          'error.png',
+          'http://iph.href.lu/240x160?text=Loaded1',
+        ],
+        loading: 'http://iph.href.lu/240x160?text=Loading&bg=000088',
+        error: 'http://iph.href.lu/240x160?text=Error&bg=aa0000',
+      }"
+      class="w-60 h-40 rounded border border-h55 object-cover"
       alt="array-src"
     >
   </div>

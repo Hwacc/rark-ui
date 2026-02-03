@@ -86,12 +86,6 @@ class ReactiveListenerEx extends ReactiveListener {
 
       if (isArray(this.src)) {
         const _onResolve = (data: { naturalHeight: number, naturalWidth: number, src: string }) => {
-          if (this.src && this.src.includes(data.src)) {
-            this.attempt = 0
-            this.initState()
-            this.load(onFinish)
-            return
-          }
           this.naturalHeight = data.naturalHeight
           this.naturalWidth = data.naturalWidth
           this.state.loaded = true

@@ -1,4 +1,4 @@
-import type { App, Plugin } from 'vue'
+import type { App, Directive, Plugin } from 'vue'
 import type { VueLazyloadOptionsEx } from './types'
 import LazyComponent from 'vue-lazyload/src/lazy-component'
 import LazyContainer from 'vue-lazyload/src/lazy-container'
@@ -7,10 +7,10 @@ import LazyEx from './lazy'
 
 const plugin: Plugin<[options?: VueLazyloadOptionsEx]> = {
   /*
-  * install function
-  * @param  {Vue} Vue
-  * @param  {object} options lazyload options
-  */
+   * install function
+   * @param  {Vue} Vue
+   * @param  {object} options lazyload options
+   */
   install(app: App, options: VueLazyloadOptionsEx = {}) {
     const lazy = new LazyEx(options)
     const lazyContainer = new LazyContainer(lazy)
@@ -44,5 +44,12 @@ const plugin: Plugin<[options?: VueLazyloadOptionsEx]> = {
     })
   },
 }
+export { plugin }
 
-export default plugin
+const dirLazy = new LazyEx({})
+export const vLazy: Directive = {
+  beforeMount: dirLazy.add.bind(dirLazy),
+  beforeUpdate: dirLazy.update.bind(dirLazy),
+  updated: dirLazy.lazyLoadHandler.bind(dirLazy),
+  unmounted: dirLazy.remove.bind(dirLazy),
+}

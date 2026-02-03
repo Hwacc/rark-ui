@@ -14,6 +14,7 @@ export function loadImageArrAsync(
   if (isEmpty(arr[index])) {
     return reject(index + 1, new Error('will load next'))
   }
+  console.log('loadImageArrAsync', arr[index], index)
   image.src = arr[index]
   image.onload = function () {
     resolve({

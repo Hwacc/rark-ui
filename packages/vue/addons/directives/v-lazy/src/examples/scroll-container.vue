@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const srcs = Array.from({ length: 8 }, (_, i) => { return '' })
+import { vLazy } from '../index'
+
+const srcs = Array.from({ length: 8 }, (_, i) => ({
+  src: `http://iph.href.lu/240x160?text=Loaded${i}`,
+  loading: `http://iph.href.lu/240x160?text=Loading&bg=000088`,
+  error: `http://iph.href.lu/240x160?text=Error&bg=aa0000`,
+}))
 </script>
 
 <template>
@@ -12,8 +18,8 @@ const srcs = Array.from({ length: 8 }, (_, i) => { return '' })
       <div class="flex flex-col gap-6">
         <img
           v-for="(src, i) in srcs"
-          :key="src"
-          v-lazy.scroller:src="{}"
+          :key="i"
+          v-lazy="src"
           class="w-full h-28 rounded border border-h55 object-cover"
           :alt="`lazy-${i}`"
         >
