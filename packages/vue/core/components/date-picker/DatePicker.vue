@@ -1,5 +1,6 @@
 <script lang="ts">
 import type * as ZagDatePicker from '@zag-js/date-picker'
+import { useTheme } from '@rui-ark/vue/composables/useTheme'
 
 export interface DatePickerProps extends DatePickerRootBaseProps, Theme {}
 export type DatePickerRootEmits = {
@@ -20,9 +21,13 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import { DatePicker, useDatePicker, useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 
-const { theme, ...props } = defineProps<DatePickerProps>()
+const { theme: themeProps, ...props } = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerRootEmits>()
 const datePicker = useDatePicker(useForwardProps<DatePickerProps, UseDatePickerProps>(props), emit)
+
+// theme
+console.log('themeProps', themeProps)
+const theme = useTheme(() => themeProps)
 
 // expose
 defineExpose({ $api: datePicker })
@@ -31,7 +36,7 @@ useForwardExpose()
 
 <template>
   <DatePicker.RootProvider :value="datePicker">
-    <ThemeProvider>
+    <ThemeProvider :value="theme">
       <slot />
     </ThemeProvider>
   </DatePicker.RootProvider>

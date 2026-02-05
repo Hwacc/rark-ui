@@ -20,9 +20,10 @@ export const tvBadge = tv(
         dot: ['rounded-full', '-top-[.5em]', '-right-[.5em]'],
       },
       size: {
-        base: ['text-2xs', 'py-[.0625rem]', 'px-[.3125rem]'],
-        sm: ['text-3xs', 'py-[.0625rem]', 'px-[.25rem]'],
-        lg: ['text-xs', 'py-[.125rem]', 'px-[.375rem]'],
+        xs: ['text-3xs', 'py-0.25', 'px-1'],
+        sm: ['text-2xs', 'py-0.25', 'px-1'],
+        base: ['text-xs', 'py-0.5', 'px-1.25'],
+        lg: ['text-sm', 'py-0.5', 'px-1.5'],
       },
     },
     defaultVariants: {

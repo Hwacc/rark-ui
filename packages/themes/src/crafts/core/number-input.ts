@@ -6,25 +6,29 @@ const prefix = 'rui-number-input'
 export const tvNumberInput = tv(
   {
     slots: {
-      root: [],
+      root: '',
       control: 'p-0',
-      input: ['py-1.5', 'px-2'],
+      input: '',
       triggerGroup: 'flex flex-col',
       trigger: '[&>svg]:size-full',
     },
     variants: {
       size: {
-        base: {
-          input: 'text-sm',
-          trigger: 'h-4 w-8 [&>svg]:size-full',
-        },
-        sm: {
-          input: 'text-xs',
+        xs: {
+          input: 'text-xs py-1 px-1.5',
           trigger: 'h-3 w-6 [&>svg]:size-full',
         },
-        lg: {
-          input: 'text-base',
+        sm: {
+          input: 'text-sm py-1.5 px-2',
+          trigger: 'h-4 w-8 [&>svg]:size-full',
+        },
+        base: {
+          input: 'text-base py-2 px-2.5',
           trigger: 'h-4.5 w-8 [&>svg]:size-full',
+        },
+        lg: {
+          input: 'text-lg py-2.5 px-3',
+          trigger: 'h-5 w-10 [&>svg]:size-full',
         },
       },
     },

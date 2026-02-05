@@ -1,10 +1,9 @@
 <script setup lang="ts">
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { ref } from 'vue'
 import { NumberInput } from '../index'
 
-const sm = ref('8')
-const base = ref('12')
-const lg = ref('16')
+const value = ref('10')
 </script>
 
 <template>
@@ -15,24 +14,10 @@ const lg = ref('16')
 
     <div class="w-full max-w-[520px] flex flex-col gap-3 rounded-md border border-h33 p-3">
       <NumberInput
-        v-model="sm"
-        :theme="{ size: 'sm' }"
-        show-trigger
-        :min="0"
-        :max="100"
-        :step="1"
-      />
-      <NumberInput
-        v-model="base"
-        :theme="{ size: 'base' }"
-        show-trigger
-        :min="0"
-        :max="100"
-        :step="1"
-      />
-      <NumberInput
-        v-model="lg"
-        :theme="{ size: 'lg' }"
+        v-for="size in THEME_SIZE"
+        :key="size"
+        v-model="value"
+        :theme="{ size }"
         show-trigger
         :min="0"
         :max="100"

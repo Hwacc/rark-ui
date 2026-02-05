@@ -4,7 +4,7 @@ import { useMessage } from '../index'
 
 const { message } = useMessage()
 
-function open(size: 'sm' | 'base' | 'lg', showClose: boolean) {
+function open(size: 'xs' | 'sm' | 'base' | 'lg', showClose: boolean) {
   message.create({
     type: 'info',
     theme: { size },
@@ -17,6 +17,9 @@ function open(size: 'sm' | 'base' | 'lg', showClose: boolean) {
 
 <template>
   <div class="flex flex-wrap items-center gap-3">
+    <Button variant="outline" @click="open('xs', true)">
+      xs + close
+    </Button>
     <Button variant="outline" @click="open('sm', true)">
       sm + close
     </Button>

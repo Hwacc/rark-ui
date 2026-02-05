@@ -10,6 +10,8 @@ import ControlledOpenExample from './examples/controlled-open.vue'
 import ControlledOpenExampleRaw from './examples/controlled-open.vue?raw'
 import RadioExample from './examples/radio.vue'
 import RadioExampleRaw from './examples/radio.vue?raw'
+import SizesExample from './examples/sizes.vue'
+import SizesExampleRaw from './examples/sizes.vue?raw'
 import SubmenuExample from './examples/submenu.vue'
 import SubmenuExampleRaw from './examples/submenu.vue?raw'
 
@@ -109,3 +111,17 @@ export const ControlledOpen = {
   }),
 }
 
+export const Sizes = {
+  parameters: {
+    docs: {
+      source: {
+        code: SizesExampleRaw,
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Component: SizesExample },
+    template: '<Component />',
+  }),
+}

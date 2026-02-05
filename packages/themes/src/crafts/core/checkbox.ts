@@ -18,8 +18,9 @@ export const tvCheckbox = tv({
       false: '',
     },
     size: {
-      base: '',
+      xs: '',
       sm: '',
+      base: '',
       lg: '',
     },
   },
@@ -28,15 +29,7 @@ export const tvCheckbox = tv({
   },
   compoundVariants: [
     {
-      size: 'base',
-      class: {
-        control: 'size-4',
-        label: 'text-sm',
-        indicator: 'text-sm',
-      },
-    },
-    {
-      size: 'sm',
+      size: 'xs',
       class: {
         control: 'size-3.5',
         label: 'text-xs',
@@ -44,11 +37,27 @@ export const tvCheckbox = tv({
       },
     },
     {
-      size: 'lg',
+      size: 'sm',
+      class: {
+        control: 'size-4',
+        label: 'text-sm',
+        indicator: 'text-sm',
+      },
+    },
+    {
+      size: 'base',
       class: {
         control: 'size-4.5',
         label: 'text-base',
         indicator: 'text-base',
+      },
+    },
+    {
+      size: 'lg',
+      class: {
+        control: 'size-5',
+        label: 'text-lg',
+        indicator: 'text-lg',
       },
     },
   ],

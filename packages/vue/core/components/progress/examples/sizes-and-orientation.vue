@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { ThemeProps } from '@rui-ark/vue/providers/theme'
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { ref } from 'vue'
 import { Progress, ProgressLinear } from '../index'
 
 const value = ref(65)
-const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
 </script>
 
 <template>
@@ -14,7 +13,7 @@ const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
         Horizontal sizes
       </div>
       <Progress
-        v-for="size in sizes"
+        v-for="size in THEME_SIZE"
         :key="String(size)"
         class="w-80"
         :model-value="value"
@@ -30,7 +29,7 @@ const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
       </div>
       <div class="flex items-end gap-6">
         <Progress
-          v-for="size in sizes"
+          v-for="size in THEME_SIZE"
           :key="`v-${String(size)}`"
           class="h-30"
           orientation="vertical"

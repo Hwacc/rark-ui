@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { fakerEN } from '@faker-js/faker'
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { Button } from '../../button'
 import {
   Dialog,
@@ -15,40 +16,18 @@ const content = fakerEN.lorem.sentences(3)
 
 <template>
   <div class="w-full flex flex-wrap items-center gap-4">
-    <Dialog :theme="{ size: 'sm' }">
+    <Dialog
+      v-for="size in THEME_SIZE"
+      :key="size"
+      :theme="{ size }"
+    >
       <DialogTrigger as-child>
-        <Button variant="outline">
-          Small
+        <Button :theme="{ size }" variant="outline">
+          {{ size }}
         </Button>
       </DialogTrigger>
       <DialogContent class="w-110">
-        <DialogHeader>Small Dialog</DialogHeader>
-        <DialogBody>{{ content }}</DialogBody>
-        <DialogFooter />
-      </DialogContent>
-    </Dialog>
-
-    <Dialog :theme="{ size: 'base' }">
-      <DialogTrigger as-child>
-        <Button variant="outline">
-          Base
-        </Button>
-      </DialogTrigger>
-      <DialogContent class="w-120">
-        <DialogHeader>Base Dialog</DialogHeader>
-        <DialogBody>{{ content }}</DialogBody>
-        <DialogFooter />
-      </DialogContent>
-    </Dialog>
-
-    <Dialog :theme="{ size: 'lg' }">
-      <DialogTrigger as-child>
-        <Button variant="outline">
-          Large
-        </Button>
-      </DialogTrigger>
-      <DialogContent class="w-140">
-        <DialogHeader>Large Dialog</DialogHeader>
+        <DialogHeader>{{ size }} Dialog</DialogHeader>
         <DialogBody>{{ content }}</DialogBody>
         <DialogFooter />
       </DialogContent>

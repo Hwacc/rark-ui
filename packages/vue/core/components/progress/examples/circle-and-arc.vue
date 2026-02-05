@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { ThemeProps } from '@rui-ark/vue/providers/theme'
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { ref } from 'vue'
 import { Progress, ProgressArc, ProgressCircle } from '../index'
 
 const value = ref(70)
-const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
 </script>
 
 <template>
@@ -14,7 +13,11 @@ const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
         Circle (default)
       </div>
       <div class="flex items-center gap-4">
-        <Progress v-for="size in sizes" :key="String(size)" :model-value="value">
+        <Progress
+          v-for="size in THEME_SIZE"
+          :key="String(size)"
+          :model-value="value"
+        >
           <ProgressCircle :theme="{ size }" />
         </Progress>
         <Progress :model-value="value">
@@ -28,8 +31,15 @@ const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
         Circle (transfer)
       </div>
       <div class="flex items-center gap-4">
-        <Progress v-for="size in sizes" :key="`t-${String(size)}`" :model-value="value">
-          <ProgressCircle :theme="{ size }" variant="transfer" />
+        <Progress
+          v-for="size in THEME_SIZE"
+          :key="`t-${String(size)}`"
+          :model-value="value"
+        >
+          <ProgressCircle
+            :theme="{ size }"
+            variant="transfer"
+          />
         </Progress>
       </div>
     </div>
@@ -39,11 +49,23 @@ const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
         Arc (transfer + theta)
       </div>
       <div class="flex items-center gap-4">
-        <Progress v-for="size in sizes" :key="`a-${String(size)}`" :model-value="value">
-          <ProgressArc :theme="{ size }" variant="transfer" :theta="60" />
+        <Progress
+          v-for="size in THEME_SIZE"
+          :key="`a-${String(size)}`"
+          :model-value="value"
+        >
+          <ProgressArc
+            :theme="{ size }"
+            variant="transfer"
+            :theta="60"
+          />
         </Progress>
         <Progress :model-value="value">
-          <ProgressArc :theme="{ size: 120 }" variant="transfer" :theta="120" />
+          <ProgressArc
+            :theme="{ size: 120 }"
+            variant="transfer"
+            :theta="120"
+          />
         </Progress>
       </div>
     </div>

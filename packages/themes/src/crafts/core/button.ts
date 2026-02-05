@@ -10,8 +10,6 @@ export const tvButton = tv(
         'inline-flex',
         'items-center',
         'justify-center',
-        'px-4',
-        'gap-2',
         'rounded',
         'border',
         'transition-all',
@@ -33,14 +31,17 @@ export const tvButton = tv(
         },
       },
       size: {
-        base: {
-          root: 'h-7 text-sm',
+        xs: {
+          root: 'h-6 px-3 gap-1.5 text-xs',
         },
         sm: {
-          root: 'h-6 text-xs',
+          root: 'h-7 px-4 gap-2 text-sm',
+        },
+        base: {
+          root: 'h-8 px-5 gap-2.5 text-base',
         },
         lg: {
-          root: 'h-8 text-base',
+          root: 'h-9 px-6 gap-3 text-lg',
         },
       },
       loading: {

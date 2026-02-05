@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { Input } from '../index'
 </script>
 
 <template>
   <div class="w-full flex flex-col gap-3">
-    <Input class="w-60" :theme="{ size: 'sm' }" placeholder="Small" />
-    <Input class="w-60" :theme="{ size: 'base' }" placeholder="Base" />
-    <Input class="w-60" :theme="{ size: 'lg' }" placeholder="Large" />
+    <Input
+      v-for="size in THEME_SIZE"
+      :key="size"
+      class="w-60"
+      :theme="{ size }"
+      :placeholder="size"
+    />
   </div>
 </template>

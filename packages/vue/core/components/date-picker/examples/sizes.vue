@@ -13,6 +13,7 @@ import {
 } from '../index'
 
 const value = ref([])
+const sizes = ['xs', 'sm', 'base', 'lg'] as const
 
 function handleViewChange(details: ViewChangeDetails) {
   console.log('view change', details)
@@ -24,12 +25,19 @@ function handleViewChange(details: ViewChangeDetails) {
     <div class="text-sm text-hcc">
       value: <span class="text-hff">{{ value.length ? String(value[0]) : '(empty)' }}</span>
     </div>
-
-    <div class="w-full max-w-[520px] rounded-md border border-h33 p-3">
-      <DatePicker v-model="value" @view-change="handleViewChange">
+    <div class="w-full flex items-center gap-4 max-w-[520px] rounded-md border border-h33 p-3">
+      <DatePicker
+        v-for="size in sizes"
+        :key="size"
+        v-model="value"
+        :theme="{ size }"
+        @view-change="handleViewChange"
+      >
         <DatePickerControl class="w-fit">
           <DatePickerTrigger>
-            <Button> Select Date</Button>
+            <Button :theme="{ size }">
+              {{ size }}
+            </Button>
           </DatePickerTrigger>
         </DatePickerControl>
         <DatePickerContent>

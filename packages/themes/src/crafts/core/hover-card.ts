@@ -25,8 +25,9 @@ export const tvHoverCard = tv(
     },
     variants: {
       size: {
-        base: '',
+        xs: '',
         sm: '',
+        base: '',
         lg: '',
       },
       bordered: {
@@ -40,21 +41,27 @@ export const tvHoverCard = tv(
     },
     compoundVariants: [
       {
-        size: 'sm',
+        size: 'xs',
         class: {
           contentInner: 'px-1.5 py-0.5 text-xs',
         },
       },
       {
-        size: 'base',
+        size: 'sm',
         class: {
           contentInner: 'px-2 py-1 text-sm',
         },
       },
       {
-        size: 'lg',
+        size: 'base',
         class: {
           contentInner: 'px-2.5 py-1.5 text-base',
+        },
+      },
+      {
+        size: 'lg',
+        class: {
+          contentInner: 'px-3 py-2 text-lg',
         },
       },
       {

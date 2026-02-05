@@ -35,10 +35,21 @@ export const tvDialog = tv(
     },
     variants: {
       size: {
-        base: {
+        xs: {
+          body: 'p-4 text-xs',
+          footer: 'p-4 gap-4 text-xs',
+          header: 'py-2 px-4 text-xs',
+          close: [
+            'p-0.25',
+            'text-xs',
+            'data-[variant=content-close]:pt-1.5',
+            'data-[variant=content-close]:pr-1.5',
+          ],
+        },
+        sm: {
           body: 'p-5 text-sm',
-          footer: 'p-4 gap-5 text-sm',
-          header: 'py-2.5 pl-5 pr-4 text-sm',
+          footer: 'p-5 gap-5 text-sm',
+          header: 'py-2.5 px-5 text-sm',
           close: [
             'p-0.5',
             'text-sm',
@@ -47,24 +58,26 @@ export const tvDialog = tv(
             'data-[variant=content-close]:pr-2',
           ],
         },
-        sm: {
-          body: 'p-6 text-xl',
-          footer: 'p-4 text-base',
-          header: 'py-2.5 pl-6 pr-4 text-base',
+        base: {
+          body: 'p-6 text-base',
+          footer: 'p-6 gap-6 text-base',
+          header: 'py-3 px-6 text-base',
           close: [
+            'p-0.75',
             'text-base',
             'data-[variant=content-close]:pt-2.5',
             'data-[variant=content-close]:pr-2.5',
           ],
         },
         lg: {
-          body: 'p-6 text-xl',
-          footer: 'p-4 text-base',
-          header: 'py-2.5 pl-6 pr-4 text-base',
+          body: 'p-8 text-lg',
+          footer: 'p-8 gap-8 text-lg',
+          header: 'py-4 px-8 text-lg',
           close: [
-            'text-base',
-            'data-[variant=content-close]:pt-2.5',
-            'data-[variant=content-close]:pr-2.5',
+            'p-1',
+            'text-lg',
+            'data-[variant=content-close]:pt-3',
+            'data-[variant=content-close]:pr-3',
           ],
         },
       },

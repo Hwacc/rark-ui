@@ -7,7 +7,7 @@ export type Surface = 'light' | 'dark' | (string & {})
 export interface ThemeProps {
   skin?: Skin
   surface?: Surface
-  size?: 'base' | 'sm' | 'lg' | undefined
+  size?: 'base' | 'sm' | 'lg' | 'xs' | undefined
   unstyled?: boolean
   bordered?: boolean
 }

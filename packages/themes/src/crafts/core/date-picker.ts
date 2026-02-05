@@ -34,14 +34,17 @@ export const tvDatePicker = tv(
 
     variants: {
       size: {
-        base: {
-          contentInner: 'px-2 py-1.5',
-        },
-        sm: {
+        xs: {
           contentInner: 'px-1.5 py-1',
         },
-        lg: {
+        sm: {
+          contentInner: 'px-2 py-1.5',
+        },
+        base: {
           contentInner: 'px-2.5 py-1.5',
+        },
+        lg: {
+          contentInner: 'px-3 py-2',
         },
       },
       bordered: {
@@ -87,26 +90,33 @@ export const tvDatePickerView = tv(
     },
     variants: {
       size: {
-        base: {
+        xs: {
+          view: 'text-xs',
+          viewControl: '',
+          viewControlTrigger: 'box-content p-1.5',
+          viewTrigger: 'text-xs h-6 px-1.5',
+          tableHeader: 'w-6 text-xxs',
+        },
+        sm: {
           view: 'text-sm',
           viewControl: '',
           viewControlTrigger: 'box-content p-2',
           viewTrigger: 'text-sm h-8 px-2',
           tableHeader: 'w-8 text-xs',
         },
-        sm: {
-          view: 'text-xs',
-          viewControl: '',
-          viewControlTrigger: 'box-content p-1.5',
-          viewTrigger: 'text-xs h-6 px-1.5',
-          tableHeader: 'w-7 text-xxs',
-        },
-        lg: {
+        base: {
           view: 'text-base',
           viewControl: '',
           viewControlTrigger: 'box-content p-2.5',
           viewTrigger: 'text-base h-9.5 px-2.5',
           tableHeader: 'w-10 text-sm',
+        },
+        lg: {
+          view: 'text-lg',
+          viewControl: '',
+          viewControlTrigger: 'box-content p-3',
+          viewTrigger: 'text-lg h-10 px-3',
+          tableHeader: 'w-12 text-base',
         },
       },
 
@@ -172,38 +182,52 @@ export const tvDatePickerView = tv(
 
     compoundVariants: [
       {
-        size: 'base',
+        size: 'xs',
+        view: ['month', 'year'],
+        class: {
+          tableCell: 'w-12',
+        },
+      },
+      {
+        size: 'sm',
         view: ['month', 'year'],
         class: {
           tableCell: 'w-14',
         },
       },
       {
-        size: 'sm',
+        size: 'base',
         view: ['month', 'year'],
         class: {
-          tableCell: 'w-12.5',
+          tableCell: 'w-16',
         },
       },
       {
         size: 'lg',
         view: ['month', 'year'],
         class: {
-          tableCell: 'w-17.5',
+          tableCell: 'w-18',
         },
       },
       {
         today: true,
-        size: 'base',
+        size: 'xs',
         class: {
-          tableCellTrigger: 'after:w-1.5 after:h-1.5',
+          tableCellTrigger: 'after:w-1.25 after:h-1.25',
         },
       },
       {
         today: true,
         size: 'sm',
         class: {
-          tableCellTrigger: 'after:w-1.25 after:h-1.25',
+          tableCellTrigger: 'after:w-1.5 after:h-1.5',
+        },
+      },
+      {
+        today: true,
+        size: 'base',
+        class: {
+          tableCellTrigger: 'after:w-1.75 after:h-1.75',
         },
       },
       {

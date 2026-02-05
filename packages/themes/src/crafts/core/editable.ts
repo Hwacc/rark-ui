@@ -13,32 +13,39 @@ export const tvEditable = tv(
     },
     variants: {
       size: {
-        base: '',
+        xs: '',
         sm: '',
+        base: '',
         lg: '',
       },
     },
-    defaultVariants: { size: 'base' },
     compoundVariants: [
       {
-        size: 'base',
-        class: {
-          root: 'text-sm',
-        },
-      },
-      {
-        size: 'sm',
+        size: 'xs',
         class: {
           root: 'text-xs',
         },
       },
       {
-        size: 'lg',
+        size: 'sm',
+        class: {
+          root: 'text-sm',
+        },
+      },
+      {
+        size: 'base',
         class: {
           root: 'text-base',
         },
       },
+      {
+        size: 'lg',
+        class: {
+          root: 'text-lg',
+        },
+      },
     ],
+    defaultVariants: { size: 'base' },
   },
   {
     slots: {
@@ -59,24 +66,31 @@ export const tvEditableInput = tv(
     },
     compoundVariants: [
       {
-        size: 'base',
-        class: {
-          root: 'px-1 py-0.5',
-          clearable: 'text-sm size-[1lh]',
-        },
-      },
-      {
-        size: 'sm',
+        size: 'xs',
         class: {
           root: 'px-0.5 py-0.25',
           clearable: 'text-xs size-[1lh]',
         },
       },
       {
-        size: 'lg',
+        size: 'sm',
+        class: {
+          root: 'px-1 py-0.5',
+          clearable: 'text-sm size-[1lh]',
+        },
+      },
+      {
+        size: 'base',
         class: {
           root: 'px-1.5 py-0.75',
           clearable: 'text-base size-[1lh]',
+        },
+      },
+      {
+        size: 'lg',
+        class: {
+          root: 'px-2 py-1',
+          clearable: 'text-lg size-[1lh]',
         },
       },
     ],

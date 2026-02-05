@@ -4,6 +4,7 @@ import { Checkbox } from '../index'
 
 <template>
   <div class="w-full flex items-center gap-6">
+    <Checkbox :theme="{ size: 'xs' }" label="XS" />
     <Checkbox :theme="{ size: 'sm' }" label="Small" />
     <Checkbox :theme="{ size: 'base' }" label="Base" />
     <Checkbox :theme="{ size: 'lg' }" label="Large" />

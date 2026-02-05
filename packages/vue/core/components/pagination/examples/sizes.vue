@@ -1,10 +1,9 @@
 <script setup lang="ts">
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { ref } from 'vue'
 import { Pagination } from '../index'
 
-const sm = ref(1)
-const base = ref(2)
-const lg = ref(3)
+const page = ref(1)
 </script>
 
 <template>
@@ -15,22 +14,10 @@ const lg = ref(3)
 
     <div class="w-full max-w-[720px] flex flex-col gap-3 rounded-md border border-h33 p-3">
       <Pagination
-        v-model:page="sm"
-        :theme="{ size: 'sm' }"
-        :count="200"
-        :default-page-size="10"
-        :sibling-count="1"
-      />
-      <Pagination
-        v-model:page="base"
-        :theme="{ size: 'base' }"
-        :count="200"
-        :default-page-size="10"
-        :sibling-count="1"
-      />
-      <Pagination
-        v-model:page="lg"
-        :theme="{ size: 'lg' }"
+        v-for="size in THEME_SIZE"
+        :key="size"
+        v-model:page="page"
+        :theme="{ size }"
         :count="200"
         :default-page-size="10"
         :sibling-count="1"

@@ -7,6 +7,18 @@ const content = fakerEN.lorem.sentences(10)
 
 <template>
   <div class="w-full flex flex-col gap-4">
+    <Collapsible class="w-full" :theme="{ size: 'xs' }">
+      <CollapsibleTrigger>
+        <div class="text-hff">
+          XS
+        </div>
+      </CollapsibleTrigger>
+      <CollapsibleContent class="mt-2">
+        <p class="text-sm text-hcc">
+          {{ content }}
+        </p>
+      </CollapsibleContent>
+    </Collapsible>
     <Collapsible class="w-full" :theme="{ size: 'sm' }">
       <CollapsibleTrigger>
         <div class="text-hff">
@@ -19,7 +31,6 @@ const content = fakerEN.lorem.sentences(10)
         </p>
       </CollapsibleContent>
     </Collapsible>
-
     <Collapsible class="w-full" :theme="{ size: 'base' }">
       <CollapsibleTrigger>
         <div class="text-hff">
@@ -32,7 +43,6 @@ const content = fakerEN.lorem.sentences(10)
         </p>
       </CollapsibleContent>
     </Collapsible>
-
     <Collapsible class="w-full" :theme="{ size: 'lg' }">
       <CollapsibleTrigger>
         <div class="text-hff">

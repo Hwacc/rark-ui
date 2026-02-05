@@ -36,13 +36,16 @@ export function createArrow(
       const theme = useTheme(() => props.theme)
       const arrowSize = computed(() => {
         switch (theme.value.size) {
-          case 'sm':
+          case 'xs':
             return '0.25rem'
-          case 'lg':
-            return '0.5rem'
+          case 'sm':
+            return '0.375rem'
           case 'base':
+            return '0.5rem'
+          case 'lg':
+            return '0.625rem'
           default:
-            return '.375rem'
+            return '0.5rem'
         }
       })
       return () => {

@@ -19,18 +19,12 @@ import type { HTMLAttributes } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { ark } from '@ark-ui/vue/factory'
 import { tvDialog } from '@rui-ark/themes/crafts/core/dialog'
-import { cn } from '@rui-ark/themes/utils/cn'
 import { Button } from '@rui-ark/vue/components/button'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useId } from 'vue'
 import { DialogCloseTrigger, TriggerFrom } from '.'
 
-const {
-  class: propsClass,
-  theme: propsTheme,
-  ui,
-  widget,
-} = defineProps<DialogFooterProps>()
+const { class: propsClass, theme: propsTheme, ui, widget } = defineProps<DialogFooterProps>()
 const emits = defineEmits<{
   ok: [event: MouseEvent]
   cancel: [event: MouseEvent]
@@ -50,20 +44,28 @@ const { footer } = tvDialog()
     :class="footer({ class: [ui?.root, propsClass], ...theme })"
   >
     <slot>
-      <DialogCloseTrigger as-child :from="TriggerFrom.CANCEL_BUTTON">
+      <DialogCloseTrigger
+        as-child
+        :from="TriggerFrom.CANCEL_BUTTON"
+      >
         <Button
           variant="text"
           v-bind="widget?.cancel"
-          :class="cn('min-w-22.5 uppercase', ui?.cancel)"
+          :class="ui?.cancel"
+          :theme="theme"
           @click="emits('cancel', $event)"
         >
           {{ widget?.cancel?.text ?? 'Cancel' }}
         </Button>
       </DialogCloseTrigger>
-      <DialogCloseTrigger as-child :from="TriggerFrom.OK_BUTTON">
+      <DialogCloseTrigger
+        as-child
+        :from="TriggerFrom.OK_BUTTON"
+      >
         <Button
           v-bind="widget?.ok"
-          :class="cn('min-w-22.5 uppercase', ui?.ok)"
+          :class="ui?.ok"
+          :theme="theme"
           @click="emits('ok', $event)"
         >
           {{ widget?.ok?.text ?? 'OK' }}

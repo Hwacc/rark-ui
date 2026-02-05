@@ -8,6 +8,8 @@ import EventsExample from './examples/events.vue'
 import EventsExampleRaw from './examples/events.vue?raw'
 import RangeExample from './examples/range.vue'
 import RangeExampleRaw from './examples/range.vue?raw'
+import SizesExample from './examples/sizes.vue'
+import SizesExampleRaw from './examples/sizes.vue?raw'
 import ViewsExample from './examples/views.vue'
 import ViewsExampleRaw from './examples/views.vue?raw'
 
@@ -88,6 +90,21 @@ export const DisabledDate = {
   },
   render: () => ({
     components: { Component: DisabledDateExample },
+    template: '<Component />',
+  }),
+}
+
+export const Sizes = {
+  parameters: {
+    docs: {
+      source: {
+        code: SizesExampleRaw,
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Component: SizesExample },
     template: '<Component />',
   }),
 }

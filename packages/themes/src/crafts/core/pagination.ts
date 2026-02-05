@@ -14,17 +14,21 @@ export const tvPagination = tv(
 
     variants: {
       size: {
-        base: {
-          item: ['h-8', 'min-w-8', 'text-sm'],
-          ellipsis: 'size-8',
-        },
-        sm: {
+        xs: {
           item: ['h-6', 'min-w-6', 'text-xs'],
           ellipsis: 'size-6',
         },
-        lg: {
+        sm: {
+          item: ['h-8', 'min-w-8', 'text-sm'],
+          ellipsis: 'size-8',
+        },
+        base: {
           item: ['h-10', 'min-w-10', 'text-base'],
           ellipsis: 'size-10',
+        },
+        lg: {
+          item: ['h-12', 'min-w-12', 'text-lg'],
+          ellipsis: 'size-12',
         },
       },
     },
@@ -53,14 +57,17 @@ export const tvPaginationGoto = tv(
     },
     variants: {
       size: {
-        base: {
-          input: 'text-sm size-8',
-        },
-        sm: {
+        xs: {
           input: 'text-xs size-6',
         },
-        lg: {
+        sm: {
+          input: 'text-sm size-8',
+        },
+        base: {
           input: 'text-base size-10',
+        },
+        lg: {
+          input: 'text-lg size-12',
         },
       },
     },
@@ -89,8 +96,9 @@ export const tvPaginationPageSize = tv(
     },
     variants: {
       size: {
-        base: '',
+        xs: '',
         sm: '',
+        base: '',
         lg: '',
       },
     },

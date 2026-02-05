@@ -20,14 +20,17 @@ export const tvCollapsible = tv({
   },
   variants: {
     size: {
-      sm: {
+      xs: {
         trigger: ['text-xs gap-3'],
       },
-      base: {
+      sm: {
         trigger: ['text-sm gap-4'],
       },
-      lg: {
+      base: {
         trigger: ['text-base gap-4.5'],
+      },
+      lg: {
+        trigger: ['text-lg gap-5'],
       },
     },
   },

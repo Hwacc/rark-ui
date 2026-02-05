@@ -112,9 +112,9 @@
   --font-rz-black: RazerF5-Black, var(--font-sans);
 
   /* Border Radius */
-  --radius: 0.125rem;
-  --radius-md: calc(var(--radius) + 0.125rem);
-  --radius-lg: calc(var(--radius) + 0.25rem);
+  --radius: 0.125rem; /* 2px */
+  --radius-md: calc(var(--radius) + 0.125rem); /* 4px */
+  --radius-lg: calc(var(--radius) + 0.25rem); /* 6px */
 
   /* Other */
   --outline: 2px solid var(--color-rz-green);

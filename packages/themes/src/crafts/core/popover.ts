@@ -30,9 +30,26 @@ export const tvPopover = tv(
     },
     variants: {
       size: {
-        base: '',
-        sm: '',
-        lg: '',
+        xs: {
+          contentInner: 'px-1.5 py-0.5 text-xs',
+          close: 'p-1 text-xs',
+          indicator: 'text-xs',
+        },
+        sm: {
+          contentInner: 'px-2 py-1 text-sm',
+          close: 'p-1.5 text-sm',
+          indicator: 'text-sm',
+        },
+        base: {
+          contentInner: 'px-2.5 py-1.5 text-base',
+          close: 'p-2 text-base',
+          indicator: 'text-base',
+        },
+        lg: {
+          contentInner: 'px-3 py-2 text-lg',
+          close: 'p-2.5 text-lg',
+          indicator: 'text-lg',
+        },
       },
       bordered: {
         true: '',
@@ -43,38 +60,6 @@ export const tvPopover = tv(
       size: 'base',
       bordered: true,
     },
-    compoundVariants: [
-      {
-        size: 'sm',
-        class: {
-          contentInner: 'px-1.5 py-0.5 text-xs',
-          close: 'p-1 text-xs',
-          indicator: 'text-xs',
-        },
-      },
-      {
-        size: 'base',
-        class: {
-          contentInner: 'px-2 py-1 text-sm',
-          close: 'p-1.5 text-sm',
-          indicator: 'text-sm',
-        },
-      },
-      {
-        size: 'lg',
-        class: {
-          contentInner: 'px-2.5 py-1.5 text-base',
-          close: 'p-2 text-base',
-          indicator: 'text-base',
-        },
-      },
-      {
-        bordered: true,
-        class: {
-          content: 'border',
-        },
-      },
-    ],
   },
   {
     slots: {
