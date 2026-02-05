@@ -153,8 +153,8 @@ importers:
         version: 3.5.27(typescript@5.9.3)
     devDependencies:
       '@ark-ui/vue':
-        specifier: npm:@hwacc/ark-ui-vue@5.30.0-leading.2
-        version: '@hwacc/ark-ui-vue@5.30.0-leading.2(vue@3.5.27(typescript@5.9.3))'
+        specifier: npm:@hwacc/ark-ui-vue@5.31.0-leading.1
+        version: '@hwacc/ark-ui-vue@5.31.0-leading.1(vue@3.5.27(typescript@5.9.3))'
       '@iconify/vue':
         specifier: ^5.0.0
         version: 5.0.0(vue@3.5.27(typescript@5.9.3))
@@ -784,8 +784,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@hwacc/ark-ui-vue@5.30.0-leading.2':
-    resolution: {integrity: sha512-G+FEsaxgzgrKTE6JkFrblooevX6XJA5D9xHv+qA6v/Pg1tfCwl5F31PRzthUdiOc/QehCWYxE6zdutP7f7I2aA==}
+  '@hwacc/ark-ui-vue@5.31.0-leading.1':
+    resolution: {integrity: sha512-zq61guIzu9DyJdKCSHmjp+8Pg2lnLPsfDIKh0RX7xb0egUo3KN/gZE/E5qCKKvfhutLI7pdXFkO5lpH5zs0wUg==}
     peerDependencies:
       vue: '>=3.5.0'
 
@@ -5075,7 +5075,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@hwacc/ark-ui-vue@5.30.0-leading.2(vue@3.5.27(typescript@5.9.3))':
+  '@hwacc/ark-ui-vue@5.31.0-leading.1(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@internationalized/date': 3.10.0
       '@zag-js/accordion': 1.33.1
