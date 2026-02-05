@@ -31,17 +31,21 @@ export const tvSpin = tv(
         inline: ['absolute', 'inset-0'],
       },
       size: {
-        sm: {
+        xs: {
           icon: ['size-6'],
           text: ['text-xs'],
         },
-        base: {
+        sm: {
           icon: ['size-8'],
           text: ['text-sm'],
         },
-        lg: {
+        base: {
           icon: ['size-10'],
           text: ['text-base'],
+        },
+        lg: {
+          icon: ['size-12'],
+          text: ['text-lg'],
         },
       },
     },

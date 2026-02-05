@@ -11,14 +11,17 @@ export const tvToggleGroup = tv(
     },
     variants: {
       size: {
-        base: {
-          item: 'size-7',
+        xs: {
+          item: 'size-6 text-xs',
         },
         sm: {
-          item: 'size-6',
+          item: 'size-7 text-sm',
+        },
+        base: {
+          item: 'size-8 text-base',
         },
         lg: {
-          item: 'size-8',
+          item: 'size-9 text-lg',
         },
       },
       orientation: {

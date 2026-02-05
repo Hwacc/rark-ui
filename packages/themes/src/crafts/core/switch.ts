@@ -34,40 +34,31 @@ export const tvSwitch = tv({
   },
   variants: {
     size: {
-      base: '',
-      sm: '',
-      lg: '',
+      xs: {
+        control: 'w-7 h-4',
+        thumb: 'size-3',
+        label: 'text-xs',
+      },
+      sm: {
+        control: 'w-8 h-4.5',
+        thumb: 'size-3.5',
+        label: 'text-sm',
+      },
+      base: {
+        control: 'w-9 h-5',
+        thumb: 'size-4',
+        label: 'text-base',
+      },
+      lg: {
+        control: 'w-10 h-5.5',
+        thumb: 'size-4.5',
+        label: 'text-lg',
+      },
     },
   },
   defaultVariants: {
     size: 'base',
   },
-  compoundVariants: [
-    {
-      size: 'base',
-      class: {
-        control: 'w-8 h-[1.125rem]',
-        thumb: 'size-3.5',
-        label: 'text-sm',
-      },
-    },
-    {
-      size: 'sm',
-      class: {
-        control: 'w-[1.75rem] h-4',
-        thumb: 'size-3',
-        label: 'text-xs',
-      },
-    },
-    {
-      size: 'lg',
-      class: {
-        control: 'w-[2.25rem] h-5',
-        thumb: 'size-4',
-        label: 'text-base',
-      },
-    },
-  ],
 }, {
   slots: {
     root: prefix,

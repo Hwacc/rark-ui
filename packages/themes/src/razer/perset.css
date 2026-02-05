@@ -80,19 +80,23 @@
 
   /* Text */
   --text-3xs: 0.5rem;
-  --text-3xs--line-height: 0.625rem;
+  --text-3xs--line-height: 1.25;
   --text-2xs: 0.625rem;
-  --text-2xs--line-height: 0.75rem;
+  --text-2xs--line-height: 1.25;
   --text-xs: 0.75rem;
-  --text-xs--line-height: 0.875rem;
+  --text-xs--line-height: 1.25;
   --text-sm: 0.875rem;
-  --text-sm--line-height: 1rem;
+  --text-sm--line-height: 1.25;
   --text-base: 1rem;
-  --text-base--line-height: 1.125rem;
+  --text-base--line-height: 1.25;
   --text-lg: 1.125rem;
-  --text-lg--line-height: 1.25rem;
+  --text-lg--line-height: 1.25;
   --text-xl: 1.25rem;
-  --text-xl--line-height: 1.5rem;
+  --text-xl--line-height: 1.25;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.25;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 1.25;
 
   /* Shadows */
   --shadow-glory: 0 0 1.5625rem 0 oklch(86.64% 0.2343 141.32 / 47%);

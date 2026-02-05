@@ -1,17 +1,12 @@
 <script setup lang="ts">
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { Toggle } from '../index'
 </script>
 
 <template>
   <div class="w-full flex flex-wrap items-center gap-4">
-    <Toggle :theme="{ size: 'sm' }">
-      size=sm
-    </Toggle>
-    <Toggle :theme="{ size: 'base' }">
-      size=base
-    </Toggle>
-    <Toggle :theme="{ size: 'lg' }">
-      size=lg
+    <Toggle v-for="size in THEME_SIZE" :key="size" :theme="{ size }">
+      size={{ size }}
     </Toggle>
   </div>
 </template>

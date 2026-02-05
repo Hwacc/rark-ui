@@ -8,6 +8,8 @@ import EventsExample from './examples/events.vue'
 import EventsExampleRaw from './examples/events.vue?raw'
 import SelectionModesExample from './examples/selection-modes.vue'
 import SelectionModesExampleRaw from './examples/selection-modes.vue?raw'
+import SizesExample from './examples/sizes.vue'
+import SizesExampleRaw from './examples/sizes.vue?raw'
 
 const meta: Meta = {
   title: 'Components/Tree',
@@ -71,6 +73,21 @@ export const Events = {
   },
   render: () => ({
     components: { Component: EventsExample },
+    template: '<Component />',
+  }),
+}
+
+export const Sizes = {
+  parameters: {
+    docs: {
+      source: {
+        code: SizesExampleRaw,
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Component: SizesExample },
     template: '<Component />',
   }),
 }

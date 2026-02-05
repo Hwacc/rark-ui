@@ -25,45 +25,32 @@ export const tvTooltip = tv(
     },
     variants: {
       size: {
-        base: '',
-        sm: '',
-        lg: '',
+        xs: {
+          contentInner: 'px-1.5 py-0.5 text-xs',
+        },
+        sm: {
+          contentInner: 'px-2 py-1 text-sm',
+        },
+        base: {
+          contentInner: 'px-2.5 py-1.5 text-base',
+        },
+        lg: {
+          contentInner: 'px-3 py-2 text-lg',
+        },
       },
       bordered: {
-        true: '',
-        false: '',
+        true: {
+          content: 'border',
+        },
+        false: {
+          content: 'border-none',
+        },
       },
     },
     defaultVariants: {
       size: 'base',
       bordered: true,
     },
-    compoundVariants: [
-      {
-        size: 'sm',
-        class: {
-          contentInner: 'px-1.5 py-0.5 text-xs',
-        },
-      },
-      {
-        size: 'base',
-        class: {
-          contentInner: 'px-2 py-1 text-sm',
-        },
-      },
-      {
-        size: 'lg',
-        class: {
-          contentInner: 'px-2.5 py-1.5 text-base',
-        },
-      },
-      {
-        bordered: true,
-        class: {
-          content: 'border',
-        },
-      },
-    ],
   },
   {
     slots: {

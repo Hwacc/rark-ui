@@ -34,7 +34,7 @@ const { root, tree } = tvTree()
     :value="treeView"
     :class="root({ class: [ui?.root, propsClass], ...theme })"
   >
-    <ThemeProvider>
+    <ThemeProvider :value="theme">
       <slot name="prefix" />
       <TreeView.Tree :class="tree({ class: ui?.tree, ...theme })">
         <slot />

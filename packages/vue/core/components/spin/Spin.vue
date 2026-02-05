@@ -106,8 +106,8 @@ const { root, mask, indicator, text } = tvSpin()
   >
     <div :class="mask({ class: ui?.mask, ...theme })" />
     <div :class="indicator({ class: ui?.indicator, mode, ...theme })">
-      <slot v-bind="{ mode, ...theme }">
-        <component :is="renderIcon?.({ mode, ...theme })" />
+      <slot v-bind="{ mode, theme }">
+        <component :is="renderIcon?.({ mode, theme })" />
       </slot>
       <ark.span
         :class="text({ class: ui?.text, ...theme })"

@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import type { ThemeProps } from '@rui-ark/vue/providers/theme'
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { Slider, SliderTooltipThumb } from '../index'
-
-const sizes: ThemeProps['size'][] = ['sm', 'base', 'lg']
 </script>
 
 <template>
   <div class="w-full flex flex-col gap-4">
     <Slider
-      v-for="size in sizes"
+      v-for="size in THEME_SIZE"
       :key="String(size)"
       class="w-80"
       :theme="{ size }"

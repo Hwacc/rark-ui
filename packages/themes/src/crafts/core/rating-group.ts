@@ -14,14 +14,17 @@ export const tvRatingGroup = tv(
     },
     variants: {
       size: {
-        base: {
-          itemIndicator: 'size-3.5',
-        },
-        sm: {
+        xs: {
           itemIndicator: 'size-3',
         },
-        lg: {
+        sm: {
+          itemIndicator: 'size-3.5',
+        },
+        base: {
           itemIndicator: 'size-4',
+        },
+        lg: {
+          itemIndicator: 'size-4.5',
         },
       },
     },

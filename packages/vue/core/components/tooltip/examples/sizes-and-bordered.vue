@@ -1,37 +1,23 @@
 <script setup lang="ts">
+import { THEME_SIZE } from '@rui-ark/shared/constant'
 import { Button } from '../../button'
 import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from '../index'
 </script>
 
 <template>
   <div class="w-full flex flex-wrap items-center gap-4">
-    <Tooltip :theme="{ size: 'sm' }" :positioning="{ placement: 'top' }">
+    <Tooltip
+      v-for="size in THEME_SIZE"
+      :key="size"
+      :theme="{ size }"
+      :positioning="{ placement: 'top' }"
+    >
       <TooltipTrigger as-child>
-        <Button> size=sm </Button>
+        <Button> size={{ size }} </Button>
       </TooltipTrigger>
       <TooltipContent>
         <TooltipArrow />
-        Small tooltip
-      </TooltipContent>
-    </Tooltip>
-
-    <Tooltip :theme="{ size: 'base' }" :positioning="{ placement: 'top' }">
-      <TooltipTrigger as-child>
-        <Button> size=base </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <TooltipArrow />
-        Base tooltip
-      </TooltipContent>
-    </Tooltip>
-
-    <Tooltip :theme="{ size: 'lg' }" :positioning="{ placement: 'top' }">
-      <TooltipTrigger as-child>
-        <Button> size=lg </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <TooltipArrow />
-        Large tooltip
+        {{ size }} tooltip
       </TooltipContent>
     </Tooltip>
 

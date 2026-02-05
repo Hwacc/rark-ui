@@ -21,7 +21,7 @@ export const tvInput = tv({
   variants: {
     size: {
       xs: {
-        root: 'px-1 py-0.5 gap-1.5 text-xs',
+        root: 'px-2 py-1.5 gap-1.5 text-xs',
         input: 'placeholder:text-xs',
       },
       sm: {
@@ -29,11 +29,11 @@ export const tvInput = tv({
         input: 'placeholder:text-sm',
       },
       base: {
-        root: 'px-3 py-2 gap-2.5 text-base',
+        root: 'px-2 py-2 gap-2.5 text-base',
         input: 'placeholder:text-base',
       },
       lg: {
-        root: 'px-4 py-2.5 gap-3 text-lg',
+        root: 'px-2 py-2.5 gap-3 text-lg',
         input: 'placeholder:text-lg',
       },
     },

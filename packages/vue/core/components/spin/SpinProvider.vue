@@ -14,11 +14,13 @@ const slots = defineSlots<{
 function renderIcon(props: SpinRenderProps) {
   const icon = slots?.icon?.(props)
   const { icon: tvIcon } = tvSpin()
+  console.log('theme', props.theme)
   if (icon) {
     return (
       <ark.span
         class={tvIcon({
           class: props.class,
+          ...props.theme,
         })}
         as-child
         data-variant="custom"
@@ -31,6 +33,7 @@ function renderIcon(props: SpinRenderProps) {
     <LoaderCircle
       class={tvIcon({
         class: ['animate-spin', props.class],
+        ...props.theme,
       })}
       data-variant="default"
     />

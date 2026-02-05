@@ -68,7 +68,7 @@ export const tvEditableInput = tv(
       {
         size: 'xs',
         class: {
-          root: 'px-0.5 py-0.25',
+          root: 'px-1 py-0.25',
           clearable: 'text-xs size-[1lh]',
         },
       },
@@ -82,7 +82,7 @@ export const tvEditableInput = tv(
       {
         size: 'base',
         class: {
-          root: 'px-1.5 py-0.75',
+          root: 'px-2 py-0.75',
           clearable: 'text-base size-[1lh]',
         },
       },

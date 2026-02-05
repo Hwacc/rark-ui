@@ -45,15 +45,7 @@ export const tvTreeBranch = tv(
 
     variants: {
       size: {
-        base: {
-          control: [
-            'text-sm',
-            'min-h-8',
-            'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*4)))]',
-          ],
-          title: 'gap-2.5',
-        },
-        sm: {
+        xs: {
           control: [
             'text-xs',
             'min-h-6',
@@ -61,13 +53,29 @@ export const tvTreeBranch = tv(
           ],
           title: 'gap-2',
         },
-        lg: {
+        sm: {
+          control: [
+            'text-sm',
+            'min-h-8',
+            'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*4)))]',
+          ],
+          title: 'gap-2.5',
+        },
+        base: {
           control: [
             'text-base',
             'min-h-10',
             'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*4.5)))]',
           ],
           title: 'gap-3',
+        },
+        lg: {
+          control: [
+            'text-lg',
+            'min-h-12',
+            'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*5)))]',
+          ],
+          title: 'gap-3.5',
         },
       },
     },
@@ -104,15 +112,7 @@ export const tvTreeItem = tv(
     },
     variants: {
       size: {
-        base: {
-          title: [
-            'gap-2.5',
-            'min-h-8',
-            'text-sm',
-            'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*4)))]',
-          ],
-        },
-        sm: {
+        xs: {
           title: [
             'gap-2',
             'min-h-6',
@@ -120,12 +120,28 @@ export const tvTreeItem = tv(
             'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*3.5)))]',
           ],
         },
-        lg: {
+        sm: {
+          title: [
+            'gap-2.5',
+            'min-h-8',
+            'text-sm',
+            'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*4)))]',
+          ],
+        },
+        base: {
           title: [
             'gap-3',
             'min-h-10',
             'text-base',
             'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*4.5)))]',
+          ],
+        },
+        lg: {
+          title: [
+            'gap-3.5',
+            'min-h-12',
+            'text-lg',
+            'pl-[calc((var(--depth)-1)*var(--indent,calc(var(--spacing)*5)))]',
           ],
         },
       },

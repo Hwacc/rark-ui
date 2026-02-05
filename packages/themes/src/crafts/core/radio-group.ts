@@ -22,20 +22,25 @@ export const tvRadioGroup = tv(
     },
     variants: {
       size: {
-        sm: {
+        xs: {
           itemControl: 'size-3',
           itemIndicator: 'size-1.5',
           itemText: 'text-xs',
         },
-        base: {
+        sm: {
           itemControl: 'size-3.5',
           itemIndicator: 'size-1.75',
           itemText: 'text-sm',
         },
-        lg: {
+        base: {
           itemControl: 'size-4',
           itemIndicator: 'size-2',
           itemText: 'text-base',
+        },
+        lg: {
+          itemControl: 'size-4.5',
+          itemIndicator: 'size-2.25',
+          itemText: 'text-lg',
         },
       },
       variant: {
@@ -47,32 +52,39 @@ export const tvRadioGroup = tv(
         },
       },
     },
-    defaultVariants: {
-      size: 'base',
-    },
     compoundVariants: [
       {
-        size: 'sm',
+        size: 'xs',
         variant: 'checkbox',
         class: {
           itemIndicator: 'size-2',
         },
       },
       {
-        size: 'base',
+        size: 'sm',
         variant: 'checkbox',
         class: {
           itemIndicator: 'size-2.5',
         },
       },
       {
-        size: 'lg',
+        size: 'base',
         variant: 'checkbox',
         class: {
           itemIndicator: 'size-3',
         },
       },
+      {
+        size: 'lg',
+        variant: 'checkbox',
+        class: {
+          itemIndicator: 'size-3.5',
+        },
+      },
     ],
+    defaultVariants: {
+      size: 'base',
+    },
   },
   {
     slots: {

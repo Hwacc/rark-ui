@@ -8,8 +8,6 @@ export const tvToggle = tv({
     'inline-flex',
     'items-center',
     'justify-center',
-    'px-4',
-    'gap-2',
     'rounded',
     'border',
     'transition-all',
@@ -20,9 +18,10 @@ export const tvToggle = tv({
   ],
   variants: {
     size: {
-      base: 'h-[1.75rem] text-sm',
-      sm: 'h-[1.5rem] text-xs',
-      lg: 'h-[2rem] text-base',
+      xs: 'h-6 text-xs gap-1.5 px-3',
+      sm: 'h-7 text-sm gap-2.5 px-4',
+      base: 'h-8 text-base gap-3 px-5',
+      lg: 'h-9 text-lg gap-3.5 px-6',
     },
   },
   defaultVariants: {

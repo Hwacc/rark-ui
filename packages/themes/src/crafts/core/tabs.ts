@@ -24,14 +24,17 @@ export const tvTabs = tv({
 
   variants: {
     size: {
-      base: {
-        trigger: 'text-sm',
-      },
-      sm: {
+      xs: {
         trigger: 'text-xs',
       },
-      lg: {
+      sm: {
+        trigger: 'text-sm',
+      },
+      base: {
         trigger: 'text-base',
+      },
+      lg: {
+        trigger: 'text-lg',
       },
     },
     orientation: {
@@ -52,28 +55,37 @@ export const tvTabs = tv({
     },
   },
   compoundVariants: [
+    // horizontal
     {
       orientation: 'horizontal',
-      size: 'base',
+      size: 'xs',
       class: {
-        trigger: 'px-3.75 py-2.5',
-        indicator: 'h-1',
+        trigger: 'px-3 py-2',
+        indicator: 'h-0.5',
       },
     },
     {
       orientation: 'horizontal',
       size: 'sm',
       class: {
-        trigger: 'px-3 py-2',
+        trigger: 'px-3.5 py-2.5',
         indicator: 'h-0.75',
+      },
+    },
+    {
+      orientation: 'horizontal',
+      size: 'base',
+      class: {
+        trigger: 'px-4 py-3',
+        indicator: 'h-1',
       },
     },
     {
       orientation: 'horizontal',
       size: 'lg',
       class: {
-        trigger: 'px-4.5 py-3',
-        indicator: 'h-1.5',
+        trigger: 'px-4.5 py-3.5',
+        indicator: 'h-1.25',
       },
     },
     {

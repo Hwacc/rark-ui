@@ -19,20 +19,25 @@ export const tvTagsInput = tv(
 
     variants: {
       size: {
-        base: {
-          input: 'text-sm',
-          itemPreview: 'text-sm px-2',
-          itemInput: 'text-sm px-1',
-        },
-        sm: {
+        xs: {
           input: 'text-xs',
           itemPreview: 'text-xs px-1.5',
           itemInput: 'text-xs px-0.5',
         },
-        lg: {
+        sm: {
+          input: 'text-sm',
+          itemPreview: 'text-sm px-2',
+          itemInput: 'text-sm px-1',
+        },
+        base: {
           input: 'text-base',
           itemPreview: 'text-base px-2.5',
           itemInput: 'text-base px-1.5',
+        },
+        lg: {
+          input: 'text-lg',
+          itemPreview: 'text-lg px-2.5',
+          itemInput: 'text-lg px-1.5',
         },
       },
       inline: {

@@ -16,17 +16,7 @@ export const tvSlider = tv(
     },
     variants: {
       size: {
-        base: {
-          control: 'h-[max(var(--slider-thumb-height),.875rem)]',
-          track: 'h-1 rounded-md',
-          range: 'rounded-md',
-          thumb: [
-            'w-[max(var(--slider-thumb-width),.875rem)]',
-            'h-[max(var(--slider-thumb-height),.875rem)]',
-          ],
-          markerDot: 'size-2 -top-[calc(max(var(--slider-thumb-height),.875rem)/2+var(--spacing))]',
-        },
-        sm: {
+        xs: {
           control: 'h-[max(var(--slider-thumb-height),.75rem)]',
           track: 'h-0.5 rounded',
           range: 'rounded',
@@ -36,7 +26,17 @@ export const tvSlider = tv(
           ],
           markerDot: 'size-1.5 -top-[calc(max(var(--slider-thumb-height),.75rem)/2+var(--spacing)*0.75)]',
         },
-        lg: {
+        sm: {
+          control: 'h-[max(var(--slider-thumb-height),.875rem)]',
+          track: 'h-1 rounded-md',
+          range: 'rounded-md',
+          thumb: [
+            'w-[max(var(--slider-thumb-width),.875rem)]',
+            'h-[max(var(--slider-thumb-height),.875rem)]',
+          ],
+          markerDot: 'size-2 -top-[calc(max(var(--slider-thumb-height),.875rem)/2+var(--spacing))]',
+        },
+        base: {
           control: 'h-[max(var(--slider-thumb-height),1rem)]',
           track: 'h-1.5 rounded-lg',
           range: 'rounded-lg',
@@ -45,6 +45,16 @@ export const tvSlider = tv(
             'h-[max(var(--slider-thumb-height),1.125rem)]',
           ],
           markerDot: 'size-2.5 -top-[calc(max(var(--slider-thumb-height),1rem)/2+var(--spacing)*1.25)]',
+        },
+        lg: {
+          control: 'h-[max(var(--slider-thumb-height),1.125rem)]',
+          track: 'h-2 rounded-xl',
+          range: 'rounded-xl',
+          thumb: [
+            'w-[max(var(--slider-thumb-width),1.25rem)]',
+            'h-[max(var(--slider-thumb-height),1.25rem)]',
+          ],
+          markerDot: 'size-3 -top-[calc(max(var(--slider-thumb-height),1.125rem)/2+var(--spacing)*1.5)]',
         },
       },
       orientation: {

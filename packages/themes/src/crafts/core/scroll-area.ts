@@ -15,10 +15,10 @@ export const tvScrollArea = tv({
 
   variants: {
     size: {
-      base: '',
-      sm: '',
-      lg: '',
       xs: '',
+      sm: '',
+      base: '',
+      lg: '',
     },
     orientation: {
       vertical: {
@@ -30,12 +30,13 @@ export const tvScrollArea = tv({
     },
   },
   compoundVariants: [
+    // vertical
     {
       orientation: 'vertical',
-      size: 'base',
+      size: 'xs',
       class: {
-        scrollbar: 'w-2',
-        thumb: 'w-1.5',
+        scrollbar: 'w-1',
+        thumb: 'w-0.5',
       },
     },
     {
@@ -48,10 +49,10 @@ export const tvScrollArea = tv({
     },
     {
       orientation: 'vertical',
-      size: 'xs',
+      size: 'base',
       class: {
-        scrollbar: 'w-1',
-        thumb: 'w-0.5',
+        scrollbar: 'w-2',
+        thumb: 'w-1.5',
       },
     },
     {
@@ -62,12 +63,13 @@ export const tvScrollArea = tv({
         thumb: 'w-2',
       },
     },
+    // horizontal
     {
       orientation: 'horizontal',
-      size: 'base',
+      size: 'xs',
       class: {
-        scrollbar: 'h-2',
-        thumb: 'h-1.5',
+        scrollbar: 'h-1',
+        thumb: 'h-0.5',
       },
     },
     {
@@ -80,18 +82,18 @@ export const tvScrollArea = tv({
     },
     {
       orientation: 'horizontal',
-      size: 'lg',
+      size: 'base',
       class: {
-        scrollbar: 'h-2.5',
-        thumb: 'h-2',
+        scrollbar: 'h-2',
+        thumb: 'h-1.5',
       },
     },
     {
       orientation: 'horizontal',
-      size: 'xs',
+      size: 'lg',
       class: {
-        scrollbar: 'h-1',
-        thumb: 'h-0.5',
+        scrollbar: 'h-2.5',
+        thumb: 'h-2',
       },
     },
   ],

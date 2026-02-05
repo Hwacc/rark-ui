@@ -64,23 +64,29 @@ export const tvSelect = tv(
     },
     variants: {
       size: {
-        base: {
-          trigger: 'text-sm',
-          item: 'text-sm px-2 py-1.5',
-          contentInner: 'px-2 py-1.5',
-          itemGroupLabel: 'text-base px-2 py-2 mb-2',
-        },
-        sm: {
+        xs: {
           trigger: 'text-xs',
           item: 'text-xs px-1.5 py-1',
           contentInner: 'px-1.5 py-1',
           itemGroupLabel: 'text-sm px-1.5 py-1.5 mb-1.5',
         },
-        lg: {
+        sm: {
+          trigger: 'text-sm',
+          item: 'text-sm px-2 py-1.5',
+          contentInner: 'px-2 py-1.5',
+          itemGroupLabel: 'text-base px-2 py-2 mb-2',
+        },
+        base: {
           trigger: 'text-base',
           item: 'text-base px-2.5 py-1.5',
           contentInner: 'px-2.5 py-1.5',
           itemGroupLabel: 'text-xl px-2.5 py-2.5 mb-2.5',
+        },
+        lg: {
+          trigger: 'text-lg',
+          item: 'text-lg px-3 py-2',
+          contentInner: 'px-3 py-2',
+          itemGroupLabel: 'text-xl px-3 py-3 mb-3',
         },
       },
       bordered: {
