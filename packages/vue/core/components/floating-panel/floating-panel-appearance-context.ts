@@ -1,7 +1,8 @@
-import type { Ref } from 'vue'
+import type { ComputedGetter, Ref } from 'vue'
 import { createContext } from '@ark-ui/vue'
 
 interface FloatingPanelAppearanceContext {
+  resizeAxis: ComputedGetter<'x' | 'y' | 'xy' | 'xyc' | 'custom'>
   opacity: Ref<number>
   pinned: Ref<boolean>
   setOpacity: (opacity: number) => void

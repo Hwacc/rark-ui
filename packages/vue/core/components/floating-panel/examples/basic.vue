@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FloatingPanelResizeTrigger, PopoverContext, SliderValueText } from '@ark-ui/vue'
+import { PopoverContext, SliderValueText } from '@ark-ui/vue'
 import { Blend } from 'lucide-vue-next'
 import { Button } from '../../button'
 import { Popover, PopoverContent, PopoverTrigger } from '../../popover'
@@ -54,7 +54,7 @@ import {
                       >
                         <SliderThumb :index="0" />
                         <template #suffix>
-                          <SliderValueText />
+                          <SliderValueText class="text-xs" />
                         </template>
                       </Slider>
                     </PopoverContent>
@@ -71,8 +71,6 @@ import {
         </template>
       </FloatingPanelHeader>
       <div>floating panel content</div>
-
-      <FloatingPanelResizeTrigger axis="ne" class="size-4" />
     </FloatingPanelContent>
   </FloatingPanel>
 </template>

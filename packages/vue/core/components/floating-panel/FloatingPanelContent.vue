@@ -4,6 +4,9 @@ export interface FloatingPanelContentProps extends FloatingPanelContentBaseProps
   ui?: {
     positioner?: HTMLAttributes['class']
     content?: HTMLAttributes['class']
+    resizeVertical?: HTMLAttributes['class']
+    resizeHorizontal?: HTMLAttributes['class']
+    resizeCorner?: HTMLAttributes['class']
   }
 }
 </script>
@@ -11,11 +14,12 @@ export interface FloatingPanelContentProps extends FloatingPanelContentBaseProps
 <script setup lang="ts">
 import type { FloatingPanelContentBaseProps } from '@ark-ui/vue'
 import type { Theme } from '@rui-ark/vue/providers/theme'
-import type { HTMLAttributes } from 'vue'
+import type { ResizeTriggerAxis } from '@zag-js/floating-panel'
+import type { HTMLAttributes, VNode } from 'vue'
 import { FloatingPanel } from '@ark-ui/vue'
 import { tvFloatingPanel } from '@rui-ark/themes/crafts/core/floating-panel'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { computed } from 'vue'
+import { computed, h, toValue } from 'vue'
 import { injectFloatingPanelAppearanceContext } from './floating-panel-appearance-context'
 
 const {
@@ -25,14 +29,71 @@ const {
   ...props
 } = defineProps<FloatingPanelContentProps>()
 
-const { opacity } = injectFloatingPanelAppearanceContext()
+const { opacity, resizeAxis } = injectFloatingPanelAppearanceContext()
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { positioner, content } = tvFloatingPanel()
+const { positioner, content, resizeVertical, resizeHorizontal, resizeCorner } = tvFloatingPanel()
 const style = computed(() => ({
   opacity: opacity.value / 100,
 }))
+
+const resizeNodes = computed(() => {
+  const axis = toValue(resizeAxis)
+  let nodes: VNode[] = []
+  switch (axis) {
+    case 'x':
+      nodes = ['e', 'w'].map(ax =>
+        h(FloatingPanel.ResizeTrigger, {
+          axis: ax as ResizeTriggerAxis,
+          class: resizeVertical({ class: ui?.resizeVertical, ...theme }),
+        }),
+      )
+      break
+    case 'y':
+      nodes = ['n', 's'].map(ax =>
+        h(FloatingPanel.ResizeTrigger, {
+          axis: ax as ResizeTriggerAxis,
+          class: resizeHorizontal({ class: ui?.resizeHorizontal, ...theme }),
+        }),
+      )
+      break
+    case 'xy':
+      nodes = ['e', 'w', 'n', 's'].map(ax =>
+        h(FloatingPanel.ResizeTrigger, {
+          axis: ax as ResizeTriggerAxis,
+          class:
+            ax === 'e' || ax === 'w'
+              ? resizeVertical({ class: ui?.resizeVertical, ...theme })
+              : resizeHorizontal({ class: ui?.resizeHorizontal, ...theme }),
+        }),
+      )
+      break
+    case 'xyc':
+      nodes = ['e', 'w', 'n', 's', 'ne', 'nw', 'se', 'sw'].map((ax) => {
+        if (ax.length === 1) {
+          // line
+          return h(FloatingPanel.ResizeTrigger, {
+            axis: ax as ResizeTriggerAxis,
+            class:
+              ax === 'e' || ax === 'w'
+                ? resizeVertical({ class: ui?.resizeVertical, ...theme })
+                : resizeHorizontal({ class: ui?.resizeHorizontal, ...theme }),
+          })
+        }
+        // corner
+        return h(FloatingPanel.ResizeTrigger, {
+          axis: ax as ResizeTriggerAxis,
+          class: resizeCorner({ class: ui?.resizeCorner, ...theme }),
+        })
+      })
+      break
+    case 'custom':
+    default:
+      break
+  }
+  return nodes
+})
 </script>
 
 <template>
@@ -46,6 +107,12 @@ const style = computed(() => ({
         :style="style"
       >
         <slot />
+        <template
+          v-for="node in resizeNodes"
+          :key="node.key"
+        >
+          <component :is="node" />
+        </template>
       </FloatingPanel.Content>
     </FloatingPanel.Positioner>
   </Teleport>

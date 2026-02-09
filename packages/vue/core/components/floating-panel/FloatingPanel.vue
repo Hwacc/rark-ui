@@ -10,6 +10,7 @@ export interface FloatingPanelProps extends FloatingPanelRootBaseProps, Theme {
   class?: HTMLAttributes['class']
   opacity?: number
   pinned?: boolean
+  resizeAxis?: 'x' | 'y' | 'xy' | 'xyc' | 'custom'
 }
 /**
  * address ts __VLS_export error
@@ -45,6 +46,7 @@ const {
   theme: propsTheme,
   opacity: propsOpacity = 100,
   pinned: propsPinned = false,
+  resizeAxis = 'xyc',
   lazyMount = undefined,
   unmountOnExit = undefined,
   draggable = true,
@@ -75,6 +77,7 @@ provideFloatingPanelAppearanceContext({
   pinned,
   setOpacity,
   setPinned,
+  resizeAxis: () => resizeAxis,
 })
 
 // theme

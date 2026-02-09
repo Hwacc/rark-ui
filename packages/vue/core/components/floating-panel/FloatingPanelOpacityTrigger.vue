@@ -19,7 +19,6 @@ const {
   theme: propsTheme,
   ...props
 } = defineProps<FloatingPanelOpacityTriggerProps>()
-const emit = defineEmits<{ click: [event: MouseEvent] }>()
 const forwarded = useForwardProps(props)
 
 const { opacity, setOpacity } = injectFloatingPanelAppearanceContext()
