@@ -11,9 +11,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvSelect } from '@rui-ark/themes/crafts/core/select'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronDown, CircleX } from 'lucide-vue-next'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -24,23 +24,23 @@ const {
 const forwarded = useForwardProps(props)
 
 const theme = useTheme(() => propsTheme)
-const { trigger, indicator, clearTrigger } = tvSelect()
+const crafts = computed(() => theme.value.crafts.tvSelect())
 </script>
 
 <template>
   <Select.Control>
     <Select.Trigger
       v-bind="forwarded"
-      :class="trigger({ class: [propsClass], ...theme })"
+      :class="crafts.trigger({ class: [propsClass], ...theme })"
     >
       <slot />
       <Select.ClearTrigger
         v-if="clearable"
-        :class="clearTrigger({ ...theme })"
+        :class="crafts.clearTrigger({ ...theme })"
       >
         <CircleX :style="{ width: '1lh', height: '1lh' }" />
       </Select.ClearTrigger>
-      <Select.Indicator :class="indicator({ ...theme })">
+      <Select.Indicator :class="crafts.indicator({ ...theme })">
         <slot name="indicator">
           <ChevronDown :style="{ width: '1lh', height: '1lh' }" />
         </slot>

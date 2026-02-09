@@ -15,8 +15,8 @@ import type { HTMLAttributes } from 'vue'
 import type { ScrollAreaTheme } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { ScrollArea } from '@ark-ui/vue/scroll-area'
-import { tvScrollArea } from '@rui-ark/themes/crafts/core/scroll-area'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -28,14 +28,14 @@ const forwarded = useForwardProps(props)
 
 // theme
 const theme = useTheme<ScrollAreaTheme>(() => propsTheme)
-const { scrollbar, thumb } = tvScrollArea()
+const crafts = computed(() => theme.value.crafts.tvScrollArea())
 </script>
 
 <template>
   <ScrollArea.Scrollbar
     v-bind="forwarded"
     :class="
-      scrollbar({
+      crafts.scrollbar({
         class: [ui?.root, propsClass],
         orientation: forwarded.orientation ?? 'vertical',
         ...theme,
@@ -44,7 +44,7 @@ const { scrollbar, thumb } = tvScrollArea()
   >
     <ScrollArea.Thumb
       :class="
-        thumb({
+        crafts.thumb({
           class: ui?.thumb,
           orientation: forwarded.orientation ?? 'vertical',
           ...theme,

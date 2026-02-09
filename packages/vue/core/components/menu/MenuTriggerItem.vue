@@ -10,10 +10,10 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvMenu } from '@rui-ark/themes/crafts/core/menu'
-import { cn } from '@rui-ark/themes/utils/cn'
+import { cn } from '@rui-ark/themes/default'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronRight } from 'lucide-vue-next'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -27,20 +27,20 @@ const forwarded = useForwardProps<
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { item, triggerItem, triggerItemIndicator } = tvMenu()
+const crafts = computed(() => theme.value.crafts.tvMenu())
 </script>
 
 <template>
   <Menu.TriggerItem
     v-bind="forwarded"
     :class="
-      cn(item({ class: [propsClass], ...theme }), triggerItem({ ...theme }))
+      cn(crafts.item({ class: [propsClass], ...theme }), crafts.triggerItem({ ...theme }))
     "
   >
     <Menu.ItemText>
       <slot />
     </Menu.ItemText>
-    <Menu.Indicator :class="triggerItemIndicator({ ...theme })">
+    <Menu.Indicator :class="crafts.triggerItemIndicator({ ...theme })">
       <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
     </Menu.Indicator>
   </Menu.TriggerItem>

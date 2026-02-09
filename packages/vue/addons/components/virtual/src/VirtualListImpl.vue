@@ -1,7 +1,7 @@
 <script lang="ts" generic="T" setup>
 import type { HTMLAttributes } from 'vue'
 import type { VirtualListProps } from '.'
-import { tvVirtualList } from '@rui-ark/themes/crafts/addons/virtual'
+import { addonsCrafts } from '@rui-ark/themes/default'
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { merge } from 'es-toolkit/compat'
 import { cloneVNode, computed, h, useTemplateRef } from 'vue'
@@ -100,7 +100,7 @@ const scrollAreaStyle = computed(() => {
   }
 })
 
-const { base, scroll } = tvVirtualList()
+const { base, scroll } = addonsCrafts.tvVirtualList()
 defineExpose({
   get virtualizer() {
     return virtualizer.value

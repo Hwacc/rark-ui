@@ -11,7 +11,6 @@ import type {
   ReservedProps,
   UnwrapRef,
 } from 'vue'
-import { tvMessage } from '@rui-ark/themes/crafts/core/message'
 
 type Attrs<T> = T & ReservedProps
 type PropTypes = NativeElements & {
@@ -59,12 +58,9 @@ const slotBindings = computed(() => ({
 }))
 
 const theme = useTheme(() => Object.assign({}, propsTheme, options?.theme))
-const { root, content, icon, close, description } = tvMessage({
-  class: [ui?.root, propsClass],
-  ...theme,
-})
+const crafts = computed(() => theme.value.crafts.tvMessage())
 const iconVNode = computed(() => {
-  const className = icon({ class: ui?.icon, ...theme.value })
+  const className = crafts.value.icon({ class: ui?.icon, ...theme.value })
   switch (messageContext.value.type) {
     case 'info':
       return h(Info, {
@@ -101,36 +97,59 @@ const iconVNode = computed(() => {
 </script>
 
 <template>
-  <Toast.Root v-bind="forwarded" :class="root({ class: [ui?.root, propsClass], ...theme })">
+  <Toast.Root
+    v-bind="forwarded"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
+  >
     <ark.div
-      :class="content({ class: ui?.content, ...theme })"
+      :class="crafts.content({ class: ui?.content, ...theme })"
       data-scope="toast"
       data-part="content"
       :data-placement="messageContext.placement"
       :data-type="messageContext.type"
     >
-      <component :is="options?.render(messageContext)" v-if="options?.render" />
-      <slot v-else name="default" v-bind="slotBindings">
-        <slot name="icon" v-bind="slotBindings">
+      <component
+        :is="options?.render(messageContext)"
+        v-if="options?.render"
+      />
+      <slot
+        v-else
+        name="default"
+        v-bind="slotBindings"
+      >
+        <slot
+          name="icon"
+          v-bind="slotBindings"
+        >
           <component :is="iconVNode" />
         </slot>
-        <slot name="inner" v-bind="slotBindings">
+        <slot
+          name="inner"
+          v-bind="slotBindings"
+        >
           <template v-if="typeof options?.description === 'function'">
             <component :is="options?.description(messageContext)" />
           </template>
           <template v-else>
-            <Toast.Description :class="description({ class: ui?.description, ...theme })">
+            <Toast.Description :class="crafts.description({ class: ui?.description, ...theme })">
               {{ options?.description }}
             </Toast.Description>
           </template>
         </slot>
-        <slot v-if="options?.showClose" name="close" v-bind="slotBindings">
+        <slot
+          v-if="options?.showClose"
+          name="close"
+          v-bind="slotBindings"
+        >
           <Toast.CloseTrigger>
             <X
               v-if="messageContext.type !== 'loading'"
-              :class="close({ class: ui?.close, ...theme })"
+              :class="crafts.close({ class: ui?.close, ...theme })"
             />
-            <ark.div v-else :class="close({ class: ui?.close, ...theme })" />
+            <ark.div
+              v-else
+              :class="crafts.close({ class: ui?.close, ...theme })"
+            />
           </Toast.CloseTrigger>
         </slot>
       </slot>

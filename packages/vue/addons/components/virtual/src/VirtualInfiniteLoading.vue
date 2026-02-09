@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { VirtualInfiniteLoadingVariants } from '@rui-ark/themes/crafts/addons/virtual'
+import type { VirtualInfiniteLoadingVariants } from '@rui-ark/themes/default/crafts/addons'
 import type { HTMLAttributes } from 'vue'
 import type { LoadingStateHandler } from '.'
-import { tvVirtualInfiniteLoading } from '@rui-ark/themes/crafts/addons/virtual'
+import { addonsCrafts } from '@rui-ark/themes/default'
 import { LoaderCircle } from 'lucide-vue-next'
 import { onMounted, onUnmounted, shallowRef } from 'vue'
 import { injectVirtualContext, LOADING_STATE } from '.'
@@ -83,7 +83,8 @@ onUnmounted(() => {
   observer.value = null
 })
 
-const { base, loading, spinner, complete, error } = tvVirtualInfiniteLoading()
+// theme
+const { base, loading, spinner, complete, error } = addonsCrafts.tvVirtualInfiniteLoading()
 </script>
 
 <template>

@@ -17,9 +17,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardPropsEmits } from '@ark-ui/vue/utils'
-import { tvMenu } from '@rui-ark/themes/crafts/core/menu'
 import { Checkbox } from '@rui-ark/vue/components/checkbox'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -36,13 +36,13 @@ const forwarded = useForwardPropsEmits(props, emit)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { item } = tvMenu()
+const crafts = computed(() => theme.value.crafts.tvMenu())
 </script>
 
 <template>
   <Menu.CheckboxItem
     v-bind="forwarded"
-    :class="item({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.item({ class: [ui?.root, propsClass], ...theme })"
   >
     <slot name="indicator" v-bind="{ checked: forwarded.checked }">
       <Checkbox

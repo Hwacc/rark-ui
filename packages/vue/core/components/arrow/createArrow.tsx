@@ -1,10 +1,10 @@
-import type { Theme, ThemeProps } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts, ThemeProps } from '@rui-ark/vue/providers/theme'
 import type { DefineComponent, HTMLAttributes, PropType } from 'vue'
-import { cn } from '@rui-ark/themes/utils/cn'
+import { cn } from '@rui-ark/themes/default'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed, defineComponent } from 'vue'
 
-export interface ArrowProps extends Theme {
+export interface ArrowProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     arrow?: HTMLAttributes['class']
@@ -51,10 +51,12 @@ export function createArrow(
       return () => {
         return (
           <ArrowNode
-            class={cn('overflow-visible z-0', props.ui?.arrow, props.class)}
+            class={cn(props.ui?.arrow, props.class)}
             data-theme-skin={theme.value.skin}
             data-theme-surface={theme.value.surface}
             style={{
+              'overflow': 'visible',
+              'zIndex': 0,
               '--arrow-size': arrowSize.value,
             }}
           >

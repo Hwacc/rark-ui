@@ -15,31 +15,26 @@ import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvSelect } from '@rui-ark/themes/crafts/core/select'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
-const {
-  class: propsClass,
-  theme: propsTheme,
-  ui,
-  ...props
-} = defineProps<SelectContentProps>()
+const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<SelectContentProps>()
 const forwarded = useForwardProps(props)
 
 const theme = useTheme(() => propsTheme)
-const { content, contentInner } = tvSelect()
+const crafts = computed(() => theme.value.crafts.tvSelect())
 </script>
 
 <template>
   <Select.Positioner>
     <Select.Content
       v-bind="forwarded"
-      :class="content({ class: [ui?.root, propsClass], ...theme })"
+      :class="crafts.content({ class: [ui?.root, propsClass], ...theme })"
     >
       <ark.div
         data-scope="select"
         data-part="content-inner"
-        :class="contentInner({ class: [ui?.inner], ...theme })"
+        :class="crafts.contentInner({ class: [ui?.inner], ...theme })"
       >
         <slot />
       </ark.div>

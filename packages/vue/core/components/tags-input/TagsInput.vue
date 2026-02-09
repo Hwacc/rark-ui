@@ -12,13 +12,11 @@ export interface TagsInputProps extends TagsInputRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { TagsInputRootBaseProps, TagsInputRootEmits } from '@ark-ui/vue/tags-input'
-import type { TagsInputVariants } from '@rui-ark/themes/crafts/core/tags-input'
+import type { TagsInputVariants } from '@rui-ark/themes/default/crafts/core'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { TagsInput, useTagsInput } from '@ark-ui/vue/tags-input'
-import { tvInput } from '@rui-ark/themes/crafts/core/input'
-import { tvTagsInput } from '@rui-ark/themes/crafts/core/tags-input'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { computed, nextTick, provide, useTemplateRef, watch } from 'vue'
@@ -54,14 +52,8 @@ watch(
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root: tvInputRoot, input: tvInputInput } = tvInput()
-const {
-  root,
-  control,
-  input,
-  scrollArea: tvScrollArea,
-  scrollAreaContent: tvScrollAreaContent,
-} = tvTagsInput()
+const inputCrafts = computed(() => theme.value.crafts.tvInput())
+const crafts = computed(() => theme.value.crafts.tvTagsInput())
 
 // provide
 provide(TAGS_INPUT_PROVIDE_KEY, {
@@ -76,14 +68,14 @@ useForwardExpose()
 <template>
   <TagsInput.RootProvider
     :value="tagsInput"
-    :class="root({ class: [ui?.root, propsClass], inline, ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], inline, ...theme })"
   >
     <ThemeProvider :value="theme">
       <slot name="prefix" />
       <TagsInput.Control
         :class="
-          tvInputRoot({
-            class: [control({ inline, ...theme }), ui?.control],
+          inputCrafts.root({
+            class: [crafts.control({ inline, ...theme }), ui?.control],
             ...theme,
           })
         "
@@ -91,8 +83,8 @@ useForwardExpose()
         <ScrollArea
           v-if="inline"
           ref="scrollArea"
-          :class="tvScrollArea({ empty: tagsInput.value.length === 0, inline, ...theme })"
-          :ui="{ content: tvScrollAreaContent() }"
+          :class="crafts.scrollArea({ empty: tagsInput.value.length === 0, inline, ...theme })"
+          :ui="{ content: crafts.scrollAreaContent() }"
         >
           <slot :items="tagsInput.value" />
           <ScrollAreaScrollbar
@@ -105,7 +97,9 @@ useForwardExpose()
           :items="tagsInput.value"
         />
         <TagsInput.Input
-          :class="tvInputInput({ class: [input({ inline, ...theme }), ui?.input], ...theme })"
+          :class="
+            inputCrafts.input({ class: [crafts.input({ inline, ...theme }), ui?.input], ...theme })
+          "
         />
       </TagsInput.Control>
       <slot name="suffix" />

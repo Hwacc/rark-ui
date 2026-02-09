@@ -9,9 +9,9 @@ import type { FloatingPanelCloseTriggerBaseProps } from '@ark-ui/vue'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { FloatingPanel, useForwardProps } from '@ark-ui/vue'
-import { tvFloatingPanel } from '@rui-ark/themes/crafts/core/floating-panel'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { X } from 'lucide-vue-next'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -22,11 +22,14 @@ const forwarded = useForwardProps(props)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { trigger } = tvFloatingPanel()
+const crafts = computed(() => theme.value.crafts.tvFloatingPanel())
 </script>
 
 <template>
-  <FloatingPanel.CloseTrigger v-bind="forwarded" :class="trigger({ class: propsClass, ...theme })">
+  <FloatingPanel.CloseTrigger
+    v-bind="forwarded"
+    :class="crafts.trigger({ class: propsClass, ...theme })"
+  >
     <slot>
       <X :style="{ width: '1lh', height: '1lh' }" />
     </slot>

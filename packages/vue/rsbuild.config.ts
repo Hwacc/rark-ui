@@ -7,8 +7,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@rui-ark/vue': './core',
-      '@rui-ark/themes': '../themes/src',
       '@rui-ark/shared': '../shared/src',
+      '@rui-ark/themes': '../themes',
     },
   },
   plugins: [

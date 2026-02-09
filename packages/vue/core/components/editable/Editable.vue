@@ -25,7 +25,6 @@ import type { HTMLAttributes } from 'vue'
 import { EditableArea, EditableRootProvider, useEditable } from '@ark-ui/vue/editable'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { findUp } from '@rui-ark/shared/dom'
-import { tvEditable } from '@rui-ark/themes/crafts/core/editable'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { computed } from 'vue'
@@ -79,7 +78,7 @@ const slotProps = computed<SlotProps>(() => {
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, area } = tvEditable()
+const crafts = computed(() => theme.value.crafts.tvEditable())
 
 // expose
 defineExpose({ $api: editable })
@@ -89,14 +88,20 @@ useForwardExpose()
 <template>
   <EditableRootProvider
     :value="editable"
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">
-      <slot name="prefix" v-bind="slotProps" />
-      <EditableArea :class="area({ class: [ui?.area, propsClass], ...theme })">
+      <slot
+        name="prefix"
+        v-bind="slotProps"
+      />
+      <EditableArea :class="crafts.area({ class: [ui?.area, propsClass], ...theme })">
         <slot v-bind="slotProps" />
       </EditableArea>
-      <slot name="suffix" v-bind="slotProps" />
+      <slot
+        name="suffix"
+        v-bind="slotProps"
+      />
     </ThemeProvider>
   </EditableRootProvider>
 </template>

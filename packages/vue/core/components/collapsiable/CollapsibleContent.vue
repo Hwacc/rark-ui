@@ -9,8 +9,8 @@ import type { CollapsibleContentProps as ArkCollapsibleContentProps } from '@ark
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import { useForwardProps } from '@ark-ui/vue'
 import { Collapsible } from '@ark-ui/vue/collapsible'
-import { tvCollapsible } from '@rui-ark/themes/crafts/core/collapsible'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -21,13 +21,13 @@ const forwarded = useForwardProps(props)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { content } = tvCollapsible()
+const crafts = computed(() => theme.value.crafts.tvCollapsible())
 </script>
 
 <template>
   <Collapsible.Content
     v-bind="forwarded"
-    :class="content({ class: [propsClass], ...theme })"
+    :class="crafts.content({ class: [propsClass], ...theme })"
   >
     <slot />
   </Collapsible.Content>

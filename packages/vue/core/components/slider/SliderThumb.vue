@@ -10,8 +10,8 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider } from '@ark-ui/vue/slider'
-import { tvSlider } from '@rui-ark/themes/crafts/core/slider'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -21,13 +21,13 @@ const {
 const forwarded = useForwardProps(props)
 
 const theme = useTheme(() => propsTheme)
-const { thumb } = tvSlider()
+const crafts = computed(() => theme.value.crafts.tvSlider())
 </script>
 
 <template>
   <Slider.Thumb
     v-bind="forwarded"
-    :class="thumb({ class: [propsClass], ...theme })"
+    :class="crafts.thumb({ class: [propsClass], ...theme })"
     :data-theme-size="theme.size"
   >
     <Slider.HiddenInput />

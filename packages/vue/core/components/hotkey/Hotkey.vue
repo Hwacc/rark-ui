@@ -18,7 +18,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardExpose } from '@ark-ui/vue/utils'
-import { tvHotkey } from '@rui-ark/themes/crafts/core/hotkey'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { isEmpty, without } from 'es-toolkit/compat'
 import { computed, nextTick, reactive, ref, watch, watchEffect } from 'vue'
@@ -204,7 +203,7 @@ watchEffect((cleanup) => {
       IMELocked.value = false
       setInnerHotkey()
       if (currentElement.value) {
-        (currentElement.value as HTMLInputElement).value = innerHotkey.value
+        ;(currentElement.value as HTMLInputElement).value = innerHotkey.value
         currentElement.value.blur()
       }
       emits('error', new Error('IME is active, please close it before inputing'))
@@ -275,18 +274,18 @@ watchEffect((cleanup) => {
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, input } = tvHotkey()
+const crafts = computed(() => theme.value.crafts.tvHotkey())
 </script>
 
 <template>
   <ark.div
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
     :data-placeholder="placeholder"
     :data-state="inputState"
   >
     <ark.input
       :ref="forwardRef"
-      :class="input({ class: ui?.input, ...theme })"
+      :class="crafts.input({ class: ui?.input, ...theme })"
       :disabled="disabled ? true : undefined"
       :spellcheck="false"
       :data-state="inputState"

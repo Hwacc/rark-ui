@@ -13,23 +13,18 @@ export interface IconProps extends Omit<Theme, 'size'> {
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { Icon } from '@iconify/vue'
-import { tvIcon } from '@rui-ark/themes/crafts/core/icon'
 
-const {
-  class: propsClass,
-  theme: propsTheme,
-  icon,
-  ...props
-} = defineProps<IconProps>()
-
+const { class: propsClass, theme: propsTheme, icon, ...props } = defineProps<IconProps>()
 const forwarded = useForwardProps(props)
+
+// theme
 const theme = useTheme(() => propsTheme)
 </script>
 
 <template>
   <Icon
     v-bind="forwarded"
-    :class="tvIcon({ class: [propsClass], ...theme })"
+    :class="theme.crafts.tvIcon({ class: [propsClass], ...theme })"
     :icon="icon"
   />
 </template>

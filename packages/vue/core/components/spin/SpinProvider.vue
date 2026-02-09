@@ -2,9 +2,8 @@
 import type { VNode } from 'vue'
 import type { SpinRenderProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
-import { tvSpin } from '@rui-ark/themes/crafts/core/spin'
 import { LoaderCircle } from 'lucide-vue-next'
-import { provide } from 'vue'
+import { computed, provide } from 'vue'
 
 const slots = defineSlots<{
   default: () => VNode
@@ -13,12 +12,11 @@ const slots = defineSlots<{
 
 function renderIcon(props: SpinRenderProps) {
   const icon = slots?.icon?.(props)
-  const { icon: tvIcon } = tvSpin()
-  console.log('theme', props.theme)
+  const crafts = computed(() => props.theme?.crafts?.tvSpin?.())
   if (icon) {
     return (
       <ark.span
-        class={tvIcon({
+        class={crafts.value?.icon({
           class: props.class,
           ...props.theme,
         })}
@@ -31,7 +29,7 @@ function renderIcon(props: SpinRenderProps) {
   }
   return (
     <LoaderCircle
-      class={tvIcon({
+      class={crafts.value?.icon({
         class: ['animate-spin', props.class],
         ...props.theme,
       })}

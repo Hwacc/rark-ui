@@ -26,7 +26,6 @@ const emit = defineEmits<DatePickerRootEmits>()
 const datePicker = useDatePicker(useForwardProps<DatePickerProps, UseDatePickerProps>(props), emit)
 
 // theme
-console.log('themeProps', themeProps)
 const theme = useTheme(() => themeProps)
 
 // expose

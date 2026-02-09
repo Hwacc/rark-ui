@@ -15,7 +15,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { RatingGroup } from '@ark-ui/vue/rating-group'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvRatingGroup } from '@rui-ark/themes/crafts/core/rating-group'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { Star } from 'lucide-vue-next'
 import { computed } from 'vue'
@@ -25,18 +24,20 @@ const forwarded = useForwardProps(props)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { item, itemIndicator, itemIndicatorIcon } = tvRatingGroup()
-
+const crafts = computed(() => theme.value.crafts.tvRatingGroup())
 const indicatorClx = computed(() => {
-  return itemIndicator({ class: ui?.indicator, ...theme.value })
+  return crafts.value.itemIndicator({ class: ui?.indicator, ...theme.value })
 })
 const iconClx = computed(() => {
-  return itemIndicatorIcon({ class: ui?.icon, ...theme.value })
+  return crafts.value.itemIndicatorIcon({ class: ui?.icon, ...theme.value })
 })
 </script>
 
 <template>
-  <RatingGroup.Item v-bind="forwarded" :class="item({ class: [ui?.root, propsClass], ...theme })">
+  <RatingGroup.Item
+    v-bind="forwarded"
+    :class="crafts.item({ class: [ui?.root, propsClass], ...theme })"
+  >
     <RatingGroup.ItemContext v-slot="{ highlighted, half, checked }">
       <slot
         v-bind="{
@@ -57,8 +58,14 @@ const iconClx = computed(() => {
           :data-highlighted="highlighted ? '' : undefined"
           :data-half="half ? '' : undefined"
         >
-          <Star :class="iconClx" data-bg="" />
-          <Star :class="iconClx" data-fg="" />
+          <Star
+            :class="iconClx"
+            data-bg=""
+          />
+          <Star
+            :class="iconClx"
+            data-fg=""
+          />
         </span>
       </slot>
     </RatingGroup.ItemContext>

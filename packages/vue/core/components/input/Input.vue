@@ -21,7 +21,6 @@ export interface InputProps extends Theme {
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
-import { tvInput } from '@rui-ark/themes/crafts/core/input'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useVModel } from '@vueuse/core'
 import { CircleX } from 'lucide-vue-next'
@@ -78,13 +77,13 @@ function onBlur(event: Event) {
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root: tvRoot, input: tvInputInput, clearable: tvClearable } = tvInput()
+const crafts = computed(() => theme.value.crafts.tvInput())
 </script>
 
 <template>
   <ark.div
     :as-child="false"
-    :class="tvRoot({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
     :data-state="inputState"
   >
     <slot name="prefix" />
@@ -92,7 +91,7 @@ const { root: tvRoot, input: tvInputInput, clearable: tvClearable } = tvInput()
       :id="id ?? inputId"
       ref="input"
       v-model="modelValue"
-      :class="tvInputInput({ class: [ui?.input], ...theme })"
+      :class="crafts.input({ class: [ui?.input], ...theme })"
       :placeholder="placeholder"
       :data-state="inputState"
       :disabled="disabled ? true : undefined"
@@ -110,7 +109,7 @@ const { root: tvRoot, input: tvInputInput, clearable: tvClearable } = tvInput()
     >
     <ark.div
       v-if="inputState === 'focused' && clearable && modelValue"
-      :class="tvClearable({ class: ui?.clearable, ...theme })"
+      :class="crafts.clearable({ class: ui?.clearable, ...theme })"
       @mousedown.stop="
         () => {
           rejectBlur = true

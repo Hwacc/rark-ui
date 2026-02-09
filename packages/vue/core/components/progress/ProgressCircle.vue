@@ -17,7 +17,6 @@ import type { HTMLAttributes } from 'vue'
 import type { ProgressCircleTheme } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { Progress } from '@ark-ui/vue/progress'
-import { tvProgress } from '@rui-ark/themes/crafts/core/progress'
 import { useCustomTheme } from '@rui-ark/vue/composables/useTheme'
 import { omit } from 'es-toolkit'
 import { computed, useTemplateRef } from 'vue'
@@ -42,14 +41,14 @@ const { styles: transferStyles } = useRangeTransfer(
 // theme
 const theme = useCustomTheme<ProgressCircleTheme>(() => propsTheme)
 const themeRest = computed(() => omit(theme.value, ['size']))
-const { circle: tvCircle, circleTrack, circleRange } = tvProgress()
+const crafts = computed(() => theme.value.crafts.tvProgress())
 </script>
 
 <template>
   <Progress.Circle
     v-bind="forwarded"
     :class="
-      tvCircle({
+      crafts.circle({
         class: [ui?.circle, propsClass],
         size: typeof theme.size === 'string' ? theme.size : 'base',
         ...themeRest,
@@ -59,12 +58,12 @@ const { circle: tvCircle, circleTrack, circleRange } = tvProgress()
     :style="typeof theme.size === 'number' && { '--size': `${theme.size}px` }"
   >
     <Progress.CircleTrack
-      :class="circleTrack({ class: ui?.circleTrack, ...themeRest })"
+      :class="crafts.circleTrack({ class: ui?.circleTrack, ...themeRest })"
       :data-variant="variant"
     />
     <Progress.CircleRange
       ref="range"
-      :class="circleRange({ class: ui?.circleRange, ...themeRest })"
+      :class="crafts.circleRange({ class: ui?.circleRange, ...themeRest })"
       :data-variant="variant"
       :style="transferStyles"
     />

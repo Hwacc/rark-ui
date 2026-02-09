@@ -2,9 +2,8 @@
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
-import { tvDialog } from '@rui-ark/themes/crafts/core/dialog'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { useId } from 'vue'
+import { computed, useId } from 'vue'
 
 const { class: propsClass, theme: propsTheme } = defineProps<
   { class?: HTMLAttributes['class'] } & Theme
@@ -12,7 +11,7 @@ const { class: propsClass, theme: propsTheme } = defineProps<
 
 const id = useId()
 const theme = useTheme(() => propsTheme)
-const { body } = tvDialog()
+const crafts = computed(() => theme.value.crafts.tvDialog())
 </script>
 
 <template>
@@ -20,7 +19,7 @@ const { body } = tvDialog()
     :id="`dialog:${id}:body`"
     data-scope="dialog"
     data-part="body"
-    :class="body({ class: propsClass, ...theme })"
+    :class="crafts.body({ class: propsClass, ...theme })"
   >
     <slot />
   </ark.div>

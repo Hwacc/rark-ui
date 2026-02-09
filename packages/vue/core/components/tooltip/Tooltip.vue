@@ -34,7 +34,9 @@ const tooltip = useTooltip(
   emit,
 )
 
+// theme
 const theme = useTheme(() => propsTheme)
+
 // expose
 defineExpose({ $api: tooltip })
 useForwardExpose()

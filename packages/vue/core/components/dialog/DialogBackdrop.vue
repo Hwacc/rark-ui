@@ -10,19 +10,19 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Dialog } from '@ark-ui/vue/dialog'
-import { tvDialog } from '@rui-ark/themes/crafts/core/dialog'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<DialogBackdropProps>()
 const forwarded = useForwardProps(props)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { backdrop } = tvDialog()
+const crafts = computed(() => theme.value.crafts.tvDialog())
 </script>
 
 <template>
-  <Dialog.Backdrop v-bind="forwarded" :class="backdrop({ class: propsClass, ...theme })">
+  <Dialog.Backdrop v-bind="forwarded" :class="crafts.backdrop({ class: propsClass, ...theme })">
     <slot />
   </Dialog.Backdrop>
 </template>

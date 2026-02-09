@@ -10,9 +10,8 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs } from '@ark-ui/vue/tabs'
-import { tvTabs } from '@rui-ark/themes/crafts/core/tabs'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { injectTabsContextEx } from './TabsProviderEx.vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<TabsContentProps>()
@@ -23,14 +22,15 @@ watch(() => contextEx.value.index, (index, oldIndex) => {
   direction.value = index - oldIndex
 })
 
+// theme
 const theme = useTheme(() => propsTheme)
-const { content } = tvTabs()
+const crafts = computed(() => theme.value.crafts.tvTabs())
 </script>
 
 <template>
   <Tabs.Content
     v-bind="forwarded"
-    :class="content({
+    :class="crafts.content({
       class: [propsClass],
       prev: direction < 0,
       next: direction > 0,

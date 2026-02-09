@@ -10,9 +10,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Progress, useProgress } from '@ark-ui/vue/progress'
-import { tvProgress } from '@rui-ark/themes/crafts/core/progress'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<ProgressProps>()
 const emit = defineEmits<ProgressRootEmits>()
@@ -21,7 +21,7 @@ const progress = useProgress(forwarded, emit)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root } = tvProgress()
+const crafts = computed(() => theme.value.crafts.tvProgress())
 
 // expose
 defineExpose({ $api: progress })
@@ -32,7 +32,7 @@ useForwardExpose()
   <Progress.RootProvider
     :value="progress"
     :class="
-      root({ class: propsClass, orientation: forwarded.orientation ?? 'horizontal', ...theme })
+      crafts.root({ class: propsClass, orientation: forwarded.orientation ?? 'horizontal', ...theme })
     "
   >
     <ThemeProvider :value="theme">

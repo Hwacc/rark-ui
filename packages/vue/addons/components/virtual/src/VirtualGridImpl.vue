@@ -1,7 +1,7 @@
 <script setup generic="T" lang="ts">
 import type { ComponentPublicInstance, HTMLAttributes } from 'vue'
 import type { VirtualGridProps } from '.'
-import { tvVirtualGrid } from '@rui-ark/themes/crafts/addons/virtual'
+import { addonsCrafts } from '@rui-ark/themes/default'
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { merge } from 'es-toolkit/compat'
 import { cloneVNode, computed, h, useTemplateRef } from 'vue'
@@ -51,7 +51,6 @@ const grid = computed<[number, number]>(() => {
 })
 
 const rowVirtualOptions = computed(() => {
-  console.log('rowVirtualOptions', grid.value[0])
   const _staticOptions = {
     enabled: true,
     count: grid.value[0],
@@ -157,7 +156,9 @@ function measureElement(el: Element | ComponentPublicInstance) {
       rowVirtualizer.value.measureElement(el.$el)
   }
 }
-const { base, scroll } = tvVirtualGrid()
+
+// theme
+const { base, scroll } = addonsCrafts.tvVirtualGrid()
 </script>
 
 <template>

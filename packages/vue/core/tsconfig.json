@@ -16,8 +16,8 @@
     "moduleResolution": "Bundler",
     "paths": {
       "@rui-ark/vue/*": ["./*"],
-      "@rui-ark/themes/*": ["../../themes/src/*"],
-      "@rui-ark/shared/*": ["../../shared/src/*"]
+      "@rui-ark/shared/*": ["../../shared/src/*"],
+      "@rui-ark/themes/*": ["../../themes/*"]
     },
 
     "allowImportingTsExtensions": true,

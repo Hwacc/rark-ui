@@ -12,7 +12,6 @@ import type { DatePickerContentProvide } from '.'
 import { DatePicker } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvDatePicker } from '@rui-ark/themes/crafts/core/date-picker'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { findVNodeByName, findVNodesByName } from '@rui-ark/vue/utils/vnode'
 import { compact, isNil } from 'es-toolkit'
@@ -44,7 +43,7 @@ const viewsState = computed(() => {
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { content, contentInner } = tvDatePicker()
+const crafts = computed(() => theme.value.crafts.tvDatePicker())
 
 // provide
 provide<DatePickerContentProvide>(DATE_PICKER_CONTENT_PROVIDE_KEY, { viewsState })
@@ -54,11 +53,11 @@ provide<DatePickerContentProvide>(DATE_PICKER_CONTENT_PROVIDE_KEY, { viewsState 
   <DatePicker.Positioner>
     <DatePicker.Content
       v-bind="forwarded"
-      :class="content({ class: [propsClass], ...theme })"
+      :class="crafts.content({ class: [propsClass], ...theme })"
     >
       <slot name="prefix" />
       <ark.div
-        :class="contentInner({ ...theme })"
+        :class="crafts.contentInner({ ...theme })"
         data-scope="date-picker"
         data-part="content-inner"
       >

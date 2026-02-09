@@ -14,22 +14,17 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { RatingGroup, useRatingGroup } from '@ark-ui/vue/rating-group'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { tvRatingGroup } from '@rui-ark/themes/crafts/core/rating-group'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { computed } from 'vue'
 
-const {
-  class: propsClass,
-  theme: propsTheme,
-  ui,
-  ...props
-} = defineProps<RatingGroupProps>()
+const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<RatingGroupProps>()
 const emit = defineEmits<RatingGroupRootEmits>()
 const ratingGroup = useRatingGroup(useForwardProps(props), emit)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, control } = tvRatingGroup()
+const crafts = computed(() => theme.value.crafts.tvRatingGroup())
 
 // expose
 defineExpose({ $api: ratingGroup })
@@ -39,11 +34,11 @@ useForwardExpose()
 <template>
   <RatingGroup.RootProvider
     :value="ratingGroup"
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">
       <slot name="prefix" />
-      <RatingGroup.Control :class="control({ class: ui?.control, ...theme })">
+      <RatingGroup.Control :class="crafts.control({ class: ui?.control, ...theme })">
         <slot :items="ratingGroup.items" />
       </RatingGroup.Control>
       <slot name="suffix" />

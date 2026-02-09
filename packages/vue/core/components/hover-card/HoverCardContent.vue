@@ -15,7 +15,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { HoverCard } from '@ark-ui/vue/hover-card'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvHoverCard } from '@rui-ark/themes/crafts/core/hover-card'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import {
   checkContextVNodePosition,
@@ -35,14 +34,14 @@ const otherNodes = computed(() => excludeVNodesByName(defaultSlots.value, 'Hover
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { content, contentInner } = tvHoverCard()
+const crafts = computed(() => theme.value.crafts.tvHoverCard())
 </script>
 
 <template>
   <HoverCard.Positioner :class="ui?.positioner">
     <HoverCard.Content
       v-bind="forwarded"
-      :class="content({ class: [ui?.content, propsClass], ...theme })"
+      :class="crafts.content({ class: [ui?.content, propsClass], ...theme })"
       :data-theme-bordered="theme.bordered ? '' : undefined"
       :data-theme-skin="theme.skin"
       :data-theme-surface="theme.surface"
@@ -51,7 +50,7 @@ const { content, contentInner } = tvHoverCard()
         <component :is="arrowNode" />
       </template>
       <div
-        :class="contentInner({ class: [ui?.inner], ...theme })"
+        :class="crafts.contentInner({ class: [ui?.inner], ...theme })"
         :data-theme-skin="theme.skin"
         :data-theme-surface="theme.surface"
       >

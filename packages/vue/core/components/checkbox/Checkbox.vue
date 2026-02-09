@@ -1,6 +1,6 @@
 <script lang="ts">
 export type CheckedState = boolean | 'indeterminate'
-export interface CheckboxProps extends CheckboxRootProps, Theme {
+export interface CheckboxProps extends CheckboxRootProps, ThemeCrafts<'tvCheckbox'> {
   label?: string
   class?: HTMLAttributes['class']
   ui?: {
@@ -14,21 +14,15 @@ export interface CheckboxProps extends CheckboxRootProps, Theme {
 
 <script setup lang="ts">
 import type { CheckboxRootEmits, CheckboxRootProps, UseCheckboxReturn } from '@ark-ui/vue/checkbox'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Checkbox, useCheckbox } from '@ark-ui/vue/checkbox'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { tvCheckbox } from '@rui-ark/themes/crafts/core/checkbox'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { Check, Minus } from 'lucide-vue-next'
+import { computed } from 'vue'
 
-const {
-  class: propsClass,
-  theme: propsTheme,
-  label,
-  ui,
-  ...props
-} = defineProps<CheckboxProps>()
+const { class: propsClass, theme: propsTheme, label, ui, ...props } = defineProps<CheckboxProps>()
 const emit = defineEmits<CheckboxRootEmits>()
 const slots = defineSlots<{
   indicator: (props: { checkedState: CheckedState }) => any
@@ -39,7 +33,7 @@ const checkbox = useCheckbox(forwarded, emit)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, control, indicator, indicatorChecked, indicatorMinus, label: tvLabel } = tvCheckbox()
+const crafts = computed(() => theme.value.crafts.tvCheckbox())
 
 // expose
 defineExpose({ $api: checkbox as UseCheckboxReturn })
@@ -49,25 +43,32 @@ useForwardExpose()
 <template>
   <Checkbox.RootProvider
     :value="checkbox"
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
   >
-    <Checkbox.Control :class="control({ class: ui?.control, ...theme })">
-      <Checkbox.Indicator :class="indicator({ class: ui?.indicator, ...theme })">
-        <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
-          <Check :class="indicatorChecked()" />
+    <Checkbox.Control :class="crafts.control({ class: ui?.control, ...theme })">
+      <Checkbox.Indicator :class="crafts.indicator({ class: ui?.indicator, ...theme })">
+        <slot
+          name="indicator"
+          v-bind="{ checkedState: checkbox.checkedState }"
+        >
+          <Check :class="crafts.indicatorChecked({ ...theme })" />
         </slot>
       </Checkbox.Indicator>
-      <Checkbox.Indicator :class="indicator({ class: ui?.indicator, ...theme })" indeterminate>
-        <slot name="indicator" v-bind="{ checkedState: checkbox.checkedState }">
-          <Minus
-            :class="indicatorMinus()"
-          />
+      <Checkbox.Indicator
+        :class="crafts.indicator({ class: ui?.indicator, ...theme })"
+        indeterminate
+      >
+        <slot
+          name="indicator"
+          v-bind="{ checkedState: checkbox.checkedState }"
+        >
+          <Minus :class="crafts.indicatorMinus({ ...theme })" />
         </slot>
       </Checkbox.Indicator>
     </Checkbox.Control>
     <Checkbox.Label
       v-if="label || slots.label?.()"
-      :class="tvLabel({ class: ui?.label, ...theme })"
+      :class="crafts.label({ class: ui?.label, ...theme })"
       :as-child="!!label"
     >
       <slot name="label">

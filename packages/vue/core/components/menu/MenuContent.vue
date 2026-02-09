@@ -15,7 +15,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvMenu } from '@rui-ark/themes/crafts/core/menu'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import {
   checkContextVNodePosition,
@@ -42,7 +41,7 @@ const otherNodes = computed(() => excludeVNodesByName(defaultSlots.value, 'MenuA
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { content, contentInner } = tvMenu()
+const crafts = computed(() => theme.value.crafts.tvMenu())
 </script>
 
 <template>
@@ -52,13 +51,13 @@ const { content, contentInner } = tvMenu()
   >
     <Menu.Content
       v-bind="forwarded"
-      :class="content({ class: [ui?.content, propsClass], ...theme })"
+      :class="crafts.content({ class: [ui?.content, propsClass], ...theme })"
       :data-theme-bordered="theme.bordered ? '' : undefined"
     >
       <template v-if="arrowNode">
         <component :is="arrowNode" />
       </template>
-      <div :class="contentInner({ class: [ui?.inner], ...theme })">
+      <div :class="crafts.contentInner({ class: [ui?.inner], ...theme })">
         <template v-for="node in otherNodes" :key="node.key">
           <component :is="node" />
         </template>

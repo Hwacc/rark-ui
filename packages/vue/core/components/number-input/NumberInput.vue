@@ -18,10 +18,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { NumberInput, useNumberInput } from '@ark-ui/vue/number-input'
-import { tvInput } from '@rui-ark/themes/crafts/core/input'
-import { tvNumberInput } from '@rui-ark/themes/crafts/core/number-input'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronDown, ChevronUp } from 'lucide-vue-next'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -40,8 +39,8 @@ const numberInput = useNumberInput(useForwardProps(props), emits)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root: tvInputRoot, input: tvInputInput } = tvInput()
-const { root, control, input, triggerGroup, trigger } = tvNumberInput()
+const inputCrafts = computed(() => theme.value.crafts.tvInput())
+const crafts = computed(() => theme.value.crafts.tvNumberInput())
 
 // expose
 defineExpose({ $api: numberInput })
@@ -51,27 +50,27 @@ useForwardExpose()
 <template>
   <NumberInput.RootProvider
     :value="numberInput"
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
   >
     <slot name="prefix" />
-    <NumberInput.Control
-      :class="tvInputRoot({ class: control({ class: ui?.control, ...theme }), ...theme })"
-    >
+    <NumberInput.Control :class="inputCrafts.root({ class: ui?.control, ...theme })">
       <NumberInput.Input
-        :class="tvInputInput({ class: input({ class: ui?.input, ...theme }), ...theme })"
+        :class="
+          inputCrafts.input({ class: crafts.input({ class: ui?.input, ...theme }), ...theme })
+        "
         @focus="emits('focus', $event)"
         @blur="emits('blur', $event)"
       />
       <div
         v-if="showTrigger"
-        :class="triggerGroup({ class: ui?.triggerGroup, ...theme })"
+        :class="crafts.triggerGroup({ class: ui?.triggerGroup, ...theme })"
         data-scope="number-input"
         data-part="trigger-group"
       >
-        <NumberInput.IncrementTrigger :class="trigger({ class: ui?.trigger, ...theme })">
+        <NumberInput.IncrementTrigger :class="crafts.trigger({ class: ui?.trigger, ...theme })">
           <ChevronUp />
         </NumberInput.IncrementTrigger>
-        <NumberInput.DecrementTrigger :class="trigger({ class: ui?.trigger, ...theme })">
+        <NumberInput.DecrementTrigger :class="crafts.trigger({ class: ui?.trigger, ...theme })">
           <ChevronDown />
         </NumberInput.DecrementTrigger>
       </div>

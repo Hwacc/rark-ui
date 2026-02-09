@@ -20,7 +20,6 @@ import { useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
 import { Progress, useProgressContext } from '@ark-ui/vue/progress'
 import { getNodeCssVar } from '@rui-ark/shared/css'
-import { tvProgress } from '@rui-ark/themes/crafts/core/progress'
 import { useCustomTheme } from '@rui-ark/vue/composables/useTheme'
 import { omit } from 'es-toolkit'
 import { computed, useTemplateRef } from 'vue'
@@ -72,14 +71,14 @@ const { styles: transferStyles } = useRangeTransfer(
 // theme
 const theme = useCustomTheme<ProgressCircleTheme>(() => propsTheme)
 const themeRest = computed(() => omit(theme.value, ['size']))
-const { circle, circleTrack, circleRange } = tvProgress()
+const crafts = computed(() => theme.value.crafts.tvProgress())
 </script>
 
 <template>
   <Progress.Circle
     v-bind="forwarded"
     :class="
-      circle({
+      crafts.circle({
         class: [ui?.circle, propsClass],
         size: typeof theme.size === 'string' ? theme.size : 'base',
         ...themeRest,
@@ -98,7 +97,7 @@ const { circle, circleTrack, circleRange } = tvProgress()
       <ark.circle
         v-bind="trackProps"
         ref="track"
-        :class="circleTrack({ class: ui?.circleTrack, ...themeRest })"
+        :class="crafts.circleTrack({ class: ui?.circleTrack, ...themeRest })"
         :data-variant="variant"
         :stroke-dasharray="`${arc} 1000`"
         stroke-dashoffset="0"
@@ -106,7 +105,7 @@ const { circle, circleTrack, circleRange } = tvProgress()
       <ark.circle
         v-bind="rangeProps"
         ref="range"
-        :class="circleRange({ class: ui?.circleRange, ...themeRest })"
+        :class="crafts.circleRange({ class: ui?.circleRange, ...themeRest })"
         :data-variant="variant"
         :stroke-dasharray="`${arc} 1000`"
         :stroke-dashoffset="progress"

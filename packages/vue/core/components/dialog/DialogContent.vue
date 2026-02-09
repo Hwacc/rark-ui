@@ -16,8 +16,7 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Dialog } from '@ark-ui/vue/dialog'
 import { ark } from '@ark-ui/vue/factory'
-import { tvDialog } from '@rui-ark/themes/crafts/core/dialog'
-import { cn } from '@rui-ark/themes/utils/cn'
+import { cn } from '@rui-ark/themes/default'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { hasChildVNodeByName } from '@rui-ark/vue/utils/vnode'
 import { X } from 'lucide-vue-next'
@@ -47,16 +46,16 @@ const showContentClose = computed(() => showClose && !hasDialogHeader.value)
 
 const attrs = useAttrs()
 const theme = useTheme(() => propsTheme)
-const { backdrop, positioner, content, close } = tvDialog()
+const crafts = computed(() => theme.value.crafts.tvDialog())
 </script>
 
 <template>
   <Teleport to="body">
-    <Dialog.Backdrop :class="backdrop({ class: ui?.backdrop, ...theme })" />
-    <Dialog.Positioner :class="positioner({ class: ui?.positioner, ...theme })">
+    <Dialog.Backdrop :class="crafts.backdrop({ class: ui?.backdrop, ...theme })" />
+    <Dialog.Positioner :class="crafts.positioner({ class: ui?.positioner, ...theme })">
       <Dialog.Content
         v-bind="attrs"
-        :class="content({ class: [ui?.content, propsClass], ...theme })"
+        :class="crafts.content({ class: [ui?.content, propsClass], ...theme })"
       >
         <slot />
         <slot name="close">
@@ -65,7 +64,9 @@ const { backdrop, positioner, content, close } = tvDialog()
             as-child
           >
             <ark.button
-              :class="cn(['absolute', 'top-0', 'right-0'], close({ class: ui?.close, ...theme }))"
+              :class="
+                cn(['absolute', 'top-0', 'right-0'], crafts.close({ class: ui?.close, ...theme }))
+              "
               data-variant="content-close"
             >
               <X :style="{ width: '1lh', height: '1lh' }" />

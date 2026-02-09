@@ -10,7 +10,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { DatePickerContentProvide } from '.'
 import { DatePicker, useDatePickerContext } from '@ark-ui/vue'
-import { tvDatePickerView } from '@rui-ark/themes/crafts/core/date-picker'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { flatten } from 'es-toolkit'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
@@ -40,72 +39,63 @@ const theme = useTheme(() =>
     weekDayType,
   }),
 )
-const {
-  view,
-  viewControl,
-  viewControlTrigger,
-  viewTrigger,
-  table,
-  tableHead,
-  tableHeader,
-  tableBody,
-  tableCell,
-  tableCellTrigger,
-} = tvDatePickerView()
+const crafts = computed(() => theme.value.crafts.tvDatePickerView())
 </script>
 
 <template>
   <DatePicker.View
     view="day"
-    :class="view({ class: propsClass, ...theme })"
+    :class="crafts.view({ class: propsClass, ...theme })"
   >
-    <DatePicker.ViewControl :class="viewControl({ ...theme })">
+    <DatePicker.ViewControl :class="crafts.viewControl({ ...theme })">
       <DatePicker.PrevTrigger
         as-child
-        :class="viewControlTrigger({ ...theme })"
+        :class="crafts.viewControlTrigger({ ...theme })"
       >
         <ChevronLeft :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.PrevTrigger>
       <DatePicker.ViewTrigger
         v-if="viewsState.count > 1 && viewsState.hasMonthView"
-        :class="viewTrigger({ ...theme })"
+        :class="crafts.viewTrigger({ ...theme })"
       >
         <DatePicker.RangeText />
       </DatePicker.ViewTrigger>
       <DatePicker.RangeText v-else />
       <DatePicker.NextTrigger
         as-child
-        :class="viewControlTrigger({ ...theme })"
+        :class="crafts.viewControlTrigger({ ...theme })"
       >
         <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.NextTrigger>
     </DatePicker.ViewControl>
-    <DatePicker.Table :class="table({ ...theme })">
+    <DatePicker.Table :class="crafts.table({ ...theme })">
       <div
         v-bind="context.getTableHeadProps()"
-        :class="tableHead({ ...theme })"
+        :class="crafts.tableHead({ ...theme })"
       >
         <div
           v-for="(weekDay, id) in context.weekDays"
           v-bind="context.getTableHeaderProps()"
           :key="id"
-          :class="tableHeader({ ...theme })"
+          :class="crafts.tableHeader({ ...theme })"
         >
           {{ weekDay[weekDayType] }}
         </div>
       </div>
       <div
         v-bind="context.getTableBodyProps()"
-        :class="tableBody({ ...theme })"
+        :class="crafts.tableBody({ ...theme })"
       >
         <DatePicker.TableCell
           v-for="(day, did) in flatten(context.weeks)"
           :key="did"
           :value="day"
-          :class="tableCell({ ...theme })"
+          :class="crafts.tableCell({ ...theme })"
         >
           <DatePicker.TableCellTrigger
-            :class="tableCellTrigger({ ...context.getDayTableCellState({ value: day }), ...theme })"
+            :class="
+              crafts.tableCellTrigger({ ...context.getDayTableCellState({ value: day }), ...theme })
+            "
           >
             {{ day.day }}
           </DatePicker.TableCellTrigger>

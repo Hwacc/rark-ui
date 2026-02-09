@@ -15,9 +15,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Collapsible, useCollapsibleContext } from '@ark-ui/vue/collapsible'
-import { tvCollapsible } from '@rui-ark/themes/crafts/core/collapsible'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronDown } from 'lucide-vue-next'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -31,13 +31,13 @@ const context = useCollapsibleContext()
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { trigger, indicator: tvIndicator } = tvCollapsible()
+const crafts = computed(() => theme.value.crafts.tvCollapsible())
 </script>
 
 <template>
   <Collapsible.Trigger
     v-bind="forwarded"
-    :class="trigger({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.trigger({ class: [ui?.root, propsClass], ...theme })"
   >
     <slot v-bind="{ open: context.open, visible: context.visible }" />
     <slot
@@ -46,7 +46,7 @@ const { trigger, indicator: tvIndicator } = tvCollapsible()
     >
       <Collapsible.Indicator
         v-if="indicator"
-        :class="tvIndicator({ class: ui?.indicator, ...theme })"
+        :class="crafts.indicator({ class: ui?.indicator, ...theme })"
       >
         <ChevronDown :style="{ width: '1lh', height: '1lh' }" />
       </Collapsible.Indicator>

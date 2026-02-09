@@ -10,9 +10,8 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs, useTabsContext } from '@ark-ui/vue/tabs'
-import { tvTabs } from '@rui-ark/themes/crafts/core/tabs'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { useTemplateRef, watchEffect } from 'vue'
+import { computed, useTemplateRef, watchEffect } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<TabsListProps>()
 const forwarded = useForwardProps(props)
@@ -24,20 +23,29 @@ watchEffect(() => {
   const tabsListEl = tabsListRef.value?.$el
   if (!tabsListEl || !curValue)
     return
-  const tabTriggerEls = Array.from(tabsListEl.querySelectorAll('[data-part="trigger"]')) as HTMLElement[]
+  const tabTriggerEls = Array.from(
+    tabsListEl.querySelectorAll('[data-part="trigger"]'),
+  ) as HTMLElement[]
   if (!tabTriggerEls.length)
     return
   const curIndex = tabTriggerEls.findIndex(el => el.getAttribute('data-value') === curValue)
   if (curIndex < 0)
     return
   const listRect = tabsListEl.getBoundingClientRect()
-  const prevRect = tabTriggerEls[curIndex - 1 < 0 ? tabTriggerEls.length - 1 : curIndex - 1]?.getBoundingClientRect()
+  const prevRect
+    = tabTriggerEls[
+      curIndex - 1 < 0 ? tabTriggerEls.length - 1 : curIndex - 1
+    ]?.getBoundingClientRect()
   const curRect = tabTriggerEls[curIndex]?.getBoundingClientRect()
-  const nextRect = tabTriggerEls[curIndex + 1 === tabTriggerEls.length ? 0 : curIndex + 1]?.getBoundingClientRect()
+  const nextRect
+    = tabTriggerEls[curIndex + 1 === tabTriggerEls.length ? 0 : curIndex + 1]?.getBoundingClientRect()
 
   const deltaX = curRect.x - listRect.x
   // 完全在左边
-  if ((curIndex === 0 && deltaX <= 0) || (curIndex > 0 && deltaX <= 0 && Math.abs(deltaX) >= curRect.width)) {
+  if (
+    (curIndex === 0 && deltaX <= 0)
+    || (curIndex > 0 && deltaX <= 0 && Math.abs(deltaX) >= curRect.width)
+  ) {
     tabsListEl.scrollBy({
       left: prevRect ? -(Math.abs(deltaX) + curRect.width) - prevRect.width / 2 : -9999,
       behavior: 'smooth',
@@ -65,14 +73,9 @@ watchEffect(() => {
     })
   }
   // 在右边,包含,但显示不全
-  else if (
-    deltaX < listRect.width
-    && curRect.width + curRect.x > listRect.width + listRect.x
-  ) {
+  else if (deltaX < listRect.width && curRect.width + curRect.x > listRect.width + listRect.x) {
     tabsListEl.scrollBy({
-      left: nextRect
-        ? deltaX + curRect.width - listRect.width + nextRect.width / 2
-        : curRect.width,
+      left: nextRect ? deltaX + curRect.width - listRect.width + nextRect.width / 2 : curRect.width,
       behavior: 'smooth',
     })
   }
@@ -89,12 +92,17 @@ watchEffect(() => {
   }
 })
 
+// theme
 const theme = useTheme(() => propsTheme)
-const { list: tvList } = tvTabs()
+const crafts = computed(() => theme.value.crafts.tvTabs())
 </script>
 
 <template>
-  <Tabs.List v-bind="forwarded" ref="tabsList" :class="tvList({ class: [propsClass], ...theme })">
+  <Tabs.List
+    v-bind="forwarded"
+    ref="tabsList"
+    :class="crafts.list({ class: [propsClass], ...theme })"
+  >
     <slot />
   </Tabs.List>
 </template>

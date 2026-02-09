@@ -12,17 +12,12 @@ export interface PaginationGoToProps extends Theme {
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { usePaginationContext } from '@ark-ui/vue'
-import { tvPaginationGoto } from '@rui-ark/themes/crafts/core/pagination'
 import { NumberInput } from '@rui-ark/vue/components/number-input'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { provide, ref, watch } from 'vue'
+import { computed, provide, ref, watch } from 'vue'
 import { PAGINATION_GO_TO_PROVIDE_KEY } from '.'
 
-const {
-  class: propsClass,
-  theme: propsTheme,
-  ui,
-} = defineProps<PaginationGoToProps>()
+const { class: propsClass, theme: propsTheme, ui } = defineProps<PaginationGoToProps>()
 
 const context = usePaginationContext()
 const innerValue = ref<string>(`${context.value.page}`)
@@ -49,14 +44,14 @@ function goInputPage() {
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, input } = tvPaginationGoto()
+const crafts = computed(() => theme.value.crafts.tvPaginationGoto())
 
 provide(PAGINATION_GO_TO_PROVIDE_KEY, { goInputPage })
 </script>
 
 <template>
   <div
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
     data-scope="pagination"
     data-part="goto"
   >
@@ -64,7 +59,7 @@ provide(PAGINATION_GO_TO_PROVIDE_KEY, { goInputPage })
     <NumberInput
       v-bind="theme"
       v-model="innerValue"
-      :class="input({ class: ui?.input, ...theme })"
+      :class="crafts.input({ class: ui?.input, ...theme })"
       :ui="ui?.input"
       :min="1"
       :max="context.totalPages"

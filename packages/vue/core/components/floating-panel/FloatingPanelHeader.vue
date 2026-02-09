@@ -14,8 +14,8 @@ import type { FloatingPanelHeaderBaseProps } from '@ark-ui/vue'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { FloatingPanel, useForwardProps } from '@ark-ui/vue'
-import { tvFloatingPanel } from '@rui-ark/themes/crafts/core/floating-panel'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -27,19 +27,19 @@ const forwarded = useForwardProps(props)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { header, control, title } = tvFloatingPanel()
+const crafts = computed(() => theme.value.crafts.tvFloatingPanel())
 </script>
 
 <template>
   <FloatingPanel.DragTrigger>
     <FloatingPanel.Header
       v-bind="forwarded"
-      :class="header({ class: [ui?.root, propsClass], ...theme })"
+      :class="crafts.header({ class: [ui?.root, propsClass], ...theme })"
     >
-      <FloatingPanel.Title :class="title({ class: ui?.title, ...theme })">
+      <FloatingPanel.Title :class="crafts.title({ class: ui?.title, ...theme })">
         <slot />
       </FloatingPanel.Title>
-      <FloatingPanel.Control :class="control({ class: ui?.control, ...theme })">
+      <FloatingPanel.Control :class="crafts.control({ class: ui?.control, ...theme })">
         <slot name="control" />
       </FloatingPanel.Control>
     </FloatingPanel.Header>

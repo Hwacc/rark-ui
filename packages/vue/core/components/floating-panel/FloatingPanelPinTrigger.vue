@@ -10,9 +10,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
-import { tvFloatingPanel } from '@rui-ark/themes/crafts/core/floating-panel'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { Pin, PinOff } from 'lucide-vue-next'
+import { computed } from 'vue'
 import { injectFloatingPanelAppearanceContext } from './floating-panel-appearance-context'
 
 const {
@@ -34,18 +34,24 @@ function handleClick(e: MouseEvent) {
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { trigger } = tvFloatingPanel()
+const crafts = computed(() => theme.value.crafts.tvFloatingPanel())
 </script>
 
 <template>
   <ark.button
     v-bind="forwarded"
-    :class="trigger({ class: [propsClass], ...theme })"
+    :class="crafts.trigger({ class: [propsClass], ...theme })"
     @click="handleClick"
   >
     <slot v-bind="{ pinned, setPinned }">
-      <PinOff v-if="pinned" :style="{ width: '1lh', height: '1lh' }" />
-      <Pin v-else :style="{ width: '1lh', height: '1lh' }" />
+      <PinOff
+        v-if="pinned"
+        :style="{ width: '1lh', height: '1lh' }"
+      />
+      <Pin
+        v-else
+        :style="{ width: '1lh', height: '1lh' }"
+      />
     </slot>
   </ark.button>
 </template>

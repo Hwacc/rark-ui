@@ -27,9 +27,9 @@ const toasterVNodes = computed(() => {
   return defaultSlots.value
 })
 
+// expose
 const slotsToasters = ref<ToasterWrap[]>([])
 const defaultToaster = ref<ToasterWrap>()
-
 defineExpose({
   toasters: computed(() =>
     [...slotsToasters.value, defaultToaster.value].filter(r => r && r.toaster),

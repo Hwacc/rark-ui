@@ -35,28 +35,23 @@ import {
                     <Blend class="size-[1lh]" :class="[open && 'text-hff']" />
                   </PopoverTrigger>
                   <Teleport to="body">
-                    <PopoverContent
-                      :ui="{
-                        inner: 'flex gap-2',
-                      }"
-                    >
-                      <Slider
-                        :model-value="[opacityGetter()]"
-                        class="flex-row items-center gap-2"
-                        :ui="{
-                          track: 'w-25',
-                        }"
-                        :min="30"
-                        :max="100"
-                        :step="1"
-                        :theme="{ size: 'xs' }"
-                        @update:model-value="(value) => setOpacity(value[0])"
-                      >
-                        <SliderThumb :index="0" />
-                        <template #suffix>
-                          <SliderValueText class="text-xs" />
-                        </template>
-                      </Slider>
+                    <PopoverContent>
+                      <div class="flex items-center gap-2">
+                        <Slider
+                          :model-value="[opacityGetter()]"
+                          class="flex-row items-center gap-2"
+                          :min="30"
+                          :max="100"
+                          :step="1"
+                          :theme="{ size: 'xs' }"
+                          @update:model-value="(value) => setOpacity(value[0])"
+                        >
+                          <SliderThumb :index="0" />
+                          <template #suffix>
+                            <SliderValueText class="text-xs" />
+                          </template>
+                        </Slider>
+                      </div>
                     </PopoverContent>
                   </Teleport>
                 </PopoverContext>

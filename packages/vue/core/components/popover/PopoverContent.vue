@@ -15,7 +15,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Popover } from '@ark-ui/vue/popover'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvPopover } from '@rui-ark/themes/crafts/core/popover'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import {
   checkContextVNodePosition,
@@ -39,7 +38,7 @@ const arrowNode = computed(() => findVNodeByName(defaultSlots.value, 'PopoverArr
 const otherNodes = computed(() => excludeVNodesByName(defaultSlots.value, 'PopoverArrow'))
 
 const theme = useTheme(() => propsTheme)
-const { content, contentInner } = tvPopover()
+const crafts = computed(() => theme.value.crafts.tvPopover())
 </script>
 
 <template>
@@ -49,7 +48,7 @@ const { content, contentInner } = tvPopover()
   >
     <Popover.Content
       v-bind="forwarded"
-      :class="content({ class: [ui?.content, propsClass], ...theme })"
+      :class="crafts.content({ class: [ui?.content, propsClass], ...theme })"
       :data-theme-bordered="theme.bordered ? '' : undefined"
       :data-theme-skin="theme.skin"
       :data-theme-surface="theme.surface"
@@ -58,7 +57,7 @@ const { content, contentInner } = tvPopover()
         <component :is="arrowNode" />
       </template>
       <div
-        :class="contentInner({ class: [ui?.inner], ...theme })"
+        :class="crafts.contentInner({ class: [ui?.inner], ...theme })"
         :data-theme-skin="theme.skin"
         :data-theme-surface="theme.surface"
       >

@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface BadgeProps extends Theme {
+export interface BadgeProps extends ThemeCrafts<'tvBadge'> {
   class?: HTMLAttributes['class']
   variant?: BadgeVariants['variant']
   as?: 'div' | 'sup'
@@ -8,11 +8,10 @@ export interface BadgeProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { BadgeVariants } from '@rui-ark/themes/crafts/core/badge'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { BadgeVariants } from '@rui-ark/themes/default/crafts/core'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
-import { tvBadge } from '@rui-ark/themes/crafts/core/badge'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useForwardProps } from '@rui-ark/vue/libs/useForwardProps'
 
@@ -34,7 +33,7 @@ const theme = useTheme(() => propsTheme)
   <component
     :is="as === 'div' ? ark.div : ark.sup"
     v-bind="forwarded"
-    :class="tvBadge({ variant, class: propsClass, ...theme })"
+    :class="theme.crafts.tvBadge({ variant, class: propsClass, ...theme })"
     :data-variant="variant"
     :as-child="asChild"
   >

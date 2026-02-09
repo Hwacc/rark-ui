@@ -26,7 +26,10 @@ const messager = createToaster({
   placement: 'top',
 })
 
+// theme
 const theme = useTheme(() => propsTheme)
+
+// expose
 defineExpose({
   messager,
 })

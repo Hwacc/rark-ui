@@ -16,7 +16,6 @@ import type { HTMLAttributes, UnwrapRef } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider, useSliderContext } from '@ark-ui/vue/slider'
 import { TooltipRootProvider, useTooltip } from '@ark-ui/vue/tooltip'
-import { tvSlider } from '@rui-ark/themes/crafts/core/slider'
 import { TooltipArrow, TooltipContent, TooltipTrigger } from '@rui-ark/vue/components/tooltip'
 import { useConfig } from '@rui-ark/vue/composables/useConfig'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
@@ -57,7 +56,7 @@ const tooltip = useTooltip(
 )
 
 const theme = useTheme(() => propsTheme)
-const { markerDot } = tvSlider()
+const crafts = computed(() => theme.value.crafts.tvSlider())
 </script>
 
 <template>
@@ -67,7 +66,7 @@ const { markerDot } = tvSlider()
         <Slider.Marker :value="value">
           <slot>
             <div
-              :class="markerDot({ ...theme })"
+              :class="crafts.markerDot({ ...theme })"
               data-scope="slider"
               data-part="marker-dot"
               v-bind="pick(context.getMarkerProps({ value }), ['data-state' as keyof HTMLAttributes])"

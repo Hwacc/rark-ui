@@ -7,11 +7,11 @@ export interface SkeletonProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { SkeletonVariants } from '@rui-ark/themes/crafts/core/skeleton'
+import type { SkeletonVariants } from '@rui-ark/themes/default/crafts/core'
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
-import { tvSkeleton } from '@rui-ark/themes/crafts/core/skeleton'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -20,12 +20,14 @@ const {
   theme: propsTheme,
 } = defineProps<SkeletonProps>()
 
+// theme
 const theme = useTheme(() => propsTheme)
+const crafts = computed(() => theme.value.crafts)
 </script>
 
 <template>
   <div
-    :class="tvSkeleton({ class: [propsClass], variant, shape, ...theme })"
+    :class="crafts.tvSkeleton({ class: [propsClass], variant, shape, ...theme })"
     :data-shape="shape"
     :data-variant="variant"
   >

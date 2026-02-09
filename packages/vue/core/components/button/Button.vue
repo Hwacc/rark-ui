@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface ButtonProps extends Theme {
+export interface ButtonProps extends ThemeCrafts<'tvButton'> {
   variant?: ButtonVariants['variant'] | string
   class?: HTMLAttributes['class']
   disabled?: boolean
@@ -19,12 +19,11 @@ export interface ButtonProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { ButtonVariants } from '@rui-ark/themes/crafts/core/button'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ButtonVariants } from '@rui-ark/themes/default/crafts/core'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { getNodeCssVar } from '@rui-ark/shared/css'
-import { tvButton } from '@rui-ark/themes/crafts/core/button'
 import { useRipple } from '@rui-ark/vue/composables/useRipple'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { useForwardExpose } from '@rui-ark/vue/libs/useForwardExpose'
@@ -53,11 +52,7 @@ const slots = defineSlots<{
 
 const { forwardRef, currentElement } = useForwardExpose()
 const rippleColor = computed(() => {
-  return getNodeCssVar(
-    currentElement.value,
-    '--rui-ripple-color',
-    'transparent',
-  )
+  return getNodeCssVar(currentElement.value, '--rui-ripple-color', 'transparent')
 })
 const {
   onRipple,
@@ -74,7 +69,7 @@ function onClick(event: MouseEvent) {
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, loading: tvLoading } = tvButton()
+const crafts = computed(() => theme.value.crafts.tvButton())
 </script>
 
 <template>
@@ -85,7 +80,7 @@ const { root, loading: tvLoading } = tvButton()
         rippleReferenceRef = r
       }
     "
-    :class="root({
+    :class="crafts.root({
       variant: variant as ButtonVariants['variant'],
       loading,
       class: [ui?.root?.class, propsClass],
@@ -99,9 +94,12 @@ const { root, loading: tvLoading } = tvButton()
     :as-child="asChild"
     @click="onClick"
   >
-    <slot v-if="loading" name="loading">
+    <slot
+      v-if="loading"
+      name="loading"
+    >
       <LoaderCircle
-        :class="tvLoading({
+        :class="crafts.loading({
           variant: variant as ButtonVariants['variant'],
           loading,
           class: [ui?.loading?.class],

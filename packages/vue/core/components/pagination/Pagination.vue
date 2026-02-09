@@ -21,8 +21,7 @@ import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
 import { Pagination, usePagination } from '@ark-ui/vue/pagination'
-import { tvPagination } from '@rui-ark/themes/crafts/core/pagination'
-import { cn } from '@rui-ark/themes/utils/cn'
+import { cn } from '@rui-ark/themes/default'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-vue-next'
@@ -40,8 +39,8 @@ const pagination = usePagination(useForwardProps(props), emit)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, control, item, ellipsis } = tvPagination()
-const itemClx = computed(() => item({ ...theme.value }))
+const crafts = computed(() => theme.value.crafts.tvPagination())
+const itemClx = computed(() => crafts.value.item({ ...theme.value }))
 
 // expose
 defineExpose({ $api: pagination })
@@ -51,11 +50,11 @@ useForwardExpose()
 <template>
   <Pagination.RootProvider
     :value="pagination"
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">
       <ark.div
-        :class="control({ class: [ui?.control], ...theme })"
+        :class="crafts.control({ class: [ui?.control], ...theme })"
         data-scope="pagination"
         data-part="control"
       >
@@ -82,7 +81,7 @@ useForwardExpose()
           <Pagination.Ellipsis
             v-else
             :index="index"
-            :class="ellipsis({ class: [ui?.ellipsis], ...theme })"
+            :class="crafts.ellipsis({ class: [ui?.ellipsis], ...theme })"
           >
             &#8230;
           </Pagination.Ellipsis>

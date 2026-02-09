@@ -9,23 +9,19 @@ export interface SwitchLabelProps extends ThemeProps {
 import type { ThemeProps } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Switch } from '@ark-ui/vue/switch'
-import { tvSwitch } from '@rui-ark/themes/crafts/core/switch'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
-const {
-  class: propsClass,
-  size,
-  unstyled = undefined,
-  asChild,
-} = defineProps<SwitchLabelProps>()
+const { class: propsClass, size, unstyled = undefined, asChild } = defineProps<SwitchLabelProps>()
 
+// theme
 const theme = useTheme(() => ({ size, unstyled }))
-const { label } = tvSwitch()
+const crafts = computed(() => theme.value.crafts.tvSwitch())
 </script>
 
 <template>
   <Switch.Label
-    :class="label({ class: [propsClass], ...theme })"
+    :class="crafts.label({ class: [propsClass], ...theme })"
     :as-child="asChild"
   >
     <slot />

@@ -8,62 +8,54 @@ export interface DatePickerYearViewProps extends Theme {
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { DatePicker, useDatePickerContext } from '@ark-ui/vue'
-import { tvDatePickerView } from '@rui-ark/themes/crafts/core/date-picker'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { flatten } from 'es-toolkit'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme } = defineProps<DatePickerYearViewProps>()
 const context = useDatePickerContext()
 
 // theme
 const theme = useTheme(() => Object.assign({}, propsTheme, { view: 'year' }))
-const {
-  view,
-  viewControl,
-  viewControlTrigger,
-  table,
-  tableBody,
-  tableCell,
-  tableCellTrigger,
-} = tvDatePickerView()
+const crafts = computed(() => theme.value.crafts.tvDatePickerView())
 </script>
 
 <template>
   <DatePicker.View
     view="year"
-    :class="view({ class: propsClass, ...theme })"
+    :class="crafts.view({ class: propsClass, ...theme })"
   >
-    <DatePicker.ViewControl :class="viewControl({ ...theme })">
+    <DatePicker.ViewControl :class="crafts.viewControl({ ...theme })">
       <DatePicker.PrevTrigger
         as-child
-        :class="viewControlTrigger({ ...theme })"
+        :class="crafts.viewControlTrigger({ ...theme })"
       >
         <ChevronLeft :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.PrevTrigger>
       <DatePicker.RangeText />
       <DatePicker.NextTrigger
         as-child
-        :class="viewControlTrigger({ ...theme })"
+        :class="crafts.viewControlTrigger({ ...theme })"
       >
         <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.NextTrigger>
     </DatePicker.ViewControl>
 
-    <DatePicker.Table :class="table({ ...theme })">
+    <DatePicker.Table :class="crafts.table({ ...theme })">
       <div
         v-bind="context.getTableBodyProps()"
-        :class="tableBody({ ...theme })"
+        :class="crafts.tableBody({ ...theme })"
       >
         <DatePicker.TableCell
           v-for="(year, yid) in flatten(context.getYearsGrid({ columns: 4 }))"
           :key="`year-${yid}`"
           :value="year.value"
-          :class="tableCell({ ...theme })"
+          :class="crafts.tableCell({ ...theme })"
         >
           <DatePicker.TableCellTrigger
             :class="
-              tableCellTrigger({
+              crafts.tableCellTrigger({
                 ...context.getYearTableCellState({ value: year.value }),
                 ...theme,
               })

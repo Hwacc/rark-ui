@@ -15,7 +15,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Tooltip } from '@ark-ui/vue/tooltip'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvTooltip } from '@rui-ark/themes/crafts/core/tooltip'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import {
   checkContextVNodePosition,
@@ -34,14 +33,14 @@ const arrowNode = computed(() => findVNodeByName(defaultSlots.value, 'TooltipArr
 const otherNodes = computed(() => excludeVNodesByName(defaultSlots.value, 'TooltipArrow'))
 
 const theme = useTheme(() => propsTheme)
-const { content, contentInner } = tvTooltip()
+const crafts = computed(() => theme.value.crafts.tvTooltip())
 </script>
 
 <template>
   <Tooltip.Positioner :class="ui?.positioner" :style="{ zIndex: `var(--z-tooltip, --z-index)` }">
     <Tooltip.Content
       v-bind="forwarded"
-      :class="content({ class: [ui?.content, propsClass], ...theme })"
+      :class="crafts.content({ class: [ui?.content, propsClass], ...theme })"
       :data-theme-bordered="theme.bordered ? '' : undefined"
       :data-theme-skin="theme.skin"
       :data-theme-surface="theme.surface"
@@ -50,7 +49,7 @@ const { content, contentInner } = tvTooltip()
         <component :is="arrowNode" />
       </template>
       <div
-        :class="contentInner({ class: [ui?.inner], ...theme })"
+        :class="crafts.contentInner({ class: [ui?.inner], ...theme })"
         :data-theme-skin="theme.skin"
         :data-theme-surface="theme.surface"
       >

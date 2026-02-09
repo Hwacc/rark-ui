@@ -1,5 +1,8 @@
 <script lang="ts">
-export interface SliderTooltipThumbProps extends SliderThumbBaseProps, Omit<TooltipRootProps, 'open'>, Theme {
+export interface SliderTooltipThumbProps
+  extends SliderThumbBaseProps,
+  Omit<TooltipRootProps, 'open'>,
+  Theme {
   class?: HTMLAttributes['class']
   open?: (context: UnwrapRef<UseSliderContext>) => boolean
   widget?: {
@@ -18,12 +21,7 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Slider, useSliderContext } from '@ark-ui/vue/slider'
 import { TooltipRootProvider, useTooltip } from '@ark-ui/vue/tooltip'
-import { tvSlider } from '@rui-ark/themes/crafts/core/slider'
-import {
-  TooltipArrow,
-  TooltipContent,
-  TooltipTrigger,
-} from '@rui-ark/vue/components/tooltip'
+import { TooltipArrow, TooltipContent, TooltipTrigger } from '@rui-ark/vue/components/tooltip'
 import { useConfig } from '@rui-ark/vue/composables/useConfig'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
@@ -46,7 +44,7 @@ const boundary = injectSliderBoundaryContext()
 const tooltipForwarded = useForwardProps(props)
 const configs = useConfig('tooltip')
 const tooltip = useTooltip(
-  computed(() => (
+  computed(() =>
     merge(
       {
         open: open?.(context.value) ?? context.value.dragging,
@@ -60,8 +58,8 @@ const tooltip = useTooltip(
       },
       configs.value,
       tooltipForwarded.value,
-    )
-  )),
+    ),
+  ),
 )
 
 watch(
@@ -72,10 +70,12 @@ watch(
   },
 )
 
-const { forwardRef } = useForwardExpose()
+// theme
 const theme = useTheme(() => propsTheme)
-console.log('theme', theme.value)
-const { thumb: tvThumb } = tvSlider()
+const crafts = computed(() => theme.value.crafts.tvSlider())
+
+// expose
+const { forwardRef } = useForwardExpose()
 </script>
 
 <template>
@@ -84,7 +84,7 @@ const { thumb: tvThumb } = tvSlider()
       <TooltipTrigger as-child>
         <Slider.Thumb
           :ref="(el) => el && forwardRef(el)"
-          :class="tvThumb({ class: [propsClass], ...theme })"
+          :class="crafts.thumb({ class: [propsClass], ...theme })"
           :data-theme-size="theme.size"
           :index="index"
           :name="name"
@@ -105,7 +105,10 @@ const { thumb: tvThumb } = tvSlider()
           </slot>
         </TooltipContent>
       </Teleport>
-      <TooltipContent v-else v-bind="widget?.tooltipContent">
+      <TooltipContent
+        v-else
+        v-bind="widget?.tooltipContent"
+      >
         <slot name="arrow">
           <TooltipArrow v-bind="widget?.tooltipArrow" />
         </slot>

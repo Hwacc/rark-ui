@@ -18,10 +18,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { ark } from '@ark-ui/vue/factory'
-import { tvDialog } from '@rui-ark/themes/crafts/core/dialog'
 import { Button } from '@rui-ark/vue/components/button'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { useId } from 'vue'
+import { computed, useId } from 'vue'
 import { DialogCloseTrigger, TriggerFrom } from '.'
 
 const { class: propsClass, theme: propsTheme, ui, widget } = defineProps<DialogFooterProps>()
@@ -33,7 +32,7 @@ const id = useId()
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { footer } = tvDialog()
+const crafts = computed(() => theme.value.crafts.tvDialog())
 </script>
 
 <template>
@@ -41,7 +40,7 @@ const { footer } = tvDialog()
     :id="`dialog:${id}:footer`"
     data-scope="dialog"
     data-part="footer"
-    :class="footer({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.footer({ class: [ui?.root, propsClass], ...theme })"
   >
     <slot>
       <DialogCloseTrigger

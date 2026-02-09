@@ -10,9 +10,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ToggleGroup, useToggleGroup } from '@ark-ui/vue/toggle-group'
-import { tvToggleGroup } from '@rui-ark/themes/crafts/core/toggle-group'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<ToggleGroupProps>()
 const emit = defineEmits<ToggleGroupRootEmits>()
@@ -21,7 +21,7 @@ const toggleGroup = useToggleGroup(forwarded, emit)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root } = tvToggleGroup()
+const crafts = computed(() => theme.value.crafts.tvToggleGroup())
 
 // expose
 defineExpose({ $api: toggleGroup })
@@ -32,7 +32,11 @@ useForwardExpose()
   <ToggleGroup.RootProvider
     :value="toggleGroup"
     :class="
-      root({ class: propsClass, orientation: forwarded.orientation ?? 'horizontal', ...theme })
+      crafts.root({
+        class: propsClass,
+        orientation: forwarded.orientation ?? 'horizontal',
+        ...theme,
+      })
     "
   >
     <ThemeProvider :value="theme">

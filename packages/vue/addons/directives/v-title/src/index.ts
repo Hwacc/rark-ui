@@ -1,6 +1,6 @@
 import type { DirectiveBinding } from 'vue'
 import { computePosition, flip, hide, offset, shift } from '@floating-ui/vue'
-import { tvVTitle } from '@rui-ark/themes/crafts/addons/v-title'
+import { addonsCrafts } from '@rui-ark/themes/default'
 
 class TitleTooltip {
   titleTipNode: HTMLDivElement
@@ -9,7 +9,7 @@ class TitleTooltip {
 
   constructor() {
     this.titleTipNode = document.createElement('div')
-    this.titleTipNode.className = tvVTitle()
+    this.titleTipNode.className = addonsCrafts.tvVTitle()
     this.titleTipTextNode = document.createTextNode('')
     this.titleTipNode.appendChild(this.titleTipTextNode)
     document.body.appendChild(this.titleTipNode)
@@ -28,7 +28,7 @@ class TitleTooltip {
         this.titleTipTextNode = document.createTextNode(binding.value)
         this.titleTipNode.appendChild(this.titleTipTextNode)
         const getClassName = (hidden: boolean = false, visible: boolean = false) => {
-          return tvVTitle({
+          return addonsCrafts.tvVTitle({
             size: binding.modifiers.lg ? 'lg' : 'base',
             unstyled: binding.modifiers.unstyled,
             hidden,
@@ -65,7 +65,7 @@ class TitleTooltip {
       clearTimeout(this.showTimer)
       this.showTimer = 0
     }
-    this.titleTipNode.className = tvVTitle({
+    this.titleTipNode.className = addonsCrafts.tvVTitle({
       visible: false,
       hidden: true,
     })

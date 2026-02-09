@@ -1,24 +1,39 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
-import type { ThemeProps } from '../providers/theme/theme-props'
+import type { Crafts, ThemeProps } from '../providers/theme/theme-props'
+import { coreCrafts } from '@rui-ark/themes/default'
 import { omitBy } from 'es-toolkit'
 import { isNil } from 'es-toolkit/compat'
 import { computed, toValue } from 'vue'
 import { injectThemeContext } from '../providers/theme/theme-props'
 import { useConfig } from './useConfig'
 
-export function useTheme(): ComputedRef<ThemeProps>
+type UseThemeReturn = ComputedRef<Omit<ThemeProps, 'crafts'> & { crafts: Crafts }>
+
+function pickDefined<T extends Record<string, any>>(obj?: T) {
+  if (!obj)
+    return {} as Partial<T>
+  return Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined)) as Partial<T>
+}
+
+function clean(obj: ComputedRef<ThemeProps | undefined>) {
+  return omitBy(obj.value ?? {}, value => isNil(value))
+}
+
+export function useTheme(): UseThemeReturn
 export function useTheme<T = ThemeProps>(
   props?: MaybeRefOrGetter<Partial<T> | undefined>,
-): ComputedRef<ThemeProps>
-export function useTheme<T>(props?: MaybeRefOrGetter<Partial<T> | undefined>): ComputedRef<T> {
+): UseThemeReturn
+export function useTheme<T>(props?: MaybeRefOrGetter<Partial<T> | undefined>): UseThemeReturn {
   const configTheme = useConfig('theme')
   const contextTheme = injectThemeContext(computed(() => ({})))
   const propsTheme = computed(() => toValue(props) ?? {})
-  const clean = (obj: ComputedRef<ThemeProps | undefined>) => {
-    return omitBy(obj.value ?? {}, value => isNil(value))
-  }
+
   return computed(() => {
-    return Object.assign(
+    const { crafts: configCrafts, ...configRest } = clean(configTheme) as any
+    const { crafts: contextCrafts, ...contextRest } = clean(contextTheme) as any
+    const { crafts: propsCrafts, ...propsRest } = clean(propsTheme) as any
+
+    const themeRest = Object.assign(
       {
         skin: 'razer',
         surface: 'dark',
@@ -26,13 +41,26 @@ export function useTheme<T>(props?: MaybeRefOrGetter<Partial<T> | undefined>): C
         unstyled: false,
         bordered: true,
       },
-      clean(configTheme),
-      clean(contextTheme),
-      clean(propsTheme),
-    ) as unknown as T
+      configRest,
+      contextRest,
+      propsRest,
+    )
+
+    const mergedCrafts: Crafts = Object.assign(
+      {},
+      coreCrafts,
+      pickDefined<Crafts>(configCrafts as Crafts | undefined),
+      pickDefined<Crafts>(contextCrafts as Crafts | undefined),
+      pickDefined<Crafts>(propsCrafts as Crafts | undefined),
+    ) as Crafts
+
+    return {
+      ...themeRest,
+      crafts: mergedCrafts,
+    } as unknown as Omit<ThemeProps, 'crafts'> & { crafts: Crafts }
   })
 }
 
-export function useCustomTheme<T>(props?: MaybeRefOrGetter<T | undefined>): ComputedRef<T> {
-  return useTheme<T>(props ?? {}) as ComputedRef<T>
+export function useCustomTheme<T>(props?: MaybeRefOrGetter<T | undefined>): UseThemeReturn {
+  return useTheme<T>(props ?? {})
 }

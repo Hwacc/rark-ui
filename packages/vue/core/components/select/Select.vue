@@ -26,10 +26,10 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Select, useSelect } from '@ark-ui/vue/select'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { tvSelect } from '@rui-ark/themes/crafts/core/select'
 import { useConfig } from '@rui-ark/vue/composables/useConfig'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -44,7 +44,7 @@ const selectRoot = useSelect<T>(useForwardProps(props) as unknown as UseSelectPr
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root } = tvSelect()
+const crafts = computed(() => theme.value.crafts.tvSelect())
 
 // expose
 defineExpose({ $api: selectRoot })
@@ -56,7 +56,7 @@ useForwardExpose()
     :value="selectRoot"
     :lazy-mount="selectConfig?.lazyMount"
     :unmount-on-exit="selectConfig?.unmountOnExit"
-    :class="root({ class: [propsClass], ...theme })"
+    :class="crafts.root({ class: [propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">
       <slot />

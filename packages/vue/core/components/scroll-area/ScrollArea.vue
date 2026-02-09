@@ -21,7 +21,6 @@ import type { HTMLAttributes } from 'vue'
 import type { ScrollAreaTheme } from '.'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ScrollArea, useScrollArea } from '@ark-ui/vue/scroll-area'
-import { tvScrollArea } from '@rui-ark/themes/crafts/core/scroll-area'
 import { useCustomTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { excludeVNodesByNames, findVNodesByName } from '@rui-ark/vue/utils/vnode'
@@ -59,7 +58,7 @@ const isShowScrollbars = computed(() => ({
 
 // theme
 const theme = useCustomTheme<ScrollAreaTheme>(() => propsTheme)
-const { root, viewport: tvViewport, content: tvContent } = tvScrollArea()
+const crafts = computed(() => theme.value.crafts.tvScrollArea())
 
 // expose
 defineExpose({ $api: scrollArea })
@@ -69,19 +68,19 @@ useForwardExpose()
 <template>
   <ScrollArea.RootProvider
     :value="scrollArea"
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
   >
     <ThemeProvider :value="theme">
       <ScrollArea.Viewport
         ref="viewport"
-        :class="tvViewport({ class: [ui?.viewport], ...theme })"
+        :class="crafts.viewport({ class: [ui?.viewport], ...theme })"
         @scrollstart="emits('scrollstart', $event)"
         @scrollend="emits('scrollend', $event)"
         @scroll="emits('scroll', $event)"
       >
         <ScrollArea.Content
           ref="content"
-          :class="tvContent({ class: [ui?.content], ...theme })"
+          :class="crafts.content({ class: [ui?.content], ...theme })"
         >
           <component
             :is="node"

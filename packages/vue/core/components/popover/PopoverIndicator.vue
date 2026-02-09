@@ -9,9 +9,9 @@ export interface PopoverIndicatorProps extends Theme {
 import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HtmlHTMLAttributes } from 'vue'
 import { PopoverIndicator } from '@ark-ui/vue'
-import { tvPopover } from '@rui-ark/themes/crafts/core/popover'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronDown } from 'lucide-vue-next'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -19,11 +19,15 @@ const {
   asChild = true,
 } = defineProps<PopoverIndicatorProps>()
 const theme = useTheme(() => propsTheme)
-const { indicator } = tvPopover()
+
+const crafts = computed(() => theme.value.crafts.tvPopover())
 </script>
 
 <template>
-  <PopoverIndicator :as-child="asChild" :class="indicator({ class: propsClass, ...theme })">
+  <PopoverIndicator
+    :as-child="asChild"
+    :class="crafts.indicator({ class: propsClass, ...theme })"
+  >
     <slot>
       <ChevronDown :style="{ width: '1lh', height: '1lh' }" />
     </slot>

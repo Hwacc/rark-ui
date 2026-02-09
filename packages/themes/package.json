@@ -8,9 +8,9 @@
   "license": "ISC",
   "keywords": [],
   "exports": {
-    "./crafts/core/*": "./src/crafts/core/*.ts",
-    "./utils/*": "./src/utils/*.ts",
-    "./razer/index.css": "./src/razer/index.css"
+    ".": "./index.ts",
+    "./index.css": "./index.css",
+    "./crafts/*": "./crafts/*.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

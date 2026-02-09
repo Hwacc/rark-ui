@@ -10,7 +10,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Tabs, useTabs } from '@ark-ui/vue/tabs'
-import { tvTabs } from '@rui-ark/themes/crafts/core/tabs'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
 import { computed, useTemplateRef } from 'vue'
@@ -36,8 +35,9 @@ const index = computed(() => {
   return curIndex < 0 ? 0 : curIndex
 })
 
+// theme
 const theme = useTheme(() => propsTheme)
-const { root } = tvTabs()
+const crafts = computed(() => theme.value.crafts.tvTabs())
 
 // expose
 defineExpose({ $api: tabs })
@@ -50,7 +50,7 @@ useForwardExpose()
     :value="tabs"
     :lazy-mount="forwarded.lazyMount"
     :unmount-on-exit="forwarded.unmountOnExit"
-    :class="root({ class: [propsClass], ...theme })"
+    :class="crafts.root({ class: [propsClass], ...theme })"
   >
     <TabsProviderEx
       :value="{

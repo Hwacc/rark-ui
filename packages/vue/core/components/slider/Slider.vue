@@ -16,10 +16,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Slider, useSlider } from '@ark-ui/vue/slider'
-import { tvSlider } from '@rui-ark/themes/crafts/core/slider'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ThemeProvider } from '@rui-ark/vue/providers/theme'
-import { useTemplateRef } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 import SliderBoundaryProvider from './SliderBoundaryProvider.vue'
 
 const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<SliderProps>()
@@ -30,7 +29,7 @@ const slider = useSlider(forwarded, emit)
 const controlRef = useTemplateRef('control')
 
 const theme = useTheme(() => propsTheme)
-const { root, control: tvControl, track, range } = tvSlider()
+const crafts = computed(() => theme.value.crafts.tvSlider())
 
 // expose
 defineExpose({ $api: slider })
@@ -41,7 +40,7 @@ useForwardExpose()
   <Slider.RootProvider
     :value="slider"
     :class="
-      root({
+      crafts.root({
         class: [ui?.root, propsClass],
         orientation: forwarded.orientation ?? 'horizontal',
         ...theme,
@@ -54,7 +53,7 @@ useForwardExpose()
         <Slider.Control
           ref="control"
           :class="
-            tvControl({
+            crafts.control({
               class: ui?.control,
               orientation: forwarded.orientation ?? 'horizontal',
               ...theme,
@@ -63,7 +62,7 @@ useForwardExpose()
         >
           <Slider.Track
             :class="
-              track({
+              crafts.track({
                 class: ui?.track,
                 orientation: forwarded.orientation ?? 'horizontal',
                 ...theme,
@@ -72,7 +71,7 @@ useForwardExpose()
           >
             <Slider.Range
               :class="
-                range({
+                crafts.range({
                   class: ui?.range,
                   orientation: forwarded.orientation ?? 'horizontal',
                   ...theme,

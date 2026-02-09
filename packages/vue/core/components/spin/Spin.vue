@@ -19,18 +19,10 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, VNode } from 'vue'
 import type { SpinRenderProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
-import { tvSpin } from '@rui-ark/themes/crafts/core/spin'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed, getCurrentInstance, inject, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-const {
-  show,
-  mode,
-  theme: propsTheme,
-  delay,
-  ui,
-  class: propsClass,
-} = defineProps<SpinProps>()
+const { show, mode, theme: propsTheme, delay, ui, class: propsClass } = defineProps<SpinProps>()
 
 const { renderIcon }
   = inject<{ renderIcon: (props: SpinRenderProps) => VNode | null }>('SpinProvider') ?? {}
@@ -95,22 +87,23 @@ onBeforeUnmount(() => {
   }
 })
 
+// theme
 const theme = useTheme(() => propsTheme)
-const { root, mask, indicator, text } = tvSpin()
+const crafts = computed(() => theme.value.crafts.tvSpin())
 </script>
 
 <template>
   <div
     v-show="isVisible"
-    :class="root({ class: [ui?.root, propsClass], mode, ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], mode, ...theme })"
   >
-    <div :class="mask({ class: ui?.mask, ...theme })" />
-    <div :class="indicator({ class: ui?.indicator, mode, ...theme })">
+    <div :class="crafts.mask({ class: ui?.mask, ...theme })" />
+    <div :class="crafts.indicator({ class: ui?.indicator, mode, ...theme })">
       <slot v-bind="{ mode, theme }">
         <component :is="renderIcon?.({ mode, theme })" />
       </slot>
       <ark.span
-        :class="text({ class: ui?.text, ...theme })"
+        :class="crafts.text({ class: ui?.text, ...theme })"
         as-child
       >
         <slot name="text" />

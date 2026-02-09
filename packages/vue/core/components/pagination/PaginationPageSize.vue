@@ -19,7 +19,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { usePaginationContext } from '@ark-ui/vue'
 import { createListCollection } from '@ark-ui/vue/collection'
-import { tvPaginationPageSize } from '@rui-ark/themes/crafts/core/pagination'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { uniq } from 'es-toolkit'
 import { computed, ref, watch } from 'vue'
@@ -45,12 +44,12 @@ const collection = computed(() => createListCollection({ items: sizeItems.value 
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { root, control, trigger, value, content, item: tvItem } = tvPaginationPageSize()
+const crafts = computed(() => theme.value.crafts.tvPaginationPageSize())
 </script>
 
 <template>
   <div
-    :class="root({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.root({ class: [ui?.root, propsClass], ...theme })"
     data-scope="pagination"
     data-part="page-size"
   >
@@ -59,20 +58,20 @@ const { root, control, trigger, value, content, item: tvItem } = tvPaginationPag
       v-bind="theme"
       v-model="modelValue"
       :collection="collection"
-      :class="control({ class: ui?.control, ...theme })"
+      :class="crafts.control({ class: ui?.control, ...theme })"
     >
-      <SelectTrigger :class="trigger({ class: ui?.trigger, ...theme })">
+      <SelectTrigger :class="crafts.trigger({ class: ui?.trigger, ...theme })">
         <SelectValue
-          :class="value({ class: ui?.value, ...theme })"
+          :class="crafts.value({ class: ui?.value, ...theme })"
           :placeholder="placeholder ?? 'Page size'"
         />
       </SelectTrigger>
-      <SelectContent :class="content({ class: ui?.content, ...theme })">
+      <SelectContent :class="crafts.content({ class: ui?.content, ...theme })">
         <SelectItem
           v-for="item in collection.items"
           :key="item.value"
           :item="item"
-          :class="tvItem({ class: ui?.item, ...theme })"
+          :class="crafts.item({ class: ui?.item, ...theme })"
         >
           {{ item.label }}
           <template #indicator>

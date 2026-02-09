@@ -10,8 +10,8 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
-import { tvFloatingPanel } from '@rui-ark/themes/crafts/core/floating-panel'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 import { injectFloatingPanelAppearanceContext } from './floating-panel-appearance-context'
 
 const {
@@ -24,11 +24,14 @@ const forwarded = useForwardProps(props)
 const { opacity, setOpacity } = injectFloatingPanelAppearanceContext()
 // theme
 const theme = useTheme(() => propsTheme)
-const { trigger } = tvFloatingPanel()
+const crafts = computed(() => theme.value.crafts.tvFloatingPanel())
 </script>
 
 <template>
-  <ark.button v-bind="forwarded" :class="trigger({ class: [propsClass], ...theme })">
+  <ark.button
+    v-bind="forwarded"
+    :class="crafts.trigger({ class: [propsClass], ...theme })"
+  >
     <slot v-bind="{ opacity, opacityGetter: () => opacity, setOpacity }" />
   </ark.button>
 </template>

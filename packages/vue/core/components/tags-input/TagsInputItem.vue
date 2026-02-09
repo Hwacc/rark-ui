@@ -17,18 +17,11 @@ import type { HTMLAttributes } from 'vue'
 import type { TagsInputProvide } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { TagsInput, useTagsInputContext } from '@ark-ui/vue/tags-input'
-import { tvInput } from '@rui-ark/themes/crafts/core/input'
-import { tvTagsInput } from '@rui-ark/themes/crafts/core/tags-input'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed, inject, useTemplateRef, watchEffect } from 'vue'
 import { TAGS_INPUT_PROVIDE_KEY } from '.'
 
-const {
-  class: propsClass,
-  theme: propsTheme,
-  ui,
-  ...props
-} = defineProps<TagsInputItemProps>()
+const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<TagsInputItemProps>()
 const { inline } = inject<TagsInputProvide>(TAGS_INPUT_PROVIDE_KEY, {
   inline: computed(() => true),
 })
@@ -48,28 +41,28 @@ watchEffect(
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { item, itemPreview, itemInput, itemText } = tvTagsInput()
-const { root: tvInputRoot } = tvInput()
+const crafts = computed(() => theme.value.crafts.tvTagsInput())
+const inputCrafts = computed(() => theme.value.crafts.tvInput())
 </script>
 
 <template>
   <TagsInput.Item
     v-bind="forwarded"
-    :class="item({ class: [ui?.root, propsClass], inline, ...theme })"
+    :class="crafts.item({ class: [ui?.root, propsClass], inline, ...theme })"
   >
     <TagsInput.ItemPreview
       ref="preview"
-      :class="itemPreview({ class: ui?.preview, inline, ...theme })"
+      :class="crafts.itemPreview({ class: ui?.preview, inline, ...theme })"
     >
-      <TagsInput.ItemText :class="itemText({ class: ui?.text, inline, ...theme })">
+      <TagsInput.ItemText :class="crafts.itemText({ class: ui?.text, inline, ...theme })">
         {{ value }}
       </TagsInput.ItemText>
       <slot />
     </TagsInput.ItemPreview>
     <TagsInput.ItemInput
       :class="
-        tvInputRoot({
-          class: [itemInput({ inline, ...theme }), ui?.input],
+        inputCrafts.root({
+          class: [crafts.itemInput({ inline, ...theme }), ui?.input],
           ...theme,
         })
       "

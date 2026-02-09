@@ -10,10 +10,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { DatePickerContentProvide } from '.'
 import { DatePicker, useDatePickerContext } from '@ark-ui/vue'
-import { tvDatePickerView } from '@rui-ark/themes/crafts/core/date-picker'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
-import { computed, inject, watch } from 'vue'
+import { computed, inject } from 'vue'
 import { DATE_PICKER_CONTENT_PROVIDE_KEY } from '.'
 
 const {
@@ -30,13 +29,6 @@ const { viewsState } = inject<DatePickerContentProvide>(DATE_PICKER_CONTENT_PROV
   })),
 })
 const context = useDatePickerContext()
-watch(
-  () => context.value.visibleRangeText,
-  (text) => {
-    console.log('visibleRangeText', text)
-    console.log('view', context.value.view)
-  },
-)
 
 // theme
 const theme = useTheme(() =>
@@ -45,59 +37,50 @@ const theme = useTheme(() =>
     monthType,
   }),
 )
-const {
-  view,
-  viewControl,
-  viewControlTrigger,
-  viewTrigger,
-  table,
-  tableBody,
-  tableCell,
-  tableCellTrigger,
-} = tvDatePickerView()
+const crafts = computed(() => theme.value.crafts.tvDatePickerView())
 </script>
 
 <template>
   <DatePicker.View
     view="month"
-    :class="view({ class: propsClass, ...theme })"
+    :class="crafts.view({ class: propsClass, ...theme })"
   >
-    <DatePicker.ViewControl :class="viewControl({ ...theme })">
+    <DatePicker.ViewControl :class="crafts.viewControl({ ...theme })">
       <DatePicker.PrevTrigger
         as-child
-        :class="viewControlTrigger({ ...theme })"
+        :class="crafts.viewControlTrigger({ ...theme })"
       >
         <ChevronLeft :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.PrevTrigger>
       <DatePicker.ViewTrigger
         v-if="viewsState.count > 1 && viewsState.hasYearView"
-        :class="viewTrigger({ ...theme })"
+        :class="crafts.viewTrigger({ ...theme })"
       >
         <DatePicker.RangeText />
       </DatePicker.ViewTrigger>
       <DatePicker.RangeText v-else />
       <DatePicker.NextTrigger
         as-child
-        :class="viewControlTrigger({ ...theme })"
+        :class="crafts.viewControlTrigger({ ...theme })"
       >
         <ChevronRight :style="{ width: '1lh', height: '1lh' }" />
       </DatePicker.NextTrigger>
     </DatePicker.ViewControl>
 
-    <DatePicker.Table :class="table({ ...theme })">
+    <DatePicker.Table :class="crafts.table({ ...theme })">
       <div
         v-bind="context.getTableBodyProps()"
-        :class="tableBody({ ...theme })"
+        :class="crafts.tableBody({ ...theme })"
       >
         <DatePicker.TableCell
           v-for="(month, mid) in context.getMonths({ format: monthType })"
           :key="mid"
           :value="month.value"
-          :class="tableCell({ ...theme })"
+          :class="crafts.tableCell({ ...theme })"
         >
           <DatePicker.TableCellTrigger
             :class="
-              tableCellTrigger({
+              crafts.tableCellTrigger({
                 ...context.getMonthTableCellState({ value: month.value }),
                 ...theme,
               })

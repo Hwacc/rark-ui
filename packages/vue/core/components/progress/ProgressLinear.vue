@@ -15,7 +15,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Progress, useProgressContext } from '@ark-ui/vue/progress'
-import { tvProgress } from '@rui-ark/themes/crafts/core/progress'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed, useTemplateRef } from 'vue'
 import { useRangeTransfer } from './useRangeTransfer'
@@ -40,14 +39,14 @@ const { styles: transferStyles } = useRangeTransfer(
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { track: tvTrack, range: tvRange } = tvProgress()
+const crafts = computed(() => theme.value.crafts.tvProgress())
 </script>
 
 <template>
   <Progress.Track
     v-bind="forwarded"
     :class="
-      tvTrack({
+      crafts.track({
         class: [ui?.track, propsClass],
         orientation: itemProps['data-orientation'] ?? 'horizontal',
         ...theme,
@@ -58,7 +57,7 @@ const { track: tvTrack, range: tvRange } = tvProgress()
     <Progress.Range
       ref="range"
       :class="
-        tvRange({
+        crafts.range({
           class: ui?.range,
           orientation: itemProps['data-orientation'] ?? 'horizontal',
           ...theme,

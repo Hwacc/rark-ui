@@ -18,7 +18,10 @@ defineSlots<{
 }>()
 const toaster = createToaster(props as CreateToasterProps)
 
+// theme
 const theme = useTheme(() => propsTheme)
+
+// expose
 defineExpose({
   toasterId,
   toaster,

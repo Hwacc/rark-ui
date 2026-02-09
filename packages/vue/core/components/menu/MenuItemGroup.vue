@@ -16,8 +16,8 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvMenu } from '@rui-ark/themes/crafts/core/menu'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -30,17 +30,17 @@ const forwarded = useForwardProps(props)
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { itemGroup, itemGroupLabel } = tvMenu()
+const crafts = computed(() => theme.value.crafts.tvMenu())
 </script>
 
 <template>
   <Menu.ItemGroup
     v-bind="forwarded"
-    :class="itemGroup({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.itemGroup({ class: [ui?.root, propsClass], ...theme })"
   >
     <slot name="label">
       <Menu.ItemGroupLabel
-        :class="itemGroupLabel({ class: ui?.label, ...theme })"
+        :class="crafts.itemGroupLabel({ class: ui?.label, ...theme })"
       >
         {{ label }}
       </Menu.ItemGroupLabel>

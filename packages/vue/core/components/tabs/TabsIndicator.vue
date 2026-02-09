@@ -10,22 +10,23 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs } from '@ark-ui/vue/tabs'
-import { tvTabs } from '@rui-ark/themes/crafts/core/tabs'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 import { injectTabsContextEx } from './TabsProviderEx.vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<TabsIndicatorProps>()
 const forwarded = useForwardProps(props)
-
 const contextEx = injectTabsContextEx()
+
+// theme
 const theme = useTheme(() => propsTheme)
-const { indicator } = tvTabs()
+const crafts = computed(() => theme.value.crafts.tvTabs())
 </script>
 
 <template>
   <Tabs.Indicator
     v-bind="forwarded"
-    :class="indicator({ class: [propsClass], orientation: contextEx.orientation, ...theme })"
+    :class="crafts.indicator({ class: [propsClass], orientation: contextEx.orientation, ...theme })"
   >
     <slot />
   </Tabs.Indicator>

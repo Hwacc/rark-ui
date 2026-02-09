@@ -10,7 +10,6 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { ToggleGroup, useToggleGroupContext } from '@ark-ui/vue/toggle-group'
-import { tvToggleGroup } from '@rui-ark/themes/crafts/core/toggle-group'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed } from 'vue'
 
@@ -25,14 +24,14 @@ const itemProps = computed<any>(() => context.value.getItemProps(forwarded.value
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { item } = tvToggleGroup()
+const crafts = computed(() => theme.value.crafts.tvToggleGroup())
 </script>
 
 <template>
   <ToggleGroup.Item
     v-bind="forwarded"
     :class="
-      item({
+      crafts.item({
         class: propsClass,
         orientation: itemProps['data-orientation'] ?? 'horizontal',
         ...theme,

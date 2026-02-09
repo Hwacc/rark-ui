@@ -10,23 +10,24 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider, useSliderContext } from '@ark-ui/vue/slider'
-import { tvSlider } from '@rui-ark/themes/crafts/core/slider'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { pick } from 'es-toolkit'
+import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<SliderMarkerProps>()
 const forwarded = useForwardProps(props)
 const context = useSliderContext()
 
+// theme
 const theme = useTheme(() => propsTheme)
-const { marker, markerDot } = tvSlider()
+const crafts = computed(() => theme.value.crafts.tvSlider())
 </script>
 
 <template>
-  <Slider.Marker v-bind="forwarded" :class="marker({ class: [propsClass], ...theme })">
+  <Slider.Marker v-bind="forwarded" :class="crafts.marker({ class: [propsClass], ...theme })">
     <slot>
       <div
-        :class="markerDot({ ...theme })"
+        :class="crafts.markerDot({ ...theme })"
         data-scope="slider"
         data-part="marker-dot"
         v-bind="pick(context.getMarkerProps(forwarded), ['data-state' as keyof HTMLAttributes])"

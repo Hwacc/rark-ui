@@ -15,8 +15,8 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { tvSelect } from '@rui-ark/themes/crafts/core/select'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { computed } from 'vue'
 
 const {
   class: propsClass,
@@ -26,20 +26,19 @@ const {
   ...props
 } = defineProps<SelectItemGroupProps>()
 const forwarded = useForwardProps(props)
-const theme = useTheme(() => propsTheme)
 
-const { itemGroup, itemGroupLabel } = tvSelect()
+// theme
+const theme = useTheme(() => propsTheme)
+const crafts = computed(() => theme.value.crafts.tvSelect())
 </script>
 
 <template>
   <Select.ItemGroup
     v-bind="forwarded"
-    :class="itemGroup({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.itemGroup({ class: [ui?.root, propsClass], ...theme })"
   >
     <slot name="label">
-      <Select.ItemGroupLabel
-        :class="itemGroupLabel({ class: [ui?.label], ...theme })"
-      >
+      <Select.ItemGroupLabel :class="crafts.itemGroupLabel({ class: [ui?.label], ...theme })">
         {{ label }}
       </Select.ItemGroupLabel>
     </slot>

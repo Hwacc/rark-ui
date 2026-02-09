@@ -14,10 +14,9 @@ import type { Theme } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Dialog } from '@ark-ui/vue/dialog'
 import { ark } from '@ark-ui/vue/factory'
-import { tvDialog } from '@rui-ark/themes/crafts/core/dialog'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { X } from 'lucide-vue-next'
-import { useId } from 'vue'
+import { computed, useId } from 'vue'
 import { DialogCloseTrigger } from '.'
 
 const { class: propsClass, theme: propsTheme } = defineProps<DialogHeaderProps>()
@@ -25,7 +24,7 @@ const id = useId()
 
 // theme
 const theme = useTheme(() => propsTheme)
-const { header, title, close } = tvDialog()
+const crafts = computed(() => theme.value.crafts.tvDialog())
 </script>
 
 <template>
@@ -33,13 +32,13 @@ const { header, title, close } = tvDialog()
     :id="`dialog:${id}:header`"
     data-scope="dialog"
     data-part="header"
-    :class="header({ class: [ui?.root, propsClass], ...theme })"
+    :class="crafts.header({ class: [ui?.root, propsClass], ...theme })"
   >
-    <Dialog.Title :class="title({ class: ui?.title, ...theme })">
+    <Dialog.Title :class="crafts.title({ class: ui?.title, ...theme })">
       <slot />
     </Dialog.Title>
     <DialogCloseTrigger as-child>
-      <ark.button :class="close({ class: ui?.close, ...theme })">
+      <ark.button :class="crafts.close({ class: ui?.close, ...theme })">
         <X :style="{ width: '1lh', height: '1lh' }" />
         <span class="sr-only">Close</span>
       </ark.button>
