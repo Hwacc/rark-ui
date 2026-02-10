@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface SelectValueProps extends Theme {
+export interface SelectValueProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
   placeholder?: string
   asChild?: boolean
@@ -7,7 +7,7 @@ export interface SelectValueProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { Select } from '@ark-ui/vue/select'

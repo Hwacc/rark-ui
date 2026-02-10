@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface EditableInputProps extends EditableInputBaseProps, Theme {
+export interface EditableInputProps extends EditableInputBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   clearable?: boolean
 }
@@ -7,7 +7,7 @@ export interface EditableInputProps extends EditableInputBaseProps, Theme {
 
 <script setup lang="ts">
 import type { EditableInputBaseProps } from '@ark-ui/vue/editable'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Editable, useEditableContext } from '@ark-ui/vue/editable'
 import { ark } from '@ark-ui/vue/factory'

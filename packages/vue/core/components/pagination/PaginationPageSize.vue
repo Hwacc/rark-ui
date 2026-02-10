@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface PaginationPageSizeProps extends Theme {
+export interface PaginationPageSizeProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
   sizes?: number[]
   placeholder?: string
@@ -15,7 +15,7 @@ export interface PaginationPageSizeProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { usePaginationContext } from '@ark-ui/vue'
 import { createListCollection } from '@ark-ui/vue/collection'

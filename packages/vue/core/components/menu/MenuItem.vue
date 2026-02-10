@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface MenuItemProps extends MenuItemBaseProps, Theme {
+export interface MenuItemProps extends MenuItemBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { MenuItemBaseProps } from '@ark-ui/vue/menu'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { MenuItem } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'

@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface InputProps extends Theme {
+export interface InputProps extends ThemeCrafts<'tvInput'> {
   id?: string
   defaultValue?: string | number
   modelValue?: string | number
@@ -18,7 +18,7 @@ export interface InputProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'

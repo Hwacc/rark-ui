@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface MenuRadioItemProps extends MenuRadioItemBaseProps, Theme {
+export interface MenuRadioItemProps extends MenuRadioItemBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   variant?: RadioGroupVariants['variant']
   ui?: {
@@ -12,7 +12,7 @@ export interface MenuRadioItemProps extends MenuRadioItemBaseProps, Theme {
 <script setup lang="ts">
 import type { MenuRadioItemBaseProps, UseMenuItemContext } from '@ark-ui/vue/menu'
 import type { RadioGroupVariants } from '@rui-ark/themes/default/crafts/core'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, UnwrapRef } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'

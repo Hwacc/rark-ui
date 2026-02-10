@@ -42,4 +42,3 @@ const selected = ref<string | undefined>(vegetables[0])
     </Menu>
   </div>
 </template>
-

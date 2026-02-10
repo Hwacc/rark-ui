@@ -19,7 +19,7 @@ type PropTypes = NativeElements & {
 }
 interface UseToastContext extends ComputedRef<toast.Api<PropTypes>> {}
 
-export interface MessageProps extends ToastRootBaseProps, Theme {
+export interface MessageProps extends ToastRootBaseProps, ThemeNoCrafts {
   options: MessageOptions
   class?: HTMLAttributes['class']
   ui?: {
@@ -34,7 +34,7 @@ export interface MessageProps extends ToastRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { ToastRootBaseProps } from '@ark-ui/vue/toast'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { MessageOptions } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'

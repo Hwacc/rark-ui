@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface SkeletonProps extends Theme {
+export interface SkeletonProps extends ThemeCrafts<'tvSkeleton'> {
   class?: HTMLAttributes['class']
   variant?: SkeletonVariants['variant']
   shape?: SkeletonVariants['shape']
@@ -8,7 +8,7 @@ export interface SkeletonProps extends Theme {
 
 <script setup lang="ts">
 import type { SkeletonVariants } from '@rui-ark/themes/default/crafts/core'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
 import { computed } from 'vue'

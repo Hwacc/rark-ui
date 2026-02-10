@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface TagsInputProps extends TagsInputRootBaseProps, Theme {
+export interface TagsInputProps extends TagsInputRootBaseProps, ThemeCrafts<'tvTagsInput' | 'tvInput'> {
   class?: HTMLAttributes['class']
   inline?: TagsInputVariants['inline']
   ui?: {
@@ -13,7 +13,7 @@ export interface TagsInputProps extends TagsInputRootBaseProps, Theme {
 <script setup lang="ts">
 import type { TagsInputRootBaseProps, TagsInputRootEmits } from '@ark-ui/vue/tags-input'
 import type { TagsInputVariants } from '@rui-ark/themes/default/crafts/core'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { TagsInput, useTagsInput } from '@ark-ui/vue/tags-input'

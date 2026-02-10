@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface RadioGroupProps extends RadioGroupRootBaseProps, Theme {
+export interface RadioGroupProps extends RadioGroupRootBaseProps, ThemeCrafts<'tvRadioGroup'> {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { RadioGroupRootBaseProps, RadioGroupRootEmits } from '@ark-ui/vue/radio-group'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { RadioGroup, useRadioGroup } from '@ark-ui/vue/radio-group'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'

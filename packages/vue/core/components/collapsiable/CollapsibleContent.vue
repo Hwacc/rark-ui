@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface CollapsibleContentProps extends ArkCollapsibleContentProps, Theme {
+export interface CollapsibleContentProps extends ArkCollapsibleContentProps, ThemeNoCrafts {
   class?: string
 }
 </script>
 
 <script setup lang="ts">
 import type { CollapsibleContentProps as ArkCollapsibleContentProps } from '@ark-ui/vue/collapsible'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import { useForwardProps } from '@ark-ui/vue'
 import { Collapsible } from '@ark-ui/vue/collapsible'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'

@@ -1,5 +1,5 @@
 import type { ScrollAreaVariants } from '@rui-ark/themes/default/crafts/core'
-import type { ThemeProps } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 
 export { default as ScrollArea } from './ScrollArea.vue'
 export type { ScrollAreaProps } from './ScrollArea.vue'
@@ -10,6 +10,6 @@ export type { ScrollAreaCornerProps } from './ScrollAreaCorner.vue'
 export { default as ScrollAreaScrollbar } from './ScrollAreaScrollbar.vue'
 export type { ScrollAreaScrollbarProps } from './ScrollAreaScrollbar.vue'
 
-export interface ScrollAreaTheme extends Omit<ThemeProps, 'size'> {
+export interface ScrollAreaTheme extends Omit<ThemeCrafts<'tvScrollArea'>, 'size'> {
   size?: ScrollAreaVariants['size']
 }

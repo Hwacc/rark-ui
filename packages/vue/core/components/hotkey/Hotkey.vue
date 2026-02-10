@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface HotkeyProps extends PolymorphicProps, Theme {
+export interface HotkeyProps extends PolymorphicProps, ThemeCrafts<'tvHotkey'> {
   hotkey: string
   placeholder?: string | ((focused: boolean) => string)
   class?: HTMLAttributes['class']
@@ -14,7 +14,7 @@ export interface HotkeyProps extends PolymorphicProps, Theme {
 
 <script setup lang="ts">
 import type { PolymorphicProps } from '@ark-ui/vue/factory'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardExpose } from '@ark-ui/vue/utils'

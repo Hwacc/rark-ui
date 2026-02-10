@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface SliderMarkerProps extends SliderMarkerBaseProps, Theme {
+export interface SliderMarkerProps extends SliderMarkerBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { SliderMarkerBaseProps } from '@ark-ui/vue/slider'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider, useSliderContext } from '@ark-ui/vue/slider'

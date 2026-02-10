@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface SelectContentProps extends ArkSelectContentProps, Theme {
+export interface SelectContentProps extends ArkSelectContentProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -10,7 +10,7 @@ export interface SelectContentProps extends ArkSelectContentProps, Theme {
 
 <script setup lang="ts">
 import type { SelectContentProps as ArkSelectContentProps } from '@ark-ui/vue/select'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { Select } from '@ark-ui/vue/select'

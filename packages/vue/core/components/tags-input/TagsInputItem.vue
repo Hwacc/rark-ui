@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface TagsInputItemProps extends TagsInputItemBaseProps, Theme {
+export interface TagsInputItemProps extends TagsInputItemBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -12,7 +12,7 @@ export interface TagsInputItemProps extends TagsInputItemBaseProps, Theme {
 
 <script setup lang="ts">
 import type { TagsInputItemBaseProps } from '@ark-ui/vue/tags-input'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { TagsInputProvide } from '.'
 import { useForwardProps } from '@ark-ui/vue'

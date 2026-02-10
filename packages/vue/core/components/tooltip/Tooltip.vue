@@ -1,10 +1,10 @@
 <script lang="ts">
-export interface TooltipProps extends TooltipRootProps, Theme {}
+export interface TooltipProps extends TooltipRootProps, ThemeCrafts<'tvTooltip'> {}
 </script>
 
 <script setup lang="ts">
 import type { TooltipRootEmits, TooltipRootProps } from '@ark-ui/vue/tooltip'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import { Tooltip, useTooltip } from '@ark-ui/vue/tooltip'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { useConfig } from '@rui-ark/vue/composables/useConfig'

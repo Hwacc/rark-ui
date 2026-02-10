@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface PopoverIndicatorProps extends Theme {
+export interface PopoverIndicatorProps extends ThemeNoCrafts {
   class?: HtmlHTMLAttributes['class']
   asChild?: boolean
 }
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HtmlHTMLAttributes } from 'vue'
 import { PopoverIndicator } from '@ark-ui/vue'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'

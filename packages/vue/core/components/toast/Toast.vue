@@ -19,7 +19,7 @@ type PropTypes = NativeElements & {
 }
 interface UseToastContext extends ComputedRef<ZagToast.Api<PropTypes>> {}
 
-export interface ToastProps extends ToastRootBaseProps, Theme {
+export interface ToastProps extends ToastRootBaseProps, ThemeNoCrafts {
   options: ToastOptions
   class?: HTMLAttributes['class']
   ui?: {
@@ -36,7 +36,7 @@ export interface ToastProps extends ToastRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { ToastRootBaseProps } from '@ark-ui/vue/toast'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { ToastOptions } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'

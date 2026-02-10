@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface MenuTriggerItemProps extends MenuTriggerItemBaseProps, Theme {
+export interface MenuTriggerItemProps extends MenuTriggerItemBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { MenuTriggerItemBaseProps } from '@ark-ui/vue/menu'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'

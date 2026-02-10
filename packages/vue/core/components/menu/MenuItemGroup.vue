@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface MenuItemGroupProps extends MenuItemGroupBaseProps, Theme {
+export interface MenuItemGroupProps extends MenuItemGroupBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   label?: string
   ui?: {
@@ -12,7 +12,7 @@ export interface MenuItemGroupProps extends MenuItemGroupBaseProps, Theme {
 
 <script setup lang="ts">
 import type { MenuItemGroupBaseProps } from '@ark-ui/vue/menu'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardProps } from '@ark-ui/vue/utils'

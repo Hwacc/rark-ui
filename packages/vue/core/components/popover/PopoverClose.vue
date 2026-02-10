@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface PopoverCloseProps extends Theme {
+export interface PopoverCloseProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
   asChild?: boolean
 }
 </script>
 
 <script lang="ts" setup>
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { ark } from '@ark-ui/vue/factory'
 import { PopoverCloseTrigger } from '@ark-ui/vue/popover'

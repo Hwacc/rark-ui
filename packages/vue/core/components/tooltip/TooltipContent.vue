@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface TooltipContentProps extends ArkTooltipContentProps, Theme {
+export interface TooltipContentProps extends ArkTooltipContentProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     positioner?: HTMLAttributes['class']
@@ -11,7 +11,7 @@ export interface TooltipContentProps extends ArkTooltipContentProps, Theme {
 
 <script setup lang="ts">
 import type { TooltipContentProps as ArkTooltipContentProps } from '@ark-ui/vue/tooltip'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Tooltip } from '@ark-ui/vue/tooltip'
 import { useForwardProps } from '@ark-ui/vue/utils'

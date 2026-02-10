@@ -2,7 +2,7 @@
 export interface SliderTooltipMarkerProps
   extends SliderMarkerBaseProps,
   Omit<TooltipRootProps, 'open'>,
-  Theme {
+  ThemeNoCrafts {
   class?: HTMLAttributes['class']
   open?: (context: UnwrapRef<UseSliderContext>) => boolean
 }
@@ -11,7 +11,7 @@ export interface SliderTooltipMarkerProps
 <script setup lang="ts">
 import type { SliderMarkerBaseProps, UseSliderContext } from '@ark-ui/vue/slider'
 import type { TooltipRootProps } from '@ark-ui/vue/tooltip'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, UnwrapRef } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider, useSliderContext } from '@ark-ui/vue/slider'

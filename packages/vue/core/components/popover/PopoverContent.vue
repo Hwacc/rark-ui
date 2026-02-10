@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface PopoverContentProps extends ArkPopoverContentProps, Theme {
+export interface PopoverContentProps extends ArkPopoverContentProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     positioner?: HTMLAttributes['class']
@@ -11,7 +11,7 @@ export interface PopoverContentProps extends ArkPopoverContentProps, Theme {
 
 <script setup lang="ts">
 import type { PopoverContentProps as ArkPopoverContentProps } from '@ark-ui/vue/popover'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Popover } from '@ark-ui/vue/popover'
 import { useForwardProps } from '@ark-ui/vue/utils'

@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface SwitchProps extends SwitchRootProps, Theme {
+export interface SwitchProps extends SwitchRootProps, ThemeCrafts<'tvSwitch'> {
   class?: HtmlHTMLAttributes['class']
   ui?: {
     root?: HtmlHTMLAttributes['class']
@@ -12,7 +12,7 @@ export interface SwitchProps extends SwitchRootProps, Theme {
 
 <script setup lang="ts">
 import type { SwitchRootEmits, SwitchRootProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HtmlHTMLAttributes } from 'vue'
 import { Switch, useForwardExpose, useForwardProps, useSwitch } from '@ark-ui/vue'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'

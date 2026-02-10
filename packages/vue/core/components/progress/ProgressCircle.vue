@@ -7,7 +7,7 @@ export interface ProgressCircleProps extends ProgressCircleBaseProps {
     circleTrack?: HTMLAttributes['class']
     circleRange?: HTMLAttributes['class']
   }
-  theme?: ProgressCircleTheme
+  theme?: Omit<ProgressCircleTheme, 'crafts'>
 }
 </script>
 

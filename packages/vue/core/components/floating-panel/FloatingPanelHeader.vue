@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface FloatingPanelHeaderProps extends FloatingPanelHeaderBaseProps, Theme {
+export interface FloatingPanelHeaderProps extends FloatingPanelHeaderBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -11,7 +11,7 @@ export interface FloatingPanelHeaderProps extends FloatingPanelHeaderBaseProps, 
 
 <script setup lang="ts">
 import type { FloatingPanelHeaderBaseProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { FloatingPanel, useForwardProps } from '@ark-ui/vue'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'

@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface ProgressLinearProps extends ProgressTrackBaseProps, Theme {
+export interface ProgressLinearProps extends ProgressTrackBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   variant?: 'default' | 'robbin' | 'transfer'
   ui?: {
@@ -11,7 +11,7 @@ export interface ProgressLinearProps extends ProgressTrackBaseProps, Theme {
 
 <script setup lang="ts">
 import type { ProgressTrackBaseProps } from '@ark-ui/vue/progress'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Progress, useProgressContext } from '@ark-ui/vue/progress'

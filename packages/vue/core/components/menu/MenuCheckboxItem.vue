@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface MenuCheckboxItemProps extends MenuCheckboxItemBaseProps, Theme {
+export interface MenuCheckboxItemProps extends MenuCheckboxItemBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -13,7 +13,7 @@ import type {
   MenuCheckboxItemBaseProps,
   MenuCheckboxItemEmits,
 } from '@ark-ui/vue/menu'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardPropsEmits } from '@ark-ui/vue/utils'

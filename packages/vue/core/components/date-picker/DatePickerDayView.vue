@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface DatePickerDayViewProps extends Theme {
+export interface DatePickerDayViewProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
   weekDayType?: 'short' | 'long' | 'narrow'
 }
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { DatePickerContentProvide } from '.'
 import { DatePicker, useDatePickerContext } from '@ark-ui/vue'

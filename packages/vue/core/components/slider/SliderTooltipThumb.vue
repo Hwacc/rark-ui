@@ -2,7 +2,7 @@
 export interface SliderTooltipThumbProps
   extends SliderThumbBaseProps,
   Omit<TooltipRootProps, 'open'>,
-  Theme {
+  ThemeNoCrafts {
   class?: HTMLAttributes['class']
   open?: (context: UnwrapRef<UseSliderContext>) => boolean
   widget?: {
@@ -15,7 +15,7 @@ export interface SliderTooltipThumbProps
 <script setup lang="ts">
 import type { SliderThumbBaseProps, UseSliderContext } from '@ark-ui/vue/slider'
 import type { TooltipRootProps } from '@ark-ui/vue/tooltip'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, UnwrapRef } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'

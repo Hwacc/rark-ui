@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface EditableRootProps extends EditableRootBaseProps, Theme {
+export interface EditableRootProps extends EditableRootBaseProps, ThemeCrafts<'tvEditable'> {
   class?: HTMLAttributes['class']
   clearable?: boolean
   ui?: {
@@ -20,7 +20,7 @@ import type {
   EditableRootEmits,
   UseEditableProps,
 } from '@ark-ui/vue/editable'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { EditableArea, EditableRootProvider, useEditable } from '@ark-ui/vue/editable'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'

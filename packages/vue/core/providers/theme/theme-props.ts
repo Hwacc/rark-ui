@@ -1,3 +1,4 @@
+import type { tv } from '@rui-ark/themes/default'
 import type { ComputedRef } from 'vue'
 import { createContext } from '@ark-ui/vue/utils'
 
@@ -16,7 +17,7 @@ export interface Theme {
   theme?: ThemeProps
 }
 export interface ThemeCrafts<K extends keyof Crafts> {
-  theme?: Omit<ThemeProps, 'crafts'> & { crafts?: Pick<Crafts, K> }
+  theme?: Omit<ThemeProps, 'crafts'> & ({ crafts?: Record<K, ReturnType<typeof tv>> } | {})
 }
 export interface ThemeNoCrafts {
   theme?: Omit<ThemeProps, 'crafts'>

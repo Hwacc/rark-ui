@@ -1,11 +1,11 @@
 <script lang="ts">
-export interface DatePickerYearViewProps extends Theme {
+export interface DatePickerYearViewProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { DatePicker, useDatePickerContext } from '@ark-ui/vue'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'

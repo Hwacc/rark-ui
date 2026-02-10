@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface TabsIndicatorProps extends TabIndicatorBaseProps, Theme {
+export interface TabsIndicatorProps extends TabIndicatorBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { TabIndicatorBaseProps } from '@ark-ui/vue/tabs'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs } from '@ark-ui/vue/tabs'

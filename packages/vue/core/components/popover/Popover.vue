@@ -1,10 +1,10 @@
 <script lang="ts">
-export interface PopoverProps extends PopoverRootProps, Theme {}
+export interface PopoverProps extends PopoverRootProps, ThemeCrafts<'tvPopover'> {}
 </script>
 
 <script setup lang="ts">
 import type { PopoverRootEmits, PopoverRootProps, UsePopoverReturn } from '@ark-ui/vue/popover'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import { Popover, usePopover } from '@ark-ui/vue/popover'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { useConfig } from '@rui-ark/vue/composables/useConfig'

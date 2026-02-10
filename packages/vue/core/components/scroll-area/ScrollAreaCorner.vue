@@ -1,7 +1,7 @@
 <script lang="ts">
 export interface ScrollAreaCornerProps extends ScrollAreaCornerBaseProps {
   class?: HTMLAttributes['class']
-  theme?: ScrollAreaTheme
+  theme?: Omit<ScrollAreaTheme, 'crafts'>
 }
 </script>
 

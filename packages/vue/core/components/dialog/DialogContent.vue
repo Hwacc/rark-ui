@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface DialogContentProps extends Theme {
+export interface DialogContentProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     backdrop?: HTMLAttributes['class']
@@ -12,7 +12,7 @@ export interface DialogContentProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Dialog } from '@ark-ui/vue/dialog'
 import { ark } from '@ark-ui/vue/factory'

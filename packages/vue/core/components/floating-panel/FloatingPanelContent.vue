@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface FloatingPanelContentProps extends FloatingPanelContentBaseProps, Theme {
+export interface FloatingPanelContentProps extends FloatingPanelContentBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     positioner?: HTMLAttributes['class']
@@ -13,7 +13,7 @@ export interface FloatingPanelContentProps extends FloatingPanelContentBaseProps
 
 <script setup lang="ts">
 import type { FloatingPanelContentBaseProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { ResizeTriggerAxis } from '@zag-js/floating-panel'
 import type { HTMLAttributes, VNode } from 'vue'
 import { FloatingPanel } from '@ark-ui/vue'

@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface NumberInputProps extends NumberInputRootBaseProps, Theme {
+export interface NumberInputProps extends NumberInputRootBaseProps, ThemeCrafts<'tvInput' | 'tvNumberInput'> {
   class?: HTMLAttributes['class']
   showTrigger?: boolean
   ui?: {
@@ -14,7 +14,7 @@ export interface NumberInputProps extends NumberInputRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { NumberInputRootBaseProps, NumberInputRootEmits } from '@ark-ui/vue/number-input'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { NumberInput, useNumberInput } from '@ark-ui/vue/number-input'

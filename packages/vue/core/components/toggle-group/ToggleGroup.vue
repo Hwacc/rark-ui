@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface ToggleGroupProps extends ToggleGroupRootBaseProps, Theme {
+export interface ToggleGroupProps extends ToggleGroupRootBaseProps, ThemeCrafts<'tvToggleGroup'> {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { ToggleGroupRootBaseProps, ToggleGroupRootEmits } from '@ark-ui/vue/toggle-group'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ToggleGroup, useToggleGroup } from '@ark-ui/vue/toggle-group'

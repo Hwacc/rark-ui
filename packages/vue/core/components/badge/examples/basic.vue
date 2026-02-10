@@ -6,7 +6,9 @@ import { Badge } from '../index'
   <div class="flex flex-wrap items-center gap-4">
     <Badge
       variant="default"
-      :theme="{ size: 'xs' }"
+      :theme="{
+        size: 'xs',
+      }"
     >
       xs
     </Badge>

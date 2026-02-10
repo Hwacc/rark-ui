@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface RatingGroupItemProps extends RatingGroupItemBaseProps, Theme {
+export interface RatingGroupItemProps extends RatingGroupItemBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -11,7 +11,7 @@ export interface RatingGroupItemProps extends RatingGroupItemBaseProps, Theme {
 
 <script setup lang="ts">
 import type { RatingGroupItemBaseProps } from '@ark-ui/vue/rating-group'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { RatingGroup } from '@ark-ui/vue/rating-group'
 import { useForwardProps } from '@ark-ui/vue/utils'

@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface FloatingPanelPinTriggerProps extends PolymorphicProps, Theme {
+export interface FloatingPanelPinTriggerProps extends PolymorphicProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { PolymorphicProps } from '@ark-ui/vue/factory'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'

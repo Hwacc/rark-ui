@@ -3,7 +3,7 @@ export type DialogOpenChangeDetails = OpenChangeDetails & {
   // the trigger that toggled the dialog
   from: DialogTriggerFrom
 }
-export interface DialogProps extends DialogRootProps, Theme {
+export interface DialogProps extends DialogRootProps, ThemeCrafts<'tvDialog'> {
   class?: HTMLAttributes['class']
 }
 type UseDialogPropsEx = UseDialogProps & {
@@ -29,7 +29,7 @@ import type {
   UseDialogProps,
   UseDialogReturn,
 } from '@ark-ui/vue/dialog'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type {
   DialogInterceptContext,

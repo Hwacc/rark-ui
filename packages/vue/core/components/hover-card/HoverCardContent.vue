@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface HoverCardContentProps extends ArkHoverCardContentProps, Theme {
+export interface HoverCardContentProps extends ArkHoverCardContentProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     positioner?: HTMLAttributes['class']
@@ -11,7 +11,7 @@ export interface HoverCardContentProps extends ArkHoverCardContentProps, Theme {
 
 <script setup lang="ts">
 import type { HoverCardContentProps as ArkHoverCardContentProps } from '@ark-ui/vue/hover-card'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { HoverCard } from '@ark-ui/vue/hover-card'
 import { useForwardProps } from '@ark-ui/vue/utils'

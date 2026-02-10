@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface TabsProps extends TabsRootBaseProps, Theme {
+export interface TabsProps extends TabsRootBaseProps, ThemeCrafts<'tvTabs'> {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { TabsRootBaseProps, TabsRootEmits } from '@ark-ui/vue/tabs'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Tabs, useTabs } from '@ark-ui/vue/tabs'

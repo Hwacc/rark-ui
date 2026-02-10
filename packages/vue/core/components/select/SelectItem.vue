@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface SelectItemProps extends SelectItemBaseProps, Theme {
+export interface SelectItemProps extends SelectItemBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { SelectItemBaseProps } from '@ark-ui/vue/select'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'

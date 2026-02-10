@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface SpinProps extends PolymorphicProps, Theme {
+export interface SpinProps extends PolymorphicProps, ThemeCrafts<'tvSpin'> {
   class?: HTMLAttributes['class']
   show?: boolean
   mode?: 'fullscreen' | 'inline'
@@ -15,7 +15,7 @@ export interface SpinProps extends PolymorphicProps, Theme {
 
 <script setup lang="ts">
 import type { PolymorphicProps } from '@ark-ui/vue/factory'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, VNode } from 'vue'
 import type { SpinRenderProps } from '.'
 import { ark } from '@ark-ui/vue/factory'

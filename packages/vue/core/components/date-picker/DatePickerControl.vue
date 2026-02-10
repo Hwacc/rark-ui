@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface DatePickerControlProps extends DatePickerControlBaseProps, Theme {
+export interface DatePickerControlProps extends DatePickerControlBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { DatePickerControlBaseProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { DatePicker } from '@ark-ui/vue'
 import { useForwardProps } from '@ark-ui/vue/utils'

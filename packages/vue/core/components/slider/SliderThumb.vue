@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface SliderThumbProps extends SliderThumbBaseProps, Theme {
+export interface SliderThumbProps extends SliderThumbBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { SliderThumbBaseProps } from '@ark-ui/vue/slider'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider } from '@ark-ui/vue/slider'

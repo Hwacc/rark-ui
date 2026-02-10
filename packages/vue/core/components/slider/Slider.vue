@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface SliderProps extends SliderRootBaseProps, Theme {
+export interface SliderProps extends SliderRootBaseProps, ThemeCrafts<'tvSlider'> {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -12,7 +12,7 @@ export interface SliderProps extends SliderRootBaseProps, Theme {
 
 <script setup lang="ts">
 import type { SliderRootBaseProps, SliderRootEmits } from '@ark-ui/vue/slider'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Slider, useSlider } from '@ark-ui/vue/slider'

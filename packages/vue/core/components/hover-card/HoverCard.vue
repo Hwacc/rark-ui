@@ -2,12 +2,12 @@
 /**
  * @description Imagine HoverCard is a interactive Tooltip.
  */
-export interface HoverCardProps extends HoverCardRootProps, Theme {}
+export interface HoverCardProps extends HoverCardRootProps, ThemeCrafts<'tvHoverCard'> {}
 </script>
 
 <script setup lang="ts">
 import type { HoverCardRootEmits, HoverCardRootProps } from '@ark-ui/vue/hover-card'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import { HoverCard, useHoverCard } from '@ark-ui/vue/hover-card'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
 import { useConfig } from '@rui-ark/vue/composables/useConfig'

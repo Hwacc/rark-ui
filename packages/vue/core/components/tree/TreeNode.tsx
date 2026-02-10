@@ -1,5 +1,5 @@
 import type { UseTreeViewNodeContext } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, PropType, SlotsType, UnwrapRef, VNode } from 'vue'
 import { TreeView } from '@ark-ui/vue'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
@@ -51,7 +51,7 @@ export default defineComponent({
       default: () => ({}),
     },
     theme: {
-      type: Object as PropType<Theme>,
+      type: Object as PropType<ThemeNoCrafts>,
       default: () => ({}),
     },
     node: {

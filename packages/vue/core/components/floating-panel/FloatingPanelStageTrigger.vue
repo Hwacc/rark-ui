@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface FloatingPanelStageTriggerProps extends FloatingPanelStageTriggerBaseProps, Theme {
+export interface FloatingPanelStageTriggerProps extends FloatingPanelStageTriggerBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { FloatingPanelStageTriggerBaseProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { FloatingPanel, useForwardProps } from '@ark-ui/vue'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'

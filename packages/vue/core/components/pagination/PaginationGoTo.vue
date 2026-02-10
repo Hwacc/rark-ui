@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface PaginationGoToProps extends Theme {
+export interface PaginationGoToProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -9,7 +9,7 @@ export interface PaginationGoToProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { usePaginationContext } from '@ark-ui/vue'
 import { NumberInput } from '@rui-ark/vue/components/number-input'

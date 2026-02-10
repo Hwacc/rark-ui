@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface ProgressProps extends ProgressRootBaseProps, Theme {
+export interface ProgressProps extends ProgressRootBaseProps, ThemeCrafts<'tvProgress'> {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { ProgressRootBaseProps, ProgressRootEmits } from '@ark-ui/vue/progress'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { Progress, useProgress } from '@ark-ui/vue/progress'

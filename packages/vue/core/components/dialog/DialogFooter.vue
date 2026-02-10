@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface DialogFooterProps extends Theme {
+export interface DialogFooterProps extends ThemeNoCrafts {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -14,7 +14,7 @@ export interface DialogFooterProps extends Theme {
 </script>
 
 <script setup lang="ts">
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import { ark } from '@ark-ui/vue/factory'

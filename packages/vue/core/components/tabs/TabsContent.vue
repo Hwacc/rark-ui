@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface TabsContentProps extends TabContentBaseProps, Theme {
+export interface TabsContentProps extends TabContentBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { TabContentBaseProps } from '@ark-ui/vue/tabs'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs } from '@ark-ui/vue/tabs'

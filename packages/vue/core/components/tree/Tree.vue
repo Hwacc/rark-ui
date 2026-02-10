@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface TreeProps<T> extends TreeViewRootBaseProps<T>, Theme {
+export interface TreeProps<T> extends TreeViewRootBaseProps<T>, ThemeCrafts<'tvTree'> {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -10,7 +10,7 @@ export interface TreeProps<T> extends TreeViewRootBaseProps<T>, Theme {
 
 <script setup lang="ts" generic="T = TreeNode">
 import type { TreeNode, TreeViewRootBaseProps } from '@ark-ui/vue/tree-view'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import type { TreeViewRootEmits } from './tree'
 import { useForwardProps } from '@ark-ui/vue'

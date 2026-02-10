@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface SelectTriggerProps extends ArkSelectTriggerProps, Theme {
+export interface SelectTriggerProps extends ArkSelectTriggerProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   clearable?: boolean
 }
@@ -7,7 +7,7 @@ export interface SelectTriggerProps extends ArkSelectTriggerProps, Theme {
 
 <script setup lang="ts">
 import type { SelectTriggerProps as ArkSelectTriggerProps } from '@ark-ui/vue/select'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'

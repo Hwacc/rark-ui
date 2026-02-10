@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface PaginationProps extends PaginationRootProps, Theme {
+export interface PaginationProps extends PaginationRootProps, ThemeCrafts<'tvPagination'> {
   class?: HTMLAttributes['class']
   ui?: {
     root?: HTMLAttributes['class']
@@ -16,7 +16,7 @@ export interface PaginationProps extends PaginationRootProps, Theme {
 
 <script setup lang="ts">
 import type { PaginationRootEmits, PaginationRootProps } from '@ark-ui/vue/pagination'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'

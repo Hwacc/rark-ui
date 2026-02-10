@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface CollapsibleTriggerProps extends ArkCollapsibleTriggerProps, Theme {
+export interface CollapsibleTriggerProps extends ArkCollapsibleTriggerProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   indicator?: boolean
   ui?: {
@@ -11,7 +11,7 @@ export interface CollapsibleTriggerProps extends ArkCollapsibleTriggerProps, The
 
 <script setup lang="ts">
 import type { CollapsibleTriggerProps as ArkCollapsibleTriggerProps } from '@ark-ui/vue/collapsible'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { useForwardProps } from '@ark-ui/vue'
 import { Collapsible, useCollapsibleContext } from '@ark-ui/vue/collapsible'

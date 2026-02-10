@@ -1,5 +1,5 @@
 <script lang="ts">
-export interface RadioGroupItemProps extends RadioGroupItemBaseProps, Theme {
+export interface RadioGroupItemProps extends RadioGroupItemBaseProps, ThemeNoCrafts {
   class?: HTMLAttributes['class']
   label?: string
   variant?: RadioGroupVariants['variant']
@@ -15,7 +15,7 @@ export interface RadioGroupItemProps extends RadioGroupItemBaseProps, Theme {
 <script setup lang="ts">
 import type { RadioGroupItemBaseProps, UseRadioGroupItemContext } from '@ark-ui/vue/radio-group'
 import type { RadioGroupVariants } from '@rui-ark/themes/default/crafts/core'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeNoCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes, UnwrapRef } from 'vue'
 import { RadioGroup } from '@ark-ui/vue/radio-group'
 import { useForwardProps } from '@ark-ui/vue/utils'

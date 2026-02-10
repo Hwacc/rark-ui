@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface MenuProps extends MenuRootProps, Theme {
+export interface MenuProps extends MenuRootProps, ThemeCrafts<'tvMenu' | 'tvCheckbox' | 'tvRadioGroup'> {
   class?: HTMLAttributes['class']
 }
 </script>
 
 <script setup lang="ts">
 import type { MenuRootEmits, MenuRootProps } from '@ark-ui/vue/menu'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { Menu, useMenu } from '@ark-ui/vue/menu'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'

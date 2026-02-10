@@ -1,7 +1,7 @@
 <script lang="ts">
 export interface ScrollAreaScrollbarProps extends ScrollAreaScrollbarBaseProps {
   class?: HTMLAttributes['class']
-  theme?: ScrollAreaTheme
+  theme?: Omit<ScrollAreaTheme, 'crafts'>
   ui?: {
     root?: HTMLAttributes['class']
     thumb?: HTMLAttributes['class']

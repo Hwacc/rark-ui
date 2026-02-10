@@ -6,7 +6,7 @@ import type {
   StageChangeDetails,
 } from '@zag-js/floating-panel'
 
-export interface FloatingPanelProps extends FloatingPanelRootBaseProps, Theme {
+export interface FloatingPanelProps extends FloatingPanelRootBaseProps, ThemeCrafts<'tvFloatingPanel'> {
   class?: HTMLAttributes['class']
   opacity?: number
   pinned?: boolean
@@ -32,7 +32,7 @@ export interface FloatingPanelRootEmits {
 
 <script setup lang="ts">
 import type { FloatingPanelRootBaseProps } from '@ark-ui/vue'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 import { FloatingPanel, useFloatingPanel, useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'

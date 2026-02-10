@@ -1,12 +1,12 @@
 <script lang="ts">
-export interface ToasterProps extends ToastStoreProps, Theme {
+export interface ToasterProps extends ToastStoreProps, ThemeCrafts<'tvToast'> {
   toasterId?: string
 }
 </script>
 
 <script setup lang="ts">
 import type { CreateToasterProps, ToastStoreProps } from '@ark-ui/vue/toast'
-import type { Theme } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
 import type { ToastOptions } from '.'
 import { createToaster, Toaster } from '@ark-ui/vue/toast'
 import { useTheme } from '@rui-ark/vue/composables/useTheme'
