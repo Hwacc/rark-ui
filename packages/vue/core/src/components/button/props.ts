@@ -1,4 +1,4 @@
-import type { ButtonVariants } from '@rui-ark/themes/default/crafts/core'
+import type { ButtonVariants } from '@rui-ark/themes/default'
 import type { ThemeCrafts } from '@rui-ark/vue/providers'
 import type { HTMLAttributes } from 'vue'
 

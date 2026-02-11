@@ -1,5 +1,5 @@
 import type { TagsInputItemBaseProps, TagsInputRootBaseProps } from '@ark-ui/vue'
-import type { TagsInputVariants } from '@rui-ark/themes/default/crafts/core'
+import type { TagsInputVariants } from '@rui-ark/themes/default'
 import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
 import type { ComputedRef, HTMLAttributes } from 'vue'
 

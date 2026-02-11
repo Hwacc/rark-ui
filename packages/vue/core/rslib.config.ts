@@ -4,12 +4,12 @@ import { defineConfig } from '@rslib/core'
 import { pluginUnpluginVue } from 'rsbuild-plugin-unplugin-vue'
 
 export default defineConfig({
-  lib: [{ format: 'esm', bundle: false, dts: true }],
-  resolve: {
-    alias: {
-      '@rui-ark/vue': './src',
+  lib: [
+    {
+      format: 'esm',
+      bundle: false,
     },
-  },
+  ],
   source: {
     entry: {
       index: [

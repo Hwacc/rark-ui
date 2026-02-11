@@ -2,10 +2,12 @@
   "compilerOptions": {
     "composite": true,
     "target": "ES2020",
+
     "jsx": "preserve",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
     "jsxImportSource": "vue",
+
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "moduleDetection": "force",
     "useDefineForClassFields": true,
@@ -18,12 +20,14 @@
       "@rui-ark/shared/*": ["../../shared/src/*"],
       "@rui-ark/themes/*": ["../../themes/src/*"]
     },
+
     "allowImportingTsExtensions": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmit": true,
+
     "isolatedModules": true,
     "skipLibCheck": true
   },

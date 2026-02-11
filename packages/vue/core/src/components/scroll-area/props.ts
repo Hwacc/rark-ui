@@ -1,5 +1,5 @@
 import type { ScrollAreaCornerBaseProps, ScrollAreaRootBaseProps, ScrollAreaScrollbarBaseProps } from '@ark-ui/vue'
-import type { ScrollAreaVariants } from '@rui-ark/themes/default/crafts/core'
+import type { ScrollAreaVariants } from '@rui-ark/themes/default'
 import type { ThemeCrafts } from '@rui-ark/vue/providers'
 import type { HTMLAttributes } from 'vue'
 

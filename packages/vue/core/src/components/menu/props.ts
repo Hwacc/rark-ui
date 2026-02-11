@@ -1,5 +1,5 @@
 import type { MenuCheckboxItemBaseProps, MenuContentBaseProps, MenuItemBaseProps, MenuItemGroupBaseProps, MenuRadioItemBaseProps, MenuRadioItemGroupBaseProps, MenuRootBaseProps, MenuTriggerItemBaseProps } from '@ark-ui/vue'
-import type { RadioGroupVariants } from '@rui-ark/themes/default/crafts/core'
+import type { RadioGroupVariants } from '@rui-ark/themes/default'
 import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
 import type { HTMLAttributes } from 'vue'
 

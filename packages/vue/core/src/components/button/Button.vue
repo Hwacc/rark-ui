@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ButtonVariants } from '@rui-ark/themes/default/crafts/core'
+import type { ButtonVariants } from '@rui-ark/themes/default'
 import type { ButtonProps } from '.'
 import { useForwardExpose } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
