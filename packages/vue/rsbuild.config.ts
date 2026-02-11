@@ -6,9 +6,9 @@ import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx'
 export default defineConfig({
   resolve: {
     alias: {
-      '@rui-ark/vue': './core',
+      '@rui-ark/vue': './core/src',
       '@rui-ark/shared': '../shared/src',
-      '@rui-ark/themes': '../themes',
+      '@rui-ark/themes': '../themes/src',
     },
   },
   plugins: [

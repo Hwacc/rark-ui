@@ -16,6 +16,6 @@
   "dependencies": {
     "@tanstack/vue-virtual": "^3.13.18",
     "es-toolkit": "^1.44.0",
-    "lucide-vue-next": "^0.562.0"
+    "lucide-vue-next": "^0.563.0"
   }
 }

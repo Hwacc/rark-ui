@@ -2,26 +2,23 @@
   "compilerOptions": {
     "composite": true,
     "target": "ES2020",
-
     "jsx": "preserve",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
     "jsxImportSource": "vue",
-
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "moduleDetection": "force",
     "useDefineForClassFields": true,
     "baseUrl": ".",
+    "rootDir": "./src",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "@rui-ark/vue/*": ["./*"],
+      "@rui-ark/vue/*": ["./src/*"],
       "@rui-ark/shared/*": ["../../shared/src/*"],
-      "@rui-ark/themes/*": ["../../themes/*"]
+      "@rui-ark/themes/*": ["../../themes/src/*"]
     },
-
     "allowImportingTsExtensions": true,
-
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
@@ -31,18 +28,6 @@
     "skipLibCheck": true
   },
   "references": [{ "path": "../../themes" }, { "path": "../../shared" }],
-  "include": [
-    "components/**/*.ts",
-    "components/**/*.tsx",
-    "components/**/*.vue",
-    "composables/**/*.ts",
-    "composables/**/*.tsx",
-    "utils/**/*.ts",
-    "providers/**/*.ts",
-    "providers/**/*.tsx",
-    "providers/**/*.vue",
-    "libs/**/*.ts",
-    "types/**/*.d.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

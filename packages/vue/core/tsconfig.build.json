@@ -3,9 +3,9 @@
   "compilerOptions": {
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo/tsconfig.build.tsbuildinfo",
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "outDir": "dist/types"
+    "outDir": "./dist"
   }
 }

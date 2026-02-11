@@ -7,10 +7,29 @@
   "license": "ISC",
   "keywords": [],
   "exports": {
-    "./css": "./src/css.ts",
-    "./dom": "./src/dom.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./css": {
+      "types": "./dist/css.d.ts",
+      "import": "./dist/css.js"
+    },
+    "./dom": {
+      "types": "./dist/dom.d.ts",
+      "import": "./dist/dom.js"
+    },
+    "./color": {
+      "types": "./dist/color.d.ts",
+      "import": "./dist/color.js"
+    },
+    "./constant": {
+      "types": "./dist/constant.d.ts",
+      "import": "./dist/constant.js"
+    }
   },
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

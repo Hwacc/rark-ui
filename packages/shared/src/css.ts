@@ -1,5 +1,3 @@
-import { isNil } from 'es-toolkit'
-
 export function px2rem(px: number | string) {
   if (typeof px === 'string') {
     if (px.endsWith('rem'))
@@ -51,7 +49,7 @@ export function getNodeCssVar(
   varName: string,
   fallback?: string,
 ): string | undefined {
-  if (isNil(window))
+  if (!window)
     return fallback !== undefined ? fallback : undefined
   node = node ?? document.documentElement
   const value = getComputedStyle(node).getPropertyValue(varName).trim()
