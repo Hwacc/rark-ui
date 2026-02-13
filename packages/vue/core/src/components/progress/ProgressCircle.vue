@@ -2,7 +2,7 @@
 import type { ProgressCircleProps, ProgressCircleTheme } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { Progress } from '@ark-ui/vue/progress'
-import { useCustomTheme } from '@rui-ark/vue/composables/useTheme'
+import { useCustomTheme } from '@rark-ui/vue/composables/useTheme'
 import { omit } from 'es-toolkit'
 import { computed, useTemplateRef } from 'vue'
 import { useRangeTransfer } from './useRangeTransfer'

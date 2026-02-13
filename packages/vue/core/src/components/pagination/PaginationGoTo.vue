@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { PaginationGoToProps } from '.'
 import { usePaginationContext } from '@ark-ui/vue'
-import { NumberInput } from '@rui-ark/vue/components/number-input'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { NumberInput } from '@rark-ui/vue/components/number-input'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed, provide, ref, watch } from 'vue'
 import { PAGINATION_GO_TO_PROVIDE_KEY } from '.'
 

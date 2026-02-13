@@ -2,7 +2,7 @@
 import type { VNode } from 'vue'
 import type { SpinProps, SpinRenderProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed, getCurrentInstance, inject, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const { show, mode, theme: propsTheme, delay, ui, class: propsClass } = defineProps<SpinProps>()

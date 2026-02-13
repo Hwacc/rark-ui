@@ -1,6 +1,6 @@
 import type { MenuCheckboxItemBaseProps, MenuContentBaseProps, MenuItemBaseProps, MenuItemGroupBaseProps, MenuRadioItemBaseProps, MenuRadioItemGroupBaseProps, MenuRootBaseProps, MenuTriggerItemBaseProps } from '@ark-ui/vue'
-import type { RadioGroupVariants } from '@rui-ark/themes/default'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { RadioGroupVariants } from '@rark-ui/themes/default'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface MenuProps extends MenuRootBaseProps, ThemeCrafts<'tvMenu' | 'tvCheckbox' | 'tvRadioGroup'> {

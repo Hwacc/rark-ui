@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { TagsInput as ArkTagsInput } from '@ark-ui/vue/tags-input'
-import { THEME_SIZE } from '@rui-ark/shared/constant'
+import { THEME_SIZE } from '@rark-ui/shared/constant'
 import { X } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { TagsInput, TagsInputItem } from '../index'

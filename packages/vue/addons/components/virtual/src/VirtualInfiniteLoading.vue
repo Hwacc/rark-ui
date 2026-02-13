@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { VirtualInfiniteLoadingVariants } from '@rui-ark/themes/default/crafts/addons'
+import type { VirtualInfiniteLoadingVariants } from '@rark-ui/themes/default/crafts/addons'
 import type { HTMLAttributes } from 'vue'
 import type { LoadingStateHandler } from '.'
-import { addonsCrafts } from '@rui-ark/themes/default'
+import { addonsCrafts } from '@rark-ui/themes/default'
 import { LoaderCircle } from 'lucide-vue-next'
 import { onMounted, onUnmounted, shallowRef } from 'vue'
 import { injectVirtualContext, LOADING_STATE } from '.'

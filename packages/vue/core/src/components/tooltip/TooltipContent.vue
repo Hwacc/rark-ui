@@ -2,12 +2,12 @@
 import type { TooltipContentProps } from '.'
 import { Tooltip } from '@ark-ui/vue/tooltip'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import {
   checkContextVNodePosition,
   excludeVNodesByName,
   findVNodeByName,
-} from '@rui-ark/vue/utils/vnode'
+} from '@rark-ui/vue/utils/vnode'
 import { computed, useSlots } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<TooltipContentProps>()

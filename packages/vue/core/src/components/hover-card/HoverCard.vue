@@ -3,9 +3,9 @@ import type { HoverCardRootEmits } from '@ark-ui/vue/hover-card'
 import type { HoverCardProps } from '.'
 import { HoverCard, useHoverCard } from '@ark-ui/vue/hover-card'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { useConfig } from '@rui-ark/vue/composables/useConfig'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useConfig } from '@rark-ui/vue/composables/useConfig'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { computed, mergeProps } from 'vue'
 
 const {

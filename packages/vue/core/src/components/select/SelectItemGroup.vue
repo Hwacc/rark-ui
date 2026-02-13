@@ -2,7 +2,7 @@
 import type { SelectItemGroupProps } from '.'
 import { Select } from '@ark-ui/vue/select'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed } from 'vue'
 
 const {

@@ -3,7 +3,7 @@ import type { ResizeTriggerAxis } from '@zag-js/floating-panel'
 import type { VNode } from 'vue'
 import type { FloatingPanelContentProps } from '.'
 import { FloatingPanel } from '@ark-ui/vue'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed, h, toValue } from 'vue'
 import { injectFloatingPanelAppearanceContext } from './floating-panel-appearance-context'
 

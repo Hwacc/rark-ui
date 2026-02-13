@@ -1,5 +1,5 @@
 import type { SliderMarkerBaseProps, SliderRootBaseProps, SliderThumbBaseProps, TooltipArrow, TooltipContent, TooltipRootBaseProps, UseSliderContext } from '@ark-ui/vue'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes, UnwrapRef } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 

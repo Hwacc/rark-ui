@@ -2,7 +2,7 @@
  * 函数式唤起Dialog
  */
 import type { UseDialogContext } from '@ark-ui/vue/dialog'
-import type { ThemeProps } from '@rui-ark/vue/providers/theme'
+import type { ThemeProps } from '@rark-ui/vue/providers/theme'
 import type { PropType } from 'vue'
 import type { ComponentProps } from 'vue-component-type-helpers'
 import type {

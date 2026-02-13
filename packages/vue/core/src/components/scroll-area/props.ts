@@ -1,6 +1,6 @@
 import type { ScrollAreaCornerBaseProps, ScrollAreaRootBaseProps, ScrollAreaScrollbarBaseProps } from '@ark-ui/vue'
-import type { ScrollAreaVariants } from '@rui-ark/themes/default'
-import type { ThemeCrafts } from '@rui-ark/vue/providers'
+import type { ScrollAreaVariants } from '@rark-ui/themes/default'
+import type { ThemeCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface ScrollAreaTheme extends Omit<ThemeCrafts<'tvScrollArea'>, 'size'> {

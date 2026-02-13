@@ -2,7 +2,7 @@
 import type { PopoverCloseProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
 import { PopoverCloseTrigger } from '@ark-ui/vue/popover'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { X } from 'lucide-vue-next'
 import { computed } from 'vue'
 

@@ -2,7 +2,7 @@
 import type { DialogHeaderProps } from '.'
 import { Dialog } from '@ark-ui/vue/dialog'
 import { ark } from '@ark-ui/vue/factory'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { X } from 'lucide-vue-next'
 import { computed, useId } from 'vue'
 import { DialogCloseTrigger } from '.'

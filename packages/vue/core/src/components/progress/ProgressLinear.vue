@@ -2,7 +2,7 @@
 import type { ProgressLinearProps } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { Progress, useProgressContext } from '@ark-ui/vue/progress'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed, useTemplateRef } from 'vue'
 import { useRangeTransfer } from './useRangeTransfer'
 

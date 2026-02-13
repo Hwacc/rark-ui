@@ -2,7 +2,7 @@
 import type { HotkeyProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardExpose } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { isEmpty, without } from 'es-toolkit/compat'
 import { computed, nextTick, reactive, ref, watch, watchEffect } from 'vue'
 import { CodesMap, isAccebilityCode, isAssistCode, isDeleteCode, isMainCode } from './keycode'

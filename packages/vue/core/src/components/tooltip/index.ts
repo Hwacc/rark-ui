@@ -2,7 +2,7 @@ import {
   TooltipArrow as ArkTooltipArrow,
   TooltipArrowTip as ArkTooltipArrowTip,
 } from '@ark-ui/vue/tooltip'
-import { createArrow } from '@rui-ark/vue/components/arrow/createArrow'
+import { createArrow } from '@rark-ui/vue/components/arrow/createArrow'
 
 export * from './props'
 export { default as Tooltip } from './Tooltip.vue'

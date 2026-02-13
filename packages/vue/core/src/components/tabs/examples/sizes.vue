@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { THEME_SIZE } from '@rui-ark/shared/constant'
+import { THEME_SIZE } from '@rark-ui/shared/constant'
 import { Tabs, TabsContent, TabsIndicator, TabsList, TabsTrigger } from '../index'
 </script>
 

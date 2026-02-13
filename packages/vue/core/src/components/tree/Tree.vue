@@ -4,8 +4,8 @@ import type { TreeProps } from '.'
 import type { TreeViewRootEmits } from './tree'
 import { useForwardProps } from '@ark-ui/vue'
 import { TreeView, useTreeView } from '@ark-ui/vue/tree-view'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<TreeProps<T>>()

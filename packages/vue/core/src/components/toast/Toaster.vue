@@ -2,8 +2,8 @@
 import type { CreateToasterProps } from '@ark-ui/vue/toast'
 import type { ToasterProps, ToastOptions } from '.'
 import { createToaster, Toaster } from '@ark-ui/vue/toast'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 
 const { toasterId, theme: propsTheme, ...props } = defineProps<ToasterProps>()
 defineSlots<{

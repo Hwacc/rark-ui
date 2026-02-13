@@ -2,7 +2,7 @@
 import type { ScrollAreaScrollbarProps, ScrollAreaTheme } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { ScrollArea } from '@ark-ui/vue/scroll-area'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed } from 'vue'
 
 const {

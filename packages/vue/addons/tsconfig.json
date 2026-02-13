@@ -15,8 +15,8 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "@rui-ark/shared/*": ["../../shared/src/*"],
-      "@rui-ark/themes/*": ["../../themes/*"]
+      "@rark-ui/shared/*": ["../../shared/src/*"],
+      "@rark-ui/themes/*": ["../../themes/*"]
     },
 
     "allowImportingTsExtensions": true,

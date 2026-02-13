@@ -2,7 +2,7 @@
 import type { TabsIndicatorProps } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs } from '@ark-ui/vue/tabs'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed } from 'vue'
 import { injectTabsContextEx } from './TabsProviderEx.vue'
 

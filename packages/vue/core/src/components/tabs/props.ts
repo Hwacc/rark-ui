@@ -1,5 +1,5 @@
 import type { TabContentBaseProps, TabIndicatorBaseProps, TabListBaseProps, TabsRootBaseProps, TabTriggerBaseProps } from '@ark-ui/vue'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface TabsProps extends TabsRootBaseProps, ThemeCrafts<'tvTabs'> {

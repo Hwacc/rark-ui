@@ -1,5 +1,5 @@
 import type { IconifyIcon } from '@iconify/vue'
-import type { ThemeCrafts } from '@rui-ark/vue/providers/theme'
+import type { ThemeCrafts } from '@rark-ui/vue/providers/theme'
 import type { HTMLAttributes } from 'vue'
 
 export interface IconProps extends Omit<ThemeCrafts<'tvIcon'>, 'size'> {

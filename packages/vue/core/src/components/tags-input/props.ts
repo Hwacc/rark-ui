@@ -1,6 +1,6 @@
 import type { TagsInputItemBaseProps, TagsInputRootBaseProps } from '@ark-ui/vue'
-import type { TagsInputVariants } from '@rui-ark/themes/default'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { TagsInputVariants } from '@rark-ui/themes/default'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type { ComputedRef, HTMLAttributes } from 'vue'
 
 export const TAGS_INPUT_PROVIDE_KEY = Symbol('TagsInputProvideKey')

@@ -1,6 +1,6 @@
 import type { RadioGroupItemBaseProps, RadioGroupRootBaseProps } from '@ark-ui/vue'
-import type { RadioGroupVariants } from '@rui-ark/themes/default'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { RadioGroupVariants } from '@rark-ui/themes/default'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface RadioGroupProps extends RadioGroupRootBaseProps, ThemeCrafts<'tvRadioGroup'> {

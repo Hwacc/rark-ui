@@ -1,4 +1,4 @@
-import type { ThemeCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface InputProps extends ThemeCrafts<'tvInput'> {

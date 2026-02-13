@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useOverlay } from '@rui-ark/vue/composables/useOverlay'
+import { useOverlay } from '@rark-ui/vue/composables/useOverlay'
 import { Button } from '../../button'
 import BasicDialog from './components/BasicDialog.vue'
 

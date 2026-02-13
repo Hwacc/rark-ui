@@ -1,5 +1,5 @@
 {
-  "name": "@rui-ark/vue",
+  "name": "@rark-ui/vue",
   "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@10.13.1",
@@ -19,8 +19,8 @@
   },
   "peerDependencies": {
     "@ark-ui/vue": "^5.31.0",
-    "@rui-ark/shared": "^1.0.0",
-    "@rui-ark/themes": "^1.0.0",
+    "@rark-ui/shared": "^1.0.0",
+    "@rark-ui/themes": "^1.0.0",
     "vue": "^3.5.0"
   },
   "dependencies": {
@@ -34,11 +34,11 @@
     "@ark-ui/vue": "npm:@hwacc/ark-ui-vue@5.31.0-leading.3",
     "@iconify/vue": "^5.0.0",
     "@internationalized/date": "^3.10.1",
+    "@rark-ui/shared": "workspace:*",
+    "@rark-ui/themes": "workspace:*",
     "@rsbuild/plugin-babel": "^1.0.6",
     "@rsbuild/plugin-vue-jsx": "^1.1.1",
     "@rslib/core": "0.19.4",
-    "@rui-ark/shared": "workspace:*",
-    "@rui-ark/themes": "workspace:*",
     "@zag-js/date-picker": "^1.33.1",
     "@zag-js/floating-panel": "^1.33.1",
     "@zag-js/select": "^1.33.1",

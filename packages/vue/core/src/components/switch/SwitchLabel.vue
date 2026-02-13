@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SwitchLabelProps } from '.'
 import { Switch } from '@ark-ui/vue/switch'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, asChild } = defineProps<SwitchLabelProps>()

@@ -1,5 +1,5 @@
 {
-  "name": "@rui-ark/vue-addons-v-title",
+  "name": "@rark-ui/vue-addons-v-title",
   "version": "1.0.0",
   "packageManager": "pnpm@10.13.1",
   "description": "",
@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.10",
-    "@rui-ark/themes": "workspace:*"
+    "@rark-ui/themes": "workspace:*"
   }
 }

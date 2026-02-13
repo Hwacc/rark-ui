@@ -3,9 +3,9 @@ import type { EditableRootEmits, UseEditableProps } from '@ark-ui/vue/editable'
 import type { EditableProps } from '.'
 import { EditableArea, EditableRootProvider, useEditable } from '@ark-ui/vue/editable'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { findUp } from '@rui-ark/shared/dom'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { findUp } from '@rark-ui/shared/dom'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { computed } from 'vue'
 
 type SlotProps = {

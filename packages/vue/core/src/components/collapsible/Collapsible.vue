@@ -3,8 +3,8 @@ import type { CollapsibleRootEmits } from '@ark-ui/vue/collapsible'
 import type { CollapsibleProps } from '.'
 import { Collapsible, useCollapsible } from '@ark-ui/vue/collapsible'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, asChild, ...props } = defineProps<CollapsibleProps>()

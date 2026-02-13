@@ -2,12 +2,12 @@
 import type { PopoverContentProps } from '.'
 import { Popover } from '@ark-ui/vue/popover'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import {
   checkContextVNodePosition,
   excludeVNodesByName,
   findVNodeByName,
-} from '@rui-ark/vue/utils/vnode'
+} from '@rark-ui/vue/utils/vnode'
 import { computed, useSlots } from 'vue'
 
 const {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { InputProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { useVModel } from '@vueuse/core'
 import { CircleX } from 'lucide-vue-next'
 import { computed, ref, useId, useTemplateRef } from 'vue'

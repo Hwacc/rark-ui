@@ -3,7 +3,7 @@ import type { ToggleRootEmits } from '@ark-ui/vue/toggle'
 import type { ToggleProps } from '.'
 import { useForwardPropsEmits } from '@ark-ui/vue'
 import { Toggle } from '@ark-ui/vue/toggle'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<ToggleProps>()

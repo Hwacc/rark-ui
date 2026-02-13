@@ -2,7 +2,7 @@
 import type { RatingGroupItemProps } from '.'
 import { RatingGroup } from '@ark-ui/vue/rating-group'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { Star } from 'lucide-vue-next'
 import { computed } from 'vue'
 

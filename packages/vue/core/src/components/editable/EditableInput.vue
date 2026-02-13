@@ -3,7 +3,7 @@ import type { EditableInputProps } from '.'
 import { Editable, useEditableContext } from '@ark-ui/vue/editable'
 import { ark } from '@ark-ui/vue/factory'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { CircleX } from 'lucide-vue-next'
 import { computed, ref } from 'vue'
 

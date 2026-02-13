@@ -1,5 +1,5 @@
 import type { FloatingPanelCloseTriggerBaseProps, FloatingPanelContentBaseProps, FloatingPanelHeaderBaseProps, FloatingPanelRootBaseProps, FloatingPanelStageTriggerBaseProps, PolymorphicProps } from '@ark-ui/vue'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type {
   OpenChangeDetails,
   PositionChangeDetails,

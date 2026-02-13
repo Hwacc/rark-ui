@@ -3,8 +3,8 @@ import type { ToggleGroupRootEmits } from '@ark-ui/vue/toggle-group'
 import type { ToggleGroupProps } from '.'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ToggleGroup, useToggleGroup } from '@ark-ui/vue/toggle-group'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<ToggleGroupProps>()

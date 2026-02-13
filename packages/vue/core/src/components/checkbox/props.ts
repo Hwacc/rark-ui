@@ -1,5 +1,5 @@
 import type { CheckboxRootProps } from '@ark-ui/vue/checkbox'
-import type { ThemeCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export type CheckedState = boolean | 'indeterminate'

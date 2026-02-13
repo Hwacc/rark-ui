@@ -1,7 +1,7 @@
 import type { CSSProperties, Ref } from 'vue'
 import { useProgressContext } from '@ark-ui/vue'
-import { colorHex2RgbObject, colorLab2RgbObject, detectCssColorType } from '@rui-ark/shared/color'
-import { getNodeCssVar } from '@rui-ark/shared/css'
+import { colorHex2RgbObject, colorLab2RgbObject, detectCssColorType } from '@rark-ui/shared/color'
+import { getNodeCssVar } from '@rark-ui/shared/css'
 import { computed, reactive, watchEffect } from 'vue'
 
 export function useRangeTransfer(

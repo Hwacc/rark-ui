@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'vue'
 import type { SliderMarkerProps } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { Slider, useSliderContext } from '@ark-ui/vue/slider'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { pick } from 'es-toolkit'
 import { computed } from 'vue'
 

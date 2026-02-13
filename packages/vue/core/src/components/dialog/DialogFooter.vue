@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { DialogFooterProps } from '.'
 import { ark } from '@ark-ui/vue/factory'
-import { Button } from '@rui-ark/vue/components/button'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { Button } from '@rark-ui/vue/components/button'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed, useId } from 'vue'
 import { DialogCloseTrigger, TriggerFrom } from '.'
 

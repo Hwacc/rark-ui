@@ -2,7 +2,7 @@ import type { CreateToasterReturn } from '@ark-ui/vue'
 import type * as toast from '@zag-js/toast'
 import type { VNodeChild } from 'vue'
 import type { MessageOptions } from '.'
-import { useConfig } from '@rui-ark/vue/composables/useConfig'
+import { useConfig } from '@rark-ui/vue/composables/useConfig'
 import { isEmpty } from 'es-toolkit/compat'
 import { computed } from 'vue'
 

@@ -1,6 +1,6 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type { Crafts, ThemeProps } from '../providers/theme/theme-props'
-import { coreCrafts } from '@rui-ark/themes/default'
+import { coreCrafts } from '@rark-ui/themes/default'
 import { omitBy } from 'es-toolkit'
 import { isNil } from 'es-toolkit/compat'
 import { computed, toValue } from 'vue'

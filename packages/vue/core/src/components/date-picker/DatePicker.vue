@@ -2,8 +2,8 @@
 import type { UseDatePickerProps } from '@ark-ui/vue'
 import type { DatePickerProps, DatePickerRootEmits } from '.'
 import { DatePicker, useDatePicker, useForwardExpose, useForwardProps } from '@ark-ui/vue'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 
 const { theme: themeProps, ...props } = defineProps<DatePickerProps>()
 const emit = defineEmits<DatePickerRootEmits>()

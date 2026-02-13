@@ -2,9 +2,9 @@
 import type { ScrollAreaEmits, ScrollAreaProps, ScrollAreaTheme } from '.'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { ScrollArea, useScrollArea } from '@ark-ui/vue/scroll-area'
-import { useCustomTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
-import { excludeVNodesByNames, findVNodesByName } from '@rui-ark/vue/utils/vnode'
+import { useCustomTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
+import { excludeVNodesByNames, findVNodesByName } from '@rark-ui/vue/utils/vnode'
 import { useElementSize } from '@vueuse/core'
 import { computed, useSlots, useTemplateRef } from 'vue'
 

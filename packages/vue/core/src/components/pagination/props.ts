@@ -1,5 +1,5 @@
 import type { PaginationRootBaseProps, PolymorphicProps } from '@ark-ui/vue'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export const PAGINATION_GO_TO_PROVIDE_KEY = Symbol('PAGINATION_GO_TO_PROVIDE_KEY')

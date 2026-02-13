@@ -1,5 +1,5 @@
 import type { CreateToasterReturn, ToastRootBaseProps, ToastStoreProps } from '@ark-ui/vue'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type * as toast from '@zag-js/toast'
 import type * as ZagToast from '@zag-js/toast'
 import type {

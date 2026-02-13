@@ -3,7 +3,7 @@ import type { CheckboxRootEmits, UseCheckboxReturn } from '@ark-ui/vue/checkbox'
 import type { CheckboxProps, CheckedState } from '.'
 import { Checkbox, useCheckbox } from '@ark-ui/vue/checkbox'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { Check, Minus } from 'lucide-vue-next'
 import { computed } from 'vue'
 

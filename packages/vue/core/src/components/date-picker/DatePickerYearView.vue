@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DatePickerYearViewProps } from '.'
 import { DatePicker, useDatePickerContext } from '@ark-ui/vue'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { flatten } from 'es-toolkit'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import { computed } from 'vue'

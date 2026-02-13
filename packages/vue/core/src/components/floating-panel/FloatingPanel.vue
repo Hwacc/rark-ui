@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { FloatingPanelProps, FloatingPanelRootEmits } from '.'
 import { FloatingPanel, useFloatingPanel, useForwardExpose, useForwardProps } from '@ark-ui/vue'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { clamp } from 'es-toolkit'
 import { computed, ref } from 'vue'
 import { provideFloatingPanelAppearanceContext } from './floating-panel-appearance-context'

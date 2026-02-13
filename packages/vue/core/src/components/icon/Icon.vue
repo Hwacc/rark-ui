@@ -2,7 +2,7 @@
 import type { IconProps } from '.'
 import { useForwardProps } from '@ark-ui/vue/utils'
 import { Icon } from '@iconify/vue'
-import { useTheme } from '@rui-ark/vue/composables'
+import { useTheme } from '@rark-ui/vue/composables'
 
 const { class: propsClass, theme: propsTheme, icon, ...props } = defineProps<IconProps>()
 const forwarded = useForwardProps(props)

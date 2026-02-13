@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { createListCollection } from '@ark-ui/vue/select'
 import { fakerEN } from '@faker-js/faker'
-import { THEME_SIZE } from '@rui-ark/shared/constant'
+import { THEME_SIZE } from '@rark-ui/shared/constant'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../index'
 
 const collection = createListCollection({

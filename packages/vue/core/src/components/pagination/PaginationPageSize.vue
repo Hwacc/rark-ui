@@ -2,7 +2,7 @@
 import type { PaginationPageSizeProps } from '.'
 import { usePaginationContext } from '@ark-ui/vue'
 import { createListCollection } from '@ark-ui/vue/collection'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { uniq } from 'es-toolkit'
 import { computed, ref, watch } from 'vue'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../select'

@@ -3,8 +3,8 @@ import type { RadioGroupRootEmits } from '@ark-ui/vue/radio-group'
 import type { RadioGroupProps } from '.'
 import { RadioGroup, useRadioGroup } from '@ark-ui/vue/radio-group'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<RadioGroupProps>()

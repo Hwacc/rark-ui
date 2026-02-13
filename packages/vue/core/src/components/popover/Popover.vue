@@ -7,9 +7,9 @@ import type { PopoverRootEmits, UsePopoverReturn } from '@ark-ui/vue/popover'
 import type { PopoverProps } from '.'
 import { Popover, usePopover } from '@ark-ui/vue/popover'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { useConfig } from '@rui-ark/vue/composables/useConfig'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useConfig } from '@rark-ui/vue/composables/useConfig'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 
 const {
   theme: propsTheme,

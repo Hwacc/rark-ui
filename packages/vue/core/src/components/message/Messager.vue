@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { MessageOptions, MessagerProps } from '.'
 import { createToaster, Toaster } from '@ark-ui/vue/toast'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { defaults } from 'es-toolkit/compat'
 
 const { theme: propsTheme, showClose = true, ...props } = defineProps<MessagerProps>()

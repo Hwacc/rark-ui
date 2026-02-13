@@ -2,7 +2,7 @@
 import type { TagsInputItemProps, TagsInputProvide } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { TagsInput, useTagsInputContext } from '@ark-ui/vue/tags-input'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed, inject, useTemplateRef, watchEffect } from 'vue'
 import { TAGS_INPUT_PROVIDE_KEY } from '.'
 

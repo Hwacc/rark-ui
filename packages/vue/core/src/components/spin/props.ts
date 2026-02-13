@@ -1,5 +1,5 @@
 import type { PolymorphicProps } from '@ark-ui/vue'
-import type { Theme, ThemeCrafts } from '@rui-ark/vue/providers'
+import type { Theme, ThemeCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface SpinRenderProps extends Theme {

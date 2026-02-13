@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { ButtonVariants } from '@rui-ark/themes/default'
+import type { ButtonVariants } from '@rark-ui/themes/default'
 import type { ButtonProps } from '.'
 import { useForwardExpose } from '@ark-ui/vue'
 import { ark } from '@ark-ui/vue/factory'
-import { getNodeCssVar } from '@rui-ark/shared/css'
-import { useRipple } from '@rui-ark/vue/composables/useRipple'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { getNodeCssVar } from '@rark-ui/shared/css'
+import { useRipple } from '@rark-ui/vue/composables/useRipple'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { LoaderCircle } from 'lucide-vue-next'
 import { computed } from 'vue'
 

@@ -3,7 +3,7 @@ import type { NumberInputRootEmits } from '@ark-ui/vue/number-input'
 import type { NumberInputProps } from '.'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue'
 import { NumberInput, useNumberInput } from '@ark-ui/vue/number-input'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { ChevronDown, ChevronUp } from 'lucide-vue-next'
 import { computed } from 'vue'
 

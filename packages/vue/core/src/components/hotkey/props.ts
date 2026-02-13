@@ -1,5 +1,5 @@
 import type { PolymorphicProps } from '@ark-ui/vue'
-import type { ThemeCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface HotkeyProps extends PolymorphicProps, ThemeCrafts<'tvHotkey'> {

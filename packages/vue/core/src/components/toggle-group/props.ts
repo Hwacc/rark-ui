@@ -1,5 +1,5 @@
 import type { ToggleGroupItemBaseProps, ToggleGroupRootBaseProps } from '@ark-ui/vue'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface ToggleGroupProps extends ToggleGroupRootBaseProps, ThemeCrafts<'tvToggleGroup'> {

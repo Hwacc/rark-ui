@@ -2,7 +2,7 @@
 import type { TabsListProps } from '.'
 import { useForwardProps } from '@ark-ui/vue'
 import { Tabs, useTabsContext } from '@ark-ui/vue/tabs'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed, useTemplateRef, watchEffect } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<TabsListProps>()

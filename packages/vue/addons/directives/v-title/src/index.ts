@@ -1,6 +1,6 @@
 import type { DirectiveBinding } from 'vue'
 import { computePosition, flip, hide, offset, shift } from '@floating-ui/vue'
-import { addonsCrafts } from '@rui-ark/themes/default'
+import { addonsCrafts } from '@rark-ui/themes/default'
 
 class TitleTooltip {
   titleTipNode: HTMLDivElement

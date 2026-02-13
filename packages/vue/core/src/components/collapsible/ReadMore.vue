@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ReadMoreProps } from '.'
 import { useForwardProps } from '@ark-ui/vue'
-import { rem2px } from '@rui-ark/shared/css'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { rem2px } from '@rark-ui/shared/css'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { useElementSize } from '@vueuse/core'
 import { computed, useTemplateRef } from 'vue'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '.'

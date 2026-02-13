@@ -1,7 +1,7 @@
 import type * as toast from '@zag-js/toast'
 import type { MaybeRef, VNodeChild } from 'vue'
 import type { ToasterManagerExpose, ToasterWrap, ToastOptions } from '.'
-import { useConfig } from '@rui-ark/vue/composables/useConfig'
+import { useConfig } from '@rark-ui/vue/composables/useConfig'
 import { isEmpty } from 'es-toolkit/compat'
 import { computed, unref } from 'vue'
 import { DEFAULT_TOASTER_ID } from '.'

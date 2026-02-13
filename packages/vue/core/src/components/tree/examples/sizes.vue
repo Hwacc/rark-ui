@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TreeCollection } from '@ark-ui/vue/tree-view'
 import { createTreeCollection } from '@ark-ui/vue/tree-view'
-import { THEME_SIZE } from '@rui-ark/shared/constant'
+import { THEME_SIZE } from '@rark-ui/shared/constant'
 import { computed, ref } from 'vue'
 import { Tree, TreeNode } from '../index'
 

@@ -2,7 +2,7 @@
 import type { DatePickerControlProps } from '.'
 import { DatePicker } from '@ark-ui/vue'
 import { useForwardProps } from '@ark-ui/vue/utils'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ...props } = defineProps<DatePickerControlProps>()

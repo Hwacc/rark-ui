@@ -1,7 +1,7 @@
 <script setup generic="T" lang="ts">
 import type { ComponentPublicInstance, HTMLAttributes } from 'vue'
 import type { VirtualGridProps } from '.'
-import { addonsCrafts } from '@rui-ark/themes/default'
+import { addonsCrafts } from '@rark-ui/themes/default'
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { merge } from 'es-toolkit/compat'
 import { cloneVNode, computed, h, useTemplateRef } from 'vue'

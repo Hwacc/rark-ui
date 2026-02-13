@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DatePickerContentProvide, DatePickerMonthViewProps } from '.'
 import { DatePicker, useDatePickerContext } from '@ark-ui/vue'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import { computed, inject } from 'vue'
 import { DATE_PICKER_CONTENT_PROVIDE_KEY } from '.'

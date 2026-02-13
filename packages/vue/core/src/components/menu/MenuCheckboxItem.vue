@@ -3,8 +3,8 @@ import type { MenuCheckboxItemEmits } from '@ark-ui/vue/menu'
 import type { MenuCheckboxItemProps } from '.'
 import { Menu } from '@ark-ui/vue/menu'
 import { useForwardPropsEmits } from '@ark-ui/vue/utils'
-import { Checkbox } from '@rui-ark/vue/components/checkbox'
-import { useTheme } from '@rui-ark/vue/composables/useTheme'
+import { Checkbox } from '@rark-ui/vue/components/checkbox'
+import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed } from 'vue'
 
 const { class: propsClass, theme: propsTheme, ui, ...props } = defineProps<MenuCheckboxItemProps>()

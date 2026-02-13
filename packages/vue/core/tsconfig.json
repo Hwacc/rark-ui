@@ -16,9 +16,9 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "@rui-ark/vue/*": ["./src/*"],
-      "@rui-ark/shared/*": ["../../shared/src/*"],
-      "@rui-ark/themes/*": ["../../themes/src/*"]
+      "@rark-ui/vue/*": ["./src/*"],
+      "@rark-ui/shared/*": ["../../shared/src/*"],
+      "@rark-ui/themes/*": ["../../themes/src/*"]
     },
 
     "allowImportingTsExtensions": true,

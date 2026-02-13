@@ -1,5 +1,5 @@
 {
-  "name": "@rui-ark/playground-vue",
+  "name": "@rark-ui/playground-vue",
   "type": "module",
   "version": "1.0.0",
   "private": true,
@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@ark-ui/vue": "5.30.0",
-    "@rui-ark/themes": "workspace:*",
-    "@rui-ark/vue": "workspace:*",
+    "@rark-ui/themes": "workspace:*",
+    "@rark-ui/vue": "workspace:*",
     "lucide-vue-next": "^0.563.0",
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.25"

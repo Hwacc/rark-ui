@@ -1,5 +1,5 @@
 import type { CollectionItem, SelectContentBaseProps, SelectItemBaseProps, SelectItemGroupBaseProps, SelectRootBaseProps, SelectTriggerBaseProps } from '@ark-ui/vue/select'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type * as ZagSelect from '@zag-js/select'
 import type { HTMLAttributes } from 'vue'
 

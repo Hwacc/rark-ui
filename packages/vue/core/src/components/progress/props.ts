@@ -1,6 +1,6 @@
 import type { ProgressCircleBaseProps, ProgressRootBaseProps, ProgressTrackBaseProps } from '@ark-ui/vue'
-import type { ProgressVariants } from '@rui-ark/themes/default'
-import type { ThemeCrafts, ThemeNoCrafts } from '@rui-ark/vue/providers'
+import type { ProgressVariants } from '@rark-ui/themes/default'
+import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type { HTMLAttributes } from 'vue'
 
 export interface ProgressCircleTheme extends Omit<ThemeNoCrafts, 'size'> {

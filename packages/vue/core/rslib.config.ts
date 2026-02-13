@@ -27,8 +27,8 @@ export default defineConfig({
   output: {
     target: 'web',
     externals: {
-      '@rui-ark/shared': '@rui-ark/shared',
-      '@rui-ark/themes': '@rui-ark/themes',
+      '@rark-ui/shared': '@rark-ui/shared',
+      '@rark-ui/themes': '@rark-ui/themes',
     },
   },
   plugins: [
