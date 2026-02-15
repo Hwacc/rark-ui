@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import type { VirtualInfiniteLoadingVariants } from '@rark-ui/themes/default/crafts/addons'
 import type { HTMLAttributes } from 'vue'
 import type { LoadingStateHandler } from '.'
-import { addonsCrafts } from '@rark-ui/themes/default'
 import { LoaderCircle } from 'lucide-vue-next'
+import { twMerge } from 'tailwind-merge'
 import { onMounted, onUnmounted, shallowRef } from 'vue'
 import { injectVirtualContext, LOADING_STATE } from '.'
 import { useForwardExpose } from '../../../composables/useForwardExpose'
@@ -12,17 +11,22 @@ defineOptions({
   name: 'VirtualInfiniteLoading',
 })
 const {
+  class: propsClass,
   enableFirstLoad = true,
   enableRetry = true,
-  unstyled = false,
   size = 'base',
-  class: propsClass,
 } = defineProps<{
+  class?: HTMLAttributes['class']
   enableFirstLoad?: boolean
   enableRetry?: boolean
-  unstyled?: boolean
-  size?: VirtualInfiniteLoadingVariants['size']
-  class?: HTMLAttributes['class']
+  size?: 'xs' | 'sm' | 'base' | 'lg'
+  ui?: {
+    root?: HTMLAttributes['class']
+    loading?: HTMLAttributes['class']
+    spinner?: HTMLAttributes['class']
+    complete?: HTMLAttributes['class']
+    error?: HTMLAttributes['class']
+  }
 }>()
 
 const emit = defineEmits<{ infinite: [$state: LoadingStateHandler] }>()
@@ -82,9 +86,6 @@ onUnmounted(() => {
   observer.value?.disconnect()
   observer.value = null
 })
-
-// theme
-const { base, loading, spinner, complete, error } = addonsCrafts.tvVirtualInfiniteLoading()
 </script>
 
 <template>
@@ -95,15 +96,28 @@ const { base, loading, spinner, complete, error } = addonsCrafts.tvVirtualInfini
         forwardRef(el)
       }
     "
-    :class="base({ size, unstyled, class: propsClass })"
+    :class="twMerge('rui-virtual-infinite', ui?.root, propsClass)"
+    data-scope="virtual-infinite"
+    data-part="root"
+    :data-size="size"
   >
     <slot
       v-if="state === 'loading'"
       name="loading"
     >
-      <div :class="loading({ size, unstyled })">
+      <div
+        :class="twMerge('rui-virtual-infinite_loading', ui?.loading)"
+        data-scope="virtual-infinite"
+        data-part="loading"
+        :data-size="size"
+      >
         <slot name="spinner">
-          <LoaderCircle :class="spinner({ size, unstyled })" />
+          <LoaderCircle
+            :class="twMerge('rui-virtual-infinite_spinner', ui?.spinner)"
+            data-scope="virtual-infinite"
+            data-part="spinner"
+            :data-size="size"
+          />
         </slot>
       </div>
     </slot>
@@ -111,7 +125,12 @@ const { base, loading, spinner, complete, error } = addonsCrafts.tvVirtualInfini
       v-else-if="state === 'complete'"
       name="complete"
     >
-      <div :class="complete({ size, unstyled })">
+      <div
+        :class="twMerge('rui-virtual-infinite_complete', ui?.complete)"
+        data-scope="virtual-infinite"
+        data-part="complete"
+        :data-size="size"
+      >
         No more results!
       </div>
     </slot>
@@ -120,7 +139,12 @@ const { base, loading, spinner, complete, error } = addonsCrafts.tvVirtualInfini
       name="error"
       :retry="doInfinite"
     >
-      <div :class="error({ size, unstyled })">
+      <div
+        :class="twMerge('rui-virtual-infinite_error', ui?.error)"
+        data-scope="virtual-infinite"
+        data-part="error"
+        :data-size="size"
+      >
         <span>Oops something went wrong!</span>
         <button
           v-if="enableRetry"

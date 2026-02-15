@@ -1,0 +1,19 @@
+@layer components {
+  .rui-v-title{
+    position: absolute;
+    max-width: 31.25rem;
+    border-radius: .125rem;
+    word-break: break-word;
+    border: 1px solid;
+    z-index: 9999;
+
+    &[data-size='base'] {
+      font-size: .75rem;
+      padding: .125rem .25rem;
+    }
+    &[data-size='lg'] {
+      font-size: .875rem;
+      padding: .375rem .5rem;
+    }
+  }
+}

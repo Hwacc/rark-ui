@@ -1,31 +1,25 @@
 <script lang="ts" generic="T" setup>
 import type { HTMLAttributes } from 'vue'
 import type { VirtualListProps } from '.'
-import { addonsCrafts } from '@rark-ui/themes/default'
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { merge } from 'es-toolkit/compat'
+import { twMerge } from 'tailwind-merge'
 import { cloneVNode, computed, h, useTemplateRef } from 'vue'
 import { injectVirtualContext } from '.'
 import { useForwardProps } from '../../../composables/useForwardProps'
 import { useDetectSlotNode } from './useDetectSlotNode'
 
 const {
-  dataSource,
-  unstyled,
-  ui,
   class: propsClass,
+  dataSource,
+  ui,
   ...props
 } = defineProps<
   VirtualListProps<T> & {
     class?: HTMLAttributes['class']
-    unstyled?: boolean
     ui?: {
-      viewport?: {
-        class?: HTMLAttributes['class']
-      }
-      scroll?: {
-        class?: HTMLAttributes['class']
-      }
+      root?: HTMLAttributes['class']
+      scroll?: HTMLAttributes['class']
     }
   }
 >()
@@ -100,9 +94,6 @@ const scrollAreaStyle = computed(() => {
   }
 })
 
-// themes
-const { base, scroll } = addonsCrafts.tvVirtualList()
-
 // expose
 defineExpose({
   get virtualizer() {
@@ -114,19 +105,17 @@ defineExpose({
 <template>
   <div
     ref="parentEl"
-    :class="
-      base({
-        horizontal: forwarded.horizontal,
-        unstyled,
-        class: [ui?.viewport?.class, propsClass],
-      })
-    "
+    :class="twMerge('rui-virtual-list', ui?.root, propsClass)"
     :data-horizontal="forwarded.horizontal ? true : undefined"
+    data-scope="virtual-list"
+    data-part="root"
   >
     <!-- scroll area -->
     <div
-      :class="scroll({ horizontal: forwarded.horizontal, unstyled, class: ui?.scroll?.class })"
+      :class="twMerge('rui-virtual-list_scroll', ui?.scroll)"
       :style="scrollAreaStyle"
+      data-scope="virtual-list"
+      data-part="scroll"
     >
       <!-- items -->
       <component

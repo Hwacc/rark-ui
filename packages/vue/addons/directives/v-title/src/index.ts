@@ -1,6 +1,5 @@
 import type { DirectiveBinding } from 'vue'
 import { computePosition, flip, hide, offset, shift } from '@floating-ui/vue'
-import { addonsCrafts } from '@rark-ui/themes/default'
 
 class TitleTooltip {
   titleTipNode: HTMLDivElement
@@ -9,7 +8,7 @@ class TitleTooltip {
 
   constructor() {
     this.titleTipNode = document.createElement('div')
-    this.titleTipNode.className = addonsCrafts.tvVTitle()
+    this.titleTipNode.className = 'rui-v-title'
     this.titleTipTextNode = document.createTextNode('')
     this.titleTipNode.appendChild(this.titleTipTextNode)
     document.body.appendChild(this.titleTipNode)
@@ -27,16 +26,10 @@ class TitleTooltip {
         this.titleTipNode.removeChild(this.titleTipTextNode)
         this.titleTipTextNode = document.createTextNode(binding.value)
         this.titleTipNode.appendChild(this.titleTipTextNode)
-        const getClassName = (hidden: boolean = false, visible: boolean = false) => {
-          return addonsCrafts.tvVTitle({
-            size: binding.modifiers.lg ? 'lg' : 'base',
-            unstyled: binding.modifiers.unstyled,
-            hidden,
-            visible,
-          })
-        }
-        this.titleTipNode.className = getClassName(false)
         this.titleTipNode.setAttribute('data-theme-surface', binding.arg ?? 'default')
+        this.titleTipNode.setAttribute('data-size', binding.modifiers.lg ? 'lg' : 'base')
+        this.titleTipNode.style.visibility = 'hidden'
+        this.titleTipNode.style.display = 'block'
 
         const { x, y, middlewareData } = await computePosition(el, this.titleTipNode, {
           placement: 'bottom',
@@ -48,10 +41,12 @@ class TitleTooltip {
             left: `${x}px`,
             top: `${y}px`,
           })
-          this.titleTipNode.className = getClassName(false, true)
+          this.titleTipNode.style.visibility = 'visible'
+          this.titleTipNode.style.display = 'block'
         }
         else {
-          this.titleTipNode.className = getClassName(true)
+          this.titleTipNode.style.visibility = 'visible'
+          this.titleTipNode.style.display = 'none'
         }
       }
       catch (error) {
@@ -65,10 +60,8 @@ class TitleTooltip {
       clearTimeout(this.showTimer)
       this.showTimer = 0
     }
-    this.titleTipNode.className = addonsCrafts.tvVTitle({
-      visible: false,
-      hidden: true,
-    })
+    this.titleTipNode.style.visibility = 'hidden'
+    this.titleTipNode.style.display = 'none'
   }
 }
 

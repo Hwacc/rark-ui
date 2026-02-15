@@ -29,9 +29,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "pnpm -s run build:js && pnpm -s run build:css",
-    "build:js": "tsc",
-    "build:css": "pnpm exec tailwindcss -i ./src/razer/index.css -o ./dist/razer/index.css",
+    "build": "bun run build.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

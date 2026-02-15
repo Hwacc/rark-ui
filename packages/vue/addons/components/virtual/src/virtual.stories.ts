@@ -6,6 +6,7 @@ import BasicListExample from './examples/basic-list.vue'
 import BasicListExampleRaw from './examples/basic-list.vue?raw'
 import DynamicListExample from './examples/dynamic-list.vue'
 import DynamicListExampleRaw from './examples/dynamic-list.vue?raw'
+import './index.css'
 
 const meta: Meta = {
   title: 'Addons/Components/Virtual',

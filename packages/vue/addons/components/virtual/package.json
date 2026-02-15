@@ -12,9 +12,12 @@
     "addons",
     "virtual"
   ],
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "rslib build --tsconfig ./tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
@@ -23,6 +26,13 @@
   "dependencies": {
     "@tanstack/vue-virtual": "^3.13.18",
     "es-toolkit": "^1.44.0",
-    "lucide-vue-next": "^0.563.0"
+    "lucide-vue-next": "^0.563.0",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@rsbuild/plugin-babel": "^1.0.6",
+    "@rsbuild/plugin-vue-jsx": "^1.1.1",
+    "@rslib/core": "0.19.4",
+    "rsbuild-plugin-unplugin-vue": "^0.1.0"
   }
 }

@@ -6,7 +6,6 @@ import VirtualGridImpl from './VirtualGridImpl.vue'
 
 const props = defineProps<
   VirtualGridProps<T> & {
-    unstyled?: boolean
     ui?: {
       viewport?: {
         class?: HTMLAttributes['class']

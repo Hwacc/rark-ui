@@ -1,6 +1,6 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type { Crafts, ThemeProps } from '../providers/theme/theme-props'
-import { coreCrafts } from '@rark-ui/themes/default'
+import { crafts } from '@rark-ui/themes/default'
 import { omitBy } from 'es-toolkit'
 import { isNil } from 'es-toolkit/compat'
 import { computed, toValue } from 'vue'
@@ -48,7 +48,7 @@ export function useTheme<T>(props?: MaybeRefOrGetter<Partial<T> | undefined>): U
 
     const mergedCrafts: Crafts = Object.assign(
       {},
-      coreCrafts,
+      crafts,
       pickDefined<Crafts>(configCrafts as Crafts | undefined),
       pickDefined<Crafts>(contextCrafts as Crafts | undefined),
       pickDefined<Crafts>(propsCrafts as Crafts | undefined),

@@ -1,11 +1,18 @@
 <script lang="ts" generic="T" setup>
+import type { HTMLAttributes } from 'vue'
+import { twMerge } from 'tailwind-merge'
 import { useTemplateRef, watch } from 'vue'
 import { injectVirtualContext } from './VirtualRoot'
 
 defineOptions({
   name: 'VirtualListItem',
 })
-const { data, dynamic, index } = defineProps<{ data?: T, dynamic?: boolean, index?: number }>()
+const { class: propsClass, data, dynamic, index } = defineProps<{
+  class?: HTMLAttributes['class']
+  data?: T
+  dynamic?: boolean
+  index?: number
+}>()
 defineSlots<{ default: { data: T, index?: number } }>()
 
 const { virtualizer } = injectVirtualContext()
@@ -21,6 +28,9 @@ watch(el, (el) => {
     v-bind="$attrs"
     ref="el"
     :data-index="index"
+    :class="twMerge('rui-virtual-list-item', propsClass)"
+    data-scope="virtual-list"
+    data-part="item"
   >
     <slot
       :data="data"

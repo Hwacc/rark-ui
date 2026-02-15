@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "composite": true,
-    "tsBuildInfoFile": "",
+    "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo",
     "target": "ES2020",
+    "baseUrl": ".",
     "rootDir": "./src",
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -16,5 +17,12 @@
     "skipLibCheck": true
   },
   "include": ["./**/*.ts"],
-  "exclude": ["node_modules", "dist", "./tailwind.config.ts"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/tailwind.config.ts",
+    "**/tailwind*.config.ts",
+    "**/tailwind.*.*.ts",
+    "./build.ts"
+  ]
 }

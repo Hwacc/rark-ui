@@ -1,14 +1,15 @@
 <script setup generic="T" lang="ts">
 import type { ComponentPublicInstance, HTMLAttributes } from 'vue'
 import type { VirtualGridProps } from '.'
-import { addonsCrafts } from '@rark-ui/themes/default'
 import { useVirtualizer } from '@tanstack/vue-virtual'
 import { merge } from 'es-toolkit/compat'
+import { twMerge } from 'tailwind-merge'
 import { cloneVNode, computed, h, useTemplateRef } from 'vue'
 import { injectVirtualContext } from '.'
 import { useDetectSlotNode } from './useDetectSlotNode'
 
 const {
+  class: propsClass,
   dataSource,
   row,
   column,
@@ -17,15 +18,10 @@ const {
   columnVirtualizerOptions,
 } = defineProps<
   VirtualGridProps<T> & {
-    unstyled?: boolean
+    class?: HTMLAttributes['class']
     ui?: {
-      class?: HTMLAttributes['class']
-      viewport?: {
-        class?: HTMLAttributes['class']
-      }
-      scroll?: {
-        class?: HTMLAttributes['class']
-      }
+      root?: HTMLAttributes['class']
+      scroll?: HTMLAttributes['class']
     }
   }
 >()
@@ -156,28 +152,24 @@ function measureElement(el: Element | ComponentPublicInstance) {
       rowVirtualizer.value.measureElement(el.$el)
   }
 }
-
-// theme
-const { base, scroll } = addonsCrafts.tvVirtualGrid()
 </script>
 
 <template>
   <div
     ref="parentEl"
-    :class="
-      base({
-        unstyled,
-        class: [ui?.viewport?.class],
-      })
-    "
+    :class="twMerge('rui-virtual-grid', ui?.root, propsClass)"
+    data-scope="virtual-grid"
+    data-part="root"
   >
     <!-- scroll area -->
     <div
-      :class="scroll({ unstyled, class: ui?.scroll?.class })"
+      :class="twMerge('rui-virtual-grid_scroll', ui?.scroll, propsClass)"
       :style="{
         width: `${totalSizeColumns}px`,
         height: `${totalSizeRows}px`,
       }"
+      data-scope="virtual-grid"
+      data-part="scroll"
     >
       <component
         :is="is"
