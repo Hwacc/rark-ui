@@ -12,6 +12,7 @@
   },
   "main": "index.ts",
   "scripts": {
+    "build": "rslib build --tsconfig ./tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
@@ -19,7 +20,10 @@
   },
   "dependencies": {
     "assign-deep": "^1.0.1",
-    "es-toolkit": "^1.44.0",
+    "es-toolkit": "^1.44.0"
+  },
+  "devDependencies": {
+    "@rslib/core": "0.19.4",
     "vue-lazyload": "^3.0.0"
   }
 }

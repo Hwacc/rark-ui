@@ -1,4 +1,17 @@
-import type { VirtualizerOptions } from '@tanstack/vue-virtual'
+import type { Virtualizer, VirtualizerOptions } from '@tanstack/vue-virtual'
+import type { Ref, ShallowRef } from 'vue'
+
+export interface VirtualContext {
+  parentEl?: Ref<Element | null | undefined>
+  // virtualizer for list
+  virtualizer?: ShallowRef<Virtualizer<Element, Element>>
+  // row virtualizer for grid
+  rowVirtualizer?: ShallowRef<Virtualizer<Element, Element>>
+  // column virtualizer for grid
+  columnVirtualizer?: ShallowRef<Virtualizer<Element, Element>>
+  enableInfinite: Ref<boolean>
+  infiniteState: Ref<LOADING_STATE>
+}
 
 export interface VirtualListProps<T>
   extends Omit<

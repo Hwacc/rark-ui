@@ -159,15 +159,16 @@ importers:
       vue-lazyload:
         specifier: ^3.0.0
         version: 3.0.0
+    devDependencies:
+      '@rslib/core':
+        specifier: 0.19.4
+        version: 0.19.4(typescript@5.9.3)
 
   packages/vue/addons/directives/v-title:
     dependencies:
       '@floating-ui/vue':
         specifier: ^1.1.10
         version: 1.1.10(vue@3.5.27(typescript@5.9.3))
-      '@rark-ui/themes':
-        specifier: workspace:*
-        version: link:../../../../themes
       vue:
         specifier: ^3.5.27
         version: 3.5.27(typescript@5.9.3)

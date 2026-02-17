@@ -7,17 +7,28 @@
   "license": "ISC",
   "keywords": [],
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./index.css": "./dist/index.css"
   },
-  "main": "index.ts",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "copy:css": "bun -e \"import { mkdir } from 'node:fs/promises'; await mkdir('./dist', { recursive: true }); await Bun.write('./dist/index.css', Bun.file('./src/index.css'));\"",
+    "build": "tsc --project tsconfig.build.json && bun run copy:css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
     "vue": "^3.5.27"
   },
   "dependencies": {
-    "@floating-ui/vue": "^1.1.10",
-    "@rark-ui/themes": "workspace:*"
+    "@floating-ui/vue": "^1.1.10"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

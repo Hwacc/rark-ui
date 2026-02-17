@@ -3,25 +3,19 @@
   "compilerOptions": {
     "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo",
     "rootDir": "./src",
+    "allowImportingTsExtensions": false,
     "declaration": true,
     "declarationMap": false,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "noEmit": false,
     "outDir": "./dist"
   },
-  "paths": {
-    "@rark-ui/vue-addons-shared": ["../../shared/src"]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "build.d.ts"
-  ],
+  "paths": {},
+  "include": ["src/**/*.ts"],
   "exclude": [
     "node_modules",
     "dist",
-    "src/virtual.stories.ts",
-    "src/examples/**/*.vue"
+    "src/*.stories.ts",
+    "src/examples"
   ]
 }
