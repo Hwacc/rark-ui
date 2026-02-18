@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { Button } from '@rui-ark/vue/components/button'
+import { Button } from '@rark-ui/vue/components/button'
 import {
   Dialog,
   dialog,
@@ -8,9 +8,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTrigger,
-} from '@rui-ark/vue/components/dialog'
-import { useOverlay } from '@rui-ark/vue/components/overlay'
-import { ThemeProvider } from '@rui-ark/vue/providers/theme'
+} from '@rark-ui/vue/components/dialog'
+import { useOverlay } from '@rark-ui/vue/components/overlay'
+import { ThemeProvider } from '@rark-ui/vue/providers/theme'
 import { ref } from 'vue'
 import TestDialog from './TestDialog.vue'
 

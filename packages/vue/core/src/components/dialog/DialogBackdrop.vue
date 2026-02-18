@@ -1,20 +1,43 @@
 <script setup lang="ts">
 import type { DialogBackdropProps } from '.'
-import { useForwardProps } from '@ark-ui/vue'
-import { Dialog } from '@ark-ui/vue/dialog'
+import { useForwardExpose, usePresenceContext } from '@ark-ui/vue'
+import { useDialogContext } from '@ark-ui/vue/dialog'
+import { ark } from '@ark-ui/vue/factory'
 import { useTheme } from '@rark-ui/vue/composables/useTheme'
+import { merge, omit } from 'es-toolkit'
 import { computed } from 'vue'
 
-const { class: propsClass, theme: propsTheme, ...props } = defineProps<DialogBackdropProps>()
-const forwarded = useForwardProps(props)
+const { class: propsClass, theme: propsTheme, asChild } = defineProps<DialogBackdropProps>()
 
+const dialog = useDialogContext()
+const presence = usePresenceContext()
+
+const mergedProps = computed(() =>
+  merge(
+    dialog.value.getBackdropProps(),
+    /*
+     * Here we omit the ref because there should be only one ref to control the global presence state
+     * and that is DialogContent
+     * @see DialogContent.vue
+     */
+    omit(presence.value.presenceProps, ['ref']),
+  ),
+)
 // theme
 const theme = useTheme(() => propsTheme)
 const crafts = computed(() => theme.value.crafts.tvDialog())
+
+// expose
+useForwardExpose()
 </script>
 
 <template>
-  <Dialog.Backdrop v-bind="forwarded" :class="crafts.backdrop({ class: propsClass, ...theme })">
+  <ark.div
+    v-if="!presence.unmounted"
+    v-bind="mergedProps"
+    :class="crafts.backdrop({ class: propsClass, ...theme })"
+    :as-child="asChild"
+  >
     <slot />
-  </Dialog.Backdrop>
+  </ark.div>
 </template>

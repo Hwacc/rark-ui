@@ -8,7 +8,7 @@ import {
   SelectItemGroup,
   SelectTrigger,
   SelectValue,
-} from '@rui-ark/vue/components/select'
+} from '@rark-ui/vue/components/select'
 
 const collection = createListCollection({
   items: Array.from({ length: 5 }, (_, index) => ({

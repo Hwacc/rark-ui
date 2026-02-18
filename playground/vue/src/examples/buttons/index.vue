@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ToggleContext } from '@ark-ui/vue'
-import { Button } from '@rui-ark/vue/components/button'
-import { Icon } from '@rui-ark/vue/components/icon'
-import { Toggle } from '@rui-ark/vue/components/toggle'
-import { ToggleGroup, ToggleGroupItem } from '@rui-ark/vue/components/toggle-group'
+import { Button } from '@rark-ui/vue/components/button'
+import { Icon } from '@rark-ui/vue/components/icon'
+import { Toggle } from '@rark-ui/vue/components/toggle'
+import { ToggleGroup, ToggleGroupItem } from '@rark-ui/vue/components/toggle-group'
 </script>
 
 <template>

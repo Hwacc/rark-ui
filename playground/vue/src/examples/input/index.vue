@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Input } from '@rui-ark/vue/components/input'
+import { Input } from '@rark-ui/vue/components/input'
 </script>
 
 <template>

@@ -252,14 +252,11 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(tailwindcss@4.1.18)
       '@rark-ui/vue':
-        specifier: ^1.1.0
-        version: 1.1.0(@hwacc/ark-ui-vue@5.31.0-leading.3(vue@3.5.25(typescript@5.9.3)))(tailwindcss@4.1.18)(vue@3.5.25(typescript@5.9.3))
+        specifier: ^1.2.1
+        version: 1.2.1(@hwacc/ark-ui-vue@5.31.0-leading.3(vue@3.5.25(typescript@5.9.3)))(tailwindcss@4.1.18)(vue@3.5.25(typescript@5.9.3))
       lucide-vue-next:
         specifier: ^0.563.0
         version: 0.563.0(vue@3.5.25(typescript@5.9.3))
-      tailwindcss:
-        specifier: ^4.1.18
-        version: 4.1.18
       vue:
         specifier: ^3.5.25
         version: 3.5.25(typescript@5.9.3)
@@ -291,6 +288,9 @@ importers:
       postcss-nested:
         specifier: ^7.0.2
         version: 7.0.2(postcss@8.5.6)
+      tailwindcss:
+        specifier: ^4.1.18
+        version: 4.1.18
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -1381,8 +1381,8 @@ packages:
     peerDependencies:
       vue: ^3.5.27
 
-  '@rark-ui/vue@1.1.0':
-    resolution: {integrity: sha512-NjckFOfMq4hC0PG7uNW6J5aI3YOf3MwiCqP3fSpVLiDO5jFST+hod/weRrYap5kIGGY7nVYhs+lf/KJ3eBiZcQ==}
+  '@rark-ui/vue@1.2.1':
+    resolution: {integrity: sha512-XV62dWsTbBXLIpb4AuPtkrLd4LnMr6tbkhilboEwJUW1A2whjccg/8vpP/LIlvu8NTO/ofFJP5EGakrlIwfgbg==}
     peerDependencies:
       '@ark-ui/vue': ^5.31.0
       vue: ^3.5.0
@@ -6097,7 +6097,7 @@ snapshots:
       '@vueuse/core': 14.1.0(vue@3.5.27(typescript@5.9.3))
       vue: 3.5.27(typescript@5.9.3)
 
-  '@rark-ui/vue@1.1.0(@hwacc/ark-ui-vue@5.31.0-leading.3(vue@3.5.25(typescript@5.9.3)))(tailwindcss@4.1.18)(vue@3.5.25(typescript@5.9.3))':
+  '@rark-ui/vue@1.2.1(@hwacc/ark-ui-vue@5.31.0-leading.3(vue@3.5.25(typescript@5.9.3)))(tailwindcss@4.1.18)(vue@3.5.25(typescript@5.9.3))':
     dependencies:
       '@ark-ui/vue': '@hwacc/ark-ui-vue@5.31.0-leading.3(vue@3.5.25(typescript@5.9.3))'
       '@iconify/vue': 5.0.0(vue@3.5.25(typescript@5.9.3))

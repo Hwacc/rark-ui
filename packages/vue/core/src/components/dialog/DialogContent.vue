@@ -6,8 +6,8 @@ import { cn } from '@rark-ui/themes/default'
 import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { hasChildVNodeByName } from '@rark-ui/vue/utils/vnode'
 import { X } from 'lucide-vue-next'
-import { computed, useAttrs, useSlots, watch } from 'vue'
-import { DialogCloseTrigger } from '.'
+import { computed, useAttrs, useSlots } from 'vue'
+import { DialogBackdrop, DialogCloseTrigger } from '.'
 
 defineOptions({
   inheritAttrs: false,
@@ -22,11 +22,7 @@ const {
 
 const slots = useSlots()
 const defaultSlots = computed(() => slots.default?.())
-console.log('defaultSlots', defaultSlots.value)
 const hasDialogHeader = computed(() => hasChildVNodeByName(defaultSlots.value, 'DialogHeader'))
-watch(hasDialogHeader, (value: boolean) => {
-  console.log('hasDialogHeader', value)
-})
 
 const showContentClose = computed(() => showClose && !hasDialogHeader.value)
 
@@ -37,7 +33,7 @@ const crafts = computed(() => theme.value.crafts.tvDialog())
 
 <template>
   <Teleport to="body">
-    <Dialog.Backdrop :class="crafts.backdrop({ class: ui?.backdrop, ...theme })" />
+    <DialogBackdrop :class="ui?.backdrop" :theme="theme" />
     <Dialog.Positioner :class="crafts.positioner({ class: ui?.positioner, ...theme })">
       <Dialog.Content
         v-bind="attrs"

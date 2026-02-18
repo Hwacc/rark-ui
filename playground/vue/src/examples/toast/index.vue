@@ -1,8 +1,8 @@
 <script setup lang="tsx">
-import type { ToastOptions } from '@rui-ark/vue/components/toast'
-import { Button } from '@rui-ark/vue/components/button'
-import { useMessage } from '@rui-ark/vue/components/message'
-import { ToastCloseTrigger, useToast } from '@rui-ark/vue/components/toast'
+import type { ToastOptions } from '@rark-ui/vue/components/toast'
+import { Button } from '@rark-ui/vue/components/button'
+import { useMessage } from '@rark-ui/vue/components/message'
+import { ToastCloseTrigger, useToast } from '@rark-ui/vue/components/toast'
 
 const { toast } = useToast()
 const { message } = useMessage()

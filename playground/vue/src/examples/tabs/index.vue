@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Tabs, TabsContent, TabsIndicator, TabsList, TabsTrigger } from '@rui-ark/vue/components/tabs'
+import { Tabs, TabsContent, TabsIndicator, TabsList, TabsTrigger } from '@rark-ui/vue/components/tabs'
 import { ref } from 'vue'
 
 const tab = ref('tab-7')

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Slider, SliderMarker, SliderMarkerGroup, SliderThumb, SliderTooltipMarker, SliderTooltipThumb } from '@rui-ark/vue/components/slider'
+import { Slider, SliderMarker, SliderMarkerGroup, SliderThumb, SliderTooltipMarker, SliderTooltipThumb } from '@rark-ui/vue/components/slider'
 import { ref, useTemplateRef } from 'vue'
 
 const testValue = ref([0])

@@ -1,16 +1,19 @@
 {
   "name": "@rark-ui/vue-addons-v-lazy",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "packageManager": "pnpm@10.13.1",
   "description": "",
   "author": "",
   "license": "MIT",
   "keywords": [],
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
-  "module": "index.ts",
+  "module": "./dist/index.js",
   "scripts": {
     "build": "rslib build --tsconfig ./tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -5,7 +5,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
   ReadMore,
-} from '@rui-ark/vue/components/collapsiable'
+} from '@rark-ui/vue/components/collapsible'
 
 const content = fakerEN.lorem.sentences(3)
 const readMoreContent = fakerEN.lorem.sentences(10)
@@ -22,7 +22,10 @@ const readMoreContent = fakerEN.lorem.sentences(10)
       </CollapsibleContent>
     </Collapsible>
 
-    <ReadMore class="flex-1" :collapsed-height="100">
+    <ReadMore
+      class="flex-1"
+      :collapsed-height="100"
+    >
       {{ readMoreContent }}
     </ReadMore>
   </div>

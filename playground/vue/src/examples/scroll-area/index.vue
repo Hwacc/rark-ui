@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ScrollArea, ScrollAreaCorner, ScrollAreaScrollbar } from '@rui-ark/vue/components/scroll-area'
+import { ScrollArea, ScrollAreaCorner, ScrollAreaScrollbar } from '@rark-ui/vue/components/scroll-area'
 </script>
 
 <template>

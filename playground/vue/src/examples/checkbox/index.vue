@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { fakerEN } from '@faker-js/faker'
-import { Checkbox, CheckboxGroup } from '@rui-ark/vue/components/checkbox'
+import { Checkbox, CheckboxGroup } from '@rark-ui/vue/components/checkbox'
 import {
   RadioGroup,
   RadioGroupItem,
-} from '@rui-ark/vue/components/radio-group'
+} from '@rark-ui/vue/components/radio-group'
 import { ref } from 'vue'
 
 const checkboxState = ref<boolean | 'indeterminate'>(true)

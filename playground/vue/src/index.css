@@ -1,4 +1,11 @@
+@import 'tailwindcss';
 @import '@rark-ui/themes/razer/index.css';
+
+@config '../tailwind.config.ts';
+
+@theme {
+  
+}
 
 body {
   margin: 0;
