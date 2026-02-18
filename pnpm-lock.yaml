@@ -185,8 +185,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@rark-ui/themes':
-        specifier: ^1.1.0
-        version: 1.1.0(tailwindcss@4.1.18)
+        specifier: ^1.2.0
+        version: 1.2.0(tailwindcss@4.1.18)
       '@vueuse/core':
         specifier: ^14.1.0
         version: 14.1.0(vue@3.5.27(typescript@5.9.3))
@@ -249,8 +249,8 @@ importers:
         specifier: npm:@hwacc/ark-ui-vue@5.31.0-leading.3
         version: '@hwacc/ark-ui-vue@5.31.0-leading.3(vue@3.5.25(typescript@5.9.3))'
       '@rark-ui/themes':
-        specifier: ^1.1.0
-        version: 1.1.0(tailwindcss@4.1.18)
+        specifier: ^1.2.0
+        version: 1.2.0(tailwindcss@4.1.18)
       '@rark-ui/vue':
         specifier: ^1.2.1
         version: 1.2.1(@hwacc/ark-ui-vue@5.31.0-leading.3(vue@3.5.25(typescript@5.9.3)))(tailwindcss@4.1.18)(vue@3.5.25(typescript@5.9.3))
@@ -1373,8 +1373,8 @@ packages:
   '@rark-ui/shared@1.0.0':
     resolution: {integrity: sha512-Dctq6D/PbBotcnTjsAlyFgE6RhBCs0dvuBdOhR6XKVFZZXYxyuHs0Z4GBcbIM9QmJWFG6nFAhf4IrClb9XHCGQ==}
 
-  '@rark-ui/themes@1.1.0':
-    resolution: {integrity: sha512-Yr14Tl8b4A6iZ4gSYx5jEOn3lyXM80Tnm94GFaOOpI+WB3PeQfcl/gcTB4e+LON6M6pkpI9g0l/Q0UWnkQ5roQ==}
+  '@rark-ui/themes@1.2.0':
+    resolution: {integrity: sha512-xkpLWr+wXmBqdv0vnJkzNw1Q4186IhUmDe/IIhfr7oC2Y/4J5PnhRG00NyxBrfFrfNrJ0BIVbJgkO+sppogsqw==}
 
   '@rark-ui/vue-addons-shared@1.0.0':
     resolution: {integrity: sha512-pV/cvzdbft2zPb9dEOmuJCOlOSeAYIY+LyX1EGMEjEqOrl2UWOWpp0iQHjftFU3jSUyXUDGGuLVKye1G56OodQ==}
@@ -6085,7 +6085,7 @@ snapshots:
 
   '@rark-ui/shared@1.0.0': {}
 
-  '@rark-ui/themes@1.1.0(tailwindcss@4.1.18)':
+  '@rark-ui/themes@1.2.0(tailwindcss@4.1.18)':
     dependencies:
       tailwind-merge: 3.4.0
       tailwind-variants: 3.2.2(tailwind-merge@3.4.0)(tailwindcss@4.1.18)
@@ -6102,7 +6102,7 @@ snapshots:
       '@ark-ui/vue': '@hwacc/ark-ui-vue@5.31.0-leading.3(vue@3.5.25(typescript@5.9.3))'
       '@iconify/vue': 5.0.0(vue@3.5.25(typescript@5.9.3))
       '@rark-ui/shared': 1.0.0
-      '@rark-ui/themes': 1.1.0(tailwindcss@4.1.18)
+      '@rark-ui/themes': 1.2.0(tailwindcss@4.1.18)
       '@vueuse/core': 14.1.0(vue@3.5.25(typescript@5.9.3))
       es-toolkit: 1.44.0
       lucide-vue-next: 0.563.0(vue@3.5.25(typescript@5.9.3))

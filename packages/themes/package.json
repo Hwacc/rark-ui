@@ -1,7 +1,7 @@
 {
   "name": "@rark-ui/themes",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "packageManager": "pnpm@10.13.1",
   "description": "Themes for Rark UI",
   "author": "Hwacc(mshcccck@gmail.com)",
@@ -23,6 +23,7 @@
       "default": "./dist/default/index.js"
     },
     "./razer/index.css": "./dist/razer/index.css",
+    "./razer/preset.css": "./src/razer/preset.css",
     "./default/index.css": "./dist/default/index.css"
   },
   "module": "./dist/index.js",
