@@ -11,8 +11,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./*"],
-      "@rui-ark/vue/*": ["../../packages/vue/core/*"]
+      "@/*": ["./*"]
     },
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
@@ -24,7 +23,6 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
-  "references": [{ "path": "../../packages/vue/core/tsconfig.build.json" }],
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

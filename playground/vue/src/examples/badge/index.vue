@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Badge } from '@rui-ark/vue/components/badge'
+import { Badge } from '@rark-ui/vue'
 </script>
 
 <template>
