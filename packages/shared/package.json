@@ -33,6 +33,7 @@
       "import": "./dist/constant.js"
     }
   },
+  "module": "./dist/index.js",
   "files": [
     "dist"
   ],

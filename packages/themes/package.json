@@ -25,6 +25,7 @@
     "./razer/index.css": "./dist/razer/index.css",
     "./default/index.css": "./dist/default/index.css"
   },
+  "module": "./dist/index.js",
   "files": [
     "dist"
   ],

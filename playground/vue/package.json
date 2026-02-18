@@ -9,7 +9,7 @@
     "preview": "rsbuild preview"
   },
   "dependencies": {
-    "@ark-ui/vue": "5.30.0",
+    "@ark-ui/vue": "npm:@hwacc/ark-ui-vue@5.31.0-leading.3",
     "@rark-ui/themes": "^1.1.0",
     "@rark-ui/vue": "^1.1.0",
     "lucide-vue-next": "^0.563.0",
