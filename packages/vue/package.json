@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "storybook dev --host 0.0.0.0 --port 4399",
-    "build:story": "storybook build",
+    "build": "storybook build -o .storybook-static",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

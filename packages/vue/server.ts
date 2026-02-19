@@ -6,7 +6,7 @@
 import path from 'node:path'
 import process from 'node:process'
 
-const STORYBOOK_STATIC_DIR = path.join(import.meta.dir, 'storybook-static')
+const STORYBOOK_STATIC_DIR = path.join(import.meta.dir, '.storybook-static')
 
 function safeJoin(rootDir: string, urlPathname: string) {
   // 只处理 pathname（不含 query/hash），并阻止目录穿越

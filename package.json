@@ -1,20 +1,30 @@
 {
-  "name": "rui-ark",
-  "version": "1.0.0",
-  "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
-  "main": "index.js",
+  "name": "root",
+  "packageManager": "pnpm@10.28.2",
+  "description": "Rark UI is a UI library built on top of Ark UI and Tailwind CSS. It inherits all the modern, flexible, and accessible features of Ark UI, while further simplifying the complexity of building components. On top of that, it introduces additional practical features to enhance the development experience. With the power of Tailwind CSS, you can easily implement any design system you envision.",
+  "author": "Hwacc(mshcccck@gmail.com)",
+  "license": "MIT",
+  "keywords": [
+    "rark-ui",
+    "ui",
+    "library",
+    "components",
+    "tailwind",
+    "ark-ui"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "preview": "turbo run preview --parallel",
+    "test": "turbo run test",
+    "lint": "turbo run lint"
   },
   "dependencies": {
     "es-toolkit": "^1.44.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.7.1",
-    "eslint": "^9.39.2"
+    "eslint": "^9.39.2",
+    "turbo": "^2.8.10"
   }
 }
