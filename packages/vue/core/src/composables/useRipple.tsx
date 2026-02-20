@@ -1,31 +1,33 @@
-import type { ComputedRef, MaybeRef } from 'vue'
+import type { ComputedRef, MaybeRef, Ref } from 'vue'
 import { computed, ref, unref, watchEffect } from 'vue'
 
 type MaybeRefOrComputedRef<T> = MaybeRef<T> | ComputedRef<T>
-
 interface Options {
+  enabled?: MaybeRefOrComputedRef<boolean | undefined>
   duration?: MaybeRefOrComputedRef<number | undefined>
   color?: MaybeRefOrComputedRef<string | undefined>
 }
 
-export function useRipple({
-  duration = 600,
-  color = '#44D62C',
-}: Options = {}) {
-  const referenceRef = ref<any>(null)
-  const ripples = ref<
-    Array<{ x: number, y: number, size: number, key: number }>
-  >([])
-
-  const onRipple = (event: MouseEvent) => {
+export function useRipple(
+  referenceRef: Ref<Element | null> | ComputedRef<Element | null>,
+  {
+    duration = 600,
+    color = '#44D62C',
+    enabled = true,
+  }: Options = {},
+) {
+  const ripples = ref<Array<{ x: number, y: number, size: number, key: number }>>([])
+  const isRelativedReference = computed(() => {
     if (!referenceRef.value)
+      return false
+    return getComputedStyle(referenceRef.value).position !== 'static'
+  })
+  const onRipple = (event: MouseEvent) => {
+    if (!referenceRef.value || !unref(enabled))
       return
-    const reference = referenceRef.value.$el ?? referenceRef.value
-    if (getComputedStyle(reference).position === 'static') {
+    const reference = referenceRef.value!
+    if (!isRelativedReference.value)
       reference.classList.add('relative')
-      reference.classList.add('overflow-hidden')
-    }
-
     const rect = reference.getBoundingClientRect()
     const size = Math.max(rect.width, rect.height)
     const x = event.clientX - rect.left - size / 2
@@ -35,52 +37,48 @@ export function useRipple({
     ripples.value.push(newRipple)
   }
 
-  watchEffect(() => {
+  watchEffect((onCleanup) => {
     if (ripples.value.length > 0) {
       const lastRipple = ripples.value[ripples.value.length - 1]
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         ripples.value = ripples.value.filter(
           ripple => ripple.key !== lastRipple.key,
         )
       }, unref(duration))
+      onCleanup(() => clearTimeout(timer))
     }
     else {
       if (!referenceRef.value)
         return
-      const reference = referenceRef.value.$el ?? referenceRef.value
-      reference.classList.remove('relative')
-      reference.classList.remove('overflow-hidden')
+      const reference = referenceRef.value!
+      if (!isRelativedReference.value)
+        reference.classList.remove('relative')
     }
   })
 
-  const Ripple = computed(() => (
-    <span
-      class={[
-        'pointer-events-none absolute inset-0',
-        !ripples.value.length && 'hidden',
-      ]}
-    >
-      {ripples.value.map(ripple => (
-        <span
-          key={ripple.key}
-          class="animate-rippling absolute rounded-full bg-transparent opacity-30"
-          style={{
-            width: `${ripple.size}px`,
-            height: `${ripple.size}px`,
-            top: `${ripple.y}px`,
-            left: `${ripple.x}px`,
-            backgroundColor: unref(color),
-            transform: 'scale(0)',
-            animationDuration: `${unref(duration)}ms`,
-          }}
-        />
-      ))}
-    </span>
-  ))
+  const Ripple = computed(() => {
+    return (
+      <span
+        class="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        {ripples.value.map(ripple => (
+          <span
+            key={ripple.key}
+            class="absolute rounded-full bg-transparent opacity-30 animate-rippling"
+            style={{
+              width: `${ripple.size}px`,
+              height: `${ripple.size}px`,
+              top: `${ripple.y}px`,
+              left: `${ripple.x}px`,
+              backgroundColor: unref(color),
+              transform: 'scale(0)',
+              animationDuration: `${unref(duration)}ms`,
+            }}
+          />
+        ))}
+      </span>
+    )
+  })
 
-  return {
-    Ripple,
-    onRipple,
-    referenceRef,
-  }
+  return { Ripple, onRipple }
 }

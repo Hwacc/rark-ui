@@ -33,11 +33,8 @@ const { forwardRef, currentElement } = useForwardExpose()
 const rippleColor = computed(() => {
   return getNodeCssVar(currentElement.value, '--rui-ripple-color', 'transparent')
 })
-const {
-  onRipple,
-  referenceRef: rippleReferenceRef,
-  Ripple,
-} = useRipple({
+const { onRipple, Ripple } = useRipple(currentElement, {
+  enabled: ripple && !disabled,
   color: rippleColor,
 })
 
@@ -53,12 +50,7 @@ const crafts = computed(() => theme.value.crafts.tvButton())
 
 <template>
   <ark.button
-    :ref="
-      (r) => {
-        forwardRef(r)
-        rippleReferenceRef = r
-      }
-    "
+    :ref="forwardRef"
     :class="crafts.root({
       variant: variant as ButtonVariants['variant'],
       loading,
