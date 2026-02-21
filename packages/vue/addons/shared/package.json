@@ -4,7 +4,11 @@
   "version": "1.0.0",
   "packageManager": "pnpm@10.13.1",
   "description": "Shared utilities for Rark UI Vue Addons",
-  "author": "Hwacc(mshcccck@gmail.com)",
+  "author": {
+    "name": "Hwacc",
+    "email": "mshcccck@gmail.com",
+    "url": "https://github.com/Hwacc/rark-ui"
+  },
   "license": "MIT",
   "keywords": [
     "rark-ui",

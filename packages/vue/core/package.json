@@ -4,7 +4,11 @@
   "version": "1.2.3",
   "packageManager": "pnpm@10.13.1",
   "description": "Vue core components for Rark UI, based on Ark UI",
-  "author": "Hwacc(mshcccck@gmail.com)",
+  "author": {
+    "name": "Hwacc",
+    "email": "mshcccck@gmail.com",
+    "url": "https://github.com/Hwacc/rark-ui"
+  },
   "license": "MIT",
   "keywords": [
     "rark-ui",

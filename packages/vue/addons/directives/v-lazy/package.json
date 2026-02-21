@@ -4,7 +4,11 @@
   "version": "1.1.0",
   "packageManager": "pnpm@10.13.1",
   "description": "",
-  "author": "",
+  "author": {
+    "name": "Hwacc",
+    "email": "mshcccck@gmail.com",
+    "url": "https://github.com/Hwacc/rark-ui"
+  },
   "license": "MIT",
   "keywords": [],
   "exports": {

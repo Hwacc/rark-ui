@@ -3,6 +3,11 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "Hwacc",
+    "email": "mshcccck@gmail.com",
+    "url": "https://github.com/Hwacc/rark-ui"
+  },
   "scripts": {
     "build": "rsbuild build",
     "dev": "rsbuild dev",
