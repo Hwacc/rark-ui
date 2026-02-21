@@ -1,9 +1,4 @@
-import type {
-  CreateToasterReturn,
-  ToastRootBaseProps,
-  ToastStoreProps,
-  UseToastContext,
-} from '@ark-ui/vue'
+import type { CreateToasterReturn, ToastRootBaseProps, UseToastContext } from '@ark-ui/vue'
 import type { ThemeCrafts, ThemeNoCrafts } from '@rark-ui/vue/providers'
 import type * as toast from '@zag-js/toast'
 import type { HTMLAttributes, UnwrapRef, VNode, VNodeChild } from 'vue'
