@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "packageManager": "pnpm@10.13.1",
   "description": "Murri composable for Rark UI",
-  "author": "Hwacc(mshcccck@gmail.com)",
+  "author": {
+    "name": "Hwacc",
+    "email": "mshcccck@gmail.com",
+    "url": "https://github.com/Hwacc/rark-ui"
+  },
   "license": "MIT",
   "keywords": [],
   "main": "index.js",
