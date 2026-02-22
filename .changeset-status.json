@@ -1,0 +1,25 @@
+{
+  "changesets": [
+    {
+      "releases": [
+        {
+          "name": "@rark-ui/vue-addons-virtual",
+          "type": "minor"
+        }
+      ],
+      "summary": "Change build productions",
+      "id": "young-wasps-hide"
+    }
+  ],
+  "releases": [
+    {
+      "name": "@rark-ui/vue-addons-virtual",
+      "type": "minor",
+      "oldVersion": "1.0.0",
+      "changesets": [
+        "young-wasps-hide"
+      ],
+      "newVersion": "1.1.0"
+    }
+  ]
+}
