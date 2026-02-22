@@ -7,14 +7,16 @@ export default defineConfig({
   lib: [
     {
       format: 'esm',
-      bundle: true,
+      bundle: false,
       dts: true,
     },
   ],
   source: {
     entry: {
       index: [
-        './src/index.ts',
+        './src/*',
+        '!./src/examples/**',
+        '!./src/virtual.stories.ts',
       ],
     },
   },
