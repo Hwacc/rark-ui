@@ -10,5 +10,9 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "@rark-ui/playground-vue",
+    "@rark-ui/vue-storybook",
+    "@rark-ui/vue-addons"
+  ]
 }
