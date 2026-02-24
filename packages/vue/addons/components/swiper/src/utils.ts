@@ -1,6 +1,6 @@
 import type { Swiper } from 'swiper/types'
 import type { ComputedRef, MaybeRef, Ref } from 'vue'
-import type { SwiperEmits } from './interface'
+import type { SwiperEmits } from '.'
 import { ref, unref, watchEffect } from 'vue'
 
 type MaybeEmptySwiper = Swiper | null | undefined
