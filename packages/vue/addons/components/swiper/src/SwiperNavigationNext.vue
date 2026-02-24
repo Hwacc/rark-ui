@@ -1,27 +1,15 @@
 <script setup lang="ts">
-import type { NavigationEvents, NavigationOptions, Swiper } from 'swiper/types'
-import type { HTMLAttributes } from 'vue'
-import { useForwardProps } from '@rui/add-ons/composables/useForwardProps'
-import { cn } from '@rui/core/lib/utils'
-import { merge } from 'lodash-es'
+import type { NavigationEvents } from 'swiper/types'
+import type { SwiperNavigationProps } from '.'
+import { useForwardProps } from '@rark-ui/vue-addons-shared'
+import { merge } from 'es-toolkit/compat'
 import { ChevronRight } from 'lucide-vue-next'
 import { useSwiper } from 'swiper/vue'
+import { twMerge } from 'tailwind-merge'
 import { computed, onMounted, useTemplateRef, watch } from 'vue'
-import { swiperNavigationVariant } from '.'
 import { useRegistSwiperEmits, useSwiperModule, useSwiperToggleEnabled } from './utils'
 
-const {
-  class: propsClass,
-  unstyled,
-  swiper,
-  ...props
-} = defineProps<
-  Omit<NavigationOptions, 'enabled' | 'nextEl' | 'prevEl'> & {
-    class?: HTMLAttributes['class']
-    unstyled?: boolean
-    swiper?: Swiper
-  }
->()
+const { class: propsClass, swiper, ...props } = defineProps<SwiperNavigationProps>()
 const emit = defineEmits<NavigationEvents>()
 
 const effectiveSwiper = computed(() => {
@@ -69,8 +57,10 @@ onMounted(() => {
 <template>
   <div
     ref="navigation"
-    :class="cn(swiperNavigationVariant({ nav: 'next', unstyled }), propsClass)"
+    :class="twMerge('rui-swiper-navigation_next', propsClass)"
     :data-disabled="isCanNext ? undefined : ''"
+    data-scope="swiper"
+    data-part="navigation-next"
   >
     <slot v-bind="{ disabled: !isCanNext }">
       <ChevronRight />

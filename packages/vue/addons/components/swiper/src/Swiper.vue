@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import type { Swiper as SwiperClass } from 'swiper/types'
-import type { HTMLAttributes } from 'vue'
-import type { SwiperEmits, SwiperProps, SwiperSlots } from './interface'
-import { useForwardPropsEmits } from '@rui/add-ons/composables/useFowardPropsEmits'
-import { cn } from '@rui/core/lib/utils'
+import type { Swiper as SwiperInstance } from 'swiper/types'
+import type { SwiperEmits, SwiperProps, SwiperSlots } from '.'
+import { useForwardPropsEmits } from '@rark-ui/vue-addons-shared'
 import { Swiper } from 'swiper/vue'
+import { twMerge } from 'tailwind-merge'
 import { ref } from 'vue'
 import { useSwiperModule } from './utils'
 
@@ -12,20 +11,16 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const {
-  class: propsClass,
-  direction = 'horizontal',
-  ...props
-} = defineProps<SwiperProps & { class?: HTMLAttributes['class'] }>()
+const { class: propsClass, direction = 'horizontal', ...props } = defineProps<SwiperProps>()
 const emits = defineEmits<SwiperEmits>()
 
 defineSlots<SwiperSlots>()
 
-const swiperInstance = ref<SwiperClass | null>(null)
+const swiperInstance = ref<SwiperInstance | null>(null)
 const swiperEl = ref<HTMLElement>()
 const { hasModule } = useSwiperModule(swiperInstance)
 
-function onSwiperInit(swiper: SwiperClass) {
+function onSwiperInit(swiper: SwiperInstance) {
   swiperEl.value = swiper.el
   swiperInstance.value = swiper
 }
@@ -67,6 +62,8 @@ const forwarded = useForwardPropsEmits(props, emits)
     role="region"
     aria-roledescription="carousel"
     tabindex="0"
+    data-scope="swiper"
+    data-part="region"
     @focusin="onFocusIn"
     @focusout="onFocusOut"
     @keydown="onKeyDown"
@@ -74,38 +71,25 @@ const forwarded = useForwardPropsEmits(props, emits)
     <!-- @vue-expect-error -->
     <Swiper
       v-bind="{ ...forwarded, ...$attrs }"
-      :class="cn('relative', propsClass)"
+      :class="twMerge('rui-swiper', propsClass)"
       :direction="direction"
+      data-scope="swiper"
+      data-part="root"
       @swiper="onSwiperInit"
     >
-      <template
-        v-if="$slots.default"
-        #default
-      >
+      <template v-if="$slots.default" #default>
         <slot />
       </template>
-      <template
-        v-if="$slots['container-start']"
-        #container-start
-      >
+      <template v-if="$slots['container-start']" #container-start>
         <slot name="container-start" />
       </template>
-      <template
-        v-if="$slots['container-end']"
-        #container-end
-      >
+      <template v-if="$slots['container-end']" #container-end>
         <slot name="container-end" />
       </template>
-      <template
-        v-if="$slots['wrapper-start']"
-        #wrapper-start
-      >
+      <template v-if="$slots['wrapper-start']" #wrapper-start>
         <slot name="wrapper-start" />
       </template>
-      <template
-        v-if="$slots['wrapper-end']"
-        #wrapper-end
-      >
+      <template v-if="$slots['wrapper-end']" #wrapper-end>
         <slot name="wrapper-end" />
       </template>
     </Swiper>

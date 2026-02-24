@@ -1,0 +1,26 @@
+@layer components {
+  .rui-swiper {
+    position: relative;
+  }
+
+  .rui-swiper-navigation_prev,
+  .rui-swiper-navigation_next {
+    position: 'absolute';
+    height: 3.125rem;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .25rem;
+  }
+
+  .rui-swiper-navigation_prev {
+    left: 0;
+  }
+
+  .rui-swiper-navigation_next {
+    right: 0;
+  }
+}

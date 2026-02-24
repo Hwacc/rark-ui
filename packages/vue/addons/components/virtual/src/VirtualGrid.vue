@@ -1,7 +1,6 @@
 <script lang="ts" generic="T" setup>
 import type { HTMLAttributes } from 'vue'
 import type { VirtualGridProps } from '.'
-import { useAttrs } from 'vue'
 import { VirtualRoot } from '.'
 import VirtualGridImpl from './VirtualGridImpl.vue'
 
@@ -18,8 +17,6 @@ const props = defineProps<
   }
 >()
 defineSlots<{ default: () => any }>()
-
-console.log('VirtualGrid', useAttrs())
 </script>
 
 <template>

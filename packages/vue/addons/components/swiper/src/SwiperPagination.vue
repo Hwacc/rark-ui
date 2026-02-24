@@ -1,27 +1,19 @@
 <script setup lang="ts">
 import type { PaginationEvents, Swiper } from 'swiper/types'
-import type { HTMLAttributes } from 'vue'
-import type { SwiperPaginationProps } from './interface'
-import { useForwardProps } from '@rui/add-ons/composables/useForwardProps'
-import { cn, getNodeCssVar, rem2px } from '@rui/core/lib/utils'
-import { merge } from 'lodash-es'
+import type { SwiperPaginationProps } from '.'
+import { getNodeCssVar, rem2px } from '@rark-ui/shared'
+import { useForwardProps } from '@rark-ui/vue-addons-shared'
+import { merge } from 'es-toolkit/compat'
 import { useSwiper } from 'swiper/vue'
+import { twMerge } from 'tailwind-merge'
 import { computed, nextTick, useTemplateRef, watchEffect } from 'vue'
-import { prefix } from '.'
 import { useRegistSwiperEmits, useSwiperModule } from './utils'
 
 const {
   class: propsClass,
-  unstyled,
   swiper,
   ...props
-} = defineProps<
-  Omit<SwiperPaginationProps, 'enabled' | 'el'> & {
-    class?: HTMLAttributes['class']
-    unstyled?: boolean
-    swiper?: Swiper
-  }
->()
+} = defineProps<SwiperPaginationProps>()
 const emit = defineEmits<PaginationEvents>()
 
 const effectiveSwiper = computed(() => {
@@ -36,7 +28,7 @@ watchEffect((cleanup) => {
     if (forwared.value.type === 'autoplay-bullets' && hasModule('Autoplay')) {
       const onAutoplayTimeLeft = (_swiper: Swiper, _timeLeft: number, percentage: number) => {
         pagiRef.value?.style.setProperty(
-          '--rui-swiper-autoplay-percentage',
+          '--autoplay-percentage',
           `${Math.max(0, Math.min(1, 1 - percentage)) * 100}%`,
         )
       }
@@ -77,7 +69,7 @@ watchEffect((cleanup) => {
           const activeBulletSize = rem2px(
             getNodeCssVar(
               pagiRef.value,
-              '--swiper-pagination-bullet-autoplay-active-bullet-size',
+              '---autoplay-active-bullet-size',
               '2.5rem',
             ),
           )
@@ -129,7 +121,9 @@ useRegistSwiperEmits({
   <div
     ref="pagination"
     role="pagination-container"
-    :class="cn('swiper-pagination', !unstyled && `${prefix}-pagination`, propsClass)"
+    :class="twMerge('rui-swiper-pagination', propsClass)"
     :data-type="forwared.type"
+    data-scope="swiper"
+    data-part="pagination"
   />
 </template>

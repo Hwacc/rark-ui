@@ -37,18 +37,18 @@
   },
   "dependencies": {
     "@rark-ui/vue-addons-shared": "^1.0.0",
-    "@tanstack/vue-virtual": "^3.13.18",
+    "@tanstack/vue-virtual": "^3.13.19",
     "es-toolkit": "^1.44.0",
     "lucide-vue-next": "^0.563.0",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@rsbuild/plugin-babel": "^1.0.6",
-    "@rsbuild/plugin-vue-jsx": "^1.1.1",
+    "@rsbuild/plugin-vue-jsx": "^1.1.2",
     "@rslib/core": "0.19.4",
     "rsbuild-plugin-unplugin-vue": "^0.1.0",
     "tsc-alias": "^1.8.16",
-    "vue-tsc": "^3.2.4"
+    "vue-tsc": "^3.2.5"
   },
   "publishConfig": {
     "access": "public"

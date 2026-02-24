@@ -1,26 +1,14 @@
 <script setup lang="ts">
-import type { ScrollbarEvents, ScrollbarOptions, Swiper } from 'swiper/types'
-import type { HTMLAttributes } from 'vue'
-import { useForwardProps } from '@rui/add-ons/composables/useForwardProps'
-import { cn } from '@rui/core/lib/utils'
-import { merge } from 'lodash-es'
+import type { ScrollbarEvents } from 'swiper/types'
+import type { SwiperScrollbarProps } from '.'
+import { useForwardProps } from '@rark-ui/vue-addons-shared'
+import { merge } from 'es-toolkit/compat'
 import { useSwiper } from 'swiper/vue'
+import { twMerge } from 'tailwind-merge'
 import { computed, useTemplateRef, watchEffect } from 'vue'
-import { prefix } from '.'
 import { useRegistSwiperEmits, useSwiperModule } from './utils'
 
-const {
-  class: propsClass,
-  unstyled,
-  swiper,
-  ...props
-} = defineProps<
-  Omit<ScrollbarOptions, 'enabled' | 'el'> & {
-    class?: HTMLAttributes['class']
-    unstyled?: boolean
-    swiper?: Swiper
-  }
->()
+const { class: propsClass, swiper, ...props } = defineProps<SwiperScrollbarProps>()
 const emit = defineEmits<ScrollbarEvents>()
 
 const effectiveSwiper = computed(() => {
@@ -62,6 +50,8 @@ useRegistSwiperEmits({
   <div
     ref="scrollbar"
     role="scrollbar-container"
-    :class="cn('swiper-scrollbar', !unstyled && `${prefix}-scrollbar`, propsClass)"
+    :class="twMerge('rui-swiper-scrollbar', propsClass)"
+    data-scope="swiper"
+    data-part="scrollbar"
   />
 </template>

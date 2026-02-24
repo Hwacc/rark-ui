@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Swiper as SwiperClass } from 'swiper/types'
+import type { Swiper as SwiperInstance } from 'swiper/types'
 import { useSwiper } from 'swiper/vue'
 import { computed } from 'vue'
 import { useSwiperToggleEnabled } from './utils'
 
-const { swiper } = defineProps<{ swiper?: SwiperClass }>()
+const { swiper } = defineProps<{ swiper?: SwiperInstance }>()
 defineSlots<{
   default: (props: { disabled: boolean }) => any
 }>()
@@ -23,6 +23,8 @@ function onClick() {
   <div
     class="w-fit"
     :data-disabled="isCanPrev ? undefined : ''"
+    data-scope="swiper"
+    data-part="prev"
     @click="onClick"
   >
     <slot
