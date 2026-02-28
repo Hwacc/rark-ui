@@ -27,7 +27,6 @@
     "dist"
   ],
   "scripts": {
-    "build": "rslib build --tsconfig ./tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
@@ -43,8 +42,9 @@
   },
   "devDependencies": {
     "@rsbuild/plugin-babel": "^1.0.6",
-    "@rsbuild/plugin-vue": "^1.2.2",
     "@rsbuild/plugin-vue-jsx": "^1.1.2",
+    "@rslib/core": "0.19.4",
+    "rsbuild-plugin-unplugin-vue": "^0.1.0",
     "tsc-alias": "^1.8.16",
     "vue-tsc": "^3.2.5"
   },

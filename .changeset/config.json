@@ -5,7 +5,8 @@
   "fixed": [],
   "linked": [
     ["@rark-ui/vue", "@rark-ui/shared", "@rark-ui/themes"],
-    ["@rark-ui/vue-addons-virtual", "@rark-ui/vue-addons-shared"]
+    ["@rark-ui/vue-addons-virtual", "@rark-ui/vue-addons-shared"],
+    ["@rark-ui/vue-addons-swiper", "@rark-ui/vue-addons-shared", "@rark-ui/shared"]
   ],
   "access": "public",
   "baseBranch": "main",
@@ -13,6 +14,7 @@
   "ignore": [
     "@rark-ui/playground-vue",
     "@rark-ui/vue-storybook",
-    "@rark-ui/vue-addons"
+    "@rark-ui/vue-addons",
+    "@rark-ui/vue-addons-swiper" // temporarily ignore
   ]
 }
