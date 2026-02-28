@@ -18,6 +18,9 @@
     }
   },
   "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rslib build --tsconfig ./tsconfig.build.json",
     "test": "echo \"Error: no test specified\" && exit 1"
