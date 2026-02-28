@@ -15,6 +15,6 @@
     "@rark-ui/playground-vue",
     "@rark-ui/vue-storybook",
     "@rark-ui/vue-addons",
-    "@rark-ui/vue-addons-swiper" // temporarily ignore
+    "@rark-ui/vue-addons-swiper"
   ]
 }
