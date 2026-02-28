@@ -1,4 +1,4 @@
-# @rark-ui/shared
+# @rark-ui/themes
 
 ## 1.3.0
 
@@ -13,9 +13,3 @@
     - Fixed Crafts type issues
     - Fixed useTheme Crafts judgement
     - Fixed dependency issues to improve package stability.
-
-## 1.2.6
-
-### Patch Changes
-
-- 4dd4c50: feat: add parseCubicBezier func
