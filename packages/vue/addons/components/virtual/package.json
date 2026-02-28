@@ -36,10 +36,10 @@
     "vue": "^3.5.27"
   },
   "dependencies": {
-    "@rark-ui/vue-addons-shared": "^1.0.0",
+    "@rark-ui/vue-addons-shared": "workspace:*",
     "@tanstack/vue-virtual": "^3.13.19",
     "es-toolkit": "^1.44.0",
-    "lucide-vue-next": "^0.563.0",
+    "lucide-vue-next": "^0.575.0",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {

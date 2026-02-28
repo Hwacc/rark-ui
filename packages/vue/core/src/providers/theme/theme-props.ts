@@ -35,7 +35,7 @@ type CraftInput<T> = T extends {
   : never
 export interface ThemeCrafts<K extends keyof Crafts> {
   theme?: Omit<ThemeProps, 'crafts'> & {
-    crafts?: CraftInput<Crafts[K]> | (() => ReturnType<typeof tv>)
+    crafts?: CraftInput<Crafts[K]> | (() => ReturnType<typeof tv>) | Crafts
   }
 }
 export interface ThemeNoCrafts {

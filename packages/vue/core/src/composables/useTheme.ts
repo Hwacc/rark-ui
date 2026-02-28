@@ -21,6 +21,21 @@ function clean(obj: ComputedRef<ThemeProps | undefined>) {
   return omitBy(obj.value ?? {}, value => isNil(value))
 }
 
+function resolvePropsCrafts(
+  propsCrafts: unknown,
+  compName: string | undefined,
+): Partial<Crafts> {
+  if (!propsCrafts)
+    return {}
+  if (typeof propsCrafts === 'function')
+    return propsCrafts()
+  if (Object.keys(propsCrafts as object).some(k => CRAFTS_KEYS.includes(k)))
+    return pickDefined<Crafts>(propsCrafts as Crafts)
+  if (compName && CRAFTS_KEYS.includes(`tv${compName}`))
+    return { [`tv${compName}`]: tv({ extend: crafts[`tv${compName}` as keyof typeof crafts], ...(propsCrafts as object) }) }
+  return {}
+}
+
 export function useTheme(): UseThemeReturn
 export function useTheme<T = ThemeProps>(
   props?: MaybeRefOrGetter<Partial<T> | undefined>,
@@ -56,18 +71,7 @@ export function useTheme<T>(props?: MaybeRefOrGetter<Partial<T> | undefined>): U
       crafts,
       pickDefined<Crafts>(configCrafts as Crafts | undefined),
       pickDefined<Crafts>(contextCrafts as Crafts | undefined),
-      propsCrafts
-        ? typeof propsCrafts === 'function'
-          ? propsCrafts()
-          : CRAFTS_KEYS.includes(`tv${compName}`)
-            ? {
-                [`tv${compName}`]: tv({
-                  extend: crafts[`tv${compName}` as keyof typeof crafts],
-                  ...propsCrafts,
-                }),
-              }
-            : {}
-        : {},
+      resolvePropsCrafts(propsCrafts, compName),
     ) as Crafts
 
     return {
