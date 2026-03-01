@@ -1,0 +1,2844 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "GKK5V",
+      "x": 8681,
+      "y": -1892,
+      "name": "Button Library Overview",
+      "width": 850,
+      "fill": "#111111",
+      "cornerRadius": 8,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#333333"
+      },
+      "layout": "vertical",
+      "gap": 32,
+      "padding": 40,
+      "children": [
+        {
+          "type": "text",
+          "id": "CYNTn",
+          "name": "libTitle",
+          "fill": "#ffffff",
+          "content": "Complete Button Library",
+          "fontFamily": "Roboto",
+          "fontSize": 24,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "1unmE",
+          "name": "sizeHeader",
+          "width": "fill_container",
+          "gap": 16,
+          "padding": [
+            0,
+            0,
+            8,
+            0
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "TkkKh",
+              "name": "spacer",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "X2VID",
+              "name": "sizeLg",
+              "fill": "#909090",
+              "content": "LG (Large)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "9SIt1",
+              "name": "sizeBase",
+              "fill": "#909090",
+              "content": "Base (Default)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "6N887",
+              "name": "sizeSm",
+              "fill": "#909090",
+              "content": "SM (Small)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "PKTkq",
+              "name": "sizeXs",
+              "fill": "#909090",
+              "content": "XS (Extra Small)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "1889k",
+          "name": "rowPrimary",
+          "width": "fill_container",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Fp5bR",
+              "name": "labelPrimary",
+              "fill": "#44d62c",
+              "content": "Primary",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "TjV8N",
+              "name": "btnPriLg",
+              "fill": "#44d62c",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#44d62c"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 2
+                },
+                "blur": 4
+              },
+              "gap": 8,
+              "padding": [
+                12,
+                24
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "9wGoQ",
+                  "name": "razerBtnLgText",
+                  "fill": "#000000",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "eLaLb",
+              "name": "btnPriBase",
+              "fill": "#44d62c",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#44d62c"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 2
+                },
+                "blur": 4
+              },
+              "gap": 8,
+              "padding": [
+                10,
+                20
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tvqqW",
+                  "name": "razerBtnBaseText",
+                  "fill": "#000000",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sAQm0",
+              "name": "btnPriSm",
+              "fill": "#44d62c",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#44d62c"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 1
+                },
+                "blur": 3
+              },
+              "gap": 6,
+              "padding": [
+                8,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "BGiHY",
+                  "name": "razerBtnSmText",
+                  "fill": "#000000",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MYqoS",
+              "name": "btnPriXs",
+              "fill": "#44d62c",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#44d62c"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 1
+                },
+                "blur": 2
+              },
+              "gap": 4,
+              "padding": [
+                6,
+                12
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ASDYA",
+                  "name": "razerBtnXsText",
+                  "fill": "#000000",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "5P347",
+          "name": "rowSecondary",
+          "width": "fill_container",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "lbKqZ",
+              "name": "labelSecondary",
+              "fill": "#666666",
+              "content": "Secondary (NEW)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "iVz1M",
+              "name": "btnSecLg",
+              "fill": "#333333",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#666666"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 2
+                },
+                "blur": 4
+              },
+              "gap": 8,
+              "padding": [
+                12,
+                24
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "liWls",
+                  "name": "razerBtnSecLgText",
+                  "fill": "#ffffff",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Qquj7",
+              "name": "btnSecBase",
+              "fill": "#333333",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#666666"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 2
+                },
+                "blur": 4
+              },
+              "gap": 8,
+              "padding": [
+                10,
+                20
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "LPZRY",
+                  "name": "razerBtnSecBaseText",
+                  "fill": "#ffffff",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yU47T",
+              "name": "btnSecSm",
+              "fill": "#333333",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#666666"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 1
+                },
+                "blur": 3
+              },
+              "gap": 6,
+              "padding": [
+                8,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "UxmIz",
+                  "name": "razerBtnSecSmText",
+                  "fill": "#ffffff",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "szwMM",
+              "name": "btnSecXs",
+              "fill": "#333333",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#666666"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 1
+                },
+                "blur": 2
+              },
+              "gap": 4,
+              "padding": [
+                6,
+                12
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mCRTo",
+                  "name": "razerBtnSecXsText",
+                  "fill": "#ffffff",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WcMRm",
+          "name": "rowOutline",
+          "width": "fill_container",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "od1Xz",
+              "name": "labelOutline",
+              "fill": "#44d62c",
+              "content": "Outline",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "KVsp5",
+              "name": "btnOutLg",
+              "fill": "transparent",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#44d62c"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 2
+                },
+                "blur": 4
+              },
+              "gap": 8,
+              "padding": [
+                12,
+                24
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "S7xkp",
+                  "name": "razerBtnLgOutlineText",
+                  "fill": "#44d62c",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DTSFV",
+              "name": "btnOutBase",
+              "fill": "transparent",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#44d62c"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 2
+                },
+                "blur": 4
+              },
+              "gap": 8,
+              "padding": [
+                10,
+                20
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "3FpPI",
+                  "name": "razerBtnBaseOutlineText",
+                  "fill": "#44d62c",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HbXH5",
+              "name": "btnOutSm",
+              "fill": "transparent",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#44d62c"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 1
+                },
+                "blur": 3
+              },
+              "gap": 6,
+              "padding": [
+                8,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "2fI0R",
+                  "name": "razerBtnSmOutlineText",
+                  "fill": "#44d62c",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fQfUN",
+              "name": "btnOutXs",
+              "fill": "transparent",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#44d62c"
+              },
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#0000004D",
+                "offset": {
+                  "x": 0,
+                  "y": 1
+                },
+                "blur": 2
+              },
+              "gap": 4,
+              "padding": [
+                6,
+                12
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "2Aze8",
+                  "name": "razerBtnXsOutlineText",
+                  "fill": "#44d62c",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BdAZS",
+          "name": "rowSecOutline",
+          "width": "fill_container",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "ACX69",
+              "name": "labelSecOutline",
+              "fill": "#666666",
+              "content": "Sec Outline (NEW)",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "djKcE",
+              "name": "btnSecOutLg2",
+              "fill": "transparent",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#666666"
+              },
+              "gap": 8,
+              "padding": [
+                12,
+                24
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JLGbe",
+                  "name": "razerBtnSecOutLgText",
+                  "fill": "#666666",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bgsGu",
+              "name": "btnSecOutBase2",
+              "fill": "transparent",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#666666"
+              },
+              "gap": 8,
+              "padding": [
+                10,
+                20
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "U3kyc",
+                  "name": "razerBtnSecOutBaseText",
+                  "fill": "#666666",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xFxvp",
+              "name": "btnSecOutSm2",
+              "fill": "transparent",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#666666"
+              },
+              "gap": 6,
+              "padding": [
+                8,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bxBX4",
+                  "name": "razerBtnSecOutSmText",
+                  "fill": "#666666",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OiCod",
+              "name": "btnSecOutXs2",
+              "fill": "transparent",
+              "cornerRadius": 2,
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "#666666"
+              },
+              "gap": 4,
+              "padding": [
+                6,
+                12
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "PNzcV",
+                  "name": "razerBtnSecOutXsText",
+                  "fill": "#666666",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ruLve",
+          "name": "rowGhost",
+          "width": "fill_container",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "RLUHI",
+              "name": "labelGhost",
+              "fill": "#ffffff",
+              "content": "Ghost",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "NbVd4",
+              "name": "btnGhostLg",
+              "cornerRadius": 8,
+              "gap": 8,
+              "padding": [
+                12,
+                24
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "uii53",
+                  "name": "razerBtnLgGhostText",
+                  "fill": "#ffffff",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5Zvs2",
+              "name": "btnGhostBase",
+              "cornerRadius": 8,
+              "gap": 8,
+              "padding": [
+                10,
+                20
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ELHfu",
+                  "name": "razerBtnBaseGhostText",
+                  "fill": "#ffffff",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OHM6f",
+              "name": "btnGhostSm",
+              "cornerRadius": 8,
+              "gap": 6,
+              "padding": [
+                8,
+                16
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "sUIoN",
+                  "name": "razerBtnSmGhostText",
+                  "fill": "#ffffff",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "m487r",
+              "name": "btnGhostXs",
+              "cornerRadius": 8,
+              "gap": 4,
+              "padding": [
+                6,
+                12
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "zK36l",
+                  "name": "razerBtnXsGhostText",
+                  "fill": "#ffffff",
+                  "content": "BUTTON",
+                  "fontFamily": "Roboto",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                  "letterSpacing": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "MwhWI",
+          "name": "divider",
+          "fill": "#333333",
+          "width": "fill_container",
+          "height": 1
+        },
+        {
+          "type": "frame",
+          "id": "rvda0",
+          "name": "infoSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 12,
+          "children": [
+            {
+              "type": "text",
+              "id": "e9bQX",
+              "name": "infoTitle",
+              "fill": "#ffffff",
+              "content": "Design Tokens",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "Wd3uP",
+              "name": "infoRow1",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VZfjN",
+                  "fill": "#909090",
+                  "content": "Corner Radius: $razer-btn-radius (2px)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "DO2as",
+                  "fill": "#909090",
+                  "content": "Primary Hover: $razer-green-hover (#5CEB44)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Xc1OT",
+                  "fill": "#909090",
+                  "content": "Primary Active: $razer-green-active (#3ABF24)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "A8rOf",
+              "name": "infoRow2",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "4s06R",
+                  "fill": "#909090",
+                  "content": "Secondary Hover: $razer-gray-hover (#444444)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "MsC7E",
+                  "fill": "#909090",
+                  "content": "Secondary Active: $razer-gray-active (#2A2A2A)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "pqIQY",
+                  "fill": "#909090",
+                  "content": "Ghost Hover: rgba(255,255,255,0.1)",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "8cxCY",
+      "x": 8681,
+      "y": -2871,
+      "name": "Button Design Kits",
+      "width": 700,
+      "fill": "#222222",
+      "cornerRadius": 8,
+      "stroke": {
+        "align": "inside",
+        "thickness": 1,
+        "fill": "#333333"
+      },
+      "layout": "vertical",
+      "gap": 32,
+      "padding": 40,
+      "children": [
+        {
+          "type": "context",
+          "id": "tJpO2",
+          "width": 330,
+          "height": 196,
+          "content": "Razer Button Design Kit:\n- 涉及到Button的设计应该以此Kit为准\n- 禁止任何在此处的修改(已定稿)\n"
+        },
+        {
+          "type": "text",
+          "id": "RgVES",
+          "name": "title",
+          "fill": "#ffffff",
+          "content": "Button States & Variants",
+          "fontFamily": "Roboto",
+          "fontSize": 24,
+          "fontWeight": "700"
+        },
+        {
+          "type": "frame",
+          "id": "ccuMv",
+          "name": "Primary Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "UNbDx",
+              "name": "sec1Title",
+              "fill": "#44d62c",
+              "content": "Primary Buttons",
+              "fontFamily": "Roboto",
+              "fontSize": 14,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "ql3iW",
+              "name": "row1",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "lL9rU",
+                  "name": "btnNormal",
+                  "fill": "#44d62c",
+                  "cornerRadius": 2,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#3ABF24"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000004D",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 4
+                  },
+                  "gap": 8,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "6bEr7",
+                      "name": "razerBtnLgText",
+                      "fill": "#000000",
+                      "content": "NORMAL",
+                      "fontFamily": "Roboto",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "IOV0m",
+                  "name": "cellHover1",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "iZoTd",
+                      "name": "btnHover1",
+                      "fill": "#5CEB44",
+                      "cornerRadius": 2,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#3ABF24"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#0000004D",
+                        "offset": {
+                          "x": 0,
+                          "y": 2
+                        },
+                        "blur": 4
+                      },
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "1gHuh",
+                          "name": "razerBtnLgText",
+                          "fill": "#000000",
+                          "content": "HOVER",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "K5s6m",
+                  "name": "cellActive1",
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2
+                  },
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QcKFk",
+                      "name": "priActiveFrame",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "2Il7g",
+                          "name": "priActiveBtn",
+                          "fill": "#3ABF24",
+                          "cornerRadius": 2,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 1,
+                            "fill": "#5CEB44"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "rgba(0,0,0,0.2)",
+                            "offset": {
+                              "x": 0,
+                              "y": 2
+                            },
+                            "blur": 4
+                          },
+                          "padding": [
+                            12,
+                            24
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "bJrRS",
+                              "rotation": 0.7589844350355253,
+                              "fill": "#000000",
+                              "content": "ACTIVE",
+                              "fontFamily": "Roboto",
+                              "fontSize": 18,
+                              "fontWeight": "600",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nANmg",
+                  "name": "disabledCell1",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "svQ7v",
+                      "name": "disabledBtn1",
+                      "opacity": 0.5,
+                      "fill": "#44d62c",
+                      "cornerRadius": 2,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#44d62c"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#0000004D",
+                        "offset": {
+                          "x": 0,
+                          "y": 2
+                        },
+                        "blur": 4
+                      },
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "o1hl6",
+                          "name": "razerBtnLgText",
+                          "fill": "#000000",
+                          "content": "DISABLED",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "3GFAU",
+          "name": "Secondary Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "4tvnh",
+              "name": "sec2Title",
+              "fill": "#666666",
+              "content": "Secondary Buttons (NEW)",
+              "fontFamily": "Roboto",
+              "fontSize": 14,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "E1Iih",
+              "name": "row2",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "3W4UN",
+                  "name": "btnSecNormal",
+                  "fill": "#333333",
+                  "cornerRadius": 2,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#666666"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#0000004D",
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "blur": 4
+                  },
+                  "gap": 8,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "6OW4X",
+                      "name": "razerBtnSecLgText",
+                      "fill": "#ffffff",
+                      "content": "NORMAL",
+                      "fontFamily": "Roboto",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3FbWK",
+                  "name": "cellHover2",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dsusP",
+                      "name": "btnHover2",
+                      "fill": "#444444",
+                      "cornerRadius": 2,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#666666"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#0000004D",
+                        "offset": {
+                          "x": 0,
+                          "y": 2
+                        },
+                        "blur": 4
+                      },
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "u86KM",
+                          "name": "razerBtnSecLgText",
+                          "fill": "#ffffff",
+                          "content": "HOVER",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CyoSH",
+                  "name": "cellActive2",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "lcHR7",
+                      "name": "secActiveFrame",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "AMT2b",
+                          "name": "Razer Button LG Secondary",
+                          "fill": "#333333",
+                          "cornerRadius": 2,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#666666"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "rgba(0,0,0,0.4)",
+                            "offset": {
+                              "x": 0,
+                              "y": 2
+                            },
+                            "blur": 4
+                          },
+                          "gap": 8,
+                          "padding": [
+                            12,
+                            24
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ho2hm",
+                              "name": "razerBtnSecLgText",
+                              "fill": "#ffffff",
+                              "content": "ACTIVE",
+                              "fontFamily": "Roboto",
+                              "fontSize": 18,
+                              "fontWeight": "600",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "G10Gt",
+                  "name": "disabledCell2",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "3oe51",
+                      "name": "disabledBtn2",
+                      "opacity": 0.5,
+                      "fill": "#333333",
+                      "cornerRadius": 2,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#666666"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#0000004D",
+                        "offset": {
+                          "x": 0,
+                          "y": 2
+                        },
+                        "blur": 4
+                      },
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gdqFM",
+                          "name": "razerBtnSecLgText",
+                          "fill": "#ffffff",
+                          "content": "DISABLED",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KPHYY",
+          "name": "Outline Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "G6bxr",
+              "name": "sec3Title",
+              "fill": "#44d62c",
+              "content": "Outline Buttons",
+              "fontFamily": "Roboto",
+              "fontSize": 14,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "7Rqhu",
+              "name": "row3",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gprIt",
+                  "name": "btnOutNormal",
+                  "fill": "transparent",
+                  "cornerRadius": 2,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#44d62c"
+                  },
+                  "gap": 8,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Tl7OG",
+                      "name": "razerBtnLgOutlineText",
+                      "fill": "#44d62c",
+                      "content": "NORMAL",
+                      "fontFamily": "Roboto",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GWooE",
+                  "name": "cellHover3",
+                  "fill": "#73e16133",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "FubGO",
+                      "name": "btnHover3",
+                      "fill": "#73e16133",
+                      "cornerRadius": 2,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#44d62c"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ZEi5W",
+                          "name": "razerBtnLgOutlineText",
+                          "fill": "#44d62c",
+                          "content": "HOVER",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yX2OH",
+                  "name": "cellActive3",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "mYXbY",
+                      "name": "outActiveFrame",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "hbAfs",
+                          "name": "outActiveBtn",
+                          "height": 48,
+                          "fill": "#3ABF2466",
+                          "cornerRadius": 2,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#44d62c"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "rgba(0,0,0,0.2)",
+                            "offset": {
+                              "x": 0,
+                              "y": 2
+                            },
+                            "blur": 4
+                          },
+                          "padding": [
+                            12,
+                            24
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "kRTYi",
+                              "fill": "#44d62c",
+                              "content": "ACTIVE",
+                              "fontFamily": "Roboto",
+                              "fontSize": 18,
+                              "fontWeight": "600",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "9xPFA",
+                  "name": "disabledCell3",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "lE3o6",
+                      "name": "disabledBtn3",
+                      "opacity": 0.5,
+                      "fill": "transparent",
+                      "cornerRadius": 2,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#44d62c"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gBPor",
+                          "name": "razerBtnLgOutlineText",
+                          "fill": "#44d62c",
+                          "content": "DISABLED",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ISG15",
+          "name": "Secondary Outline Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "3JSPf",
+              "name": "sec4Title",
+              "fill": "#666666",
+              "content": "Secondary Outline (NEW)",
+              "fontFamily": "Roboto",
+              "fontSize": 14,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "yAbEh",
+              "name": "row4",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2ahTV",
+                  "name": "btnSecOutNormal",
+                  "fill": "transparent",
+                  "cornerRadius": 2,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2,
+                    "fill": "#666666"
+                  },
+                  "gap": 8,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "C5JQ0",
+                      "name": "razerBtnSecOutLgText",
+                      "fill": "#666666",
+                      "content": "NORMAL",
+                      "fontFamily": "Roboto",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "F4w5W",
+                  "name": "cellHover4",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qg9Fv",
+                      "name": "btnHover4",
+                      "fill": "#333333",
+                      "cornerRadius": 2,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#666666"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bfTPh",
+                          "name": "razerBtnSecOutLgText",
+                          "fill": "#ffffff",
+                          "content": "HOVER",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jHR1B",
+                  "name": "cellActive4",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ZOWmL",
+                      "name": "secOutActiveFrame",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "RbS0V",
+                          "name": "Razer Button LG Secondary Outline",
+                          "cornerRadius": 2,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#666666"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "rgba(0,0,0,0.4)",
+                            "offset": {
+                              "x": 0,
+                              "y": 2
+                            },
+                            "blur": 4
+                          },
+                          "gap": 8,
+                          "padding": [
+                            12,
+                            24
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ZN2po",
+                              "name": "razerBtnSecOutLgText",
+                              "fill": "#ffffff",
+                              "content": "ACTIVE",
+                              "fontFamily": "Roboto",
+                              "fontSize": 18,
+                              "fontWeight": "600",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uBxlE",
+                  "name": "disabledCell4",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bshv9",
+                      "name": "disabledBtn4",
+                      "opacity": 0.5,
+                      "fill": "transparent",
+                      "cornerRadius": 2,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#666666"
+                      },
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "kMZFD",
+                          "name": "razerBtnSecOutLgText",
+                          "fill": "#666666",
+                          "content": "DISABLED",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "V6e2J",
+          "name": "Ghost Section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "olTDy",
+              "name": "sec5Title",
+              "fill": "#ffffff",
+              "content": "Ghost Buttons",
+              "fontFamily": "Roboto",
+              "fontSize": 14,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "frame",
+              "id": "7ZFZ5",
+              "name": "row5",
+              "width": "fill_container",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Po6Nc",
+                  "name": "btnGhostNormal",
+                  "cornerRadius": 2,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  },
+                  "gap": 8,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EbogZ",
+                      "name": "razerBtnLgGhostText",
+                      "fill": "#ffffff",
+                      "content": "NORMAL",
+                      "fontFamily": "Roboto",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "oW2kh",
+                  "name": "cellHover5",
+                  "fill": "$razer-gray-hover-40",
+                  "cornerRadius": 2,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "9WXon",
+                      "name": "btnHover5",
+                      "fill": "#00000000",
+                      "cornerRadius": 8,
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "preTA",
+                          "name": "razerBtnLgGhostText",
+                          "fill": "#ffffff",
+                          "content": "HOVER",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "9t4nV",
+                  "name": "cellActive5",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "5RamV",
+                      "name": "ghostActiveFrame",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "kyFsj",
+                          "name": "ghostActiveBtn",
+                          "height": 48,
+                          "fill": "$razer-gray-active-40",
+                          "cornerRadius": 2,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "rgba(0,0,0,0.2)",
+                            "offset": {
+                              "x": 0,
+                              "y": 1
+                            },
+                            "blur": 2
+                          },
+                          "padding": [
+                            12,
+                            24
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "vZrt2",
+                              "fill": "#ffffff",
+                              "content": "ACTIVE",
+                              "fontFamily": "Roboto",
+                              "fontSize": 18,
+                              "fontWeight": "600",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "2LoF6",
+                  "name": "disabledCell5",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "d40o1",
+                      "name": "disabledBtn5",
+                      "opacity": 0.5,
+                      "cornerRadius": 8,
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        24
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Wd4D5",
+                          "name": "razerBtnLgGhostText",
+                          "fill": "#ffffff",
+                          "content": "DISABLED",
+                          "fontFamily": "Roboto",
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "context",
+      "id": "dCR0X",
+      "x": 8870,
+      "y": -3677,
+      "width": 798,
+      "height": 614,
+      "content": "# Razer Style Guide\n# 注意:\n  - 在进行设计时必须优先阅读此说明\n  - 必须严格遵循此说明中的规定\n\n##背景信息: - 品牌是Razer, 可以参考的页面: \n- https://www.razer.com/store \n- 从中提取组件的样式信息进行参考 \n- 参照Shadcn-ui中的组件规范\n\n##样式定义:\n### 颜色 \n- 组件主色为: #44d62c \n- 组件高亮主色为: #73e161 \n- 背景主色为: #111111 \n- 背景二级色为: #222222 \n- 文字主色为: #000000 \n- 文字在背景中的主色为: #ffffff \n- 文字在背景中的二级色为: #909090 \n- 其他颜色可以按照需求进行衍生 \n### 尺寸 \n- 尺寸分别为四个档位: xs, sm , base, lg \n- 文字尺寸在档位中分别对应: \n  - xs: 12px \n  - sm: 14px \n  - base: 16px \n  - lg: 18px \n  - padding等间距尺寸也应该依据档位进行不同划分 "
+    },
+    {
+      "type": "frame",
+      "id": "ixE3k",
+      "x": 9487,
+      "y": -2875,
+      "name": "Checkbox Components",
+      "width": 400,
+      "fill": "#111111",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": 32,
+      "children": [
+        {
+          "type": "text",
+          "id": "vBfPs",
+          "name": "Title",
+          "fill": "#FFFFFF",
+          "content": "Checkbox Components",
+          "fontFamily": "Roboto",
+          "fontSize": 24,
+          "fontWeight": "600"
+        },
+        {
+          "type": "frame",
+          "id": "FeeRg",
+          "name": "Standard Size",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "lHHGN",
+              "name": "SectionTitle",
+              "fill": "#909090",
+              "content": "Standard Size",
+              "fontFamily": "Roboto",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "ciAHb",
+              "name": "Row1",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "iGLRP",
+                  "name": "cb1",
+                  "height": 24,
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "0Q2K0",
+                      "name": "Box",
+                      "fill": "transparent",
+                      "width": 20,
+                      "height": 20,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#909090"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "qQtFe",
+                      "name": "Label",
+                      "fill": "#909090",
+                      "content": "Unchecked",
+                      "fontFamily": "Roboto",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Ky33z",
+                  "name": "cb2",
+                  "height": 24,
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "RVXLP",
+                      "name": "BoxFrame",
+                      "width": 20,
+                      "height": 20,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 4,
+                          "id": "FYw4w",
+                          "x": 0,
+                          "y": 0,
+                          "name": "boxRect1",
+                          "fill": "#44d62c",
+                          "width": 20,
+                          "height": 20,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#44d62c"
+                          }
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "8sE1A",
+                          "x": 3,
+                          "y": 3,
+                          "name": "checkIcon1New",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "check",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "nkXlM",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Checked",
+                      "fontFamily": "Roboto",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "RSsMh",
+                  "name": "cb3",
+                  "height": 24,
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "NAbZ8",
+                      "name": "Box",
+                      "fill": "transparent",
+                      "width": 20,
+                      "height": 20,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#44d62c"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "IyBeq",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Hover",
+                      "fontFamily": "Roboto",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "JXGDy",
+              "name": "Row2",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ky6iA",
+                  "name": "cb4",
+                  "opacity": 0.5,
+                  "height": 24,
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "vTCZc",
+                      "name": "Box",
+                      "fill": "transparent",
+                      "width": 20,
+                      "height": 20,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#909090"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "UVAUS",
+                      "name": "Label",
+                      "fill": "#909090",
+                      "content": "Disabled",
+                      "fontFamily": "Roboto",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Bj2Sz",
+                  "name": "cb5",
+                  "opacity": 0.5,
+                  "height": 24,
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "xyC9o",
+                      "name": "BoxFrame",
+                      "width": 20,
+                      "height": 20,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 4,
+                          "id": "k99rk",
+                          "x": 0,
+                          "y": 0,
+                          "name": "boxRect3",
+                          "fill": "#44d62c",
+                          "width": 20,
+                          "height": 20,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#44d62c"
+                          }
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "uO82x",
+                          "x": 3,
+                          "y": 3,
+                          "name": "checkIcon3New",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "check",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "8VFgs",
+                      "name": "Label",
+                      "fill": "#909090",
+                      "content": "Disabled Checked",
+                      "fontFamily": "Roboto",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YzpPP",
+          "name": "Small Size",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "nPVD0",
+              "name": "SectionTitle",
+              "fill": "#909090",
+              "content": "Small Size",
+              "fontFamily": "Roboto",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "qolUC",
+              "name": "Row3",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Hltd2",
+                  "name": "cb6",
+                  "height": 20,
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "D4U7c",
+                      "name": "Box",
+                      "fill": "transparent",
+                      "width": 16,
+                      "height": 16,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#909090"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "50Q1q",
+                      "name": "Label",
+                      "fill": "#909090",
+                      "content": "Unchecked",
+                      "fontFamily": "Roboto",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sCFRn",
+                  "name": "cb7",
+                  "height": 20,
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "YLqLm",
+                      "name": "BoxFrame",
+                      "width": 16,
+                      "height": 16,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 3,
+                          "id": "dybc4",
+                          "x": 0,
+                          "y": 0,
+                          "name": "boxRect2",
+                          "fill": "#44d62c",
+                          "width": 16,
+                          "height": 16,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#44d62c"
+                          }
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "bYcxl",
+                          "x": 2,
+                          "y": 2,
+                          "name": "checkIcon2New",
+                          "width": 12,
+                          "height": 12,
+                          "iconFontName": "check",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "uUdJy",
+                      "name": "Label",
+                      "fill": "#FFFFFF",
+                      "content": "Checked",
+                      "fontFamily": "Roboto",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XXQ16",
+          "name": "With Description",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "r803q",
+              "name": "SectionTitle",
+              "fill": "#909090",
+              "content": "With Description",
+              "fontFamily": "Roboto",
+              "fontSize": 12,
+              "fontWeight": "600"
+            },
+            {
+              "type": "frame",
+              "id": "or3D8",
+              "name": "Row4",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "yqza0",
+                  "name": "cb8",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 4,
+                      "id": "icXls",
+                      "name": "Box",
+                      "fill": "transparent",
+                      "width": 20,
+                      "height": 20,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 2,
+                        "fill": "#909090"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "b8tcx",
+                      "name": "TextStack",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "D6Y9e",
+                          "name": "Title",
+                          "fill": "#909090",
+                          "content": "Notifications",
+                          "fontFamily": "Roboto",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "U9Vb6",
+                          "name": "Description",
+                          "fill": "#909090",
+                          "content": "Receive email notifications about activity",
+                          "fontFamily": "Roboto",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "H1YKz",
+                  "name": "cb9",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "YuoAJ",
+                      "name": "BoxFrame",
+                      "width": 20,
+                      "height": 20,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 4,
+                          "id": "rzB1e",
+                          "x": 0,
+                          "y": 0,
+                          "name": "boxRect4",
+                          "fill": "#44d62c",
+                          "width": 20,
+                          "height": 20,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#44d62c"
+                          }
+                        },
+                        {
+                          "type": "icon_font",
+                          "id": "ctElB",
+                          "x": 3,
+                          "y": 3,
+                          "name": "checkIcon4New",
+                          "width": 14,
+                          "height": 14,
+                          "iconFontName": "check",
+                          "iconFontFamily": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wC30I",
+                      "name": "TextStack",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "6s7cd",
+                          "name": "Title",
+                          "fill": "#FFFFFF",
+                          "content": "Newsletter",
+                          "fontFamily": "Roboto",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "eRXTu",
+                          "name": "Description",
+                          "fill": "#909090",
+                          "content": "Subscribe to our weekly newsletter",
+                          "fontFamily": "Roboto",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "id": "ACFqq",
+      "x": 9978,
+      "y": -2875,
+      "width": 250,
+      "height": 219,
+      "content": "重新设计Checkebox, 遵照Razer Style Guide"
+    }
+  ],
+  "themes": {
+    "Mode": [
+      "Dark",
+      "Light"
+    ]
+  },
+  "variables": {
+    "--sidebar-border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#FFFFFF1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "razer-border-dark-30": {
+      "type": "color",
+      "value": "#1111114D"
+    },
+    "razer-border-light-30": {
+      "type": "color",
+      "value": "#F2F3F04D"
+    },
+    "razer-btn-shadow": {
+      "type": "color",
+      "value": "#0000004D"
+    },
+    "razer-gray-active-40": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#00000000",
+          "theme": {
+            "Mode": "Light"
+          }
+        },
+        {
+          "value": "#2A2A2A66",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "razer-gray-hover-40": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#00000000",
+          "theme": {
+            "Mode": "Light"
+          }
+        },
+        {
+          "value": "#44444466",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "razer-green-active-40": {
+      "type": "color",
+      "value": "#3ABF2466"
+    },
+    "razer-green-glow": {
+      "type": "color",
+      "value": "#44D62C66"
+    },
+    "razer-green-hover-20": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#73e16133",
+          "theme": {
+            "Mode": "Light"
+          }
+        },
+        {
+          "value": "#73e16133",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "razer-green-hover-40": {
+      "type": "color",
+      "value": "#5CEB4466"
+    }
+  }
+}
