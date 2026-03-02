@@ -92,9 +92,3 @@
 | Context | 特殊规则或覆盖说明 |
 
 ---
-
-## 相关文档
-
-- [design-guide.md](design-guide.md) — 通用设计原则
-- [color-guide.md](color-guide.md) — 颜色定义
-- [size-guide.md](size-guide.md) — 尺寸档位
