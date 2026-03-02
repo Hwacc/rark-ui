@@ -4,7 +4,7 @@ description: Provides Razer brand design system and style guide for Pencil desig
 version: 1.0.0
 ---
 
-# Razer 样式指南
+# Razer 设计指南
 
 ## First thing first
 在使用Pencil设计组件时:
