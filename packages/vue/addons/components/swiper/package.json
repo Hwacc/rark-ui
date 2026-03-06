@@ -1,6 +1,7 @@
 {
   "name": "@rark-ui/vue-addons-swiper",
   "type": "module",
+  "version": "1.0.0",
   "packageManager": "pnpm@10.13.1",
   "description": "Swiper components for Rark UI",
   "author": {
@@ -19,13 +20,16 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./index.css": "./dist/index.css"
   },
   "module": "./dist/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
+    "copy:css": "bun -e \"import { mkdir } from 'node:fs/promises'; await mkdir('./dist', { recursive: true }); await Bun.write('./dist/index.css', Bun.file('./src/index.css'));\"",
+    "build": "rslib build --tsconfig ./tsconfig.build.json && vue-tsc --project tsconfig.build.json && tsc-alias --project tsconfig.build.json && bun run copy:css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {

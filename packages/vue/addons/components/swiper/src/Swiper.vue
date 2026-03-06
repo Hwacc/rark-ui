@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Swiper as SwiperInstance } from 'swiper/types'
-import type { SwiperEmits, SwiperExpose, SwiperProps, SwiperSlots } from '.'
+import type { SwiperEmits, SwiperProps, SwiperSlots } from '.'
 import { useForwardPropsEmits } from '@rark-ui/vue-addons-shared'
 import { Swiper } from 'swiper/vue'
 import { twMerge } from 'tailwind-merge'
