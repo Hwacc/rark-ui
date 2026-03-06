@@ -6,7 +6,7 @@ import { merge } from 'es-toolkit/compat'
 import { ChevronLeft } from 'lucide-vue-next'
 import { useSwiper } from 'swiper/vue'
 import { twMerge } from 'tailwind-merge'
-import { computed, onMounted, useTemplateRef, watch } from 'vue'
+import { computed, useTemplateRef, watch } from 'vue'
 import { useRegistSwiperEmits, useSwiperModule, useSwiperToggleEnabled } from './utils'
 
 const { class: propsClass, swiper, ...props } = defineProps<SwiperNavigationProps>()
@@ -28,6 +28,8 @@ useRegistSwiperEmits({
 })
 
 watch(forwared, () => {
+  if (!effectiveSwiper.value?.navigation)
+    return
   effectiveSwiper.value.params.navigation = merge(
     {},
     effectiveSwiper.value.params.navigation,
@@ -36,23 +38,28 @@ watch(forwared, () => {
   effectiveSwiper.value.navigation.update()
 })
 
-onMounted(() => {
-  if (effectiveSwiper.value && hasModule('Navigation') && navRef.value) {
-    const options = merge(
-      {},
-      typeof effectiveSwiper.value.params.navigation === 'boolean'
-        ? {}
-        : effectiveSwiper.value.params.navigation,
-      forwared.value,
-      {
-        enabled: true,
-        prevEl: navRef.value,
-      },
-    )
-    effectiveSwiper.value.params.navigation = options
-    effectiveSwiper.value.navigation.init()
-  }
-})
+watch(
+  [effectiveSwiper, navRef],
+  ([swiper, el]) => {
+    if (swiper && hasModule('Navigation') && el) {
+      const options = merge(
+        {},
+        typeof swiper.params.navigation === 'boolean'
+          ? {}
+          : swiper.params.navigation,
+        forwared.value,
+        { enabled: true, prevEl: el },
+      )
+      swiper.params.navigation = options
+      swiper.navigation.destroy()
+      swiper.navigation.init()
+      swiper.navigation.update()
+
+      return () => swiper.navigation?.destroy()
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <template>

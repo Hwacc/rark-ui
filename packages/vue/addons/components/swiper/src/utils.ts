@@ -5,6 +5,14 @@ import { ref, unref, watchEffect } from 'vue'
 
 type MaybeEmptySwiper = Swiper | null | undefined
 
+const MODULE_PROPERTY_MAP: Record<string, keyof Swiper> = {
+  Pagination: 'pagination',
+  Navigation: 'navigation',
+  Autoplay: 'autoplay',
+  Keyboard: 'keyboard',
+  Scrollbar: 'scrollbar',
+}
+
 export function useSwiperModule(
   swiper: MaybeRef<MaybeEmptySwiper> | ComputedRef<MaybeEmptySwiper>,
 ) {
@@ -12,7 +20,10 @@ export function useSwiperModule(
     const _swiper = unref(swiper)
     if (!_swiper)
       return false
-    return _swiper.modules.some(module => module.name === moduleName)
+    const prop = MODULE_PROPERTY_MAP[moduleName]
+    if (!prop)
+      return false
+    return prop in _swiper && _swiper[prop] != null
   }
   return { hasModule }
 }

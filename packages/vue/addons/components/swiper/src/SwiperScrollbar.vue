@@ -5,7 +5,7 @@ import { useForwardProps } from '@rark-ui/vue-addons-shared'
 import { merge } from 'es-toolkit/compat'
 import { useSwiper } from 'swiper/vue'
 import { twMerge } from 'tailwind-merge'
-import { computed, useTemplateRef, watchEffect } from 'vue'
+import { computed, useTemplateRef, watch } from 'vue'
 import { useRegistSwiperEmits, useSwiperModule } from './utils'
 
 const { class: propsClass, swiper, ...props } = defineProps<SwiperScrollbarProps>()
@@ -18,26 +18,29 @@ const { hasModule } = useSwiperModule(effectiveSwiper)
 const scrollRef = useTemplateRef('scrollbar')
 const forwared = useForwardProps(props)
 
-watchEffect(() => {
-  if (effectiveSwiper.value && hasModule('Scrollbar') && scrollRef.value) {
-    const options = merge(
-      {},
-      typeof effectiveSwiper.value.params.scrollbar === 'boolean'
-        ? {}
-        : effectiveSwiper.value.params.scrollbar,
-      forwared.value,
-      {
-        enabled: true,
-        el: scrollRef.value,
-      },
-    )
-    effectiveSwiper.value.params.scrollbar = options
-    effectiveSwiper.value.scrollbar.destroy()
-    effectiveSwiper.value.scrollbar.init()
-    effectiveSwiper.value.scrollbar.updateSize()
-    effectiveSwiper.value.scrollbar.setTranslate()
-  }
-})
+watch(
+  [effectiveSwiper, scrollRef],
+  ([swiper, el]) => {
+    if (swiper && hasModule('Scrollbar') && el) {
+      const options = merge(
+        {},
+        typeof swiper.params.scrollbar === 'boolean'
+          ? {}
+          : swiper.params.scrollbar,
+        forwared.value,
+        { enabled: true, el },
+      )
+      swiper.params.scrollbar = options
+      swiper.scrollbar.destroy()
+      swiper.scrollbar.init()
+      swiper.scrollbar.updateSize()
+      swiper.scrollbar.setTranslate()
+
+      return () => swiper.scrollbar?.destroy()
+    }
+  },
+  { immediate: true },
+)
 
 useRegistSwiperEmits({
   swiperRef: effectiveSwiper,

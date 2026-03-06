@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "composite": true,
+    "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo",
     "target": "ES2020",
 
     "jsx": "preserve",
@@ -15,7 +16,9 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "@rark-ui/addons/*": ["./*"]
+      "@rark-ui/addons/*": ["./*"],
+      "@rark-ui/vue-addons-shared": ["./shared/src"],
+      "@rark-ui/vue-addons-shared/*": ["./shared/src/*"]
     },
     "allowImportingTsExtensions": true,
     "strict": true,

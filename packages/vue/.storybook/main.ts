@@ -14,13 +14,21 @@ function patchVueDocgenRule(rules: any[] = []) {
         ? [rule.use]
         : []
 
+    const loaderName = typeof rule.loader === 'string' ? rule.loader : ''
     const hasVueDocgen = uses.some((u: any) => {
       const loader = typeof u === 'string' ? u : (u?.loader ?? '')
       return String(loader).includes('vue-docgen-loader')
-    })
+    }) || loaderName.includes('vue-docgen-loader')
 
     if (hasVueDocgen) {
       rule.resourceQuery = { not: [/raw$/] }
+      // vue-docgen-api 暂不支持 Vue 3.5 generic 语法，排除使用 generic 的组件
+      const genericExclude = /(tree[\\/]Tree|theme[\\/]ThemeProvider|select[\\/]Select)\.vue$/
+      rule.exclude = rule.exclude
+        ? Array.isArray(rule.exclude)
+          ? [...rule.exclude, genericExclude]
+          : [rule.exclude, genericExclude]
+        : genericExclude
     }
   }
 }
@@ -44,13 +52,6 @@ const config: StorybookConfig = {
         },
       },
     })
-
-    /**
-     * 生成时, vue-docgen-loader warning 解析不了?raw结尾的引用
-     * 这里merge出的config会在rsbuildFinal最终调用被rsbuildFinalDoc返回的config覆盖导致无法控制vue-docgen-loader
-     *
-     * see: https://github.com/rstackjs/storybook-rsbuild/blob/main/packages/framework-vue3/src/framework-preset-vue3.ts
-     */
     return mergeRsbuildConfig(merged, {
       tools: {
         rspack(rspackConfig) {

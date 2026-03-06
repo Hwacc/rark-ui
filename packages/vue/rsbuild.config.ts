@@ -9,6 +9,7 @@ export default defineConfig({
       '@rark-ui/vue': './core/src',
       '@rark-ui/shared': '../shared/src',
       '@rark-ui/themes': '../themes/src',
+      '@rark-ui/vue-addons-shared': './addons/shared/src',
     },
   },
   plugins: [
