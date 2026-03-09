@@ -66,8 +66,8 @@ useForwardExpose()
         </ScrollArea.Content>
       </ScrollArea.Viewport>
       <template
-        v-for="node in scrollbarNodes"
-        :key="node.key"
+        v-for="(node, index) in scrollbarNodes"
+        :key="node.key ?? index"
       >
         <component
           :is="node"
@@ -75,12 +75,10 @@ useForwardExpose()
             isShowScrollbars.vertical
               && (node.props?.orientation === 'vertical' || !node.props?.orientation)
           "
-          :key="node.key"
         />
         <component
           :is="node"
           v-if="isShowScrollbars.horizontal && node.props?.orientation === 'horizontal'"
-          :key="node.key"
           :data-test="node.props?.orientation"
         />
       </template>
