@@ -2,7 +2,7 @@
 import type { DialogContentProps } from '.'
 import { Dialog } from '@ark-ui/vue/dialog'
 import { ark } from '@ark-ui/vue/factory'
-import { cn } from '@rark-ui/themes/default'
+import { cn } from '@rark-ui/themes/utils'
 import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { hasChildVNodeByName } from '@rark-ui/vue/utils/vnode'
 import { X } from 'lucide-vue-next'

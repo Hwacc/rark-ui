@@ -1,6 +1,7 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type { Crafts, ThemeProps } from '../providers/theme/theme-props'
-import { crafts, tv } from '@rark-ui/themes/default'
+import { crafts } from '@rark-ui/themes/default'
+import { tv } from '@rark-ui/themes/utils'
 import { omitBy } from 'es-toolkit'
 import { isNil, keysIn } from 'es-toolkit/compat'
 import { computed, getCurrentInstance, toValue } from 'vue'
@@ -21,18 +22,21 @@ function clean(obj: ComputedRef<ThemeProps | undefined>) {
   return omitBy(obj.value ?? {}, value => isNil(value))
 }
 
-function resolvePropsCrafts(
-  propsCrafts: unknown,
-  compName: string | undefined,
-): Partial<Crafts> {
+function resolvePropsCrafts(propsCrafts: unknown, compName: string | undefined): Partial<Crafts> {
   if (!propsCrafts)
     return {}
   if (typeof propsCrafts === 'function')
     return propsCrafts()
   if (Object.keys(propsCrafts as object).some(k => CRAFTS_KEYS.includes(k)))
     return pickDefined<Crafts>(propsCrafts as Crafts)
-  if (compName && CRAFTS_KEYS.includes(`tv${compName}`))
-    return { [`tv${compName}`]: tv({ extend: crafts[`tv${compName}` as keyof typeof crafts], ...(propsCrafts as object) }) }
+  if (compName && CRAFTS_KEYS.includes(`tv${compName}`)) {
+    return {
+      [`tv${compName}`]: tv({
+        extend: crafts[`tv${compName}` as keyof typeof crafts],
+        ...(propsCrafts as object),
+      }),
+    }
+  }
   return {}
 }
 

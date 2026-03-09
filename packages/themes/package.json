@@ -16,6 +16,11 @@
     "tailwind"
   ],
   "exports": {
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.js",
+      "default": "./dist/utils/index.js"
+    },
     "./razer": {
       "types": "./dist/razer/index.d.ts",
       "import": "./dist/razer/index.js",

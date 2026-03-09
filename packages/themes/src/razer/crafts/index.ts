@@ -5,7 +5,7 @@
  *
  * example:
  * import { coreCrafts } from '../../../default'
- * import { tv } from '../../../shared/utils/tv'
+ * import { tv } from '../../utils'
  * export const tvButton = tv({
  *   extend: coreCrafts.tvButton,
  *   // your own customizations here

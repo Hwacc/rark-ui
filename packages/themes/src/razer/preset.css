@@ -1,4 +1,4 @@
-@import '../shared/css/index.css';
+@import '../css/index.css';
 
 @custom-variant skin-razer (&:where(html[data-theme-skin=razer], html[data-theme-skin=razer] *));
 

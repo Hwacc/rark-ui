@@ -1,6 +1,6 @@
 import type { ThemeNoCrafts, ThemeProps } from '@rark-ui/vue/providers/theme'
 import type { DefineComponent, HTMLAttributes, PropType } from 'vue'
-import { cn } from '@rark-ui/themes/default'
+import { cn } from '@rark-ui/themes/utils'
 import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { computed, defineComponent } from 'vue'
 

@@ -1,5 +1,5 @@
-import type { VariantProps } from '../../shared/utils/tv'
-import { tv } from '../../shared/utils/tv'
+import type { VariantProps } from '../../utils'
+import { tv } from '../../utils'
 import { tvInput } from './input'
 
 const prefix = 'rui-editable'

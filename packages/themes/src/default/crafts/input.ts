@@ -1,5 +1,5 @@
-import type { VariantProps } from '../../shared/utils/tv'
-import { tv } from '../../shared/utils/tv'
+import type { VariantProps } from '../../utils'
+import { tv } from '../../utils'
 
 const prefix = 'rui-input'
 
@@ -21,7 +21,7 @@ export const tvInput = tv({
   variants: {
     size: {
       xs: {
-        root: 'px-2 py-1.5 gap-1.5 text-xs',
+        root: 'px-2 py-1 gap-1.5 text-xs',
         input: 'placeholder:text-xs',
       },
       sm: {
