@@ -18,6 +18,7 @@ export * from './props'
 const MenuArrow = createArrow(ArkMenuArrow, ArkMenuArrowTip)
 export { MenuArrow }
 export {
+  MenuContext,
   MenuContextTrigger,
   MenuItemIndicator,
   MenuItemText,
