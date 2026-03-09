@@ -62,7 +62,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "@ark-ui/vue": "^5.34.0",
+    "@ark-ui/vue": "^5.34.1",
     "vue": "^3.5.0"
   },
   "dependencies": {
@@ -71,11 +71,11 @@
     "@rark-ui/themes": "workspace:*",
     "@vueuse/core": "^14.1.0",
     "es-toolkit": "^1.44.0",
-    "lucide-vue-next": "^0.563.0",
+    "lucide-vue-next": "^0.577.0",
     "vue-component-type-helpers": "^3.2.1"
   },
   "devDependencies": {
-    "@ark-ui/vue": "^5.34.0",
+    "@ark-ui/vue": "^5.34.1",
     "@iconify/vue": "^5.0.0",
     "@internationalized/date": "^3.10.1",
     "@rark-ui/shared": "workspace:*",
@@ -88,10 +88,8 @@
     "@zag-js/select": "^1.33.1",
     "@zag-js/toast": "^1.33.1",
     "@zag-js/tree-view": "^1.33.1",
-    "lucide-vue-next": "^0.563.0",
     "rsbuild-plugin-unplugin-vue": "^0.1.0",
     "tsc-alias": "^1.8.16",
-    "vue-component-type-helpers": "^3.2.1",
     "vue-tsc": "^3.2.4"
   },
   "publishConfig": {
