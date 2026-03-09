@@ -38,6 +38,12 @@ importers:
       tailwind-variants:
         specifier: ^3.2.2
         version: 3.2.2(tailwind-merge@3.4.0)(tailwindcss@4.1.18)
+      tailwindcss-animated:
+        specifier: ^2.0.0
+        version: 2.0.0(tailwindcss@4.1.18)
+      tailwindcss-motion:
+        specifier: ^1.1.1
+        version: 1.1.1(tailwindcss@4.1.18)
     devDependencies:
       '@tailwindcss/cli':
         specifier: ^4.1.18
@@ -45,12 +51,6 @@ importers:
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
-      tailwindcss-animated:
-        specifier: ^2.0.0
-        version: 2.0.0(tailwindcss@4.1.18)
-      tailwindcss-motion:
-        specifier: ^1.1.1
-        version: 1.1.1(tailwindcss@4.1.18)
 
   packages/vue:
     dependencies:
