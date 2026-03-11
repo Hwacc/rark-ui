@@ -1,6 +1,6 @@
 import type { UseTreeViewNodeContext } from '@ark-ui/vue'
 import type { ThemeNoCrafts } from '@rark-ui/vue/providers/theme'
-import type { HTMLAttributes, PropType, SlotsType, UnwrapRef } from 'vue'
+import type { h, HTMLAttributes, PropType, SlotsType, UnwrapRef, VNode } from 'vue'
 import type { TreeKeyMap, TreeNodeData } from './props'
 import { TreeView, useTreeViewContext } from '@ark-ui/vue'
 import { useTheme } from '@rark-ui/vue/composables/useTheme'
@@ -16,6 +16,21 @@ interface ResolvedKeyMap {
   children: string
   icon: string
 }
+
+type RenderIconProps = {
+  icon: string | VNode | Function
+  node: TreeNodeData
+  state: UnwrapRef<UseTreeViewNodeContext>
+  class: HTMLAttributes['class']
+}
+type RenderIcon = (props: RenderIconProps) => ReturnType<typeof h>
+
+type RenderNameProps = {
+  name: string | VNode | Function
+  node: TreeNodeData
+  state: UnwrapRef<UseTreeViewNodeContext>
+}
+type RenderName = (props: RenderNameProps) => ReturnType<typeof h>
 
 export default defineComponent({
   name: 'TreeCheckboxNode',
@@ -67,6 +82,38 @@ export default defineComponent({
         icon: 'icon',
       }),
     },
+
+    renderIcon: {
+      type: Function as PropType<RenderIcon>,
+      default: (props: RenderIconProps) => {
+        if (typeof props.icon === 'string') {
+          return <Icon class={props.class} icon={props.icon} />
+        }
+        if (isVNode(props.icon)) {
+          return cloneVNode(props.icon, { class: props.class })
+        }
+        if (typeof props.icon === 'function') {
+          return props.icon(props)
+        }
+        return <></>
+      },
+    },
+
+    renderName: {
+      type: Function as PropType<RenderName>,
+      default: (props: RenderNameProps) => {
+        if (typeof props.name === 'string') {
+          return <>{props.name}</>
+        }
+        if (isVNode(props.name)) {
+          return cloneVNode(props.name)
+        }
+        if (typeof props.name === 'function') {
+          return props.name(props)
+        }
+        return <></>
+      },
+    },
   },
 
   slots: Object as SlotsType<{
@@ -94,45 +141,6 @@ export default defineComponent({
       }, unref(keyMap))
       const uUi = unref(ui)
       const attrsClass = attrs.class as HTMLAttributes['class']
-
-      function renderIcon(
-        iconProps: {
-          node: TreeNodeData
-          state: UnwrapRef<UseTreeViewNodeContext>
-          class: HTMLAttributes['class']
-        },
-      ) {
-        const icon = uNode[uKeyMap.icon]
-        if (typeof icon === 'string') {
-          return <Icon class={iconProps.class} icon={icon} />
-        }
-        else if (isVNode(icon)) {
-          return cloneVNode(icon, { class: iconProps.class })
-        }
-        else if (typeof icon === 'function') {
-          return icon(iconProps)
-        }
-        return <></>
-      }
-
-      function renderName(
-        nameProps: {
-          node: TreeNodeData
-          state: UnwrapRef<UseTreeViewNodeContext>
-        },
-      ) {
-        const name = uNode[uKeyMap.name]
-        if (typeof name === 'string') {
-          return <>{name}</>
-        }
-        else if (isVNode(name)) {
-          return cloneVNode(name)
-        }
-        else if (typeof name === 'function') {
-          return name(nameProps)
-        }
-        return <></>
-      }
 
       return (
         <TreeView.NodeProvider node={uNode} indexPath={uIndexPath}>
@@ -188,9 +196,10 @@ export default defineComponent({
                                             </TreeView.NodeCheckboxIndicator>
                                           </div>
                                         </TreeView.NodeCheckbox>
-                                        {renderIcon(
+                                        {props.renderIcon(
                                           {
                                             node: uNode,
+                                            icon: uNode[uKeyMap.icon] as any,
                                             state: nodeState,
                                             class: branchCrafts.value.icon({
                                               class: uUi.branchIcon,
@@ -200,7 +209,8 @@ export default defineComponent({
                                         )}
                                         <TreeView.BranchText class={branchCrafts.value.text({ class: uUi.branchText, ...theme.value })}>
                                           {
-                                            renderName({
+                                            props.renderName({
+                                              name: uNode[uKeyMap.name] as any,
                                               node: uNode,
                                               state: nodeState,
                                             })
@@ -224,6 +234,8 @@ export default defineComponent({
                                     node={child}
                                     indexPath={[...uIndexPath, index]}
                                     keyMap={uKeyMap}
+                                    renderIcon={props.renderIcon}
+                                    renderName={props.renderName}
                                   />
                                 )
                               })
@@ -276,15 +288,19 @@ export default defineComponent({
                                       </div>
                                     </TreeView.NodeCheckbox>
                                     {
-                                      renderIcon({
-                                        node: uNode,
-                                        state: nodeState,
-                                        class: itemCrafts.value.icon({ class: uUi.itemIcon, ...theme.value }),
-                                      })
+                                      props.renderIcon(
+                                        {
+                                          node: uNode,
+                                          icon: uNode[uKeyMap.icon] as any,
+                                          state: nodeState,
+                                          class: itemCrafts.value.icon({ class: uUi.itemIcon, ...theme.value }),
+                                        },
+                                      )
                                     }
                                     <TreeView.ItemText class={itemCrafts.value.text({ class: uUi.itemText, ...theme.value })}>
                                       {
-                                        renderName({
+                                        props.renderName({
+                                          name: uNode[uKeyMap.name] as any,
                                           node: uNode,
                                           state: nodeState,
                                         })

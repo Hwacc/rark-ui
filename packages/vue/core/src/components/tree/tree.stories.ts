@@ -6,6 +6,8 @@ import CheckboxExample from './examples/checkbox.vue'
 import CheckboxExampleRaw from './examples/checkbox.vue?raw'
 import CustomDatatypeExample from './examples/custom-datatype.vue'
 import CustomDatatypeExampleRaw from './examples/custom-datatype.vue?raw'
+import CustomPropsRenderExample from './examples/custom-props-render.vue'
+import CustomPropsRenderExampleRaw from './examples/custom-props-render.vue?raw'
 import CustomRenderExample from './examples/custom-render.vue'
 import CustomRenderExampleRaw from './examples/custom-render.vue?raw'
 import EventsExample from './examples/events.vue'
@@ -92,6 +94,21 @@ export const CustomRender = {
   },
   render: () => ({
     components: { Component: CustomRenderExample },
+    template: '<Component />',
+  }),
+}
+
+export const CustomPropsRender = {
+  parameters: {
+    docs: {
+      source: {
+        code: CustomPropsRenderExampleRaw,
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Component: CustomPropsRenderExample },
     template: '<Component />',
   }),
 }
