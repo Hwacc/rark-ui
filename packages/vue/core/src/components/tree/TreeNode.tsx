@@ -30,7 +30,7 @@ type RenderNameProps = {
   node: TreeNodeData
   state: UnwrapRef<UseTreeViewNodeContext>
 }
-type RenderName = (props: RenderNameProps) => ReturnType<typeof h>
+type RenderName = (props: RenderNameProps) => ReturnType<typeof h> | string
 
 export default defineComponent({
   name: 'TreeNode',
@@ -98,16 +98,13 @@ export default defineComponent({
     renderName: {
       type: Function as PropType<RenderName>,
       default: (props: RenderNameProps) => {
-        if (typeof props.name === 'string') {
-          return <>{props.name}</>
-        }
-        if (isVNode(props.name)) {
-          return cloneVNode(props.name)
+        if (typeof props.name === 'string' || isVNode(props.name)) {
+          return props.name
         }
         if (typeof props.name === 'function') {
           return props.name(props)
         }
-        return <></>
+        return ''
       },
     },
   },
