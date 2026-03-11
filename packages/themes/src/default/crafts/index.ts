@@ -36,7 +36,6 @@ export {
   tvPaginationGoto,
   tvPaginationPageSize,
 } from './pagination'
-export { type PinInputVariants, tvPinInput } from './pin-input'
 export { type PopoverVariants, tvPopover } from './popover'
 export { type ProgressVariants, tvProgress } from './progress'
 export { type RadioGroupVariants, tvRadioGroup } from './radio-group'
