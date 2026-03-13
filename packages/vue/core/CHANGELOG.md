@@ -1,5 +1,11 @@
 # @rark-ui/vue
 
+## 1.5.8
+
+### Patch Changes
+
+- abbf1bd: Improved tree-view performance
+
 ## 1.5.7
 
 ### Patch Changes
