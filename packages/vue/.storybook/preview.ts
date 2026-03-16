@@ -18,6 +18,7 @@ const preview: Preview = {
     controls: { disable: true },
     backgrounds: {
       options: {
+        black: { name: 'Black', value: '#000000' },
         dark: { name: 'Dark', value: '#222222' },
         light: { name: 'Light', value: '#eeeeee' },
       },

@@ -1,5 +1,7 @@
 import type { Meta } from 'storybook-vue3-rsbuild'
 
+import { h } from 'vue'
+import { Button } from '.'
 import BasicExample from './examples/basic.vue'
 import BasicExampleRaw from './examples/basic.vue?raw'
 import CraftsExample from './examples/crafts.vue'
@@ -72,5 +74,48 @@ export const Crafts = {
   render: () => ({
     components: { Component: CraftsExample },
     template: '<Component />',
+  }),
+}
+
+export const ThemeExample = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<Button :theme="{ size: \'sm\' }">Small</Button>\n<Button :theme="{ size: \'lg\', skin: \'razer\' }">Large</Button>',
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Button },
+    setup() {
+      return () =>
+        h('div', { class: 'flex items-center gap-4' }, [
+          h(Button, { theme: { size: 'sm' } }, 'Small'),
+          h(Button, { theme: { size: 'lg', skin: 'razer' } }, 'Large'),
+        ])
+    },
+  }),
+}
+
+export const UIExample = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button :ui="{ root: { class: 'custom-btn' } }">Custom</Button>
+<Button loading :ui="{ loading: { class: 'text-blue-500' } }">Loading</Button>`,
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Button },
+    setup() {
+      return () =>
+        h('div', { class: 'flex items-center gap-4' }, [
+          h(Button, { ui: { root: { class: 'bg-red-500' } } }, 'Custom'),
+          h(Button, { loading: true, ui: { loading: { class: 'text-blue-500' } } }, 'Loading'),
+        ])
+    },
   }),
 }

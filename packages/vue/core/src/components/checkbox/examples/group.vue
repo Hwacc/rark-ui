@@ -16,6 +16,7 @@ const items = Array.from({ length: 5 }, (_, index) => {
 </script>
 
 <template>
+  <!-- id 是因为在story doc 中渲染多个组件时，需要有唯一的 id来使浏览器默认form行为进行区分 -->
   <div class="w-full flex flex-col gap-2">
     <div class="flex items-center gap-3">
       <span class="text-sm text-hff">checkeds: {{ checkeds }}</span>
@@ -23,8 +24,8 @@ const items = Array.from({ length: 5 }, (_, index) => {
     <CheckboxGroup v-model="checkeds" name="birds">
       <div class="flex items-center gap-4">
         <Checkbox
-          v-for="item in items"
-          :key="item.value"
+          v-for="(item, index) in items"
+          :key="index"
           :label="item.label"
           :value="item.value"
           :name="item.label"

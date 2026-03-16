@@ -26,7 +26,10 @@ function handleViewChange(details: ViewChangeDetails) {
     </div>
 
     <div class="w-full max-w-[520px] rounded-md border border-h33 p-3">
-      <DatePicker v-model="value" @view-change="handleViewChange">
+      <DatePicker
+        v-model="value"
+        @view-change="handleViewChange"
+      >
         <DatePickerControl class="w-fit">
           <DatePickerTrigger>
             <Button> Select Date</Button>

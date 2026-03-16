@@ -1,0 +1,329 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as CollapsibleStories from './collapsible.stories'
+
+<Meta of={CollapsibleStories} />
+
+# Collapsible
+
+Collapsible 折叠面板组件，用于在有限空间中展开/收起内容。该模块提供 `Collapsible`、`CollapsibleTrigger`、`CollapsibleContent` 以及便捷封装 `ReadMore`，支持主题尺寸配置与触发器/UI 样式扩展。
+
+---
+
+## Examples
+
+展示组件的常见使用方式。
+
+### 基础用法
+
+<Canvas of={CollapsibleStories.Basic} />
+
+### 状态（默认展开 / 禁用）
+
+<Canvas of={CollapsibleStories.States} />
+
+### 尺寸
+
+<Canvas of={CollapsibleStories.Sizes} />
+
+### Trigger 与插槽
+
+<Canvas of={CollapsibleStories.TriggerAndSlots} />
+
+### ReadMore
+
+<Canvas of={CollapsibleStories.ReadMore} />
+
+---
+
+## ARK UI Link
+
+`Collapsible`、`CollapsibleTrigger`、`CollapsibleContent` 基于 Ark UI Collapsible 组件实现，根组件 props 会通过 `useForwardProps` 透传到底层 Ark UI 组件。
+
+- **相关文档**: [Ark UI Collapsible (Vue)](https://ark-ui.com/vue/docs/components/collapsible)
+- **说明**: `Collapsible` 根组件完整支持 Ark UI Collapsible Root 的 props（如 `defaultOpen`、`disabled`、`collapsedHeight` 等），并额外支持 `theme/class` 扩展。
+
+---
+
+## Props
+
+由于 Collapsible 为复合组件，以下按子组件说明 props（`theme` 详见 Theme Configuration）。
+
+### Collapsible
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>defaultOpen</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>初始是否展开（非受控）</td>
+    </tr>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>受控展开状态</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>是否禁用折叠交互</td>
+    </tr>
+    <tr>
+      <td><code>collapsedHeight</code></td>
+      <td><code>number | string</code></td>
+      <td><code>0</code></td>
+      <td>收起状态保留的内容高度（如 ReadMore 场景）</td>
+    </tr>
+    <tr>
+      <td><code>onOpenChange</code></td>
+      <td><code>(details) =&gt; void</code></td>
+      <td>-</td>
+      <td>展开状态变化回调</td>
+    </tr>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>根元素自定义 class</td>
+    </tr>
+  </tbody>
+</table>
+
+### CollapsibleTrigger
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>indicator</code></td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>是否显示默认箭头指示器</td>
+    </tr>
+    <tr>
+      <td><code>asChild</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>是否将 props 合并到子元素</td>
+    </tr>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>触发器自定义 class</td>
+    </tr>
+    <tr>
+      <td><code>ui.root</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>触发器根节点 class</td>
+    </tr>
+    <tr>
+      <td><code>ui.indicator</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>指示器节点 class</td>
+    </tr>
+  </tbody>
+</table>
+
+### CollapsibleContent
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>asChild</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>是否将 props 合并到子元素</td>
+    </tr>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>内容区域自定义 class</td>
+    </tr>
+  </tbody>
+</table>
+
+### ReadMore
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>text.more</code></td>
+      <td><code>string</code></td>
+      <td><code>'View More'</code></td>
+      <td>收起状态触发器文案</td>
+    </tr>
+    <tr>
+      <td><code>text.less</code></td>
+      <td><code>string</code></td>
+      <td><code>'View Less'</code></td>
+      <td>展开状态触发器文案</td>
+    </tr>
+    <tr>
+      <td><code>ui.root</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>ReadMore 根节点 class</td>
+    </tr>
+    <tr>
+      <td><code>ui.content</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>ReadMore 内容区 class</td>
+    </tr>
+    <tr>
+      <td><code>ui.trigger</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>ReadMore 触发器 class</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Theme Configuration
+
+通过 `theme` prop 控制组件主题样式，适用于 `Collapsible`（以及继承其 props 的 `ReadMore`）。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'xs' | 'sm' | 'base' | 'lg'</code></td>
+      <td><code>'base'</code></td>
+      <td>折叠触发器尺寸</td>
+    </tr>
+    <tr>
+      <td><code>skin</code></td>
+      <td><code>'razer' | 'shadcn'</code></td>
+      <td>-</td>
+      <td>主题皮肤</td>
+    </tr>
+    <tr>
+      <td><code>surface</code></td>
+      <td><code>'light' | 'dark'</code></td>
+      <td>-</td>
+      <td>亮色/暗色表面</td>
+    </tr>
+    <tr>
+      <td><code>unstyled</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否移除默认样式</td>
+    </tr>
+    <tr>
+      <td><code>bordered</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否显示边框</td>
+    </tr>
+    <tr>
+      <td><code>crafts</code></td>
+      <td><code>object</code></td>
+      <td>-</td>
+      <td>覆盖 <code>tvCollapsible</code> / <code>tvReadMore</code> 的 crafts 配置</td>
+    </tr>
+  </tbody>
+</table>
+
+**示例**:
+
+<Canvas of={CollapsibleStories.ThemeExample} />
+
+---
+
+## UI Configuration
+
+`Collapsible` 根组件本身不提供 `ui` props，但以下子组件支持：
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>CollapsibleTrigger.ui.root</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>触发器根节点 class</td>
+    </tr>
+    <tr>
+      <td><code>CollapsibleTrigger.ui.indicator</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>箭头指示器 class</td>
+    </tr>
+    <tr>
+      <td><code>ReadMore.ui.root</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>ReadMore 根节点 class</td>
+    </tr>
+    <tr>
+      <td><code>ReadMore.ui.content</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>ReadMore 内容区域 class</td>
+    </tr>
+    <tr>
+      <td><code>ReadMore.ui.trigger</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>ReadMore 触发器 class</td>
+    </tr>
+  </tbody>
+</table>
+
+**示例**:
+
+<Canvas of={CollapsibleStories.UIExample} />

@@ -7,3 +7,7 @@
 :root {
   color: var(--color-hff);
 }
+
+.docs-story {
+  background: #222 !important;
+}

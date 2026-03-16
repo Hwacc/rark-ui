@@ -1,0 +1,228 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as CheckboxStories from './checkbox.stories'
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+Checkbox 复选框组件，用于单项勾选、混合态（`indeterminate`）展示与多选组场景。基于 Ark UI Checkbox 构建，支持主题尺寸配置与分槽位样式定制。
+
+---
+
+## Examples
+
+展示组件的常见使用方式。
+
+### 基本用法
+
+<Canvas of={CheckboxStories.Basic} />
+
+### 状态（受控/默认/禁用）
+
+<Canvas of={CheckboxStories.States} />
+
+### 尺寸
+
+<Canvas of={CheckboxStories.Sizes} />
+
+### 复选组
+
+<Canvas of={CheckboxStories.Group} />
+
+### 插槽与 UI 定制
+
+<Canvas of={CheckboxStories.SlotsAndUi} />
+
+---
+
+## ARK UI Link
+
+Checkbox 对应 Ark UI 的 Checkbox 组件，根组件 props 会通过 `useForwardProps` 透传到 Ark UI Root。
+
+- **相关文档**: [Ark UI Checkbox (Vue)](https://ark-ui.com/vue/docs/components/checkbox)
+- **说明**: 根组件完整兼容 Ark UI Checkbox Root 的核心能力（如 `checked`、`defaultChecked`、`name`、`required`、`invalid` 等），并额外提供 `label`、`theme`、`ui` 便捷配置。
+
+---
+
+## Props
+
+组件主要 props 及说明（`theme` 详见 Theme Configuration）。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>复选框文本标签；也可使用 <code>label</code> 插槽自定义</td>
+    </tr>
+    <tr>
+      <td><code>checked</code></td>
+      <td><code>boolean | 'indeterminate'</code></td>
+      <td>-</td>
+      <td>受控选中状态</td>
+    </tr>
+    <tr>
+      <td><code>defaultChecked</code></td>
+      <td><code>boolean | 'indeterminate'</code></td>
+      <td>-</td>
+      <td>非受控初始状态</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否禁用</td>
+    </tr>
+    <tr>
+      <td><code>invalid</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否为校验错误态</td>
+    </tr>
+    <tr>
+      <td><code>readOnly</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否只读</td>
+    </tr>
+    <tr>
+      <td><code>required</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否必填（表单语义）</td>
+    </tr>
+    <tr>
+      <td><code>name</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>表单字段名</td>
+    </tr>
+    <tr>
+      <td><code>value</code></td>
+      <td><code>string | number | symbol | bigint | null</code></td>
+      <td>-</td>
+      <td>复选值（常用于 CheckboxGroup）</td>
+    </tr>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>根元素自定义 class</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Theme Configuration
+
+通过 `theme` prop 控制 Checkbox 的主题样式。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'xs' | 'sm' | 'base' | 'lg'</code></td>
+      <td><code>'base'</code></td>
+      <td>复选框尺寸</td>
+    </tr>
+    <tr>
+      <td><code>skin</code></td>
+      <td><code>'razer' | 'shadcn'</code></td>
+      <td>-</td>
+      <td>主题皮肤</td>
+    </tr>
+    <tr>
+      <td><code>surface</code></td>
+      <td><code>'light' | 'dark'</code></td>
+      <td>-</td>
+      <td>亮色/暗色表面</td>
+    </tr>
+    <tr>
+      <td><code>unstyled</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否移除默认样式</td>
+    </tr>
+    <tr>
+      <td><code>bordered</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否显示边框</td>
+    </tr>
+    <tr>
+      <td><code>crafts</code></td>
+      <td><code>object</code></td>
+      <td>-</td>
+      <td>覆盖 <code>tvCheckbox</code> 的 crafts 配置</td>
+    </tr>
+  </tbody>
+</table>
+
+**示例**:
+
+<Canvas of={CheckboxStories.ThemeExample} />
+
+---
+
+## UI Configuration
+
+通过 `ui` prop 可配置 Checkbox 各 slot 的样式。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ui.root</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>根容器的自定义 class</td>
+    </tr>
+    <tr>
+      <td><code>ui.control</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>控制框（方框）自定义 class</td>
+    </tr>
+    <tr>
+      <td><code>ui.indicator</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>指示器容器自定义 class</td>
+    </tr>
+    <tr>
+      <td><code>ui.label</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>标签文本自定义 class</td>
+    </tr>
+  </tbody>
+</table>
+
+**示例**:
+
+<Canvas of={CheckboxStories.UIExample} />

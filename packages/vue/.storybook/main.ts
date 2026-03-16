@@ -35,6 +35,7 @@ function patchVueDocgenRule(rules: any[] = []) {
 
 const config: StorybookConfig = {
   stories: [
+    '../core/src/**/*.mdx',
     '../core/src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
     '../addons/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],

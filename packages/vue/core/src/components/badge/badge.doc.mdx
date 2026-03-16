@@ -1,0 +1,191 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as BadgeStories from './badge.stories'
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Badge 徽章组件，用于展示状态、计数或提示信息。支持多种变体（默认、次要、圆点）和尺寸，可渲染为 `div` 或 `sup` 元素。
+
+---
+
+## Examples
+
+展示组件的常见使用方式。
+
+### 基本用法（尺寸）
+
+<Canvas of={BadgeStories.Basic} />
+
+### 次要样式
+
+<Canvas of={BadgeStories.Secondary} />
+
+### 圆点样式
+
+<Canvas of={BadgeStories.Dot} />
+
+---
+
+## ARK UI Link
+
+Badge 基于 [Ark UI](https://ark-ui.com) 的 `ark.div` 和 `ark.sup` 原语实现，根组件的 props 会通过 `useForwardProps` 透传到底层元素。
+
+- **相关文档**: [Ark UI Vue Factory](https://ark-ui.com/vue/factory)
+- **说明**: 根组件完全支持 Ark UI 对应原语（`div` / `sup`）的 HTML 属性，可传递任意原生 HTML 属性（如 `data-*`、`aria-*` 等）。
+
+---
+
+## Props
+
+组件的 props 及说明（`theme` 详见 Theme Configuration）。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>variant</code>
+      </td>
+      <td>
+        <code>'default' | 'secondary' | 'dot'</code>
+      </td>
+      <td>
+        <code>'default'</code>
+      </td>
+      <td>徽章变体样式</td>
+    </tr>
+    <tr>
+      <td>
+        <code>as</code>
+      </td>
+      <td>
+        <code>'div' | 'sup'</code>
+      </td>
+      <td>
+        <code>'div'</code>
+      </td>
+      <td>渲染的 HTML 元素，圆点场景常用 sup</td>
+    </tr>
+    <tr>
+      <td>
+        <code>asChild</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>-</td>
+      <td>是否将 props 合并到子元素（复合组件场景）</td>
+    </tr>
+    <tr>
+      <td>
+        <code>class</code>
+      </td>
+      <td>
+        <code>string | array | object</code>
+      </td>
+      <td>-</td>
+      <td>自定义 class</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Theme Configuration
+
+通过 `theme` prop 控制组件的主题样式。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>size</code>
+      </td>
+      <td>
+        <code>'xs' | 'sm' | 'base' | 'lg'</code>
+      </td>
+      <td>
+        <code>'base'</code>
+      </td>
+      <td>徽章尺寸</td>
+    </tr>
+    <tr>
+      <td>
+        <code>skin</code>
+      </td>
+      <td>
+        <code>'razer' | 'shadcn'</code>
+      </td>
+      <td>-</td>
+      <td>主题皮肤</td>
+    </tr>
+    <tr>
+      <td>
+        <code>surface</code>
+      </td>
+      <td>
+        <code>'light' | 'dark'</code>
+      </td>
+      <td>-</td>
+      <td>亮色/暗色表面</td>
+    </tr>
+    <tr>
+      <td>
+        <code>unstyled</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>-</td>
+      <td>是否移除默认样式</td>
+    </tr>
+    <tr>
+      <td>
+        <code>bordered</code>
+      </td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>-</td>
+      <td>是否显示边框</td>
+    </tr>
+    <tr>
+      <td>
+        <code>crafts</code>
+      </td>
+      <td>
+        <code>object</code>
+      </td>
+      <td>-</td>
+      <td>覆盖 tvBadge 的 crafts 配置</td>
+    </tr>
+  </tbody>
+</table>
+
+**示例**:
+
+<Canvas of={BadgeStories.ThemeExample} />
+
+---
+
+## UI Configuration
+
+本组件不提供 `ui` props。Badge 为单一根元素组件，无需通过 `ui` 配置多 slot 的样式；样式定制请使用 `theme` 和 `class`。
+
+组件主要 props：`variant`（变体）、`as`（渲染元素）、`asChild`（复合组件）、`class`（自定义样式）。

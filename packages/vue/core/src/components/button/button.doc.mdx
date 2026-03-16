@@ -1,0 +1,201 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as ButtonStories from './button.stories'
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Button 按钮组件，用于触发操作或提交表单。支持多种变体（默认、普通、描边、文本、图标）、尺寸、加载状态、水波纹效果，基于 Ark UI 的 `ark.button` 原语实现。
+
+---
+
+## Examples
+
+展示组件的常见使用方式。
+
+### 基本用法
+
+<div className="button-canvas-black">
+  <Canvas of={ButtonStories.Basic} />
+</div>
+
+### 变体样式
+
+<div className="button-canvas-black">
+  <Canvas of={ButtonStories.Variants} />
+</div>
+
+### 尺寸
+
+<div className="button-canvas-black">
+  <Canvas of={ButtonStories.Sizes} />
+</div>
+
+### Crafts 定制
+
+<div className="button-canvas-black">
+  <Canvas of={ButtonStories.Crafts} />
+</div>
+
+---
+
+## ARK UI Link
+
+Button 基于 [Ark UI](https://ark-ui.com) 的 `ark.button` 原语实现，根组件的 props 会通过 `useForwardExpose` 透传到底层元素。
+
+- **相关文档**: [Ark UI Vue Factory](https://ark-ui.com/vue/factory)
+- **说明**: 根组件完全支持 Ark UI 对应原语（`button`）的 HTML 属性，可传递任意原生 HTML 属性（如 `data-*`、`aria-*` 等）。
+
+---
+
+## Props
+
+组件的 props 及说明（`theme` 详见 Theme Configuration）。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>variant</code></td>
+      <td><code>'default' | 'normal' | 'outline' | 'text' | 'icon'</code></td>
+      <td><code>'default'</code></td>
+      <td>按钮变体样式</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否禁用</td>
+    </tr>
+    <tr>
+      <td><code>ripple</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>是否启用点击水波纹效果</td>
+    </tr>
+    <tr>
+      <td><code>loading</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>是否显示加载状态</td>
+    </tr>
+    <tr>
+      <td><code>asChild</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>是否将 props 合并到子元素（复合组件场景）</td>
+    </tr>
+    <tr>
+      <td><code>tooltip</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>提示文案（需配合 Tooltip 组件使用）</td>
+    </tr>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>自定义 class</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Theme Configuration
+
+通过 `theme` prop 控制组件的主题样式。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'xs' | 'sm' | 'base' | 'lg'</code></td>
+      <td><code>'base'</code></td>
+      <td>按钮尺寸</td>
+    </tr>
+    <tr>
+      <td><code>skin</code></td>
+      <td><code>'razer' | 'shadcn'</code></td>
+      <td>-</td>
+      <td>主题皮肤</td>
+    </tr>
+    <tr>
+      <td><code>surface</code></td>
+      <td><code>'light' | 'dark'</code></td>
+      <td>-</td>
+      <td>亮色/暗色表面</td>
+    </tr>
+    <tr>
+      <td><code>unstyled</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否移除默认样式</td>
+    </tr>
+    <tr>
+      <td><code>bordered</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否显示边框</td>
+    </tr>
+    <tr>
+      <td><code>crafts</code></td>
+      <td><code>object</code></td>
+      <td>-</td>
+      <td>覆盖 tvButton 的 crafts 配置</td>
+    </tr>
+  </tbody>
+</table>
+
+**示例**:
+
+<Canvas of={ButtonStories.ThemeExample} />
+---
+
+## UI Configuration
+
+通过 `ui` prop 可配置各 slot 的样式。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ui.root.class</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>根元素的自定义 class</td>
+    </tr>
+    <tr>
+      <td><code>ui.loading.class</code></td>
+      <td><code>string | array | object</code></td>
+      <td>-</td>
+      <td>加载图标的自定义 class</td>
+    </tr>
+  </tbody>
+</table>
+
+**示例**:
+
+<Canvas of={ButtonStories.UIExample} />

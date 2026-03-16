@@ -1,0 +1,195 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as DatePickerStories from './date-picker.stories'
+
+<Meta of={DatePickerStories} />
+
+# DatePicker
+
+DatePicker 日期选择器，用于单日期或日期范围选择。组件支持日/月/年视图切换、禁用日期规则、事件监听与主题尺寸配置，适用于表单录入和筛选场景。
+
+---
+
+## Examples
+
+展示组件的常见使用方式。
+
+### 基本用法
+
+<Canvas of={DatePickerStories.Basic} />
+
+### 视图切换（日 / 月 / 年）
+
+<Canvas of={DatePickerStories.Views} />
+
+### 范围选择
+
+<Canvas of={DatePickerStories.Range} />
+
+### 事件监听
+
+<Canvas of={DatePickerStories.Events} />
+
+### 禁用日期
+
+<Canvas of={DatePickerStories.DisabledDate} />
+
+### 尺寸
+
+<Canvas of={DatePickerStories.Sizes} />
+
+---
+
+## ARK UI Link
+
+DatePicker 基于 [Ark UI](https://ark-ui.com) 的 `useDatePicker` 和 `DatePicker.RootProvider` 实现，根组件 props 透传 Ark UI 的 `DatePickerRootBaseProps`，并在外层集成 Rark UI 主题能力。
+
+- **相关文档**: [Ark UI Vue Date Picker](https://ark-ui.com/vue/docs/components/date-picker)
+- **说明**: 根组件支持 Ark UI DatePicker 的核心能力（如单选/范围、视图控制、日期不可用规则、受控状态等），可直接复用 Ark UI 的参数约定。
+
+---
+
+## Props
+
+组件根节点 props 继承 `DatePickerRootBaseProps`（`theme` 详见 Theme Configuration）。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>modelValue</code></td>
+      <td><code>DateValue[]</code></td>
+      <td>-</td>
+      <td>当前选中的日期值（单选时长度通常为 1，范围选择时通常为 2）</td>
+    </tr>
+    <tr>
+      <td><code>selectionMode</code></td>
+      <td><code>'single' | 'range'</code></td>
+      <td>-</td>
+      <td>选择模式，支持单日期与日期范围</td>
+    </tr>
+    <tr>
+      <td><code>isDateUnavailable</code></td>
+      <td><code>(details) =&gt; boolean</code></td>
+      <td>-</td>
+      <td>用于禁用日期，返回 <code>true</code> 的日期不可选择</td>
+    </tr>
+    <tr>
+      <td><code>numOfMonths</code></td>
+      <td><code>number</code></td>
+      <td>-</td>
+      <td>同时展示的月份数量</td>
+    </tr>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否打开面板（受控模式）</td>
+    </tr>
+    <tr>
+      <td><code>view</code></td>
+      <td><code>'day' | 'month' | 'year'</code></td>
+      <td>-</td>
+      <td>当前视图（受控模式）</td>
+    </tr>
+    <tr>
+      <td><code>focusedValue</code></td>
+      <td><code>DateValue</code></td>
+      <td>-</td>
+      <td>当前聚焦日期（受控模式）</td>
+    </tr>
+    <tr>
+      <td><code>min</code> / <code>max</code></td>
+      <td><code>DateValue</code></td>
+      <td>-</td>
+      <td>可选日期范围上下限</td>
+    </tr>
+    <tr>
+      <td><code>locale</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>本地化配置（影响文本与日期格式）</td>
+    </tr>
+  </tbody>
+</table>
+
+常用事件（emits）：`focusChange`、`openChange`、`valueChange`、`viewChange`、`update:modelValue`、`update:open`、`update:view`、`update:focusedValue`。
+
+复合子组件补充：
+
+- `DatePickerControl`、`DatePickerContent` 不提供 `ui` crafts，支持基础结构与 `class`。
+- `DatePickerDayView` 支持 `weekDayType`：`'short' | 'long' | 'narrow'`。
+- `DatePickerMonthView` 支持 `monthType`：`'short' | 'long'`。
+
+---
+
+## Theme Configuration
+
+通过 `theme` prop 配置 DatePicker 的主题样式（对应 `tvDatePicker`）。
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>'xs' | 'sm' | 'base' | 'lg'</code></td>
+      <td><code>'base'</code></td>
+      <td>组件尺寸，影响控制区与内容区的整体节奏</td>
+    </tr>
+    <tr>
+      <td><code>bordered</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否启用边框样式变体</td>
+    </tr>
+    <tr>
+      <td><code>skin</code></td>
+      <td><code>'razer' | 'shadcn'</code></td>
+      <td>-</td>
+      <td>主题皮肤</td>
+    </tr>
+    <tr>
+      <td><code>surface</code></td>
+      <td><code>'light' | 'dark'</code></td>
+      <td>-</td>
+      <td>亮色/暗色表面风格</td>
+    </tr>
+    <tr>
+      <td><code>unstyled</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>是否移除默认样式</td>
+    </tr>
+    <tr>
+      <td><code>crafts</code></td>
+      <td><code>object</code></td>
+      <td>-</td>
+      <td>覆盖 `tvDatePicker` 的 slots（`root`、`control`、`content`、`contentInner`）配置</td>
+    </tr>
+  </tbody>
+</table>
+
+**示例**:
+
+<Canvas of={DatePickerStories.ThemeExample} />
+
+---
+
+## UI Configuration
+
+本组件不提供 `ui` props。DatePicker 的样式建议通过 `theme`（含 `crafts`）以及各子组件的 `class` 进行定制。
+
+组件主要 props：`modelValue`、`selectionMode`、`isDateUnavailable`、`numOfMonths`、`open`、`view`、`focusedValue`。
