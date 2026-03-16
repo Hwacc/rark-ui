@@ -1,5 +1,11 @@
 # @rark-ui/vue
 
+## 1.5.9
+
+### Patch Changes
+
+- 895c5d6: 优化Tree组件性能
+
 ## 1.5.8
 
 ### Patch Changes
