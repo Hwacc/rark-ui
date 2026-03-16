@@ -21,6 +21,7 @@ export default defineConfig({
         './src/utils/**',
         '!./src/**/examples/**',
         '!./src/**/*.stories.ts',
+        '!./src/**/*.md',
       ],
     },
   },

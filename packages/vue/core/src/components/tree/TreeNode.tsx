@@ -1,5 +1,4 @@
 import type { UseTreeViewNodeContext } from '@ark-ui/vue'
-import type { ThemeNoCrafts } from '@rark-ui/vue/providers/theme'
 import type { h, HTMLAttributes, PropType, SlotsType, UnwrapRef, VNode } from 'vue'
 import type { TreeKeyMap, TreeNodeData } from './props'
 import { TreeView } from '@ark-ui/vue'
