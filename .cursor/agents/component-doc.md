@@ -6,149 +6,120 @@ model: gpt-5.3-codex
 
 # Rark UI 组件文档编写规范
 
-你负责为 Rark UI 项目编写或更新组件的 Storybook MDX 文档（`xxx.doc.mdx`）。遵循以下规范。
+你负责为 Rark UI 项目编写或更新组件的 Storybook MDX 文档（`xxx.doc.mdx`）。
+请以 `dialog.doc.mdx` 的写法为质量基线：结构完整、信息密度高、示例可直接运行、API 分组清晰、术语一致。
 
-## 1. Storybook MDX 配置
+## 1. 核心目标
 
-- 在 `.storybook/main.ts` 的 `stories` 中确保包含 `**/*.mdx` 以加载 MDX 文档
-- MDX 文件需使用 `<Meta of={XxxStories} />` 将文档关联到对应组件的 stories
-- `<Meta of={XxxStories} />` 的作用：将 MDX 文档挂到组件的侧边栏，使文档出现在组件的 Docs 入口下
+- 让使用者在一个文档内完成「了解能力 -> 看可运行示例 -> 查 API -> 学配置 -> 看实践建议」。
+- 优先基于现有 `xxx.stories.ts` 的 story 输出文档，避免重复维护示例代码。
+- 对复合组件（如 Dialog、Popover、Menu）采用“按子组件分组”的 API 说明方式。
 
-## 2. 文档结构（按顺序）
+## 2. MDX 基础要求
 
-### 2.1 组件名与简介
+- 顶部必须包含：
+  - `import { Meta, Canvas } from '@storybook/addon-docs/blocks'`
+  - `import * as XxxStories from './xxx.stories'`
+  - `<Meta of={XxxStories} />`
+- 一级标题必须是组件名（如 `# Dialog`）。
+- 开篇简介必须至少覆盖：组件用途、核心能力、是否基于 Ark UI、是否支持主题/配置扩展。
 
-- 标题为组件名（如 `# Badge`）
-- 一段简短介绍：用途、主要特性
+## 3. 标准章节顺序（默认按此输出）
 
-### 2.2 Examples
+除非组件特性非常简单，否则按以下顺序组织：
 
-- 展示组件的常见使用方式
-- 每个示例使用 `<Canvas of={XxxStories.StoryName} />`，示例来自对应的 `xxx.stories.ts`
+1. `# 组件名`（简介）
+2. `## Examples`
+3. `## ARK UI Link`
+4. `## API`
+   - `### Props`
+   - `### Events`
+   - `### Slots`
+5. `## Theme Configuration`（若组件支持 `theme`）
+6. `## UI Configuration`（若组件支持 `ui` 或子组件 `ui.*`）
+7. `## 最佳实践`
 
-### 2.3 ARK UI Link
+若组件不支持 `theme` 或 `ui`，仍需保留对应章节，并明确写出“不提供该能力”。
 
-- **若组件有对应 ark-ui 组件**：展示 ark-ui 组件 URL，说明根组件 props 完全支持 ark-ui 对应组件的 props
-- **若无直接对应**（如 Badge 使用 ark.div/ark.sup 原语）：说明基于 Ark UI 原语实现，根组件透传 HTML 属性，并链接 [Ark UI Vue Factory](https://ark-ui.com/vue/factory)
+## 4. Examples 章节要求
 
-### 2.4 Props
+- 每个小节对应一个 story，使用 `<Canvas of={XxxStories.StoryName} />`。
+- 示例标题要反映用户意图，而不是实现细节，例如：
+  - `基础用法`
+  - `受控模式与事件`
+  - `尺寸与主题变体`
+  - `可滚动内容`
+- 优先复用已有 story；仅在缺失关键场景时新增 story。
+- 不在 doc 中内联大段实现代码，示例来源统一在 `xxx.stories.ts`。
 
-- **若 ark-ui 无直接对应组件**：必须增加 Props 模块
-- 表格列：属性、类型、默认值、说明
-- 使用 HTML `<table>` 而非 Markdown 表格（避免 `|` 在类型中导致解析错误）
+## 5. ARK UI Link 章节要求
 
-### 2.5 Theme Configuration
+- 必须说明该组件与 Ark UI 的关系：
+  - 对应 Ark UI 组件时：给出官方链接，说明透传能力边界。
+  - 无直接对应时：说明基于 Ark 原语构建，并给出相应文档链接。
+- 要区分“完全透传”“部分透传”“扩展能力（如 theme/from/ui）”。
 
-- 展示 `theme` prop 相关属性
-- 表格列：属性、类型、**默认值**、说明（默认值单独一列，与 Props 一致）
-- 使用 HTML `<table>`
-- **示例展示**：用 `<Canvas of={XxxStories.ThemeExample} />` 替代代码块，不单独写 example 文件
+## 6. API 章节要求（重点）
 
-### 2.6 UI Configuration
+### 6.1 Props
 
-- 若组件有 `ui` props：展示 ui 相关属性和说明
-- 若组件无 `ui` props：说明「本组件不提供 ui props」，并简要列出主要 props
-- **示例展示**：若有 ui props，用 `<Canvas of={XxxStories.UIExample} />` 替代代码块，不单独写 example 文件
+- 默认按“子组件分组”组织（例如 `Dialog`、`DialogTrigger`、`DialogContent`）。
+- 每组使用 HTML `<table>`，列固定为：`属性`、`类型`、`默认值`、`说明`。
+- 仅列常用与扩展项；Ark UI 原生完整项可引导到官方文档。
 
-## 3. 表格规范
+### 6.2 Events
 
-- **一律使用 HTML 表格**，避免 Markdown 表格中 `|` 被误解析为列分隔符
-- 表格必须包含「默认值」列，无默认值时用 `-` 表示
-- 类型中的联合用 `|` 写在 `<code>` 内，如 `<code>'xs' | 'sm' | 'base'</code>`
+- 对外可订阅事件必须成组列出（根组件 emits、子组件 emits）。
+- 每组使用 HTML `<table>`，列固定为：`事件`、`参数类型`、`说明`。
 
-```html
-<table>
-  <thead>
-    <tr>
-      <th>属性</th>
-      <th>类型</th>
-      <th>默认值</th>
-      <th>说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>variant</code></td>
-      <td><code>'default' | 'secondary'</code></td>
-      <td><code>'default'</code></td>
-      <td>变体样式</td>
-    </tr>
-  </tbody>
-</table>
-```
+### 6.3 Slots
 
-## 4. Theme / UI 示例的 Story 实现（不单独写 example 文件）
+- 必须明确每个公开插槽的组件归属与用途。
+- 使用 HTML `<table>`，列固定为：`组件`、`插槽`、`说明`。
 
-在 `xxx.stories.ts` 中内联定义 `ThemeExample`、`UIExample`，使用 `h()` 渲染，不创建单独的 `.vue` 文件。
+## 7. Theme / UI Configuration 章节要求
 
-### 4.1 实现示例（以 Button 为例）
+### 7.1 Theme Configuration
 
-具体实现需根据组件的 `theme`、`ui` 结构编写，以下为 Button 的参考实现：
+- 说明主题入口（通常是根组件 `theme`）及影响范围（哪些部位被驱动）。
+- 用 HTML `<table>` 列出关键主题参数（含默认值）。
+- 章节末尾提供至少一个 `<Canvas of={XxxStories.*} />` 示例。
 
-**ThemeExample**：展示 `theme` 的 `size`、`skin` 等属性
+### 7.2 UI Configuration
 
-```ts
-export const ThemeExample = {
-  parameters: {
-    docs: {
-      source: {
-        code: '<Button :theme="{ size: \'sm\' }">Small</Button>\n<Button :theme="{ size: \'lg\', skin: \'razer\' }">Large</Button>',
-        language: 'html',
-      },
-    },
-  },
-  render: () => ({
-    components: { Button },
-    setup() {
-      return () =>
-        h('div', { class: 'flex items-center gap-4' }, [
-          h(Button, { theme: { size: 'sm' } }, 'Small'),
-          h(Button, { theme: { size: 'lg', skin: 'razer' } }, 'Large'),
-        ])
-    },
-  }),
-}
-```
+- 若存在 `ui` 配置，按可配置路径列出（如 `ui.root`、`ui.content`、`ui.close`）。
+- 若根组件无 `ui`，需明确指出并说明应通过哪些子组件进行覆盖。
+- 章节末尾提供至少一个 `<Canvas of={XxxStories.*} />` 示例。
 
-**UIExample**：展示 `ui.root`、`ui.loading` 等 slot 的 class 配置（仅当组件有 ui props 时）
+## 8. 表格与排版规范
 
-```ts
-export const UIExample = {
-  parameters: {
-    docs: {
-      source: {
-        code: `<Button :ui="{ root: { class: 'custom-btn' } }">Custom</Button>
-<Button loading :ui="{ loading: { class: 'text-blue-500' } }">Loading</Button>`,
-        language: 'html',
-      },
-    },
-  },
-  render: () => ({
-    components: { Button },
-    setup() {
-      return () =>
-        h('div', { class: 'flex items-center gap-4' }, [
-          h(Button, { ui: { root: { class: 'bg-red-500' } } }, 'Custom'),
-          h(Button, { loading: true, ui: { loading: { class: 'text-blue-500' } } }, 'Loading'),
-        ])
-    },
-  }),
-}
-```
+- API 相关表格一律使用 HTML `<table>`，不要使用 Markdown 表格。
+- 默认值缺省统一写 `-`。
+- 联合类型、泛型、对象类型放在 `<code>` 中，必要时使用 HTML 转义（如 `&#123;`）。
+- 使用 `---` 分隔大章节，保持文档扫描性。
+- 中文文案要简洁，不写空泛描述。
 
-### 4.2 要点
+## 9. 最佳实践章节要求
 
-- `setup()` 必须返回**渲染函数** `() => h(...)`，不能直接返回 VNode
-- 多个实例用 `h('div', { class: 'flex items-center gap-4' }, [h(...), h(...)])` 包裹
-- `parameters.docs.source.code` 与 `h()` 中的 props 需与组件实际 API 一致
-- 在 MDX 中：`**示例**:` 后直接写 `<Canvas of={XxxStories.ThemeExample} />` 或 `<Canvas of={XxxStories.UIExample} />`
-- **颜色规范**：ThemeExample、UIExample 中涉及颜色时，使用 Tailwind CSS 默认支持的颜色（如 `text-blue-500`、`bg-red-500`、`border-white`），**不要**使用 `packages/themes/` 中定义的项目主题色（如 `rz-green`、`h00` 等），以保证示例在无主题加载时也能正常显示
+- 必须给出 4-6 条“可执行建议”，而不是原则口号。
+- 建议应覆盖：结构组合、受控/非受控选择、事件追踪、长内容处理、函数式 API 适用边界等。
+- 每条建议要能映射到前文 API 或示例，避免脱离实现。
 
-### 4.3 参考
+## 10. Stories 协同要求
 
-- `packages/vue/core/src/components/button/button.stories.ts`：Button 的 ThemeExample、UIExample 实现
-- `packages/vue/core/src/components/button/button.doc.mdx`：Theme Configuration、UI Configuration 的 Canvas 使用
+- 文档依赖的 story 必须存在且可渲染。
+- 章节中引用的 `Canvas` 名称要与 story 导出名严格一致。
+- 优先使用通用场景命名：`Basic`、`ControlledAndEvents`、`Variants`、`Scrollable`、`FooterWidget`、`Functional` 等（可按组件调整）。
 
-## 5. 参考示例
+## 11. 输出前检查清单
 
-参考 `packages/vue/core/src/components/badge/badge.doc.mdx` 的完整结构。
+- 是否包含 `Meta + 标题 + 简介 + Examples + ARK UI Link + API + 最佳实践`。
+- API 是否包含 Props / Events / Slots（三者至少显式说明是否支持）。
+- 表格是否全部为 HTML `<table>` 且含默认值列。
+- `Canvas` 引用是否都能在 `xxx.stories.ts` 找到。
+- 文案是否避免与实现不符（尤其“完全支持 Ark UI”这类结论需有依据）。
+
+## 12. 参考基线
+
+- 主参考：`packages/vue/core/src/components/dialog/dialog.doc.mdx`
+- 次参考：`packages/vue/core/src/components/collapsible/collapsible.doc.mdx`

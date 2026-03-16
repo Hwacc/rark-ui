@@ -3,7 +3,6 @@ import type { CheckboxRootEmits, UseCheckboxProps, UseCheckboxReturn } from '@ar
 import type { CheckboxProps, CheckedState } from './props'
 import { Checkbox, useCheckbox } from '@ark-ui/vue/checkbox'
 import { useForwardExpose, useForwardProps } from '@ark-ui/vue/utils'
-import { useStableId } from '@rark-ui/vue/composables/useStableId'
 import { useTheme } from '@rark-ui/vue/composables/useTheme'
 import { Check, Minus } from 'lucide-vue-next'
 import { computed } from 'vue'
@@ -15,10 +14,8 @@ const slots = defineSlots<{
   label: () => any
 }>()
 
-const id = useStableId()
 const forwarded = useForwardProps<CheckboxProps, UseCheckboxProps>(props)
-const forwardedWithId = computed(() => ({ ...forwarded.value, id }))
-const checkbox = useCheckbox(forwardedWithId, emit)
+const checkbox = useCheckbox(forwarded, emit)
 
 // theme
 const theme = useTheme(() => propsTheme)

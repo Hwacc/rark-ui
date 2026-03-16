@@ -4,6 +4,8 @@ import BasicExample from './examples/basic.vue'
 import BasicExampleRaw from './examples/basic.vue?raw'
 import DelaysAndControlledOpenExample from './examples/delays-and-controlled-open.vue'
 import DelaysAndControlledOpenExampleRaw from './examples/delays-and-controlled-open.vue?raw'
+import DisabledExample from './examples/disabled.vue'
+import DisabledExampleRaw from './examples/disabled.vue?raw'
 import PlacementsAndSkinsExample from './examples/placements-and-skins.vue'
 import PlacementsAndSkinsExampleRaw from './examples/placements-and-skins.vue?raw'
 import SizesAndBorderedExample from './examples/sizes-and-bordered.vue'
@@ -73,6 +75,21 @@ export const DelaysAndControlledOpen = {
   },
   render: () => ({
     components: { Component: DelaysAndControlledOpenExample },
+    template: '<Component />',
+  }),
+}
+
+export const Disabled = {
+  parameters: {
+    docs: {
+      source: {
+        code: DisabledExampleRaw,
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Component: DisabledExample },
     template: '<Component />',
   }),
 }

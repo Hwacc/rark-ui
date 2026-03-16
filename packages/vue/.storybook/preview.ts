@@ -1,9 +1,14 @@
 import type { Preview } from 'storybook-vue3-rsbuild'
+import { setup } from 'storybook-vue3-rsbuild'
 import { defineComponent, h } from 'vue'
 import { Toast, Toaster } from '../core/src/components/toast'
 import { RUIConfig } from '../core/src/providers/config'
 
 import './style.css'
+
+setup((app) => {
+  app.config.idPrefix = `storybook@${app.uid ?? app._uid}`
+})
 
 const preview: Preview = {
   parameters: {

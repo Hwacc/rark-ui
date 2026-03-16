@@ -11,7 +11,7 @@ import {
 </script>
 
 <template>
-  <Dialog open>
+  <Dialog>
     <DialogTrigger as-child>
       <Button class="w-fit">
         Open Dialog

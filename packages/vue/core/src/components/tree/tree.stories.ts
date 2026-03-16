@@ -6,12 +6,12 @@ import CheckboxExample from './examples/checkbox.vue'
 import CheckboxExampleRaw from './examples/checkbox.vue?raw'
 import CustomDatatypeExample from './examples/custom-datatype.vue'
 import CustomDatatypeExampleRaw from './examples/custom-datatype.vue?raw'
+import DisabledNodesExample from './examples/disabled-nodes.vue'
+import DisabledNodesExampleRaw from './examples/disabled-nodes.vue?raw'
 import CustomPropsRenderExample from './examples/custom-props-render.vue'
 import CustomPropsRenderExampleRaw from './examples/custom-props-render.vue?raw'
 import CustomRenderExample from './examples/custom-render.vue'
 import CustomRenderExampleRaw from './examples/custom-render.vue?raw'
-import DialogTreeExample from './examples/dialog-tree.vue'
-import DialogTreeExampleRaw from './examples/dialog-tree.vue?raw'
 import EventsExample from './examples/events.vue'
 import EventsExampleRaw from './examples/events.vue?raw'
 import LargeDataExample from './examples/large-data.vue'
@@ -68,6 +68,21 @@ export const SelectionModes = {
   },
   render: () => ({
     components: { Component: SelectionModesExample },
+    template: '<Component />',
+  }),
+}
+
+export const DisabledNodes = {
+  parameters: {
+    docs: {
+      source: {
+        code: DisabledNodesExampleRaw,
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Component: DisabledNodesExample },
     template: '<Component />',
   }),
 }
@@ -158,21 +173,6 @@ export const Sizes = {
   },
   render: () => ({
     components: { Component: SizesExample },
-    template: '<Component />',
-  }),
-}
-
-export const DialogTree = {
-  parameters: {
-    docs: {
-      source: {
-        code: DialogTreeExampleRaw,
-        language: 'html',
-      },
-    },
-  },
-  render: () => ({
-    components: { Component: DialogTreeExample },
     template: '<Component />',
   }),
 }

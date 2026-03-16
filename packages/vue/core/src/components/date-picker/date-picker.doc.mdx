@@ -5,19 +5,17 @@ import * as DatePickerStories from './date-picker.stories'
 
 # DatePicker
 
-DatePicker 日期选择器，用于单日期或日期范围选择。组件支持日/月/年视图切换、禁用日期规则、事件监听与主题尺寸配置，适用于表单录入和筛选场景。
+`DatePicker` 用于单日期与日期范围选择，支持日/月/年多视图切换、受控状态管理、禁用日期规则与事件监听。组件底层能力来自 Ark UI Date Picker，在 Rark UI 中额外集成了 `theme` 主题能力与视图样式扩展，适用于表单录入、筛选面板与时间范围查询场景。
 
 ---
 
 ## Examples
 
-展示组件的常见使用方式。
-
-### 基本用法
+### 基础用法
 
 <Canvas of={DatePickerStories.Basic} />
 
-### 视图切换（日 / 月 / 年）
+### 多视图切换（日 / 月 / 年）
 
 <Canvas of={DatePickerStories.Views} />
 
@@ -25,15 +23,15 @@ DatePicker 日期选择器，用于单日期或日期范围选择。组件支持
 
 <Canvas of={DatePickerStories.Range} />
 
-### 事件监听
+### 受控模式与事件监听
 
 <Canvas of={DatePickerStories.Events} />
 
-### 禁用日期
+### 禁用日期规则
 
 <Canvas of={DatePickerStories.DisabledDate} />
 
-### 尺寸
+### 尺寸与主题变体
 
 <Canvas of={DatePickerStories.Sizes} />
 
@@ -41,16 +39,21 @@ DatePicker 日期选择器，用于单日期或日期范围选择。组件支持
 
 ## ARK UI Link
 
-DatePicker 基于 [Ark UI](https://ark-ui.com) 的 `useDatePicker` 和 `DatePicker.RootProvider` 实现，根组件 props 透传 Ark UI 的 `DatePickerRootBaseProps`，并在外层集成 Rark UI 主题能力。
+`DatePicker` 与 Ark UI 的关系是**部分透传 + Rark 扩展**：
 
-- **相关文档**: [Ark UI Vue Date Picker](https://ark-ui.com/vue/docs/components/date-picker)
-- **说明**: 根组件支持 Ark UI DatePicker 的核心能力（如单选/范围、视图控制、日期不可用规则、受控状态等），可直接复用 Ark UI 的参数约定。
+- 根组件基于 Ark UI 的 `useDatePicker` 与 `DatePicker.RootProvider`，核心交互模型（值、视图、打开状态、可用日期判断）沿用 Ark UI。
+- `DatePicker` 根组件主要透传 `DatePickerRootBaseProps`，并新增 Rark `theme` 能力（包括 `tvDatePicker` crafts 覆盖）。
+- `DatePickerControl` / `DatePickerContent` / `DatePicker*View` 在 Ark 原语外增加了 Rark 默认结构与主题样式封装，不属于完全无差异透传。
+
+- Ark UI 文档：[Ark UI Vue Date Picker](https://ark-ui.com/vue/docs/components/date-picker)
 
 ---
 
-## Props
+## API
 
-组件根节点 props 继承 `DatePickerRootBaseProps`（`theme` 详见 Theme Configuration）。
+### Props
+
+#### DatePicker（根组件）
 
 <table>
   <thead>
@@ -66,19 +69,37 @@ DatePicker 基于 [Ark UI](https://ark-ui.com) 的 `useDatePicker` 和 `DatePick
       <td><code>modelValue</code></td>
       <td><code>DateValue[]</code></td>
       <td>-</td>
-      <td>当前选中的日期值（单选时长度通常为 1，范围选择时通常为 2）</td>
+      <td>当前选中值；单选通常为 1 个元素，范围选择通常为 2 个元素</td>
     </tr>
     <tr>
       <td><code>selectionMode</code></td>
       <td><code>'single' | 'range'</code></td>
       <td>-</td>
-      <td>选择模式，支持单日期与日期范围</td>
+      <td>选择模式，控制单日期或区间日期选择</td>
+    </tr>
+    <tr>
+      <td><code>open</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>面板是否打开（受控）</td>
+    </tr>
+    <tr>
+      <td><code>view</code></td>
+      <td><code>'day' | 'month' | 'year'</code></td>
+      <td>-</td>
+      <td>当前视图（受控）</td>
+    </tr>
+    <tr>
+      <td><code>focusedValue</code></td>
+      <td><code>DateValue</code></td>
+      <td>-</td>
+      <td>当前聚焦日期（受控）</td>
     </tr>
     <tr>
       <td><code>isDateUnavailable</code></td>
-      <td><code>(details) =&gt; boolean</code></td>
+      <td><code>(date: DateValue) =&gt; boolean</code></td>
       <td>-</td>
-      <td>用于禁用日期，返回 <code>true</code> 的日期不可选择</td>
+      <td>禁用日期回调，返回 <code>true</code> 的日期不可选</td>
     </tr>
     <tr>
       <td><code>numOfMonths</code></td>
@@ -87,51 +108,281 @@ DatePicker 基于 [Ark UI](https://ark-ui.com) 的 `useDatePicker` 和 `DatePick
       <td>同时展示的月份数量</td>
     </tr>
     <tr>
-      <td><code>open</code></td>
-      <td><code>boolean</code></td>
-      <td>-</td>
-      <td>是否打开面板（受控模式）</td>
-    </tr>
-    <tr>
-      <td><code>view</code></td>
-      <td><code>'day' | 'month' | 'year'</code></td>
-      <td>-</td>
-      <td>当前视图（受控模式）</td>
-    </tr>
-    <tr>
-      <td><code>focusedValue</code></td>
-      <td><code>DateValue</code></td>
-      <td>-</td>
-      <td>当前聚焦日期（受控模式）</td>
-    </tr>
-    <tr>
       <td><code>min</code> / <code>max</code></td>
       <td><code>DateValue</code></td>
       <td>-</td>
-      <td>可选日期范围上下限</td>
+      <td>可选日期上下限</td>
     </tr>
     <tr>
       <td><code>locale</code></td>
       <td><code>string</code></td>
       <td>-</td>
-      <td>本地化配置（影响文本与日期格式）</td>
+      <td>本地化语言与格式设置</td>
+    </tr>
+    <tr>
+      <td><code>theme</code></td>
+      <td><code>ThemeCrafts&lt;'tvDatePicker'&gt;</code></td>
+      <td>-</td>
+      <td>Rark 主题入口，可配置尺寸、变体与 crafts 覆盖</td>
     </tr>
   </tbody>
 </table>
 
-常用事件（emits）：`focusChange`、`openChange`、`valueChange`、`viewChange`、`update:modelValue`、`update:open`、`update:view`、`update:focusedValue`。
+#### DatePickerControl
 
-复合子组件补充：
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>HTMLAttributes['class']</code></td>
+      <td>-</td>
+      <td>控制区容器类名覆盖</td>
+    </tr>
+    <tr>
+      <td>Ark UI Control Props</td>
+      <td><code>DatePickerControlBaseProps</code></td>
+      <td>-</td>
+      <td>透传 Ark UI 控制区基础属性</td>
+    </tr>
+  </tbody>
+</table>
 
-- `DatePickerControl`、`DatePickerContent` 不提供 `ui` crafts，支持基础结构与 `class`。
-- `DatePickerDayView` 支持 `weekDayType`：`'short' | 'long' | 'narrow'`。
-- `DatePickerMonthView` 支持 `monthType`：`'short' | 'long'`。
+#### DatePickerContent
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>HTMLAttributes['class']</code></td>
+      <td>-</td>
+      <td>弹层内容容器类名覆盖</td>
+    </tr>
+    <tr>
+      <td>Ark UI Content Props</td>
+      <td><code>DatePickerContentBaseProps</code></td>
+      <td>-</td>
+      <td>透传 Ark UI 内容层基础属性</td>
+    </tr>
+  </tbody>
+</table>
+
+#### DatePickerDayView
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>weekDayType</code></td>
+      <td><code>'short' | 'long' | 'narrow'</code></td>
+      <td><code>'short'</code></td>
+      <td>星期抬头显示格式</td>
+    </tr>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>HTMLAttributes['class']</code></td>
+      <td>-</td>
+      <td>日视图根节点类名覆盖</td>
+    </tr>
+  </tbody>
+</table>
+
+#### DatePickerMonthView
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>monthType</code></td>
+      <td><code>'short' | 'long'</code></td>
+      <td><code>'short'</code></td>
+      <td>月份文案显示格式</td>
+    </tr>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>HTMLAttributes['class']</code></td>
+      <td>-</td>
+      <td>月视图根节点类名覆盖</td>
+    </tr>
+  </tbody>
+</table>
+
+#### DatePickerYearView
+
+<table>
+  <thead>
+    <tr>
+      <th>属性</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>class</code></td>
+      <td><code>HTMLAttributes['class']</code></td>
+      <td>-</td>
+      <td>年视图根节点类名覆盖</td>
+    </tr>
+  </tbody>
+</table>
+
+> 完整 Ark 原生参数请参考 Ark UI Date Picker 文档，本文聚焦 Rark 常用与扩展能力。
+
+### Events
+
+#### DatePicker（根组件 emits）
+
+<table>
+  <thead>
+    <tr>
+      <th>事件</th>
+      <th>参数类型</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>focusChange</code></td>
+      <td><code>FocusChangeDetails</code></td>
+      <td>聚焦日期变化时触发</td>
+    </tr>
+    <tr>
+      <td><code>openChange</code></td>
+      <td><code>OpenChangeDetails</code></td>
+      <td>面板打开状态变化时触发</td>
+    </tr>
+    <tr>
+      <td><code>valueChange</code></td>
+      <td><code>ValueChangeDetails</code></td>
+      <td>选中值变化时触发</td>
+    </tr>
+    <tr>
+      <td><code>viewChange</code></td>
+      <td><code>ViewChangeDetails</code></td>
+      <td>视图切换（日/月/年）时触发</td>
+    </tr>
+    <tr>
+      <td><code>update:modelValue</code></td>
+      <td><code>DateValue[]</code></td>
+      <td><code>v-model</code> 双向绑定事件</td>
+    </tr>
+    <tr>
+      <td><code>update:open</code></td>
+      <td><code>boolean</code></td>
+      <td><code>v-model:open</code> 双向绑定事件</td>
+    </tr>
+    <tr>
+      <td><code>update:view</code></td>
+      <td><code>DateView</code></td>
+      <td><code>v-model:view</code> 双向绑定事件</td>
+    </tr>
+    <tr>
+      <td><code>update:focusedValue</code></td>
+      <td><code>DateValue</code></td>
+      <td><code>v-model:focusedValue</code> 双向绑定事件</td>
+    </tr>
+  </tbody>
+</table>
+
+#### 其他子组件
+
+<table>
+  <thead>
+    <tr>
+      <th>事件</th>
+      <th>参数类型</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>-</td>
+      <td>-</td>
+      <td><code>DatePickerControl</code>、<code>DatePickerContent</code>、<code>DatePicker*View</code> 不额外暴露自定义 emits（沿用内部 Ark 行为）</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>组件</th>
+      <th>插槽</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DatePicker</code></td>
+      <td><code>default</code></td>
+      <td>根结构插槽，通常放置 <code>DatePickerControl</code> 与 <code>DatePickerContent</code></td>
+    </tr>
+    <tr>
+      <td><code>DatePickerControl</code></td>
+      <td><code>default</code></td>
+      <td>控制区插槽，通常放置 <code>DatePickerTrigger</code> 或自定义触发内容</td>
+    </tr>
+    <tr>
+      <td><code>DatePickerContent</code></td>
+      <td><code>prefix</code></td>
+      <td>内容区前置插槽，渲染在视图主体前</td>
+    </tr>
+    <tr>
+      <td><code>DatePickerContent</code></td>
+      <td><code>default</code></td>
+      <td>内容区主体插槽，放置 <code>DatePickerDayView</code> / <code>DatePickerMonthView</code> / <code>DatePickerYearView</code></td>
+    </tr>
+    <tr>
+      <td><code>DatePickerContent</code></td>
+      <td><code>suffix</code></td>
+      <td>内容区后置插槽，渲染在视图主体后</td>
+    </tr>
+    <tr>
+      <td><code>DatePickerDayView</code> / <code>DatePickerMonthView</code> / <code>DatePickerYearView</code></td>
+      <td>-</td>
+      <td>视图组件不提供公开 slot</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
 ## Theme Configuration
 
-通过 `theme` prop 配置 DatePicker 的主题样式（对应 `tvDatePicker`）。
+`DatePicker` 的主题入口在根组件 `theme`，会影响 `tvDatePicker`（根容器、控制区、弹层容器）以及视图内 `tvDatePickerView` 的尺寸和状态样式。常用参数如下：
 
 <table>
   <thead>
@@ -147,42 +398,28 @@ DatePicker 基于 [Ark UI](https://ark-ui.com) 的 `useDatePicker` 和 `DatePick
       <td><code>size</code></td>
       <td><code>'xs' | 'sm' | 'base' | 'lg'</code></td>
       <td><code>'base'</code></td>
-      <td>组件尺寸，影响控制区与内容区的整体节奏</td>
+      <td>尺寸变体，联动输入触发区和视图网格节奏</td>
     </tr>
     <tr>
       <td><code>bordered</code></td>
       <td><code>boolean</code></td>
       <td>-</td>
-      <td>是否启用边框样式变体</td>
+      <td>是否给内容区启用边框样式</td>
     </tr>
     <tr>
-      <td><code>skin</code></td>
-      <td><code>'razer' | 'shadcn'</code></td>
+      <td><code>crafts</code></td>
+      <td><code>&#123; tvDatePicker?: Partial&lt;...&gt; &#125;</code></td>
       <td>-</td>
-      <td>主题皮肤</td>
-    </tr>
-    <tr>
-      <td><code>surface</code></td>
-      <td><code>'light' | 'dark'</code></td>
-      <td>-</td>
-      <td>亮色/暗色表面风格</td>
+      <td>覆写 `tvDatePicker` 的 slots 样式（如 <code>control</code>、<code>content</code>、<code>contentInner</code>）</td>
     </tr>
     <tr>
       <td><code>unstyled</code></td>
       <td><code>boolean</code></td>
       <td>-</td>
-      <td>是否移除默认样式</td>
-    </tr>
-    <tr>
-      <td><code>crafts</code></td>
-      <td><code>object</code></td>
-      <td>-</td>
-      <td>覆盖 `tvDatePicker` 的 slots（`root`、`control`、`content`、`contentInner`）配置</td>
+      <td>关闭默认主题样式，便于完全自定义</td>
     </tr>
   </tbody>
 </table>
-
-**示例**:
 
 <Canvas of={DatePickerStories.ThemeExample} />
 
@@ -190,6 +427,54 @@ DatePicker 基于 [Ark UI](https://ark-ui.com) 的 `useDatePicker` 和 `DatePick
 
 ## UI Configuration
 
-本组件不提供 `ui` props。DatePicker 的样式建议通过 `theme`（含 `crafts`）以及各子组件的 `class` 进行定制。
+`DatePicker` 根组件**不提供**独立 `ui` 配置对象。样式覆盖建议使用以下路径：
 
-组件主要 props：`modelValue`、`selectionMode`、`isDateUnavailable`、`numOfMonths`、`open`、`view`、`focusedValue`。
+<table>
+  <thead>
+    <tr>
+      <th>配置路径</th>
+      <th>类型</th>
+      <th>默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>DatePicker.theme.crafts.tvDatePicker</code></td>
+      <td><code>object</code></td>
+      <td>-</td>
+      <td>覆盖根组件与内容容器的 crafts slots</td>
+    </tr>
+    <tr>
+      <td><code>DatePickerControl.class</code></td>
+      <td><code>HTMLAttributes['class']</code></td>
+      <td>-</td>
+      <td>定制控制区布局与间距</td>
+    </tr>
+    <tr>
+      <td><code>DatePickerContent.class</code></td>
+      <td><code>HTMLAttributes['class']</code></td>
+      <td>-</td>
+      <td>定制弹层外观（边框、阴影、宽度等）</td>
+    </tr>
+    <tr>
+      <td><code>DatePickerDayView/MonthView/YearView.class</code></td>
+      <td><code>HTMLAttributes['class']</code></td>
+      <td>-</td>
+      <td>定制各视图根节点样式</td>
+    </tr>
+  </tbody>
+</table>
+
+<Canvas of={DatePickerStories.Sizes} />
+
+---
+
+## 最佳实践
+
+- 优先保持 `DatePicker + DatePickerControl + DatePickerContent + DatePicker*View` 的组合结构，避免直接跳过控制区导致可访问性和交互语义不完整。
+- 表单场景建议使用非受控或仅受控 `modelValue`；只有在需要外部驱动弹层开关时再引入 `v-model:open`。
+- 需要埋点时，优先监听 `valueChange` 和 `openChange`，并结合 `update:modelValue` 做业务状态同步。
+- 范围选择场景建议显式设置 `selectionMode="range"`，并在 UI 上通过 `DatePickerValueText` 或外部文本同步展示开始/结束日期。
+- 对未来日期、节假日、库存日期等限制，统一通过 `isDateUnavailable` 处理，保证禁用逻辑与键盘导航行为一致。
+- 当视觉规范要求强定制时，先用 `theme.size` 与 `crafts` 调整整体，再按需叠加 `class` 做局部覆盖，避免大量硬编码样式散落在业务层。

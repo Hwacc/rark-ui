@@ -4,6 +4,8 @@ import BasicExample from './examples/basic.vue'
 import BasicExampleRaw from './examples/basic.vue?raw'
 import CustomRenderExample from './examples/custom-render.vue'
 import CustomRenderExampleRaw from './examples/custom-render.vue?raw'
+import DurationAndActionsExample from './examples/duration-and-actions.vue'
+import DurationAndActionsExampleRaw from './examples/duration-and-actions.vue?raw'
 import PlacementsExample from './examples/placements.vue'
 import PlacementsExampleRaw from './examples/placements.vue?raw'
 import PromiseExample from './examples/promise.vue'
@@ -73,6 +75,21 @@ export const CustomRender = {
   },
   render: () => ({
     components: { Component: CustomRenderExample },
+    template: '<Component />',
+  }),
+}
+
+export const DurationAndActions = {
+  parameters: {
+    docs: {
+      source: {
+        code: DurationAndActionsExampleRaw,
+        language: 'html',
+      },
+    },
+  },
+  render: () => ({
+    components: { Component: DurationAndActionsExample },
     template: '<Component />',
   }),
 }
