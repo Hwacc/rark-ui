@@ -7,14 +7,19 @@ import { RUIConfig } from '../core/src/providers/config'
 import './style.css'
 
 setup((app) => {
-  app.config.idPrefix = `storybook@${app.uid ?? app._uid}`
+  app.config.idPrefix = `storybook@${app._uid}`
 })
 
 const preview: Preview = {
   parameters: {
+    viewMode: 'docs',
+    previewTabs: {
+      'storybook/docs/panel': { index: 0 },
+      'canvas': { index: 1 },
+    },
     options: {
       storySort: {
-        order: ['Utilities', 'Providers', 'Components'],
+        order: ['Utilities', 'Providers', 'Components', 'Addons'],
         method: 'alphabetical',
       },
     },

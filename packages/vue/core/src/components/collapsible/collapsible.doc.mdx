@@ -132,18 +132,6 @@ Ark UI 文档： [Ark UI Collapsible (Vue)](https://ark-ui.com/vue/docs/componen
       <td>-</td>
       <td>触发器根节点 class 覆盖</td>
     </tr>
-    <tr>
-      <td><code>ui.root</code></td>
-      <td><code>string | string[] | Record&lt;string, boolean&gt;</code></td>
-      <td>-</td>
-      <td>触发器根节点附加 class</td>
-    </tr>
-    <tr>
-      <td><code>ui.indicator</code></td>
-      <td><code>string | string[] | Record&lt;string, boolean&gt;</code></td>
-      <td>-</td>
-      <td>默认指示器节点附加 class</td>
-    </tr>
   </tbody>
 </table>
 
@@ -205,24 +193,6 @@ Ark UI 文档： [Ark UI Collapsible (Vue)](https://ark-ui.com/vue/docs/componen
       <td>展开状态按钮文案</td>
     </tr>
     <tr>
-      <td><code>ui.root</code></td>
-      <td><code>string</code></td>
-      <td>-</td>
-      <td>根节点附加 class</td>
-    </tr>
-    <tr>
-      <td><code>ui.content</code></td>
-      <td><code>string</code></td>
-      <td>-</td>
-      <td>内容区附加 class</td>
-    </tr>
-    <tr>
-      <td><code>ui.trigger</code></td>
-      <td><code>string</code></td>
-      <td>-</td>
-      <td>触发器附加 class</td>
-    </tr>
-    <tr>
       <td><code>open / defaultOpen / collapsedHeight / disabled / theme / class</code></td>
       <td><code>同 Collapsible</code></td>
       <td>-</td>
@@ -251,7 +221,7 @@ Ark UI 文档： [Ark UI Collapsible (Vue)](https://ark-ui.com/vue/docs/componen
     </tr>
     <tr>
       <td><code>Collapsible: openChange</code></td>
-      <td><code>(details: &#123; open: boolean &#125;)</code></td>
+      <td><code>(details: {'{'} open: boolean {'}'})</code></td>
       <td>展开状态变化通知</td>
     </tr>
     <tr>
@@ -261,7 +231,7 @@ Ark UI 文档： [Ark UI Collapsible (Vue)](https://ark-ui.com/vue/docs/componen
     </tr>
     <tr>
       <td><code>ReadMore: openChange</code></td>
-      <td><code>(details: &#123; open: boolean &#125;)</code></td>
+      <td><code>(details: {'{'} open: boolean {'}'})</code></td>
       <td>继承内部 Collapsible 的展开状态变化通知</td>
     </tr>
   </tbody>

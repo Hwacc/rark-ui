@@ -1,7 +1,7 @@
 ---
 name: component-doc
-model: composer-1.5
 description: 编写或更新 Rark UI 组件的 Storybook MDX 文档。Use when creating or updating component documentation in xxx.doc.mdx files.
+model: gpt-5.3-codex
 ---
 
 # Rark UI 组件文档编写规范

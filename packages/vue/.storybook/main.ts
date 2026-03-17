@@ -38,6 +38,7 @@ const config: StorybookConfig = {
     '../core/src/**/*.mdx',
     '../core/src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
     '../addons/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../addons/**/*.mdx',
   ],
   addons: ['@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-themes'],
   framework: {
