@@ -1,10 +1,12 @@
+const path = require('path')
+
 module.exports = {
   apps: [
     {
       name: 'rark-ui-apis',
-      script: 'src/server.ts',
-      interpreter: 'bun',
-      cwd: __dirname,
+      script: 'scripts/run-server.cjs',
+      interpreter: 'node',
+      cwd: path.join(__dirname),
       env: {
         PORT: 4398,
         HOST: '0.0.0.0',
