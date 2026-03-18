@@ -22,11 +22,6 @@ function safeJoin(rootDir: string, urlPathname: string) {
   return path.join(rootDir, ...parts)
 }
 
-function isProbablyHtmlRequest(req: Request) {
-  const accept = req.headers.get('accept') ?? ''
-  return accept.includes('text/html') || accept.includes('*/*')
-}
-
 const server = Bun.serve({
   port: Number(process.env.PORT ?? 4399),
   hostname: process.env.HOST ?? '0.0.0.0',
@@ -67,14 +62,8 @@ const server = Bun.serve({
       }
     }
 
-    // SPA / storybook 路由：对 html 请求回退到 index.html
-    if (isProbablyHtmlRequest(req)) {
-      const index = Bun.file(path.join(STORYBOOK_STATIC_DIR, 'index.html'))
-      return new Response(index, {
-        headers: { 'content-type': 'text/html; charset=utf-8' },
-      })
-    }
-
+    // 注意：不要对 404 做 SPA 回退到 index.html，否则会触发 Storybook
+    // "preloadStories unable to determine the source of the event" 错误
     return new Response('Not Found', { status: 404 })
   },
 })
