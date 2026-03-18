@@ -78,11 +78,11 @@ npx rui-ark-mcp
 
 默认会使用以下 GET 端点（可通过环境变量覆盖）：
 
-- `MCP_REMOTE_ENDPOINT_LIST_COMPONENTS`，默认 `/api/mcp/components`
-- `MCP_REMOTE_ENDPOINT_LIST_EXAMPLES`，默认 `/api/mcp/examples`
-- `MCP_REMOTE_ENDPOINT_GET_EXAMPLE`，默认 `/api/mcp/example`
-- `MCP_REMOTE_ENDPOINT_LIST_DOCUMENTS`，默认 `/api/mcp/documents`
-- `MCP_REMOTE_ENDPOINT_GET_DOCUMENT`，默认 `/api/mcp/document`
+- `MCP_REMOTE_ENDPOINT_LIST_COMPONENTS`，默认 `/mcp/components`
+- `MCP_REMOTE_ENDPOINT_LIST_EXAMPLES`，默认 `/mcp/examples`
+- `MCP_REMOTE_ENDPOINT_GET_EXAMPLE`，默认 `/mcp/example`
+- `MCP_REMOTE_ENDPOINT_LIST_DOCUMENTS`，默认 `/mcp/documents`
+- `MCP_REMOTE_ENDPOINT_GET_DOCUMENT`，默认 `/mcp/document`
 
 公共 query 参数：
 
