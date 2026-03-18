@@ -2,8 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'rark-ui-apis',
-      script: 'src/server.ts',
-      interpreter: 'bun',
+      script: 'scripts/run-server.cjs',
+      interpreter: 'node',
       env: {
         PORT: 4398,
         HOST: '0.0.0.0',
