@@ -11,6 +11,8 @@ import * as HoverCardStories from './hover-card.stories'
 
 ## Examples
 
+展示组件的常见使用方式。
+
 ### 基础用法
 
 <Canvas of={HoverCardStories.Basic} />
@@ -35,13 +37,10 @@ import * as HoverCardStories from './hover-card.stories'
 
 ## ARK UI Link
 
-`HoverCard` 组件族与 Ark UI Hover Card 对应，属于“部分透传 + Rark UI 扩展”：
+`HoverCard` 组件族与 Ark UI Hover Card 对应，属于「部分透传 + Rark UI 扩展」：
 
-- `HoverCard` 根组件基于 Ark UI Root，透传 Root 常用参数（如 `open/defaultOpen`、`positioning`、`openDelay/closeDelay`、`lazyMount/unmountOnExit` 等），并扩展 `theme`。
-- `HoverCardTrigger` 直接导出自 Ark UI 原语，行为与 Ark UI 保持一致。
-- `HoverCardContent` 在 Ark UI Content/Positioner 上增加结构化包裹与 `ui` 覆盖入口；`HoverCardArrow` 在 Ark UI Arrow 上增加 `theme/ui` 覆盖。
-
-Ark UI 文档： [Ark UI Hover Card (Vue)](https://ark-ui.com/vue/docs/components/hover-card)
+- **相关文档**：[Ark UI Hover Card (Vue)](https://ark-ui.com/vue/docs/components/hover-card)
+- **说明**：`HoverCard` 根组件基于 Ark UI Root，透传 Root 常用参数（如 `open/defaultOpen`、`positioning`、`openDelay/closeDelay`、`lazyMount/unmountOnExit` 等），并扩展 `theme`；`HoverCardTrigger` 直接导出自 Ark UI 原语；`HoverCardContent` 在 Ark UI Content/Positioner 上增加结构化包裹与 `ui` 覆盖；`HoverCardArrow` 在 Ark UI Arrow 上增加 `theme/ui` 覆盖。
 
 ---
 
@@ -76,27 +75,33 @@ Ark UI 文档： [Ark UI Hover Card (Vue)](https://ark-ui.com/vue/docs/component
       <td>非受控模式下的初始打开状态</td>
     </tr>
     <tr>
+      <td><code>positioning</code></td>
+      <td><code>PositioningOptions</code></td>
+      <td>-</td>
+      <td>浮层定位配置（如 <code>placement</code>、<code>offset</code> 等）</td>
+    </tr>
+    <tr>
       <td><code>openDelay</code></td>
       <td><code>number</code></td>
-      <td>默认取配置项（RUIConfigProvider 中为 <code>0</code>）</td>
+      <td>取配置项（默认 <code>0</code>）</td>
       <td>鼠标悬停到触发器后，浮层延迟打开时间（ms）</td>
     </tr>
     <tr>
       <td><code>closeDelay</code></td>
       <td><code>number</code></td>
-      <td>默认取配置项（RUIConfigProvider 中为 <code>300</code>）</td>
+      <td>取配置项（默认 <code>300</code>）</td>
       <td>鼠标移出后，浮层延迟关闭时间（ms）</td>
     </tr>
     <tr>
       <td><code>lazyMount</code></td>
       <td><code>boolean</code></td>
-      <td>默认取配置项（RUIConfigProvider 中为 <code>true</code>）</td>
+      <td>取配置项或 Ark UI 默认</td>
       <td>是否延迟挂载内容</td>
     </tr>
     <tr>
       <td><code>unmountOnExit</code></td>
       <td><code>boolean</code></td>
-      <td>默认取配置项（RUIConfigProvider 中为 <code>true</code>）</td>
+      <td>取配置项或 Ark UI 默认</td>
       <td>关闭后是否卸载内容</td>
     </tr>
     <tr>
@@ -166,24 +171,6 @@ Ark UI 文档： [Ark UI Hover Card (Vue)](https://ark-ui.com/vue/docs/component
       <td>继承根组件主题，也可局部覆盖（不含 crafts）</td>
     </tr>
     <tr>
-      <td><code>ui.positioner</code></td>
-      <td><code>HTMLAttributes['class']</code></td>
-      <td>-</td>
-      <td>定位容器 class 覆盖</td>
-    </tr>
-    <tr>
-      <td><code>ui.content</code></td>
-      <td><code>HTMLAttributes['class']</code></td>
-      <td>-</td>
-      <td>内容容器 class 覆盖</td>
-    </tr>
-    <tr>
-      <td><code>ui.inner</code></td>
-      <td><code>HTMLAttributes['class']</code></td>
-      <td>-</td>
-      <td>内容内层容器 class 覆盖</td>
-    </tr>
-    <tr>
       <td>其它 Ark UI Content 参数</td>
       <td><code>HoverCardContentBaseProps</code></td>
       <td>-</td>
@@ -215,18 +202,6 @@ Ark UI 文档： [Ark UI Hover Card (Vue)](https://ark-ui.com/vue/docs/component
       <td><code>ThemeNoCrafts</code></td>
       <td>-</td>
       <td>箭头主题参数（如 <code>size</code>、<code>surface</code>、<code>bordered</code>）</td>
-    </tr>
-    <tr>
-      <td><code>ui.arrow</code></td>
-      <td><code>HTMLAttributes['class']</code></td>
-      <td>-</td>
-      <td>Arrow 容器 class 覆盖</td>
-    </tr>
-    <tr>
-      <td><code>ui.arrowTip</code></td>
-      <td><code>HTMLAttributes['class']</code></td>
-      <td>-</td>
-      <td>ArrowTip 节点 class 覆盖</td>
     </tr>
   </tbody>
 </table>
@@ -262,7 +237,7 @@ Ark UI 文档： [Ark UI Hover Card (Vue)](https://ark-ui.com/vue/docs/component
   </tbody>
 </table>
 
-#### HoverCardContent / HoverCardArrow / HoverCardTrigger
+#### HoverCardTrigger / HoverCardContent / HoverCardArrow
 
 <table>
   <thead>
@@ -276,7 +251,7 @@ Ark UI 文档： [Ark UI Hover Card (Vue)](https://ark-ui.com/vue/docs/component
     <tr>
       <td>-</td>
       <td>-</td>
-      <td>组件本身未额外声明自定义 emits，DOM 事件可按原生方式监听</td>
+      <td>子组件未额外声明 emits，DOM 事件可按原生方式监听</td>
     </tr>
   </tbody>
 </table>

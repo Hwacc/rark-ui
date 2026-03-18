@@ -27,7 +27,7 @@ import * as IconStories from './icon.stories'
 
 ## ARK UI Link
 
-`Icon` 不对应 Ark UI 官方组件，底层渲染由 `@iconify/vue` 的 `Icon` 完成；当前实现仅使用 Ark UI Vue 的工具能力（`useForwardProps`）处理 props 转发，不属于 Ark UI 组件族的“完全透传”场景。
+`Icon` 不对应 Ark UI 官方组件，底层渲染由 `@iconify/vue` 的 `Icon` 完成；组件不继承 Ark UI 的 Props 接口，不属于 Ark UI 组件族的“完全透传”场景。
 
 - Ark UI 参考： [Ark UI Vue Utilities](https://ark-ui.com/vue/docs/utilities)
 - Iconify 参考： [Iconify for Vue](https://iconify.design/docs/icon-components/vue/)

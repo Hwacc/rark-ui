@@ -11,6 +11,8 @@ import * as MenuStories from './menu.stories'
 
 ## Examples
 
+展示菜单的常见使用方式。
+
 ### 基础用法
 
 <Canvas of={MenuStories.Basic} />
@@ -49,7 +51,7 @@ import * as MenuStories from './menu.stories'
 - `MenuTrigger`、`MenuContextTrigger`、`MenuItemText`、`MenuItemIndicator`、`MenuContext` 直接从 Ark UI 导出，参数与行为以 Ark UI 为准。
 - `MenuArrow` 基于 Ark UI Arrow/ArrowTip 组合封装，用于菜单箭头渲染。
 
-Ark UI 文档： [Ark UI Menu (Vue)](https://ark-ui.com/vue/docs/components/menu)
+- **相关文档**: [Ark UI Menu (Vue)](https://ark-ui.com/vue/docs/components/menu)
 
 ---
 
@@ -141,24 +143,6 @@ Ark UI 文档： [Ark UI Menu (Vue)](https://ark-ui.com/vue/docs/components/menu
       <td>继承或覆盖主题上下文</td>
     </tr>
     <tr>
-      <td><code>ui.positioner</code></td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>定位容器 class</td>
-    </tr>
-    <tr>
-      <td><code>ui.content</code></td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>内容容器 class</td>
-    </tr>
-    <tr>
-      <td><code>ui.inner</code></td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>内部包裹层 class</td>
-    </tr>
-    <tr>
       <td><code>...Ark Menu Content props</code></td>
       <td><code>同 Ark UI Menu Content</code></td>
       <td>-</td>
@@ -242,18 +226,6 @@ Ark UI 文档： [Ark UI Menu (Vue)](https://ark-ui.com/vue/docs/components/menu
       <td>-</td>
       <td>继承或覆盖主题上下文</td>
     </tr>
-    <tr>
-      <td><code>ui.root</code></td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>分组根节点 class</td>
-    </tr>
-    <tr>
-      <td><code>ui.label</code></td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>分组标题节点 class</td>
-    </tr>
   </tbody>
 </table>
 
@@ -287,18 +259,6 @@ Ark UI 文档： [Ark UI Menu (Vue)](https://ark-ui.com/vue/docs/components/menu
       <td>Ark UI 默认</td>
       <td>切换后是否关闭菜单</td>
     </tr>
-    <tr>
-      <td><code>ui.root</code></td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>菜单项根节点 class</td>
-    </tr>
-    <tr>
-      <td><code>ui.checkbox</code></td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>内置 Checkbox 指示器 class</td>
-    </tr>
   </tbody>
 </table>
 
@@ -331,18 +291,6 @@ Ark UI 文档： [Ark UI Menu (Vue)](https://ark-ui.com/vue/docs/components/menu
       <td><code>'default' | 'checkbox'</code></td>
       <td><code>'default'</code></td>
       <td>指示器形态（圆点或勾选）</td>
-    </tr>
-    <tr>
-      <td><code>ui.root</code>（<code>MenuRadioItem</code>）</td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>单选项根节点 class</td>
-    </tr>
-    <tr>
-      <td><code>ui.indicator</code>（<code>MenuRadioItem</code>）</td>
-      <td><code>string | array | object</code></td>
-      <td>-</td>
-      <td>指示器节点 class</td>
     </tr>
   </tbody>
 </table>

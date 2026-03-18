@@ -65,7 +65,7 @@ description: 编写或更新 Rark UI 组件的 Storybook MDX 文档。Use when c
 ### 6.1 Props
 
 - 默认按“子组件分组”组织（例如 `Dialog`、`DialogTrigger`、`DialogContent`）。
-- `Props` 里不要出现 `.ui.*` 相关项；`.ui.*` 统一放在 `## UI Configuration`。
+- 重要:`Props` 里不要出现 `.ui.*` 相关项；`.ui.*` 统一放在 `## UI Configuration`。
 - 对于 (例如: `Dialog`、`DialogTrigger`、`DialogContent` ) 这类并列组件，使用“每个组件一个 table”的方式分组展示。
 - 每组使用 HTML `<table>`，列固定为：`属性`、`类型`、`默认值`、`说明`。
 - 仅列常用与扩展项；Ark UI 原生完整项可说明并且引导到官方文档。
