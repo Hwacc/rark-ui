@@ -12,6 +12,9 @@
   "scripts": {
     "dev": "storybook dev --port 4399",
     "build": "storybook build -o .storybook-static",
+    "start:pm2": "pm2 start ecosystem.config.js",
+    "stop:pm2": "pm2 stop rui-ark-vue-storybook",
+    "restart:pm2": "pm2 restart rui-ark-vue-storybook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
