@@ -1,0 +1,379 @@
+{
+  "schemaVersion": "2.0.0",
+  "docId": "rark.vue.slider",
+  "component": {
+    "name": "Slider",
+    "framework": "vue",
+    "package": "@rark-ui/vue/core",
+    "importPath": "@rark-ui/vue/core",
+    "exportName": "Slider",
+    "category": "core",
+    "description": "用于区间数值选择的滑动输入组件，支持单值与多 Thumb（范围）模式、水平/垂直方向、刻度标记与 Tooltip 展示。基于 Ark UI Slider 构建，扩展 theme 与 ui 配置。",
+    "basePrimitive": {
+      "library": "@ark-ui/vue/slider",
+      "primitive": "Slider.RootProvider",
+      "nativeElement": "div"
+    },
+    "passThrough": {
+      "htmlAttributes": [
+        "disabled",
+        "readOnly",
+        "aria-*",
+        "data-*"
+      ],
+      "notes": "透传 Ark UI SliderRootBaseProps；theme、ui 为 Rark 扩展。"
+    },
+    "capabilities": [
+      "v-model",
+      "theme",
+      "ui-override",
+      "programmatic-api"
+    ]
+  },
+  "contracts": {
+    "props": [
+      {
+        "name": "modelValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "number[]",
+        "typeSchema": { "type": "array", "items": { "type": "number" } },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "受控值数组（单值模式通常为单元素数组）。"
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "number[]",
+        "typeSchema": { "type": "array", "items": { "type": "number" } },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "非受控初始值。"
+      },
+      {
+        "name": "min",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": 0,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "最小值。"
+      },
+      {
+        "name": "max",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": 100,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "最大值。"
+      },
+      {
+        "name": "step",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": 1,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "步长。"
+      },
+      {
+        "name": "orientation",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "'horizontal' | 'vertical'",
+        "typeSchema": { "enum": ["horizontal", "vertical"] },
+        "default": "horizontal",
+        "defaultKind": "explicit-runtime",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "方向；垂直模式通常需配合高度与 ui 覆盖。"
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": false,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "是否禁用滑动交互。"
+      },
+      {
+        "name": "readOnly",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": false,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "只读模式（可聚焦但不修改值）。"
+      },
+      {
+        "name": "class",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "string | array | object",
+        "typeSchema": {
+          "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }]
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "根节点附加 class。"
+      },
+      {
+        "name": "theme",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "ThemeCrafts<'tvSlider'>",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "Slider 主题变量与 crafts 覆盖。"
+      },
+      {
+        "name": "ui",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "{ root?: class; control?: class; track?: class; range?: class }",
+        "typeSchema": {
+          "type": "object",
+          "properties": {
+            "root": {},
+            "control": {},
+            "track": {},
+            "range": {}
+          }
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "各结构节点 class 覆盖。"
+      }
+    ],
+    "events": [
+      {
+        "name": "update:modelValue",
+        "payload": { "typeText": "(value: number[])", "typeSchema": { "type": "object", "x-ts-type": "number[]" } },
+        "emitWhen": [{ "expr": "value_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:update:modelValue"],
+        "description": "受控值同步（v-model）。"
+      },
+      {
+        "name": "valueChange",
+        "payload": { "typeText": "(details: ValueChangeDetails)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "value_changing", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": [],
+        "description": "拖拽过程中值变化时触发。"
+      },
+      {
+        "name": "valueChangeEnd",
+        "payload": { "typeText": "(details: ValueChangeDetails)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "value_change_end", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": [],
+        "description": "值变化结束（通常为松开拖拽）时触发。"
+      },
+      {
+        "name": "focusChange",
+        "payload": { "typeText": "(details: FocusChangeDetails)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "focus_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": [],
+        "description": "焦点 Thumb 索引变化时触发。"
+      }
+    ],
+    "slots": [
+      {
+        "name": "prefix",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "控制区前置内容（如标签、辅助说明）。"
+      },
+      {
+        "name": "default",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "放置 Thumb / SliderTooltipThumb 等控制节点。"
+      },
+      {
+        "name": "suffix",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "控制区后置内容（常用于 SliderMarkerGroup）。"
+      }
+    ],
+    "themeConfiguration": {
+      "fields": [
+        {
+          "name": "size",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": { "enum": ["xs", "sm", "base", "lg"] },
+          "default": "base",
+          "defaultKind": "explicit-doc",
+          "description": "滑块尺寸体系（轨道、Thumb、刻度节奏）。"
+        },
+        {
+          "name": "skin",
+          "typeText": "'razer' | 'shadcn'",
+          "typeSchema": { "enum": ["razer", "shadcn"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "主题皮肤。"
+        },
+        {
+          "name": "surface",
+          "typeText": "'light' | 'dark' | 'razer'",
+          "typeSchema": { "enum": ["light", "dark", "razer"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "表面语义。"
+        },
+        {
+          "name": "unstyled",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "是否移除内置样式。"
+        }
+      ]
+    },
+    "uiConfiguration": {
+      "fields": [
+        { "name": "ui.root", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "根容器 class 覆盖" },
+        { "name": "ui.control", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "控制区 class 覆盖" },
+        { "name": "ui.track", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "轨道 class 覆盖" },
+        { "name": "ui.range", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "已选区间 class 覆盖" }
+      ]
+    }
+  },
+  "behaviorModel": {
+    "stateVars": {
+      "value": "number[]",
+      "dragging": "boolean",
+      "focusedIndex": "number|null"
+    },
+    "derived": {
+      "valuePercent": "value.map(v => (v - min) / (max - min) * 100)"
+    },
+    "transitions": [
+      {
+        "on": "drag",
+        "guard": "!disabled && !readOnly",
+        "effects": ["value 更新", "emit(valueChange)"]
+      },
+      {
+        "on": "dragEnd",
+        "guard": "!disabled && !readOnly",
+        "effects": ["emit(valueChangeEnd)"]
+      }
+    ]
+  },
+  "examples": [
+    { "id": "basic", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Slider" }, "exampleId": "basic" }, "description": "基础用法" },
+    { "id": "range", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Slider" }, "exampleId": "range" }, "description": "范围选择" },
+    { "id": "markers-and-tooltips", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Slider" }, "exampleId": "markers-and-tooltips" }, "description": "刻度与 Tooltip 组合" },
+    { "id": "sizes", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Slider" }, "exampleId": "sizes" }, "description": "尺寸变体" },
+    { "id": "vertical-and-disabled", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Slider" }, "exampleId": "vertical-and-disabled" }, "description": "垂直方向与禁用态" },
+    { "id": "controlled", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Slider" }, "exampleId": "controlled" }, "description": "受控模式" }
+  ],
+  "generationHints": {
+    "preferredUsageOrder": ["modelValue/defaultValue", "min/max/step", "orientation", "theme"],
+    "safeDefaults": {
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "orientation": "horizontal",
+      "disabled": false,
+      "readOnly": false
+    },
+    "a11yChecklist": [
+      "范围模式务必为每个 Thumb 明确设置 index",
+      "垂直布局需同时调整容器高度与 ui"
+    ],
+    "codegenTemplates": {
+      "minimal": "<Slider v-model=\"value\" />",
+      "range": "<Slider v-model=\"value\" :min=\"0\" :max=\"100\"><SliderTooltipThumb :index=\"0\" /><SliderTooltipThumb :index=\"1\" /></Slider>"
+    },
+    "antiPatterns": [
+      "单值与范围混用标量与数组造成状态分支复杂化",
+      "垂直布局只改 orientation 未调整容器高度"
+    ]
+  },
+  "provenance": {
+    "sources": [
+      { "path": "./slider.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./Slider.vue", "kind": "runtime" },
+      { "path": "./slider.stories.ts", "kind": "story" }
+    ],
+    "precedence": ["runtime", "type", "doc"],
+    "fieldSourceMap": {
+      "contracts.props.orientation.default": "runtime",
+      "contracts.props.min.max.step.default": "doc"
+    }
+  }
+}

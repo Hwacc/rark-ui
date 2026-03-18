@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "rark-ui": {
+      "command": "node",
+      "args": ["C:/workspace/rui-ark/packages/mcp/dist/cli.js"],
+      "env": {
+        "MCP_REMOTE_BASE_URL": "http://localhost:4398",
+        "MCP_TIMEOUT_MS": "8000",
+        "MCP_REMOTE_RETRIES": "1"
+      }
+    }
+  }
+}

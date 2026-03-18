@@ -1,0 +1,417 @@
+{
+  "schemaVersion": "2.0.0",
+  "docId": "rark.vue.tabs",
+  "component": {
+    "name": "Tabs",
+    "framework": "vue",
+    "package": "@rark-ui/vue/core",
+    "importPath": "@rark-ui/vue/core",
+    "exportName": "Tabs",
+    "category": "core",
+    "description": "用于在同一上下文中切换多个内容面板，适合设置页分组、信息分区与多视图切换。基于 Ark UI Tabs 构建，支持受控/非受控值、可滚动标签列表、方向切换等 Root 能力，并扩展 theme 主题配置与统一样式输出。",
+    "basePrimitive": {
+      "library": "@ark-ui/vue/tabs",
+      "primitive": "Tabs.RootProvider",
+      "nativeElement": "div"
+    },
+    "passThrough": {
+      "htmlAttributes": ["aria-*", "data-*"],
+      "notes": "组件族（Tabs、TabsList、TabsTrigger、TabsIndicator、TabsContent）基于 Ark UI Tabs 原语封装。"
+    },
+    "capabilities": [
+      "v-model",
+      "theme",
+      "orientation",
+      "lazy-mount",
+      "composite-item"
+    ]
+  },
+  "contracts": {
+    "props": [
+      {
+        "name": "modelValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "string",
+        "typeSchema": { "type": "string" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "受控当前值（配合 v-model）"
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "string",
+        "typeSchema": { "type": "string" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "非受控初始值"
+      },
+      {
+        "name": "orientation",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "'horizontal' | 'vertical'",
+        "typeSchema": {
+          "enum": ["horizontal", "vertical"]
+        },
+        "default": "horizontal",
+        "defaultKind": "explicit-runtime",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "标签方向；会影响 Trigger/Indicator 的样式计算"
+      },
+      {
+        "name": "lazyMount",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "延迟挂载面板内容"
+      },
+      {
+        "name": "unmountOnExit",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "切换后卸载非激活面板"
+      },
+      {
+        "name": "class",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "string | array | object",
+        "typeSchema": {
+          "anyOf": [
+            { "type": "string" },
+            { "type": "array" },
+            { "type": "object" }
+          ]
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "根节点附加 class"
+      },
+      {
+        "name": "theme",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "ThemeCrafts<'tvTabs'>",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "根组件主题参数与 tvTabs crafts 覆盖"
+      }
+    ],
+    "events": [
+      {
+        "name": "update:modelValue",
+        "payload": {
+          "typeText": "(value: string)",
+          "typeSchema": { "type": "string" }
+        },
+        "emitWhen": [
+          { "expr": "tab_changed", "kind": "runtime-hook" }
+        ],
+        "notEmitWhen": [],
+        "order": ["emit:update:modelValue"],
+        "description": "受控当前值同步（对应 v-model）"
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "slotPropsSchema": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "根插槽，放置 TabsList 与多个 TabsContent"
+      }
+    ],
+    "themeConfiguration": {
+      "fields": [
+        {
+          "name": "size",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": {
+            "enum": ["xs", "sm", "base", "lg"]
+          },
+          "default": "base",
+          "defaultKind": "explicit-doc",
+          "description": "尺寸变体"
+        },
+        {
+          "name": "skin",
+          "typeText": "'razer' | 'shadcn'",
+          "typeSchema": {
+            "enum": ["razer", "shadcn"]
+          },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "主题皮肤"
+        },
+        {
+          "name": "surface",
+          "typeText": "'light' | 'dark'",
+          "typeSchema": {
+            "enum": ["light", "dark"]
+          },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "表面语义"
+        },
+        {
+          "name": "bordered",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "是否启用边框风格"
+        },
+        {
+          "name": "unstyled",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "移除内置样式"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "覆盖 tvTabs crafts"
+        }
+      ]
+    },
+    "uiConfiguration": {
+      "fields": [
+        {
+          "name": "Tabs.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "根节点样式覆盖"
+        },
+        {
+          "name": "TabsList.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "标签列表样式覆盖"
+        },
+        {
+          "name": "TabsTrigger.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "触发项样式覆盖"
+        },
+        {
+          "name": "TabsIndicator.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "指示器样式覆盖"
+        },
+        {
+          "name": "TabsContent.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "内容区样式覆盖"
+        }
+      ]
+    }
+  },
+  "behaviorModel": {
+    "stateVars": {
+      "modelValue": "string",
+      "orientation": "'horizontal' | 'vertical'"
+    },
+    "derived": {
+      "activeTab": "TabsContent with value === modelValue"
+    },
+    "transitions": [
+      {
+        "on": "trigger_click",
+        "guard": "trigger.disabled !== true",
+        "effects": [
+          "set modelValue = trigger.value",
+          "emit(update:modelValue, value)"
+        ]
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "basic",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Tabs" },
+        "exampleId": "basic"
+      },
+      "description": "基础用法"
+    },
+    {
+      "id": "controlled",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Tabs" },
+        "exampleId": "controlled"
+      },
+      "description": "受控模式"
+    },
+    {
+      "id": "scrollable-list",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Tabs" },
+        "exampleId": "scrollable-list"
+      },
+      "description": "可滚动标签列表"
+    },
+    {
+      "id": "sizes",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Tabs" },
+        "exampleId": "sizes"
+      },
+      "description": "尺寸变体"
+    },
+    {
+      "id": "disabled-and-no-indicator",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Tabs" },
+        "exampleId": "disabled-and-no-indicator"
+      },
+      "description": "禁用项与无指示器"
+    }
+  ],
+  "generationHints": {
+    "preferredUsageOrder": [
+      "modelValue / defaultValue",
+      "orientation",
+      "theme.size",
+      "TabsTrigger.value",
+      "TabsContent.value"
+    ],
+    "safeDefaults": {
+      "orientation": "horizontal",
+      "TabsTrigger.disabled": false
+    },
+    "a11yChecklist": [
+      "TabsTrigger.value 与 TabsContent.value 必须一一对应",
+      "禁用项需提供可感知视觉反馈",
+      "TabsIndicator 可选，但建议保留选中态反馈"
+    ],
+    "codegenTemplates": {
+      "minimal": "<Tabs v-model=\"tab\"><TabsList><TabsTrigger value=\"a\">A</TabsTrigger><TabsTrigger value=\"b\">B</TabsTrigger></TabsList><TabsContent value=\"a\">内容 A</TabsContent><TabsContent value=\"b\">内容 B</TabsContent></Tabs>",
+      "controlled": "<Tabs v-model=\"activeTab\" :orientation=\"'vertical'\">...</Tabs>"
+    },
+    "antiPatterns": [
+      "TabsTrigger.value 与 TabsContent.value 不一致导致可点击无面板",
+      "内容较重时未使用 lazyMount 与 unmountOnExit",
+      "样式定制直接改内部结构而非 theme/class"
+    ]
+  },
+  "provenance": {
+    "sources": [
+      { "path": "./tabs.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./Tabs.vue", "kind": "runtime" },
+      { "path": "./tabs.stories.ts", "kind": "story" }
+    ],
+    "precedence": ["runtime", "type", "doc"],
+    "fieldSourceMap": {
+      "contracts.props.orientation.default": "runtime",
+      "contracts.themeConfiguration.fields.size.default": "doc"
+    }
+  }
+}

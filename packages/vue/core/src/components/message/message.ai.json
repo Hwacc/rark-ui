@@ -1,0 +1,400 @@
+{
+  "schemaVersion": "2.0.0",
+  "docId": "rark.vue.message",
+  "component": {
+    "name": "Message",
+    "framework": "vue",
+    "package": "@rark-ui/vue/core",
+    "importPath": "@rark-ui/vue/core",
+    "exportName": "Message",
+    "category": "core",
+    "description": "基于 Ark UI Toast 能力封装的全局消息提示方案，适合反馈异步结果、状态变更与轻量通知。由 Messager（消息容器）与 Message（单条消息渲染）组合而成，支持函数式调用（useMessage）、主题配置（theme）与样式覆盖（ui）。",
+    "basePrimitive": {
+      "library": "@ark-ui/vue/toast",
+      "primitive": "Toast.Root",
+      "nativeElement": "div"
+    },
+    "passThrough": {
+      "htmlAttributes": ["aria-*", "data-*"],
+      "notes": "Messager 使用 createToaster 与 Toaster；Message 基于 Toast.Root 渲染单条消息，透传 ToastRootBaseProps。"
+    },
+    "capabilities": [
+      "imperative-api",
+      "theme",
+      "ui-override",
+      "custom-render",
+      "promise-lifecycle"
+    ]
+  },
+  "contracts": {
+    "props": [
+      {
+        "name": "options",
+        "required": true,
+        "requiredSource": "type",
+        "typeText": "MessageOptions",
+        "typeSchema": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["info", "success", "warning", "error", "loading"]
+            },
+            "description": {},
+            "render": { "type": "function" },
+            "showClose": { "type": "boolean" },
+            "theme": { "type": "object" }
+          },
+          "required": []
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "单条消息配置（必填）"
+      },
+      {
+        "name": "class",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "string | array | object",
+        "typeSchema": {
+          "anyOf": [
+            { "type": "string" },
+            { "type": "array" },
+            { "type": "object" }
+          ]
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "消息根节点附加 class"
+      },
+      {
+        "name": "theme",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "ThemeNoCrafts['theme']",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "单条消息主题参数，和 options.theme 合并"
+      },
+      {
+        "name": "ui",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "{ root?: { class?: string | array | object }, content?: { class?: string | array | object }, description?: { class?: string | array | object }, icon?: { class?: string | array | object }, close?: { class?: string | array | object } }",
+        "typeSchema": {
+          "type": "object",
+          "properties": {
+            "root": { "type": "object" },
+            "content": { "type": "object" },
+            "description": { "type": "object" },
+            "icon": { "type": "object" },
+            "close": { "type": "object" }
+          },
+          "additionalProperties": true
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "局部样式覆盖配置"
+      }
+    ],
+    "events": [],
+    "slots": [
+      {
+        "name": "default",
+        "slotPropsSchema": {
+          "type": "object",
+          "properties": {
+            "options": {},
+            "context": {}
+          },
+          "additionalProperties": true
+        },
+        "renderWhen": [{ "expr": "!options.render" }],
+        "fallback": null,
+        "description": "自定义整条消息结构；作用域参数含 options 与 context"
+      },
+      {
+        "name": "icon",
+        "slotPropsSchema": {
+          "type": "object",
+          "properties": {
+            "options": {},
+            "context": {}
+          },
+          "additionalProperties": true
+        },
+        "renderWhen": [{ "expr": "!options.render" }],
+        "fallback": "默认类型图标",
+        "description": "覆盖默认类型图标区域"
+      },
+      {
+        "name": "inner",
+        "slotPropsSchema": {
+          "type": "object",
+          "properties": {
+            "options": {},
+            "context": {}
+          },
+          "additionalProperties": true
+        },
+        "renderWhen": [{ "expr": "!options.render" }],
+        "fallback": "Toast.Description",
+        "description": "覆盖描述区域内容"
+      },
+      {
+        "name": "close",
+        "slotPropsSchema": {
+          "type": "object",
+          "properties": {
+            "options": {},
+            "context": {}
+          },
+          "additionalProperties": true
+        },
+        "renderWhen": [{ "expr": "options.showClose === true" }],
+        "fallback": "Toast.CloseTrigger",
+        "description": "覆盖关闭按钮区域；loading 类型默认不渲染关闭按钮"
+      }
+    ],
+    "themeConfiguration": {
+      "fields": [
+        {
+          "name": "size",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": {
+            "enum": ["xs", "sm", "base", "lg"]
+          },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "消息尺寸"
+        },
+        {
+          "name": "skin",
+          "typeText": "'razer' | 'shadcn'",
+          "typeSchema": {
+            "enum": ["razer", "shadcn"]
+          },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "主题皮肤"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "覆盖 tvMessage crafts"
+        }
+      ]
+    },
+    "uiConfiguration": {
+      "fields": [
+        {
+          "name": "ui.root.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "消息根节点 class 覆盖"
+        },
+        {
+          "name": "ui.content.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "内容容器 class 覆盖"
+        },
+        {
+          "name": "ui.description.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "描述区域 class 覆盖"
+        },
+        {
+          "name": "ui.icon.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "图标区域 class 覆盖"
+        },
+        {
+          "name": "ui.close.class",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "关闭按钮区域 class 覆盖"
+        }
+      ]
+    }
+  },
+  "behaviorModel": {
+    "stateVars": {
+      "options": "MessageOptions",
+      "type": "info | success | warning | error | loading"
+    },
+    "derived": {
+      "showCloseButton": "options.showClose === true && type !== 'loading'"
+    },
+    "transitions": [
+      {
+        "on": "create",
+        "guard": "always",
+        "effects": ["render_toast", "start_duration_timer"]
+      },
+      {
+        "on": "close",
+        "guard": "showCloseButton",
+        "effects": ["dismiss_toast"]
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "basic",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Message" },
+        "exampleId": "basic"
+      },
+      "description": "基础消息类型"
+    },
+    {
+      "id": "sizes-and-close",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Message" },
+        "exampleId": "sizes-and-close"
+      },
+      "description": "尺寸与关闭按钮"
+    },
+    {
+      "id": "custom-render",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Message" },
+        "exampleId": "custom-render"
+      },
+      "description": "自定义渲染"
+    },
+    {
+      "id": "promise",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Message" },
+        "exampleId": "promise"
+      },
+      "description": "Promise 生命周期消息"
+    },
+    {
+      "id": "messager-props",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Message" },
+        "exampleId": "messager-props"
+      },
+      "description": "本地 Messager 容器参数"
+    }
+  ],
+  "generationHints": {
+    "preferredUsageOrder": [
+      "Messager 挂载",
+      "useMessage().message.create",
+      "options.type",
+      "options.description",
+      "options.showClose"
+    ],
+    "safeDefaults": {
+      "Messager.showClose": true
+    },
+    "a11yChecklist": [
+      "应用根部至少挂载一个 Messager",
+      "消息类型需提供可感知的视觉反馈",
+      "loading 类型默认不显示关闭按钮"
+    ],
+    "codegenTemplates": {
+      "minimal": "<Messager><template #default=\"{ message }\"><Message :options=\"message\" /></template></Messager>",
+      "imperative": "const { message } = useMessage(); message.success({ description: '操作成功' });"
+    },
+    "antiPatterns": [
+      "未挂载 Messager 即调用 useMessage",
+      "仅用颜色表达消息类型，缺少 type 语义",
+      "异步请求未使用 message.promise() 统一管理"
+    ]
+  },
+  "provenance": {
+    "sources": [
+      { "path": "./message.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./Message.vue", "kind": "runtime" },
+      { "path": "./Messager.vue", "kind": "runtime" },
+      { "path": "./use-message.ts", "kind": "runtime" },
+      { "path": "./message.stories.ts", "kind": "story" }
+    ],
+    "precedence": ["runtime", "type", "doc"],
+    "fieldSourceMap": {
+      "Messager.showClose.default": "runtime",
+      "contracts.slots.close.renderWhen": "runtime"
+    }
+  }
+}

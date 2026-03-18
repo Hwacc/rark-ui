@@ -1,0 +1,312 @@
+{
+  "schemaVersion": "2.0.0",
+  "docId": "rark.vue.tooltip",
+  "component": {
+    "name": "Tooltip",
+    "framework": "vue",
+    "package": "@rark-ui/vue/core",
+    "importPath": "@rark-ui/vue/core",
+    "exportName": "Tooltip",
+    "category": "core",
+    "description": "用于在悬停或聚焦时展示简短提示信息，适合图标按钮释义、字段补充说明和状态提示等轻量场景。基于 Ark UI Tooltip 原语构建，支持受控/非受控打开状态、延迟配置、定位策略。",
+    "basePrimitive": {
+      "library": "@ark-ui/vue/tooltip",
+      "primitive": "Tooltip.RootProvider",
+      "nativeElement": "div"
+    },
+    "passThrough": {
+      "htmlAttributes": [
+        "aria-*",
+        "data-*"
+      ],
+      "notes": "透传 Ark UI TooltipRootBaseProps；theme 为 Rark 扩展。TooltipContent 提供 ui 覆盖。"
+    },
+    "capabilities": [
+      "v-model:open",
+      "theme",
+      "ui-override",
+      "positioning"
+    ]
+  },
+  "contracts": {
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "受控打开状态（配合 v-model:open）。"
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": false,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "非受控初始打开状态。"
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "禁用 Tooltip 行为（触发器不再弹出提示）。"
+      },
+      {
+        "name": "openDelay",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": 0,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "打开延迟（ms，可由配置中心覆盖）。"
+      },
+      {
+        "name": "closeDelay",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": 0,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "关闭延迟（ms，可由配置中心覆盖）。"
+      },
+      {
+        "name": "positioning",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "PositioningOptions",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "浮层定位配置（如 placement、strategy）。"
+      },
+      {
+        "name": "lazyMount",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": false,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "是否延迟挂载内容。"
+      },
+      {
+        "name": "unmountOnExit",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": false,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "关闭后是否卸载内容。"
+      },
+      {
+        "name": "theme",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "ThemeCrafts<'tvTooltip'>",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "主题参数与 crafts 覆盖入口。"
+      }
+    ],
+    "events": [
+      {
+        "name": "update:open",
+        "payload": { "typeText": "(open: boolean)", "typeSchema": { "type": "object", "x-ts-type": "boolean" } },
+        "emitWhen": [{ "expr": "open_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:update:open"],
+        "description": "受控状态同步事件（用于 v-model:open）。"
+      },
+      {
+        "name": "openChange",
+        "payload": { "typeText": "(details: OpenChangeDetails)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "open_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": [],
+        "description": "打开状态变化时触发。"
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "承载触发器与内容（通常组合 TooltipTrigger + TooltipContent）。"
+      }
+    ],
+    "themeConfiguration": {
+      "fields": [
+        {
+          "name": "size",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": { "enum": ["xs", "sm", "base", "lg"] },
+          "default": "base",
+          "defaultKind": "explicit-doc",
+          "description": "控制内容与箭头尺寸节奏。"
+        },
+        {
+          "name": "surface",
+          "typeText": "'light' | 'dark' | string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "控制明暗表面语义。"
+        },
+        {
+          "name": "skin",
+          "typeText": "'razer' | 'shadcn' | string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "控制皮肤语义。"
+        },
+        {
+          "name": "bordered",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": true,
+          "defaultKind": "explicit-doc",
+          "description": "控制内容与箭头边框表现。"
+        },
+        {
+          "name": "unstyled",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "description": "禁用默认样式。"
+        }
+      ]
+    },
+    "uiConfiguration": {
+      "fields": [
+        { "name": "TooltipContent.ui.positioner", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "定位层 class 覆盖" },
+        { "name": "TooltipContent.ui.content", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "内容层 class 覆盖" },
+        { "name": "TooltipContent.ui.inner", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "内容内层 class 覆盖" }
+      ]
+    }
+  },
+  "behaviorModel": {
+    "stateVars": {
+      "open": "boolean"
+    },
+    "derived": {
+      "showContent": "open === true"
+    },
+    "transitions": [
+      {
+        "on": "hover/focus",
+        "guard": "!disabled",
+        "effects": ["open = true（经 openDelay）"]
+      },
+      {
+        "on": "blur/leave",
+        "guard": "!disabled",
+        "effects": ["open = false（经 closeDelay）"]
+      }
+    ]
+  },
+  "examples": [
+    { "id": "basic", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tooltip" }, "exampleId": "basic" }, "description": "基础用法（Hover / Focus）" },
+    { "id": "placements-and-skins", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tooltip" }, "exampleId": "placements-and-skins" }, "description": "位置与皮肤" },
+    { "id": "sizes-and-bordered", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tooltip" }, "exampleId": "sizes-and-bordered" }, "description": "尺寸与边框（含箭头）" },
+    { "id": "delays-and-controlled-open", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tooltip" }, "exampleId": "delays-and-controlled-open" }, "description": "延迟与受控打开（Click 联动）" },
+    { "id": "ui-and-fixed-strategy", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tooltip" }, "exampleId": "ui-and-fixed-strategy" }, "description": "UI 覆盖与 fixed 定位策略" },
+    { "id": "disabled", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tooltip" }, "exampleId": "disabled" }, "description": "禁用状态" }
+  ],
+  "generationHints": {
+    "preferredUsageOrder": ["open/defaultOpen", "openDelay/closeDelay", "positioning", "theme"],
+    "safeDefaults": {
+      "defaultOpen": false,
+      "openDelay": 0,
+      "closeDelay": 0,
+      "lazyMount": false,
+      "unmountOnExit": false
+    },
+    "a11yChecklist": [
+      "TooltipTrigger asChild 时确保触发元素可聚焦",
+      "Tooltip 仅用于补充说明，不要放置核心流程信息",
+      "禁用场景使用 disabled 明确阻断"
+    ],
+    "codegenTemplates": {
+      "minimal": "<Tooltip><TooltipTrigger>Hover me</TooltipTrigger><TooltipContent>Tip content</TooltipContent></Tooltip>",
+      "controlled": "<Tooltip v-model:open=\"open\">...</Tooltip>"
+    },
+    "antiPatterns": [
+      "Tooltip 放置必须点击或必须阅读的核心信息",
+      "滚动容器中未配置 positioning.strategy='fixed'"
+    ]
+  },
+  "provenance": {
+    "sources": [
+      { "path": "./tooltip.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./Tooltip.vue", "kind": "runtime" },
+      { "path": "./tooltip.stories.ts", "kind": "story" }
+    ],
+    "precedence": ["runtime", "type", "doc"],
+    "fieldSourceMap": {
+      "contracts.props.defaultOpen.default": "doc",
+      "contracts.props.openDelay.closeDelay.default": "doc"
+    }
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "schemaVersion": "2.0.0",
+  "docId": "rark.vue.hover-card",
+  "component": {
+    "name": "HoverCard",
+    "framework": "vue",
+    "package": "@rark-ui/vue/core",
+    "importPath": "@rark-ui/vue/core",
+    "exportName": "HoverCard",
+    "category": "core",
+    "description": "可交互的悬停浮层组件，常用于展示用户摘要、快捷说明或次级操作入口。基于 Ark UI Hover Card 构建：根组件承接 Ark UI Root 状态机能力，HoverCardContent 负责内容结构与样式扩展，支持 theme 与局部 ui 覆盖。",
+    "basePrimitive": {
+      "library": "@ark-ui/vue/hover-card",
+      "primitive": "HoverCard.RootProvider",
+      "nativeElement": "div"
+    },
+    "passThrough": {
+      "htmlAttributes": ["aria-*", "data-*"],
+      "notes": "根组件透传 Root 常用参数（open/defaultOpen、positioning、openDelay/closeDelay、lazyMount/unmountOnExit 等），并扩展 theme。"
+    },
+    "capabilities": [
+      "open",
+      "positioning",
+      "openDelay",
+      "closeDelay",
+      "theme",
+      "ui-override",
+      "lazyMount",
+      "unmountOnExit"
+    ]
+  },
+  "contracts": {
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": ["defaultOpen"],
+        "description": "受控打开状态（配合 v-model:open）。"
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": false,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": ["open"],
+        "description": "非受控模式下的初始打开状态。"
+      },
+      {
+        "name": "positioning",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "PositioningOptions",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "浮层定位配置（如 placement、offset 等）。"
+      },
+      {
+        "name": "openDelay",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": 0,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "鼠标悬停到触发器后，浮层延迟打开时间（ms）。"
+      },
+      {
+        "name": "closeDelay",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": 300,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "鼠标移出后，浮层延迟关闭时间（ms）。"
+      },
+      {
+        "name": "lazyMount",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "unknown",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "是否延迟挂载内容。"
+      },
+      {
+        "name": "unmountOnExit",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "unknown",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "关闭后是否卸载内容。"
+      },
+      {
+        "name": "theme",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "ThemeCrafts<'tvHoverCard'>",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "根组件主题参数与 crafts 覆盖入口。"
+      }
+    ],
+    "events": [
+      {
+        "name": "openChange",
+        "payload": {
+          "typeText": "(details: OpenChangeDetails)",
+          "typeSchema": { "type": "object" }
+        },
+        "emitWhen": [{ "expr": "open_state_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit_openChange"],
+        "description": "打开状态变化时触发（Ark UI Root 事件）。"
+      },
+      {
+        "name": "update:open",
+        "payload": {
+          "typeText": "(open: boolean)",
+          "typeSchema": { "type": "object", "properties": { "open": { "type": "boolean" } } }
+        },
+        "emitWhen": [{ "expr": "open_state_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit_update_open"],
+        "description": "用于 v-model:open 双向绑定。"
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "承载触发器与内容区域（通常组合 HoverCardTrigger + HoverCardContent）。"
+      }
+    ],
+    "themeConfiguration": {
+      "fields": [
+        {
+          "name": "size",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": { "enum": ["xs", "sm", "base", "lg"] },
+          "default": "base",
+          "defaultKind": "explicit-doc",
+          "description": "影响浮层尺寸节奏与箭头尺寸。"
+        },
+        {
+          "name": "skin",
+          "typeText": "'razer' | 'shadcn'",
+          "typeSchema": { "enum": ["razer", "shadcn"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "影响组件视觉皮肤标识。"
+        },
+        {
+          "name": "surface",
+          "typeText": "'light' | 'dark'",
+          "typeSchema": { "enum": ["light", "dark"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "影响明暗表面样式。"
+        },
+        {
+          "name": "bordered",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": true,
+          "defaultKind": "explicit-doc",
+          "description": "控制内容与箭头边框表现。"
+        },
+        {
+          "name": "unstyled",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "description": "禁用默认样式，便于完全自定义。"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "覆盖 tvHoverCard 的样式工艺配置。"
+        }
+      ]
+    },
+    "uiConfiguration": {
+      "fields": [
+        {
+          "name": "ui.positioner",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "覆盖定位层容器 class（HoverCardContent）。"
+        },
+        {
+          "name": "ui.content",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "覆盖内容容器 class（HoverCardContent）。"
+        },
+        {
+          "name": "ui.inner",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "覆盖内容内层容器 class（HoverCardContent）。"
+        }
+      ]
+    }
+  },
+  "behaviorModel": {
+    "stateVars": {
+      "open": "boolean",
+      "openDelay": "number",
+      "closeDelay": "number"
+    },
+    "derived": {
+      "isOpen": "open"
+    },
+    "transitions": [
+      {
+        "on": "trigger_hover_enter",
+        "guard": "open === false",
+        "effects": ["startOpenDelay", "setOpen(true)_after_delay"]
+      },
+      {
+        "on": "trigger_hover_leave",
+        "guard": "always",
+        "effects": ["startCloseDelay", "setOpen(false)_after_delay"]
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "basic",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "HoverCard" },
+        "exampleId": "basic"
+      },
+      "description": "基础用法"
+    },
+    {
+      "id": "delays-and-positioning",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "HoverCard" },
+        "exampleId": "delays-and-positioning"
+      },
+      "description": "延迟与定位"
+    },
+    {
+      "id": "controlled-and-context",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "HoverCard" },
+        "exampleId": "controlled-and-context"
+      },
+      "description": "受控模式与上下文"
+    },
+    {
+      "id": "themes-and-variants",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "HoverCard" },
+        "exampleId": "themes-and-variants"
+      },
+      "description": "主题尺寸与外观变体"
+    },
+    {
+      "id": "custom-content",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "HoverCard" },
+        "exampleId": "custom-content"
+      },
+      "description": "内容与 UI 自定义"
+    }
+  ],
+  "generationHints": {
+    "preferredUsageOrder": ["defaultOpen", "openDelay", "closeDelay", "positioning", "theme"],
+    "safeDefaults": {
+      "defaultOpen": false,
+      "openDelay": 0,
+      "closeDelay": 300
+    },
+    "a11yChecklist": [
+      "优先使用 HoverCard + HoverCardTrigger asChild + HoverCardContent 的标准组合。",
+      "内容区域建议保持短信息 + 轻操作，重交互场景改用 Dialog/Drawer。"
+    ],
+    "codegenTemplates": {
+      "minimal": "<HoverCard>\n  <HoverCardTrigger asChild><Button>Hover</Button></HoverCardTrigger>\n  <HoverCardContent>Content</HoverCardContent>\n</HoverCard>",
+      "controlled": "<HoverCard v-model:open=\"open\">...</HoverCard>"
+    },
+    "antiPatterns": [
+      "悬停态承载复杂流程，应改用 Dialog/Drawer。",
+      "密集列表中未调整 openDelay/closeDelay 导致误触和抖动。"
+    ]
+  },
+  "provenance": {
+    "sources": [
+      { "path": "./hover-card.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./HoverCard.vue", "kind": "runtime" },
+      { "path": "./hover-card.stories.ts", "kind": "story" }
+    ],
+    "precedence": ["runtime", "type", "doc"],
+    "fieldSourceMap": {
+      "contracts.props.defaultOpen.default": "doc",
+      "contracts.props.openDelay.default": "doc",
+      "contracts.props.closeDelay.default": "doc",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.themeConfiguration.fields.bordered.default": "doc"
+    }
+  }
+}

@@ -1,0 +1,491 @@
+{
+  "schemaVersion": "2.0.0",
+  "docId": "rark.vue.tags-input",
+  "component": {
+    "name": "TagsInput",
+    "framework": "vue",
+    "package": "@rark-ui/vue/core",
+    "importPath": "@rark-ui/vue/core",
+    "exportName": "TagsInput",
+    "category": "core",
+    "description": "用于管理字符串标签集合输入，适合关键词录入、技能标注、邮件地址批量输入等场景。基于 Ark UI Tags Input 构建，支持受控/非受控值管理、最大数量与校验策略、横向滚动与换行模式，并扩展 theme 与 ui 配置能力。",
+    "basePrimitive": {
+      "library": "@ark-ui/vue/tags-input",
+      "primitive": "TagsInput.RootProvider",
+      "nativeElement": "div"
+    },
+    "passThrough": {
+      "htmlAttributes": ["aria-*", "data-*"],
+      "notes": "根组件透传 TagsInputRootBaseProps 到 Ark UI Root，并扩展 theme、inline 和 ui 配置。"
+    },
+    "capabilities": [
+      "modelValue",
+      "validate",
+      "max",
+      "inline",
+      "theme",
+      "ui-override"
+    ]
+  },
+  "contracts": {
+    "props": [
+      {
+        "name": "modelValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "string[]",
+        "typeSchema": { "type": "array", "items": { "type": "string" } },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": ["defaultValue"],
+        "description": "受控值（配合 v-model）。"
+      },
+      {
+        "name": "defaultValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "string[]",
+        "typeSchema": { "type": "array", "items": { "type": "string" } },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": ["modelValue"],
+        "description": "非受控初始值。"
+      },
+      {
+        "name": "max",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "可创建的最大标签数（超出时触发 valueInvalid）。"
+      },
+      {
+        "name": "validate",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "(details) => boolean",
+        "typeSchema": { "type": "function" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "创建前校验函数，可用于去重、长度限制、格式过滤等策略。"
+      },
+      {
+        "name": "disabled",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "是否禁用交互。"
+      },
+      {
+        "name": "readOnly",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "是否只读。"
+      },
+      {
+        "name": "invalid",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "是否无效状态。"
+      },
+      {
+        "name": "inline",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": true,
+        "defaultKind": "explicit-runtime",
+        "nullable": false,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "是否使用行内横向滚动模式；为 false 时以换行流式布局展示。"
+      },
+      {
+        "name": "class",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "HTMLAttributes['class']",
+        "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "根节点附加 class。"
+      },
+      {
+        "name": "theme",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "ThemeCrafts<'tvTagsInput' | 'tvInput'>",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "主题参数与 crafts 覆盖入口。"
+      },
+      {
+        "name": "ui",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "{ root?: class, control?: class, input?: class }",
+        "typeSchema": {
+          "type": "object",
+          "properties": {
+            "root": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "control": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "input": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+          }
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "局部 class 覆盖：root、control、input。"
+      }
+    ],
+    "events": [
+      {
+        "name": "update:modelValue",
+        "payload": {
+          "typeText": "(value: string[])",
+          "typeSchema": { "type": "object", "properties": { "value": { "type": "array", "items": { "type": "string" } } } }
+        },
+        "emitWhen": [{ "expr": "value_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit_update_modelValue"],
+        "description": "受控值同步（v-model）。"
+      },
+      {
+        "name": "valueChange",
+        "payload": {
+          "typeText": "(details: { value: string[] })",
+          "typeSchema": {
+            "type": "object",
+            "properties": { "value": { "type": "array", "items": { "type": "string" } } },
+            "required": ["value"]
+          }
+        },
+        "emitWhen": [{ "expr": "value_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit_valueChange"],
+        "description": "标签集合变化时触发。"
+      },
+      {
+        "name": "highlightChange",
+        "payload": {
+          "typeText": "(details: { highlightedValue: string | null })",
+          "typeSchema": {
+            "type": "object",
+            "properties": { "highlightedValue": { "anyOf": [{ "type": "string" }, { "type": "null" }] } }
+          }
+        },
+        "emitWhen": [{ "expr": "highlighted_tag_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit_highlightChange"],
+        "description": "高亮标签变化时触发（键盘导航常用）。"
+      },
+      {
+        "name": "valueInvalid",
+        "payload": {
+          "typeText": "(details: { reason: string })",
+          "typeSchema": {
+            "type": "object",
+            "properties": { "reason": { "type": "string" } },
+            "required": ["reason"]
+          }
+        },
+        "emitWhen": [{ "expr": "create_failed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit_valueInvalid"],
+        "description": "创建失败时触发（如超出 max 或 validate 未通过）。"
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "slotPropsSchema": {
+          "type": "object",
+          "properties": { "items": { "type": "array", "items": { "type": "string" } } },
+          "required": ["items"]
+        },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "渲染标签项区域，作用域参数 items 为当前标签列表。"
+      },
+      {
+        "name": "prefix",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "输入控制区前置内容。"
+      },
+      {
+        "name": "suffix",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "输入控制区后置内容。"
+      }
+    ],
+    "themeConfiguration": {
+      "fields": [
+        {
+          "name": "size",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": { "enum": ["xs", "sm", "base", "lg"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "控制输入框与标签项尺寸体系。"
+        },
+        {
+          "name": "skin",
+          "typeText": "'razer' | 'shadcn'",
+          "typeSchema": { "enum": ["razer", "shadcn"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "主题皮肤。"
+        },
+        {
+          "name": "surface",
+          "typeText": "'light' | 'dark'",
+          "typeSchema": { "enum": ["light", "dark"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "表面语义模式。"
+        },
+        {
+          "name": "unstyled",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "去除默认样式。"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "覆盖 tvTagsInput / tvInput 样式生成逻辑。"
+        }
+      ]
+    },
+    "uiConfiguration": {
+      "fields": [
+        {
+          "name": "ui.root",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "根节点 class 覆盖。"
+        },
+        {
+          "name": "ui.control",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "控制区 class 覆盖。"
+        },
+        {
+          "name": "ui.input",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "输入框 class 覆盖。"
+        }
+      ]
+    }
+  },
+  "behaviorModel": {
+    "stateVars": {
+      "value": "string[]",
+      "inline": "boolean",
+      "disabled": "boolean",
+      "readOnly": "boolean",
+      "invalid": "boolean"
+    },
+    "derived": {
+      "items": "value",
+      "showScrollArea": "inline === true"
+    },
+    "transitions": [
+      {
+        "on": "add_tag",
+        "guard": "validate_pass && (max === undefined || value.length < max)",
+        "effects": ["addToValue", "emit_valueChange"]
+      },
+      {
+        "on": "remove_tag",
+        "guard": "always",
+        "effects": ["removeFromValue", "emit_valueChange"]
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "basic",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "TagsInput" },
+        "exampleId": "basic"
+      },
+      "description": "基础用法（受控模式）"
+    },
+    {
+      "id": "sizes",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "TagsInput" },
+        "exampleId": "sizes"
+      },
+      "description": "尺寸变体"
+    },
+    {
+      "id": "inline",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "TagsInput" },
+        "exampleId": "inline"
+      },
+      "description": "行内滚动与换行布局"
+    },
+    {
+      "id": "states",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "TagsInput" },
+        "exampleId": "states"
+      },
+      "description": "常见状态（禁用/只读/无效）"
+    },
+    {
+      "id": "max-and-validate",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "TagsInput" },
+        "exampleId": "max-and-validate"
+      },
+      "description": "最大标签数与创建校验"
+    },
+    {
+      "id": "events",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "TagsInput" },
+        "exampleId": "events"
+      },
+      "description": "事件监听与删除操作"
+    },
+    {
+      "id": "programmatic",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "TagsInput" },
+        "exampleId": "programmatic"
+      },
+      "description": "编程式调用（focus/add/set/clear）"
+    }
+  ],
+  "generationHints": {
+    "preferredUsageOrder": ["modelValue", "inline", "max", "validate", "theme"],
+    "safeDefaults": {
+      "inline": true
+    },
+    "a11yChecklist": [
+      "表单中提供明确的可见标签或辅助文案，不仅依赖 placeholder。",
+      "invalid 状态建议同步外部错误提示文本。",
+      "只读与禁用语义应区分：readOnly 保留可聚焦与可读，disabled 用于完全禁止交互。"
+    ],
+    "codegenTemplates": {
+      "minimal": "<TagsInput v-model=\"tags\">\n  <template #default=\"{ items }\">\n    <TagsInputItem v-for=\"(item, i) in items\" :key=\"i\" :value=\"item\" :index=\"i\" />\n  </template>\n</TagsInput>",
+      "withValidate": "<TagsInput v-model=\"tags\" :validate=\"(d) => !tags.includes(d.inputValue)\" />"
+    },
+    "antiPatterns": [
+      "设置 max 时未同步监听 valueInvalid 给出失败原因。",
+      "在多个事件里重复校验逻辑，未集中到 validate。"
+    ]
+  },
+  "provenance": {
+    "sources": [
+      { "path": "./tags-input.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./TagsInput.vue", "kind": "runtime" },
+      { "path": "./tags-input.stories.ts", "kind": "story" }
+    ],
+    "precedence": ["runtime", "type", "doc"],
+    "fieldSourceMap": {
+      "contracts.props.inline.default": "runtime",
+      "contracts.props.inline.description": "doc"
+    }
+  }
+}

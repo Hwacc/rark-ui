@@ -1,0 +1,347 @@
+{
+  "schemaVersion": "2.0.0",
+  "docId": "rark.vue.popover",
+  "component": {
+    "name": "Popover",
+    "framework": "vue",
+    "package": "@rark-ui/vue/core",
+    "importPath": "@rark-ui/vue/core",
+    "exportName": "Popover",
+    "category": "core",
+    "description": "轻量浮层组件，用于承载补充说明、上下文操作与小型交互内容。基于 Ark UI Popover 原语构建，支持受控/非受控打开状态、定位策略，以及 Rark UI 的 theme 与局部 ui 样式覆盖能力。",
+    "basePrimitive": {
+      "library": "@ark-ui/vue/popover",
+      "primitive": "Popover.RootProvider",
+      "nativeElement": "div"
+    },
+    "passThrough": {
+      "htmlAttributes": ["aria-*", "data-*"],
+      "notes": "根组件透传 Ark UI Root 常用能力（open/defaultOpen、positioning、modal、portalled、closeOnEscape 等），并扩展 theme。"
+    },
+    "capabilities": [
+      "open",
+      "positioning",
+      "theme",
+      "ui-override",
+      "lazyMount",
+      "unmountOnExit"
+    ]
+  },
+  "contracts": {
+    "props": [
+      {
+        "name": "open",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": ["defaultOpen"],
+        "description": "受控打开状态（可配合 v-model:open）。"
+      },
+      {
+        "name": "defaultOpen",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": false,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": ["open"],
+        "description": "非受控初始打开状态。"
+      },
+      {
+        "name": "positioning",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "PositioningOptions",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "浮层定位配置（如 placement）。"
+      },
+      {
+        "name": "lazyMount",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "unknown",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "是否延迟挂载内容。"
+      },
+      {
+        "name": "unmountOnExit",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": null,
+        "defaultKind": "unknown",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "关闭后是否卸载内容。"
+      },
+      {
+        "name": "theme",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "ThemeCrafts<'tvPopover'>",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "主题参数与 crafts 覆盖入口。"
+      }
+    ],
+    "events": [
+      {
+        "name": "update:open",
+        "payload": {
+          "typeText": "(open: boolean)",
+          "typeSchema": { "type": "object", "properties": { "open": { "type": "boolean" } } }
+        },
+        "emitWhen": [{ "expr": "open_state_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit_update_open"],
+        "description": "受控状态同步事件（v-model:open）。"
+      },
+      {
+        "name": "openChange",
+        "payload": {
+          "typeText": "(details: { open: boolean })",
+          "typeSchema": {
+            "type": "object",
+            "properties": { "open": { "type": "boolean" } },
+            "required": ["open"]
+          }
+        },
+        "emitWhen": [{ "expr": "open_state_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit_openChange"],
+        "description": "打开状态变化通知（参数结构遵循 Ark UI）。"
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "放置 Trigger 与 Content 等子组件。"
+      }
+    ],
+    "themeConfiguration": {
+      "fields": [
+        {
+          "name": "size",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": { "enum": ["xs", "sm", "base", "lg"] },
+          "default": "base",
+          "defaultKind": "explicit-doc",
+          "description": "控制内容内边距、字体与关闭按钮/指示器尺寸。"
+        },
+        {
+          "name": "bordered",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": true,
+          "defaultKind": "explicit-doc",
+          "description": "是否启用边框语义。"
+        },
+        {
+          "name": "skin",
+          "typeText": "'razer' | 'shadcn'",
+          "typeSchema": { "enum": ["razer", "shadcn"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "主题皮肤语义。"
+        },
+        {
+          "name": "surface",
+          "typeText": "'light' | 'dark'",
+          "typeSchema": { "enum": ["light", "dark"] },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "表面语义（亮/暗）。"
+        },
+        {
+          "name": "unstyled",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "移除默认样式。"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "覆盖 tvPopover crafts 配置。"
+        }
+      ]
+    },
+    "uiConfiguration": {
+      "fields": [
+        {
+          "name": "ui.positioner",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "定位容器样式覆盖（PopoverContent）。"
+        },
+        {
+          "name": "ui.content",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "内容层样式覆盖（PopoverContent）。"
+        },
+        {
+          "name": "ui.inner",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "内容内层样式覆盖（PopoverContent）。"
+        }
+      ]
+    }
+  },
+  "behaviorModel": {
+    "stateVars": {
+      "open": "boolean",
+      "lazyMount": "boolean | undefined",
+      "unmountOnExit": "boolean | undefined"
+    },
+    "derived": {
+      "isOpen": "open"
+    },
+    "transitions": [
+      {
+        "on": "trigger_click",
+        "guard": "open === false",
+        "effects": ["setOpen(true)"]
+      },
+      {
+        "on": "close_trigger",
+        "guard": "always",
+        "effects": ["setOpen(false)"]
+      }
+    ]
+  },
+  "examples": [
+    {
+      "id": "basic",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Popover" },
+        "exampleId": "basic"
+      },
+      "description": "基础用法"
+    },
+    {
+      "id": "skins-and-variants",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Popover" },
+        "exampleId": "skins-and-variants"
+      },
+      "description": "主题与尺寸变体"
+    },
+    {
+      "id": "positioning",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Popover" },
+        "exampleId": "positioning"
+      },
+      "description": "定位策略"
+    },
+    {
+      "id": "context-and-interactive",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Popover" },
+        "exampleId": "context-and-interactive"
+      },
+      "description": "上下文与交互内容"
+    },
+    {
+      "id": "controlled-open",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Popover" },
+        "exampleId": "controlled-open"
+      },
+      "description": "受控模式"
+    }
+  ],
+  "generationHints": {
+    "preferredUsageOrder": ["defaultOpen", "positioning", "theme"],
+    "safeDefaults": {
+      "defaultOpen": false
+    },
+    "a11yChecklist": [
+      "PopoverTrigger as-child 挂载到已有按钮，避免额外包裹影响可访问性。",
+      "内容中存在输入、开关等可交互元素时，在 PopoverContent 内使用上下文组件组织状态。"
+    ],
+    "codegenTemplates": {
+      "minimal": "<Popover>\n  <PopoverTrigger asChild><Button>Open</Button></PopoverTrigger>\n  <PopoverContent>Content</PopoverContent>\n</Popover>",
+      "controlled": "<Popover v-model:open=\"open\">...</Popover>"
+    },
+    "antiPatterns": [
+      "仅通过颜色 class 表达行为优先级，缺少语义 variant。",
+      "定位未通过 positioning.placement 明确表达意图。"
+    ]
+  },
+  "provenance": {
+    "sources": [
+      { "path": "./popover.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./Popover.vue", "kind": "runtime" },
+      { "path": "./popover.stories.ts", "kind": "story" }
+    ],
+    "precedence": ["runtime", "type", "doc"],
+    "fieldSourceMap": {
+      "contracts.props.defaultOpen.default": "doc",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.themeConfiguration.fields.bordered.default": "doc"
+    }
+  }
+}

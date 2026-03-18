@@ -1,0 +1,424 @@
+{
+  "schemaVersion": "2.0.0",
+  "docId": "rark.vue.tree",
+  "component": {
+    "name": "Tree",
+    "framework": "vue",
+    "package": "@rark-ui/vue/core",
+    "importPath": "@rark-ui/vue/core",
+    "exportName": "Tree",
+    "category": "core",
+    "description": "用于展示层级结构数据，适合目录浏览、权限节点选择、配置树编辑等场景。基于 Ark UI Tree View 原语构建，支持展开/折叠、单选/多选、复选框勾选、焦点管理以及懒挂载策略。",
+    "basePrimitive": {
+      "library": "@ark-ui/vue/tree-view",
+      "primitive": "TreeView.RootProvider",
+      "nativeElement": "div"
+    },
+    "passThrough": {
+      "htmlAttributes": [
+        "aria-*",
+        "data-*"
+      ],
+      "notes": "透传 Ark UI TreeViewRootBaseProps；theme、ui 为 Rark 扩展。"
+    },
+    "capabilities": [
+      "v-model:expandedValue",
+      "v-model:selectedValue",
+      "v-model:checkedValue",
+      "v-model:focusedValue",
+      "theme",
+      "ui-override",
+      "programmatic-api"
+    ]
+  },
+  "contracts": {
+    "props": [
+      {
+        "name": "collection",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeCollection<T>",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "树数据集合（通常由 createTreeCollection 创建）。"
+      },
+      {
+        "name": "selectionMode",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "'single' | 'multiple'",
+        "typeSchema": { "enum": ["single", "multiple"] },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "选中模式，影响 selectedValue 语义。"
+      },
+      {
+        "name": "expandedValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeValueType[]",
+        "typeSchema": { "type": "array" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "受控展开值。"
+      },
+      {
+        "name": "defaultExpandedValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeValueType[]",
+        "typeSchema": { "type": "array" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "非受控初始展开值。"
+      },
+      {
+        "name": "selectedValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeValueType[]",
+        "typeSchema": { "type": "array" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "受控选中值。"
+      },
+      {
+        "name": "defaultSelectedValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeValueType[]",
+        "typeSchema": { "type": "array" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "非受控初始选中值。"
+      },
+      {
+        "name": "checkedValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeValueType[]",
+        "typeSchema": { "type": "array" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "复选框树受控勾选值。"
+      },
+      {
+        "name": "defaultCheckedValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeValueType[]",
+        "typeSchema": { "type": "array" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "非受控初始勾选值。"
+      },
+      {
+        "name": "focusedValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeValueType",
+        "typeSchema": {},
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "当前焦点节点值。"
+      },
+      {
+        "name": "defaultFocusedValue",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "TreeValueType",
+        "typeSchema": {},
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "非受控初始焦点值。"
+      },
+      {
+        "name": "class",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "string | array | object",
+        "typeSchema": {
+          "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }]
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "根节点附加 class。"
+      },
+      {
+        "name": "theme",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "ThemeCrafts<'tvTree'>",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "主题参数与 crafts 覆盖入口。"
+      },
+      {
+        "name": "ui",
+        "required": false,
+        "requiredSource": "type",
+        "typeText": "{ root?: class; tree?: class }",
+        "typeSchema": {
+          "type": "object",
+          "properties": { "root": {}, "tree": {} }
+        },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": false,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "根与树容器 class 覆盖。"
+      }
+    ],
+    "events": [
+      {
+        "name": "update:expandedValue",
+        "payload": { "typeText": "(value: TreeValueType[])", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "expanded_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:update:expandedValue"],
+        "description": "展开值受控同步。"
+      },
+      {
+        "name": "update:selectedValue",
+        "payload": { "typeText": "(value: TreeValueType[])", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "selection_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:update:selectedValue"],
+        "description": "选中值受控同步。"
+      },
+      {
+        "name": "update:checkedValue",
+        "payload": { "typeText": "(value: TreeValueType[])", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "checked_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:update:checkedValue"],
+        "description": "勾选值受控同步。"
+      },
+      {
+        "name": "update:focusedValue",
+        "payload": { "typeText": "(value: TreeValueType)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "focus_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:update:focusedValue"],
+        "description": "焦点值受控同步。"
+      },
+      {
+        "name": "expandedChange",
+        "payload": { "typeText": "(details: ExpandedChangeDetails)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "expanded_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": [],
+        "description": "展开状态变化时触发。"
+      },
+      {
+        "name": "selectionChange",
+        "payload": { "typeText": "(details: SelectionChangeDetails)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "selection_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": [],
+        "description": "选中状态变化时触发。"
+      },
+      {
+        "name": "checkedChange",
+        "payload": { "typeText": "(details: CheckedChangeDetails)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "checked_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": [],
+        "description": "勾选状态变化时触发。"
+      },
+      {
+        "name": "focusChange",
+        "payload": { "typeText": "(details: FocusChangeDetails)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "focus_changed", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": [],
+        "description": "焦点变化时触发。"
+      }
+    ],
+    "slots": [
+      {
+        "name": "default",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "树节点内容（通常放置递归 TreeNode 或 TreeCheckboxNode）。"
+      },
+      {
+        "name": "prefix",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "树容器前置附加区域。"
+      },
+      {
+        "name": "suffix",
+        "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+        "renderWhen": [{ "expr": "always" }],
+        "fallback": null,
+        "description": "树容器后置附加区域。"
+      }
+    ],
+    "themeConfiguration": {
+      "fields": [
+        {
+          "name": "size",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": { "enum": ["xs", "sm", "base", "lg"] },
+          "default": "base",
+          "defaultKind": "explicit-doc",
+          "description": "节点行高、文本和图标尺寸节奏。"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "覆盖 tvTree 及关联 crafts（branch/item/checkbox）。"
+        }
+      ]
+    },
+    "uiConfiguration": {
+      "fields": [
+        { "name": "ui.root", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "根容器 class 覆盖" },
+        { "name": "ui.tree", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "树容器 class 覆盖" }
+      ]
+    }
+  },
+  "behaviorModel": {
+    "stateVars": {
+      "expandedValue": "TreeValueType[]",
+      "selectedValue": "TreeValueType[]",
+      "checkedValue": "TreeValueType[]",
+      "focusedValue": "TreeValueType|null"
+    },
+    "derived": {
+      "expandedSet": "Set(expandedValue)",
+      "selectedSet": "Set(selectedValue)"
+    },
+    "transitions": [
+      {
+        "on": "toggleExpand",
+        "guard": "node 存在",
+        "effects": ["更新 expandedValue", "emit(expandedChange)"]
+      },
+      {
+        "on": "select",
+        "guard": "!disabled",
+        "effects": ["更新 selectedValue", "emit(selectionChange)"]
+      },
+      {
+        "on": "check",
+        "guard": "!disabled",
+        "effects": ["更新 checkedValue", "emit(checkedChange)"]
+      }
+    ]
+  },
+  "examples": [
+    { "id": "basic", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "basic" }, "description": "基础树（展开/折叠 + 选中）" },
+    { "id": "selection-modes", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "selection-modes" }, "description": "选中模式（单选 / 多选）" },
+    { "id": "disabled-nodes", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "disabled-nodes" }, "description": "禁用节点" },
+    { "id": "checkbox", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "checkbox" }, "description": "复选框树（checkedValue）" },
+    { "id": "large-data", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "large-data" }, "description": "懒挂载与大数据" },
+    { "id": "custom-render", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "custom-render" }, "description": "自定义节点渲染" },
+    { "id": "custom-props-render", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "custom-props-render" }, "description": "通过 props 自定义渲染函数" },
+    { "id": "custom-datatype", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "custom-datatype" }, "description": "自定义数据结构" },
+    { "id": "events", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "events" }, "description": "事件监听" },
+    { "id": "sizes", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Tree" }, "exampleId": "sizes" }, "description": "尺寸变体" }
+  ],
+  "generationHints": {
+    "preferredUsageOrder": ["collection", "selectionMode", "expandedValue/selectedValue/checkedValue", "theme"],
+    "safeDefaults": {},
+    "a11yChecklist": [
+      "建议为节点文本提供稳定可读标签",
+      "禁用节点通过 isNodeDisabled/数据字段统一声明",
+      "大数据场景搭配 lazyMount/unmountOnExit"
+    ],
+    "codegenTemplates": {
+      "minimal": "<Tree :collection=\"collection\"><TreeNode v-for=\"...\" :node=\"node\" :index-path=\"path\" /></Tree>",
+      "checkbox": "<Tree v-model:checked-value=\"checked\"><TreeCheckboxNode ... /></Tree>"
+    },
+    "antiPatterns": [
+      "自定义数据结构时未统一配置 keyMap",
+      "在视图层重复解析结构而非用 createTreeCollection 收敛"
+    ]
+  },
+  "provenance": {
+    "sources": [
+      { "path": "./tree.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./Tree.vue", "kind": "runtime" },
+      { "path": "./tree.d.ts", "kind": "type" },
+      { "path": "./tree.stories.ts", "kind": "story" }
+    ],
+    "precedence": ["runtime", "type", "doc"],
+    "fieldSourceMap": {
+      "contracts.themeConfiguration.fields.size.default": "doc"
+    }
+  }
+}
