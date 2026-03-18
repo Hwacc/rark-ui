@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@import '@rark-ui/themes/razer/index.css';
+@import '../../themes/src/razer/index.css';
 
 @config '../tailwind.config.ts';
 
