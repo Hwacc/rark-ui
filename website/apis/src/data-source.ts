@@ -10,6 +10,17 @@ import { readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { ApiError } from './errors'
 
+const ADDON_CATEGORIES = ['components', 'composables', 'directives'] as const
+
+type AddonCategory = (typeof ADDON_CATEGORIES)[number]
+
+interface AddonItem {
+  qualifiedName: string
+  category: AddonCategory
+  name: string
+  srcDir: string
+}
+
 async function safeReadDir(targetPath: string) {
   try {
     return await readdir(targetPath, { withFileTypes: true })
@@ -40,6 +51,32 @@ function sanitizeDocumentContent(rawContent: string): string {
     .trim()
 }
 
+function isAddonQualifiedName(name: string): boolean {
+  return name.startsWith('addons/') && name.split('/').length === 3
+}
+
+function parseAddonQualifiedName(qualifiedName: string): AddonItem | null {
+  if (!isAddonQualifiedName(qualifiedName))
+    return null
+  const [, category, name] = qualifiedName.split('/')
+  if (!ADDON_CATEGORIES.includes(category as AddonCategory))
+    return null
+  const srcDir = path.join(
+    'packages',
+    'vue',
+    'addons',
+    category,
+    name,
+    'src',
+  )
+  return {
+    qualifiedName,
+    category: category as AddonCategory,
+    name,
+    srcDir,
+  }
+}
+
 export class LocalDataSource {
   private readonly repoRoot: string
 
@@ -49,11 +86,13 @@ export class LocalDataSource {
 
   async listComponents(framework: Framework): Promise<string[]> {
     this.assertFramework(framework)
-    const entries = await safeReadDir(this.getVueComponentsDir())
-    return entries
+    const coreEntries = await safeReadDir(this.getVueComponentsDir())
+    const coreNames = coreEntries
       .filter(entry => entry.isDirectory())
       .map(entry => entry.name)
       .sort()
+    const addonNames = await this.listAddonQualifiedNames()
+    return [...coreNames, ...addonNames].sort()
   }
 
   async listExamples(framework: Framework): Promise<ExampleSummary[]> {
@@ -62,7 +101,9 @@ export class LocalDataSource {
     const result: ExampleSummary[] = []
 
     for (const componentName of components) {
-      const examplesDir = path.join(this.getVueComponentsDir(), componentName, 'examples')
+      const examplesDir = this.getExamplesDir(componentName)
+      if (!examplesDir)
+        continue
       const entries = await safeReadDir(examplesDir)
       const exampleIds = entries
         .filter(entry => entry.isFile() && entry.name.endsWith('.vue'))
@@ -79,13 +120,20 @@ export class LocalDataSource {
 
   async getExample(framework: Framework, componentName: string): Promise<ExampleDetail> {
     this.assertFramework(framework)
-    const examplesDir = path.join(this.getVueComponentsDir(), componentName, 'examples')
+    const examplesDir = this.getExamplesDir(componentName)
+    if (!examplesDir) {
+      throw new ApiError(
+        'EXAMPLE_NOT_FOUND',
+        `No examples found for component: ${componentName}`,
+        404,
+        framework,
+      )
+    }
+
     const entries = await safeReadDir(examplesDir)
     const files = entries
       .filter(entry => entry.isFile() && entry.name.endsWith('.vue'))
-      .sort((a, b) => {
-        return a.name.localeCompare(b.name)
-      })
+      .sort((a, b) => a.name.localeCompare(b.name))
 
     if (files.length === 0) {
       throw new ApiError(
@@ -119,10 +167,11 @@ export class LocalDataSource {
     const result: DocumentSummary[] = []
 
     for (const componentName of components) {
-      const fileName = `${componentName}.doc.mdx`
-      const documentPath = path.join(this.getVueComponentsDir(), componentName, fileName)
+      const { docPath, fileName } = this.getDocumentPaths(componentName)
+      if (!docPath)
+        continue
       try {
-        await readFile(documentPath, 'utf-8')
+        await readFile(docPath, 'utf-8')
         result.push({
           componentName,
           title: fileName,
@@ -138,16 +187,36 @@ export class LocalDataSource {
 
   async getDocument(framework: Framework, componentName: string): Promise<DocumentDetail> {
     this.assertFramework(framework)
-    const fileName = `${componentName}.ai.json`
-    const documentPath = path.join(this.getVueComponentsDir(), componentName, fileName)
+    const { docPath, aiPath, fileName } = this.getDocumentPaths(componentName)
+    if (!docPath) {
+      throw new ApiError(
+        'DOCUMENT_NOT_FOUND',
+        `No document found for component: ${componentName}`,
+        404,
+        framework,
+      )
+    }
 
+    if (aiPath) {
+      try {
+        const rawContent = await readFile(aiPath, 'utf-8')
+        const content = minimizeJsonContent(rawContent)
+        return {
+          componentName,
+          title: path.basename(aiPath),
+          content,
+        }
+      }
+      catch {
+        // fallback to .doc.mdx
+      }
+    }
     try {
-      const rawContent = await readFile(documentPath, 'utf-8')
-      const content = minimizeJsonContent(rawContent)
+      const content = await readFile(docPath, 'utf-8')
       return {
         componentName,
         title: fileName,
-        content,
+        content: sanitizeDocumentContent(content),
       }
     }
     catch {
@@ -157,6 +226,56 @@ export class LocalDataSource {
         404,
         framework,
       )
+    }
+  }
+
+  private async listAddonQualifiedNames(): Promise<string[]> {
+    const result: string[] = []
+    const addonsBase = path.join(this.repoRoot, 'packages', 'vue', 'addons')
+
+    for (const category of ADDON_CATEGORIES) {
+      const categoryDir = path.join(addonsBase, category)
+      const entries = await safeReadDir(categoryDir)
+      for (const entry of entries) {
+        if (entry.isDirectory()) {
+          result.push(`addons/${category}/${entry.name}`)
+        }
+      }
+    }
+
+    return result.sort()
+  }
+
+  private getExamplesDir(componentName: string): string | null {
+    const addon = parseAddonQualifiedName(componentName)
+    if (addon) {
+      const examplesDir = path.join(this.repoRoot, addon.srcDir, 'examples')
+      return examplesDir
+    }
+    return path.join(this.getVueComponentsDir(), componentName, 'examples')
+  }
+
+  private getDocumentPaths(
+    componentName: string,
+  ): { docPath: string | null, aiPath: string | null, fileName: string } {
+    const addon = parseAddonQualifiedName(componentName)
+    const fileName = `${addon ? addon.name : componentName}.doc.mdx`
+    const aiFileName = `${addon ? addon.name : componentName}.ai.json`
+
+    if (addon) {
+      const srcDir = path.join(this.repoRoot, addon.srcDir)
+      return {
+        docPath: path.join(srcDir, fileName),
+        aiPath: path.join(srcDir, aiFileName),
+        fileName,
+      }
+    }
+
+    const baseDir = path.join(this.getVueComponentsDir(), componentName)
+    return {
+      docPath: path.join(baseDir, fileName),
+      aiPath: path.join(baseDir, aiFileName),
+      fileName,
     }
   }
 

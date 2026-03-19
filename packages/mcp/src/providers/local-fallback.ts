@@ -1,7 +1,3 @@
-import { readdir, readFile } from 'node:fs/promises'
-import path from 'node:path'
-
-import { McpToolError } from '../errors.js'
 import type {
   ComponentDataProvider,
   DocumentDetail,
@@ -10,6 +6,10 @@ import type {
   ExampleSummary,
   Framework,
 } from '../types.js'
+import { readdir, readFile } from 'node:fs/promises'
+
+import path from 'node:path'
+import { McpToolError } from '../errors.js'
 
 async function safeReadDir(targetPath: string) {
   try {
