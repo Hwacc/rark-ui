@@ -30,14 +30,41 @@ description: 生成或更新 Rark UI 组件的 AI 文档 JSON（*.ai.json）。U
 2. `docId`
 3. `component`
 4. `contracts`
-5. `subComponents`（可选，仅当主组件包含子组件时存在）
-6. `parentComponents`（可选，仅当主组件被父组件包裹时存在）
-7. `behaviorModel`
-8. `examples`
-9. `generationHints`
-10. `provenance`
+5. `cssImport`（可选，**仅 addon 组件存在**，用于说明样式引用与使用方式）
+6. `subComponents`（可选，仅当主组件包含子组件时存在）
+7. `parentComponents`（可选，仅当主组件被父组件包裹时存在）
+8. `behaviorModel`
+9. `examples`
+10. `generationHints`
+11. `provenance`
 
 除非用户明确要求，不要新增顶层字段。**不要**在 `*.ai.json` 产物中包含 `quality` 字段。
+
+### 3.1 cssImport 字段（addon 专用）
+
+**仅当 `component.category === "addon"` 时**，需包含 `cssImport` 字段，用于说明样式引用与使用方式。该字段对应 doc.mdx 中的「样式引用说明」一节。
+
+结构要求：
+
+- `required`：boolean，样式是否为使用组件所必需
+- `importPath`：string，业务侧引入路径（如 `@rark-ui/vue-addons-virtual/index.css`）
+- `sourcePath`：string（可选），源码中的文件路径（如 `packages/vue/addons/components/virtual/src/index.css`）
+- `description`：string，样式内容说明（含结构类、data-scope/data-part 覆盖点等）
+- `usage`：string，引入示例（如 `import '@rark-ui/vue-addons-virtual/index.css'`）
+
+```json
+{
+  "cssImport": {
+    "required": true,
+    "importPath": "@rark-ui/vue-addons-virtual/index.css",
+    "sourcePath": "packages/vue/addons/components/virtual/src/index.css",
+    "description": "包含 rui-virtual-list、rui-virtual-grid、rui-virtual-infinite 的基础样式与状态样式，并提供基于 data-scope/data-part 的结构化覆盖点。",
+    "usage": "import '@rark-ui/vue-addons-virtual/index.css'"
+  }
+}
+```
+
+**core 组件**不包含 `cssImport` 字段。
 
 ## 4. component 字段要求
 
@@ -273,6 +300,7 @@ description: 生成或更新 Rark UI 组件的 AI 文档 JSON（*.ai.json）。U
 ## 12. 输出前检查清单
 
 - 顶层字段是否完整且顺序稳定（不含 quality）。
+- **若为 addon 组件**：是否包含 `cssImport` 字段，且 `importPath`、`description`、`usage` 与 doc.mdx 中「样式引用说明」一致。
 - 每个 prop 是否同时有 `typeText` 和 `typeSchema`。
 - `default + defaultKind` 是否成对出现。
 - `behaviorModel` 是否能解释关键交互流程。

@@ -8,7 +8,7 @@
     "importPath": "@rark-ui/vue-addons-virtual",
     "exportName": "VirtualList",
     "category": "addon",
-    "description": "addons 里的独立虚拟滚动组件集，用于长列表、动态高度列表和二维网格的按需渲染。由 VirtualList、VirtualListItem、VirtualGrid、VirtualGridItem、VirtualInfiniteLoading 组合而成，基于 @tanstack/vue-virtual 封装。当前不提供 theme 配置，支持 ui 样式覆盖。",
+    "description": "addons 里的独立虚拟滚动组件集，用于长列表、动态高度列表和二维网格的按需渲染。由 VirtualList、VirtualListItem、VirtualGrid、VirtualGridItem、VirtualInfiniteLoading 组合而成，基于 @tanstack/vue-virtual 封装。VirtualList 为主导出；VirtualGrid 为并列容器；VirtualListItem、VirtualGridItem、VirtualInfiniteLoading 为子组件。当前不提供 theme 配置，支持 ui 样式覆盖。",
     "basePrimitive": {
       "library": "@tanstack/vue-virtual",
       "primitive": "useVirtualizer",
@@ -27,12 +27,13 @@
       "virtual-list",
       "virtual-grid",
       "infinite-loading"
-    ]
+    ],
+    "subComponents": ["VirtualListItem", "VirtualGrid", "VirtualGridItem", "VirtualInfiniteLoading"]
   },
   "contracts": {
     "props": [
       {
-        "name": "VirtualList.dataSource",
+        "name": "dataSource",
         "required": true,
         "requiredSource": "type",
         "typeText": "Array<T>",
@@ -49,7 +50,7 @@
         "description": "列表数据源。"
       },
       {
-        "name": "VirtualList.estimateSize",
+        "name": "estimateSize",
         "required": false,
         "requiredSource": "type",
         "typeText": "(index: number) => number",
@@ -66,7 +67,7 @@
         "description": "列表项估算高度/宽度（横向时为宽度）。"
       },
       {
-        "name": "VirtualList.overscan",
+        "name": "overscan",
         "required": false,
         "requiredSource": "type",
         "typeText": "number",
@@ -83,7 +84,7 @@
         "description": "额外渲染缓冲项数量。"
       },
       {
-        "name": "VirtualList.horizontal",
+        "name": "horizontal",
         "required": false,
         "requiredSource": "type",
         "typeText": "boolean",
@@ -100,7 +101,7 @@
         "description": "是否横向虚拟滚动。"
       },
       {
-        "name": "VirtualList.unstyled",
+        "name": "unstyled",
         "required": false,
         "requiredSource": "type",
         "typeText": "boolean",
@@ -115,278 +116,12 @@
         "dependsOn": [],
         "conflictsWith": [],
         "description": "组件声明了该参数；当前实现中未见样式分支逻辑，建议优先通过 class/ui 覆盖。"
-      },
-      {
-        "name": "VirtualGrid.dataSource",
-        "required": true,
-        "requiredSource": "type",
-        "typeText": "Array<T>",
-        "typeSchema": {
-          "type": "array"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": false,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "网格数据源。"
-      },
-      {
-        "name": "VirtualGrid.row",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "number",
-        "typeSchema": {
-          "type": "number"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "行数维度控制。"
-      },
-      {
-        "name": "VirtualGrid.column",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "number",
-        "typeSchema": {
-          "type": "number"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "列数维度控制。"
-      },
-      {
-        "name": "VirtualGrid.gap",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "[number, number]",
-        "typeSchema": {
-          "type": "array",
-          "items": { "type": "number" },
-          "minItems": 2,
-          "maxItems": 2
-        },
-        "default": "[0, 0]",
-        "defaultKind": "explicit-runtime",
-        "nullable": false,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "行间距与列间距。"
-      },
-      {
-        "name": "VirtualListItem.data",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "T",
-        "typeSchema": {
-          "type": "object"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "当前列表项数据。"
-      },
-      {
-        "name": "VirtualListItem.index",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "number",
-        "typeSchema": {
-          "type": "number"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "当前项索引。"
-      },
-      {
-        "name": "VirtualListItem.dynamic",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "boolean",
-        "typeSchema": {
-          "type": "boolean"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "开启后在节点变化时触发 measureElement。"
-      },
-      {
-        "name": "VirtualGridItem.data",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "T",
-        "typeSchema": {
-          "type": "object"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "当前网格项数据。"
-      },
-      {
-        "name": "VirtualGridItem.index",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "number",
-        "typeSchema": {
-          "type": "number"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "当前项线性索引。"
-      },
-      {
-        "name": "VirtualGridItem.rowIndex",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "number",
-        "typeSchema": {
-          "type": "number"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "行索引。"
-      },
-      {
-        "name": "VirtualGridItem.colIndex",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "number",
-        "typeSchema": {
-          "type": "number"
-        },
-        "default": null,
-        "defaultKind": "implicit-undefined",
-        "nullable": true,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "列索引。"
-      },
-      {
-        "name": "VirtualInfiniteLoading.enableFirstLoad",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "boolean",
-        "typeSchema": {
-          "type": "boolean"
-        },
-        "default": true,
-        "defaultKind": "explicit-runtime",
-        "nullable": false,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "挂载后是否立即触发一次加载。"
-      },
-      {
-        "name": "VirtualInfiniteLoading.enableRetry",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "boolean",
-        "typeSchema": {
-          "type": "boolean"
-        },
-        "default": true,
-        "defaultKind": "explicit-runtime",
-        "nullable": false,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "错误状态是否展示重试按钮。"
-      },
-      {
-        "name": "VirtualInfiniteLoading.size",
-        "required": false,
-        "requiredSource": "type",
-        "typeText": "'xs' | 'sm' | 'base' | 'lg'",
-        "typeSchema": {
-          "enum": ["xs", "sm", "base", "lg"]
-        },
-        "default": "base",
-        "defaultKind": "explicit-runtime",
-        "nullable": false,
-        "passthrough": false,
-        "deprecated": false,
-        "dependsOn": [],
-        "conflictsWith": [],
-        "description": "状态块尺寸。"
       }
     ],
-    "events": [
-      {
-        "name": "VirtualInfiniteLoading.infinite",
-        "payload": {
-          "typeText": "{ loading: () => void; loaded: () => void; complete: () => void; error: () => void }",
-          "typeSchema": {
-            "type": "object",
-            "properties": {
-              "loading": { "type": "function" },
-              "loaded": { "type": "function" },
-              "complete": { "type": "function" },
-              "error": { "type": "function" }
-            }
-          }
-        },
-        "emitWhen": [
-          {
-            "expr": "首次挂载且 enableFirstLoad 或 IntersectionObserver 命中",
-            "kind": "runtime-hook"
-          }
-        ],
-        "notEmitWhen": [],
-        "order": ["loading", "loaded", "complete", "error"],
-        "description": "首次加载或命中观察点时触发；业务侧通过回调切换加载状态。"
-      }
-    ],
+    "events": [],
     "slots": [
       {
-        "name": "VirtualList.default",
+        "name": "default",
         "slotPropsSchema": {
           "type": "object",
           "properties": {},
@@ -395,90 +130,6 @@
         "renderWhen": [{"expr": "always"}],
         "fallback": null,
         "description": "列表内容槽，通常放 VirtualListItem，可额外放 VirtualInfiniteLoading。"
-      },
-      {
-        "name": "VirtualListItem.default",
-        "slotPropsSchema": {
-          "type": "object",
-          "properties": {
-            "data": {},
-            "index": { "type": "number" }
-          }
-        },
-        "renderWhen": [{"expr": "always"}],
-        "fallback": null,
-        "description": "参数为 { data: T, index?: number }。"
-      },
-      {
-        "name": "VirtualGrid.default",
-        "slotPropsSchema": {
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
-        },
-        "renderWhen": [{"expr": "always"}],
-        "fallback": null,
-        "description": "网格内容槽，通常放 VirtualGridItem，可额外放 VirtualInfiniteLoading。"
-      },
-      {
-        "name": "VirtualGridItem.default",
-        "slotPropsSchema": {
-          "type": "object",
-          "properties": {
-            "data": {},
-            "index": { "type": "number" },
-            "rowIndex": { "type": "number" },
-            "colIndex": { "type": "number" }
-          }
-        },
-        "renderWhen": [{"expr": "always"}],
-        "fallback": null,
-        "description": "参数为 { data: T, index?: number, rowIndex?: number, colIndex?: number }。"
-      },
-      {
-        "name": "VirtualInfiniteLoading.loading",
-        "slotPropsSchema": {
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
-        },
-        "renderWhen": [{"expr": "state === LOADING"}],
-        "fallback": null,
-        "description": "加载态内容。"
-      },
-      {
-        "name": "VirtualInfiniteLoading.spinner",
-        "slotPropsSchema": {
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
-        },
-        "renderWhen": [{"expr": "state === LOADING"}],
-        "fallback": "LoaderCircle",
-        "description": "加载图标。"
-      },
-      {
-        "name": "VirtualInfiniteLoading.complete",
-        "slotPropsSchema": {
-          "type": "object",
-          "properties": {},
-          "additionalProperties": false
-        },
-        "renderWhen": [{"expr": "state === COMPLETE"}],
-        "fallback": "No more results!",
-        "description": "加载完成态内容。"
-      },
-      {
-        "name": "VirtualInfiniteLoading.error",
-        "slotPropsSchema": {
-          "type": "object",
-          "properties": {
-            "retry": { "type": "function" }
-          }
-        },
-        "renderWhen": [{"expr": "state === ERROR"}],
-        "fallback": null,
-        "description": "错误态内容，参数为 { retry: () => void }。"
       }
     ],
     "themeConfiguration": {
@@ -488,7 +139,7 @@
     "uiConfiguration": {
       "fields": [
         {
-          "name": "VirtualList.ui.root",
+          "name": "ui.root",
           "typeText": "HTMLAttributes['class']",
           "typeSchema": {
             "anyOf": [
@@ -502,7 +153,7 @@
           "description": "列表根容器样式。"
         },
         {
-          "name": "VirtualList.ui.scroll",
+          "name": "ui.scroll",
           "typeText": "HTMLAttributes['class']",
           "typeSchema": {
             "anyOf": [
@@ -514,106 +165,511 @@
           "default": null,
           "defaultKind": "implicit-undefined",
           "description": "列表滚动区域样式。"
-        },
-        {
-          "name": "VirtualGrid.ui.root",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "网格根容器样式。"
-        },
-        {
-          "name": "VirtualGrid.ui.scroll",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "网格滚动区域样式。"
-        },
-        {
-          "name": "VirtualInfiniteLoading.ui.root",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "无限加载根节点样式。"
-        },
-        {
-          "name": "VirtualInfiniteLoading.ui.loading",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "加载态样式。"
-        },
-        {
-          "name": "VirtualInfiniteLoading.ui.spinner",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "加载图标样式。"
-        },
-        {
-          "name": "VirtualInfiniteLoading.ui.complete",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "完成态样式。"
-        },
-        {
-          "name": "VirtualInfiniteLoading.ui.error",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "错误态样式。"
         }
       ]
+    }
+  },
+  "cssImport": {
+    "required": true,
+    "importPath": "@rark-ui/vue-addons-virtual/index.css",
+    "sourcePath": "packages/vue/addons/components/virtual/src/index.css",
+    "description": "包含 rui-virtual-list、rui-virtual-grid、rui-virtual-infinite 的基础样式与状态样式，并提供基于 data-scope/data-part 的结构化覆盖点。",
+    "usage": "import '@rark-ui/vue-addons-virtual/index.css'"
+  },
+  "subComponents": {
+    "VirtualListItem": {
+      "props": [
+        {
+          "name": "data",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "T",
+          "typeSchema": {
+            "type": "object"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "当前列表项数据。"
+        },
+        {
+          "name": "index",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number",
+          "typeSchema": {
+            "type": "number"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "当前项索引。"
+        },
+        {
+          "name": "dynamic",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": {
+            "type": "boolean"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "开启后在节点变化时触发 measureElement，用于动态高度列表。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {
+              "data": {},
+              "index": { "type": "number" }
+            }
+          },
+          "renderWhen": [{"expr": "always"}],
+          "fallback": null,
+          "description": "参数为 { data: T, index?: number }。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "VirtualGrid": {
+      "props": [
+        {
+          "name": "dataSource",
+          "required": true,
+          "requiredSource": "type",
+          "typeText": "Array<T>",
+          "typeSchema": {
+            "type": "array"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "网格数据源。"
+        },
+        {
+          "name": "row",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number",
+          "typeSchema": {
+            "type": "number"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "行数维度控制。"
+        },
+        {
+          "name": "column",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number",
+          "typeSchema": {
+            "type": "number"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "列数维度控制。"
+        },
+        {
+          "name": "gap",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "[number, number]",
+          "typeSchema": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "default": "[0, 0]",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "行间距与列间距。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{"expr": "always"}],
+          "fallback": null,
+          "description": "网格内容槽，通常放 VirtualGridItem，可额外放 VirtualInfiniteLoading。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "ui.root",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "网格根容器样式。"
+          },
+          {
+            "name": "ui.scroll",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "网格滚动区域样式。"
+          }
+        ]
+      }
+    },
+    "VirtualGridItem": {
+      "props": [
+        {
+          "name": "data",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "T",
+          "typeSchema": {
+            "type": "object"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "当前网格项数据。"
+        },
+        {
+          "name": "index",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number",
+          "typeSchema": {
+            "type": "number"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "当前项线性索引。"
+        },
+        {
+          "name": "rowIndex",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number",
+          "typeSchema": {
+            "type": "number"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "行索引。"
+        },
+        {
+          "name": "colIndex",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number",
+          "typeSchema": {
+            "type": "number"
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "列索引。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {
+              "data": {},
+              "index": { "type": "number" },
+              "rowIndex": { "type": "number" },
+              "colIndex": { "type": "number" }
+            }
+          },
+          "renderWhen": [{"expr": "always"}],
+          "fallback": null,
+          "description": "参数为 { data: T, index?: number, rowIndex?: number, colIndex?: number }。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "VirtualInfiniteLoading": {
+      "props": [
+        {
+          "name": "enableFirstLoad",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": {
+            "type": "boolean"
+          },
+          "default": true,
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "挂载后是否立即触发一次加载。"
+        },
+        {
+          "name": "enableRetry",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": {
+            "type": "boolean"
+          },
+          "default": true,
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "错误状态是否展示重试按钮。"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+          "typeSchema": {
+            "enum": ["xs", "sm", "base", "lg"]
+          },
+          "default": "base",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "状态块尺寸。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "loading",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{"expr": "state === LOADING"}],
+          "fallback": null,
+          "description": "加载态内容。"
+        },
+        {
+          "name": "spinner",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{"expr": "state === LOADING"}],
+          "fallback": "LoaderCircle",
+          "description": "加载图标。"
+        },
+        {
+          "name": "complete",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{"expr": "state === COMPLETE"}],
+          "fallback": "No more results!",
+          "description": "加载完成态内容。"
+        },
+        {
+          "name": "error",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {
+              "retry": { "type": "function" }
+            }
+          },
+          "renderWhen": [{"expr": "state === ERROR"}],
+          "fallback": null,
+          "description": "错误态内容，参数为 { retry: () => void }。"
+        }
+      ],
+      "events": [
+        {
+          "name": "infinite",
+          "payload": {
+            "typeText": "{ loading: () => void; loaded: () => void; complete: () => void; error: () => void }",
+            "typeSchema": {
+              "type": "object",
+              "properties": {
+                "loading": { "type": "function" },
+                "loaded": { "type": "function" },
+                "complete": { "type": "function" },
+                "error": { "type": "function" }
+              }
+            }
+          },
+          "emitWhen": [
+            {
+              "expr": "mounted && enableFirstLoad && state === IDLE",
+              "kind": "runtime-hook"
+            },
+            {
+              "expr": "IntersectionObserver.intersect && state === LOADING",
+              "kind": "runtime-hook"
+            }
+          ],
+          "notEmitWhen": [],
+          "order": ["loading", "loaded", "complete", "error"],
+          "description": "首次加载或命中观察点时触发；业务侧通过回调切换加载状态。"
+        }
+      ],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "ui.root",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "无限加载根节点样式。"
+          },
+          {
+            "name": "ui.loading",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "加载态样式。"
+          },
+          {
+            "name": "ui.spinner",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "加载图标样式。"
+          },
+          {
+            "name": "ui.complete",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "完成态样式。"
+          },
+          {
+            "name": "ui.error",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "错误态样式。"
+          }
+        ]
+      }
     }
   },
   "behaviorModel": {
@@ -629,12 +685,12 @@
       {
         "on": "VirtualInfiniteLoading.mounted",
         "guard": "enableFirstLoad && state === IDLE",
-        "effects": ["emit(infinite, stateHandler)"]
+        "effects": ["emit:infinite"]
       },
       {
         "on": "IntersectionObserver.intersect",
         "guard": "state === LOADING",
-        "effects": ["emit(infinite, stateHandler)"]
+        "effects": ["emit:infinite"]
       },
       {
         "on": "stateHandler.loading()",
@@ -697,13 +753,9 @@
       "VirtualInfiniteLoading"
     ],
     "safeDefaults": {
-      "VirtualList.estimateSize": "() => 30",
-      "VirtualList.overscan": 1,
-      "VirtualList.horizontal": false,
-      "VirtualGrid.gap": "[0, 0]",
-      "VirtualInfiniteLoading.enableFirstLoad": true,
-      "VirtualInfiniteLoading.enableRetry": true,
-      "VirtualInfiniteLoading.size": "base"
+      "estimateSize": "() => 30",
+      "overscan": 1,
+      "horizontal": false
     },
     "a11yChecklist": [
       "长列表需确保 aria-setsize 与 aria-posinset 正确（组件已内置）。",
@@ -712,60 +764,39 @@
     "codegenTemplates": {
       "minimalList": "<VirtualList :data-source=\"items\">\n  <VirtualListItem v-slot=\"{ data }\">{{ data.name }}</VirtualListItem>\n</VirtualList>",
       "minimalGrid": "<VirtualGrid :data-source=\"items\" :row=\"3\" :column=\"4\">\n  <VirtualGridItem v-slot=\"{ data }\">{{ data }}</VirtualGridItem>\n</VirtualGrid>",
-      "withInfinite": "<VirtualList :data-source=\"items\">\n  <VirtualListItem v-slot=\"{ data }\">{{ data.name }}</VirtualListItem>\n  <VirtualInfiniteLoading @infinite=\"handleLoad\" />\n</VirtualList>"
+      "withInfinite": "<VirtualList :data-source=\"items\">\n  <VirtualListItem v-slot=\"{ data }\">{{ data.name }}</VirtualListItem>\n  <VirtualInfiniteLoading @infinite=\"handleLoad\" />\n</VirtualList>",
+      "dynamicList": "<VirtualList :data-source=\"items\">\n  <VirtualListItem v-slot=\"{ data }\" :dynamic=\"true\">{{ data.name }}</VirtualListItem>\n</VirtualList>"
     },
     "antiPatterns": [
-      "动态高度列表未开启 VirtualListItem.dynamic 导致滚动跳动。",
-      "网格只调单侧 overscan 导致另一侧渲染异常。",
-      "数据未真正结束时过早调用 complete() 导致无法继续加载。"
+      "使用 Virtual 组件但未引入 index.css — 导致 rui-virtual-list/rui-virtual-grid/rui-virtual-infinite 等结构样式缺失，布局错乱",
+      "<VirtualListItem v-slot=\"{ data }\">{{ data.name }}</VirtualListItem> — 动态高度列表未设置 dynamic，导致滚动跳动",
+      "handleLoad({ complete }) { complete() } — 数据未真正结束时过早调用 complete()，导致无法继续加载"
     ]
   },
   "provenance": {
     "sources": [
-      {
-        "path": "./virtual.doc.mdx",
-        "kind": "doc"
-      },
-      {
-        "path": "./props.ts",
-        "kind": "type"
-      },
-      {
-        "path": "./VirtualListImpl.vue",
-        "kind": "runtime"
-      },
-      {
-        "path": "./VirtualGridImpl.vue",
-        "kind": "runtime"
-      },
-      {
-        "path": "./VirtualListItem.vue",
-        "kind": "runtime"
-      },
-      {
-        "path": "./VirtualGridItem.vue",
-        "kind": "runtime"
-      },
-      {
-        "path": "./VirtualInfiniteLoading.vue",
-        "kind": "runtime"
-      },
-      {
-        "path": "./virtual.stories.ts",
-        "kind": "story"
-      }
+      { "path": "./virtual.doc.mdx", "kind": "doc" },
+      { "path": "./props.ts", "kind": "type" },
+      { "path": "./VirtualListImpl.vue", "kind": "runtime" },
+      { "path": "./VirtualGridImpl.vue", "kind": "runtime" },
+      { "path": "./VirtualListItem.vue", "kind": "runtime" },
+      { "path": "./VirtualGridItem.vue", "kind": "runtime" },
+      { "path": "./VirtualInfiniteLoading.vue", "kind": "runtime" },
+      { "path": "./virtual.stories.ts", "kind": "story" }
     ],
-    "precedence": [
-      "runtime",
-      "type",
-      "doc"
-    ],
+    "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
-      "contracts.props.VirtualList.estimateSize.default": "runtime",
-      "contracts.props.VirtualList.overscan.default": "runtime",
-      "contracts.props.VirtualGrid.gap.default": "runtime",
-      "contracts.props.VirtualInfiniteLoading.size.default": "runtime",
-      "contracts.events.VirtualInfiniteLoading.infinite.order": "runtime"
+      "contracts.props.estimateSize.default": "runtime",
+      "contracts.props.overscan.default": "runtime",
+      "subComponents.VirtualGrid.props.gap.default": "runtime",
+      "subComponents.VirtualInfiniteLoading.props.enableFirstLoad.default": "runtime",
+      "subComponents.VirtualInfiniteLoading.props.enableRetry.default": "runtime",
+      "subComponents.VirtualInfiniteLoading.props.size.default": "runtime",
+      "subComponents.VirtualInfiniteLoading.events.infinite.order": "runtime",
+      "component.subComponents": "doc",
+      "cssImport": "doc",
+      "generationHints.safeDefaults": "doc",
+      "generationHints.antiPatterns": "doc"
     }
   }
 }
