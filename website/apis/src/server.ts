@@ -96,7 +96,7 @@ export function createServer() {
   })
 
   app.get<{ Querystring: FrameworkWithComponentQuery }>(
-    '/api/mcp/example',
+    '/mcp/example',
     async (request, reply) => {
       try {
         const framework = parseFramework(request.query.framework)
