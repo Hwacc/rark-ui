@@ -8,10 +8,10 @@
     "importPath": "@rark-ui/vue/core",
     "exportName": "Switch",
     "category": "core",
-    "description": "用于表达单一布尔开关状态（开/关），适合用于功能启停、偏好配置等场景。基于 Ark UI Switch 构建，支持受控/非受控状态、表单语义透传，并扩展 theme 与 ui 样式入口。",
+    "description": "用于表达单一布尔开关状态（开/关），适合用于功能启停、偏好配置等场景。基于 Ark UI Switch 构建，支持受控/非受控状态、表单语义透传，并扩展 theme 与 ui 样式入口。由 Switch（根）与 SwitchLabel（子组件）组成。",
     "basePrimitive": {
       "library": "@ark-ui/vue",
-      "primitive": "ark.switch",
+      "primitive": "Switch.RootProvider",
       "nativeElement": "button"
     },
     "passThrough": {
@@ -32,7 +32,8 @@
       "theme",
       "ui-override",
       "form-semantics"
-    ]
+    ],
+    "subComponents": ["SwitchLabel"]
   },
   "contracts": {
     "props": [
@@ -48,7 +49,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultChecked"],
         "description": "受控选中状态（可配合 v-model:checked）"
       },
       {
@@ -63,7 +64,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["checked"],
         "description": "非受控模式下的初始状态"
       },
       {
@@ -214,7 +215,7 @@
         "deprecated": false,
         "dependsOn": [],
         "conflictsWith": [],
-        "description": "局部样式覆盖（root/control/thumb/label）"
+        "description": "局部样式覆盖（root/control/thumb/label）；ui.label 当前版本未在模板中消费，建议使用 SwitchLabel.class 覆盖标签样式"
       }
     ],
     "events": [
@@ -266,7 +267,7 @@
           "typeSchema": { "type": "object" },
           "default": null,
           "defaultKind": "unknown",
-          "description": "覆写 tvSwitch 的 crafts 配置"
+          "description": "覆写 tvSwitch 的 crafts 配置（如 root/control/thumb/label）"
         }
       ]
     },
@@ -274,8 +275,82 @@
       "fields": [
         { "name": "ui.root", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "根容器 class 覆盖" },
         { "name": "ui.control", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "控制区 class 覆盖" },
-        { "name": "ui.thumb", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "滑块 class 覆盖" }
+        { "name": "ui.thumb", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "滑块 class 覆盖" },
+        { "name": "ui.label", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "当前版本未在模板中消费；建议使用 SwitchLabel.class 覆盖标签样式" }
       ]
+    }
+  },
+  "subComponents": {
+    "SwitchLabel": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "标签节点自定义 class"
+        },
+        {
+          "name": "asChild",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "将标签能力合并到子元素"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "从上下文继承主题参数，也可局部覆盖主题参数"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "标签文本或自定义标签结构"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": []
+      },
+      "uiConfiguration": {
+        "fields": []
+      }
     }
   },
   "behaviorModel": {
@@ -291,7 +366,11 @@
       {
         "on": "click",
         "guard": "isInteractive",
-        "effects": ["toggleChecked", "emit(update:checked)", "emit(checkedChange)"]
+        "effects": [
+          "setChecked(!checked)",
+          "emit:update:checked",
+          "emit:checkedChange"
+        ]
       }
     ]
   },
@@ -305,7 +384,8 @@
   "generationHints": {
     "preferredUsageOrder": ["checked", "defaultChecked", "theme.size", "disabled"],
     "safeDefaults": {
-      "defaultChecked": false
+      "defaultChecked": false,
+      "theme.size": "base"
     },
     "a11yChecklist": [
       "标签内容建议放在 SwitchLabel 中",
@@ -317,8 +397,9 @@
       "withLabel": "<Switch v-model:checked=\"enabled\"><SwitchLabel>启用</SwitchLabel></Switch>"
     },
     "antiPatterns": [
-      "把说明文本直接塞进 Switch 根节点造成结构不清晰",
-      "仅通过 disabled 表达只读语义，应使用 readOnly 区分"
+      "<Switch :checked=\"enabled\" :default-checked=\"true\" /> — 同时使用 checked 与 defaultChecked 导致冲突",
+      "<Switch><span>启用</span></Switch> — 说明文本直接塞进 Switch 根节点，应使用 SwitchLabel",
+      "<Switch disabled><SwitchLabel>禁用</SwitchLabel></Switch> 仅通过视觉样式模拟只读（应使用 readOnly 区分）"
     ]
   },
   "provenance": {
@@ -326,11 +407,17 @@
       { "path": "./switch.doc.mdx", "kind": "doc" },
       { "path": "./props.ts", "kind": "type" },
       { "path": "./Switch.vue", "kind": "runtime" },
+      { "path": "./SwitchLabel.vue", "kind": "runtime" },
       { "path": "./switch.stories.ts", "kind": "story" }
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.props.checked.conflictsWith": "doc",
+      "contracts.props.defaultChecked.conflictsWith": "doc",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.uiConfiguration.fields": "doc",
+      "subComponents.SwitchLabel.props.asChild.default": "doc",
+      "behaviorModel.transitions.effects": "runtime"
     }
   }
 }

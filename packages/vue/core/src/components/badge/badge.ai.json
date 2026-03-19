@@ -314,8 +314,8 @@
       "dotSup": "<Badge variant=\"dot\" as=\"sup\" />"
     },
     "antiPatterns": [
-      "在 Badge 内放置复杂交互控件，导致职责混乱。",
-      "依赖纯颜色区分状态而不提供可读文案。"
+      "<Badge><Button>Click</Button></Badge> — Badge 内放置交互控件，应仅展示状态信息",
+      "<Badge class=\"bg-red-500\" /> — 纯颜色角标无文案，应提供可读文本或 aria 语义"
     ]
   },
   "provenance": {
@@ -345,8 +345,9 @@
     "fieldSourceMap": {
       "contracts.props.as.default": "runtime",
       "contracts.props.variant.default": "doc",
-      "contracts.events": "runtime",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "generationHints.safeDefaults": "doc",
+      "generationHints.antiPatterns": "doc"
     }
   }
 }

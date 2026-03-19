@@ -464,8 +464,8 @@
         "on": "click",
         "guard": "disabled !== true",
         "effects": [
-          "invokeRippleIf(rippleEnabled)",
-          "emit(click, MouseEvent)"
+          "invokeRipple",
+          "emit:click"
         ]
       }
     ]
@@ -555,8 +555,8 @@
       "asyncAction": "<Button :loading=\"pending\" :disabled=\"pending\">Save</Button>"
     },
     "antiPatterns": [
-      "仅通过颜色 class 表达行为优先级，缺少语义 variant。",
-      "异步提交时未组合 loading + disabled，导致重复触发。"
+      "<Button class=\"bg-red-500\">Delete</Button> — 用颜色 class 表达优先级，应使用 variant",
+      "<Button @click=\"submit\">Save</Button> — 异步提交未组合 loading + disabled，导致重复触发"
     ]
   },
   "provenance": {
@@ -587,7 +587,10 @@
       "contracts.props.variant.default": "runtime",
       "contracts.props.tooltip.description": "doc",
       "contracts.events.click.order": "runtime",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "generationHints.safeDefaults": "doc",
+      "generationHints.antiPatterns": "doc",
+      "behaviorModel.transitions.effects": "runtime"
     }
   }
 }

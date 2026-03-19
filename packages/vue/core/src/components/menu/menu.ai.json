@@ -25,7 +25,8 @@
       "radio-item",
       "submenu",
       "context-trigger"
-    ]
+    ],
+    "subComponents": ["MenuContent", "MenuItem", "MenuItemGroup", "MenuCheckboxItem", "MenuRadioItem", "MenuRadioItemGroup", "MenuTriggerItem", "MenuArrow"]
   },
   "contracts": {
     "props": [
@@ -41,7 +42,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultOpen"],
         "description": "受控打开状态（可用 v-model:open）"
       },
       {
@@ -56,7 +57,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["open"],
         "description": "非受控初始打开状态"
       },
       {
@@ -208,6 +209,594 @@
       "fields": []
     }
   },
+  "subComponents": {
+    "MenuContent": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "内容区附加 class"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承或覆盖主题上下文"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ positioner?: HTMLAttributes['class']; content?: HTMLAttributes['class']; inner?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "positioner": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "content": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "inner": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "覆盖定位容器、内容容器与内部包裹层样式"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "菜单内容；可包含 MenuArrow 与菜单项节点"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          { "name": "ui.positioner", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "定位容器样式覆盖" },
+          { "name": "ui.content", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "内容容器样式覆盖" },
+          { "name": "ui.inner", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "内部包裹层样式覆盖" }
+        ]
+      }
+    },
+    "MenuItem": {
+      "props": [
+        {
+          "name": "value",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "菜单项值（用于选择事件）"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "禁用菜单项"
+        },
+        {
+          "name": "closeOnSelect",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "unknown",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "选中后是否关闭菜单"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "菜单项附加 class"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承或覆盖主题上下文"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "菜单项文案或自定义内容"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "MenuItemGroup": {
+      "props": [
+        {
+          "name": "label",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "分组标题（未提供 label 插槽时生效）"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "分组容器附加 class"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承或覆盖主题上下文"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ root?: HTMLAttributes['class']; label?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "root": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "label": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "覆盖分组容器与标题样式"
+        }
+      ],
+      "slots": [
+        { "name": "default", "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false }, "renderWhen": [{ "expr": "always" }], "fallback": null, "description": "分组内菜单项" },
+        { "name": "label", "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false }, "renderWhen": [{ "expr": "provided" }], "fallback": null, "description": "覆盖默认分组标题" }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          { "name": "ui.root", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "分组容器样式覆盖" },
+          { "name": "ui.label", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "分组标题样式覆盖" }
+        ]
+      }
+    },
+    "MenuCheckboxItem": {
+      "props": [
+        {
+          "name": "checked",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "受控勾选状态"
+        },
+        {
+          "name": "value",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "当前选项值"
+        },
+        {
+          "name": "closeOnSelect",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "unknown",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "切换后是否关闭菜单"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ root?: HTMLAttributes['class']; checkbox?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "root": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "checkbox": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "覆盖 checkbox 菜单项与指示器样式"
+        }
+      ],
+      "slots": [
+        { "name": "default", "slotPropsSchema": { "type": "object", "properties": { "checked": { "type": "boolean" } }, "additionalProperties": false }, "renderWhen": [{ "expr": "always" }], "fallback": null, "description": "菜单项内容" },
+        { "name": "indicator", "slotPropsSchema": { "type": "object", "properties": { "checked": { "type": "boolean" } }, "additionalProperties": false }, "renderWhen": [{ "expr": "provided" }], "fallback": null, "description": "自定义勾选指示器" }
+      ],
+      "events": [
+        {
+          "name": "update:checked",
+          "payload": { "typeText": "(checked: boolean)", "typeSchema": { "type": "object", "properties": { "checked": { "type": "boolean" } } } },
+          "emitWhen": [{ "expr": "checked_state_change", "kind": "runtime-hook" }],
+          "notEmitWhen": [],
+          "order": ["emit:update:checked"],
+          "description": "勾选状态变化"
+        }
+      ],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          { "name": "ui.root", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "菜单项根样式覆盖" },
+          { "name": "ui.checkbox", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "checkbox 指示器样式覆盖" }
+        ]
+      }
+    },
+    "MenuRadioItem": {
+      "props": [
+        {
+          "name": "value",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "单选项值"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "'default' | 'checkbox'",
+          "typeSchema": { "enum": ["default", "checkbox"] },
+          "default": "default",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "指示器形态（圆点或勾选）"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ root?: HTMLAttributes['class']; indicator?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "root": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "indicator": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "覆盖 radio 菜单项与指示器样式"
+        }
+      ],
+      "slots": [
+        { "name": "default", "slotPropsSchema": { "type": "object", "properties": { "checked": { "type": "boolean" } }, "additionalProperties": true }, "renderWhen": [{ "expr": "always" }], "fallback": null, "description": "菜单项内容（接收 Ark Menu.ItemContext）" },
+        { "name": "indicator", "slotPropsSchema": { "type": "object", "properties": { "checked": { "type": "boolean" } }, "additionalProperties": true }, "renderWhen": [{ "expr": "provided" }], "fallback": null, "description": "自定义指示器（接收 Ark Menu.ItemContext）" }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          { "name": "ui.root", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "菜单项根样式覆盖" },
+          { "name": "ui.indicator", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "指示器样式覆盖" }
+        ]
+      }
+    },
+    "MenuRadioItemGroup": {
+      "props": [
+        {
+          "name": "modelValue",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "单选组当前值（v-model）"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "承载一组 MenuRadioItem"
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "payload": { "typeText": "(value: string)", "typeSchema": { "type": "object", "properties": { "value": { "type": "string" } } } },
+          "emitWhen": [{ "expr": "model_value_change", "kind": "runtime-hook" }],
+          "notEmitWhen": [],
+          "order": ["emit:update:modelValue"],
+          "description": "单选组值变化"
+        }
+      ],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "MenuTriggerItem": {
+      "props": [
+        {
+          "name": "value",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "菜单项值（用于选择事件）"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "禁用菜单项"
+        },
+        {
+          "name": "closeOnSelect",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "unknown",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "选中后是否关闭菜单"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "菜单项附加 class"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承或覆盖主题上下文"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "菜单项文案或自定义内容"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "MenuArrow": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "箭头附加 class"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承主题上下文"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "箭头内容（通常不传，使用默认箭头）"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    }
+  },
   "behaviorModel": {
     "stateVars": {
       "open": "boolean",
@@ -223,7 +812,7 @@
       {
         "on": "item_select",
         "guard": "always",
-        "effects": ["emit(select)"]
+        "effects": ["emit:select"]
       },
       {
         "on": "close_on_select",
@@ -252,12 +841,16 @@
       "多选与单选场景分别使用 MenuCheckboxItem 与 MenuRadioItemGroup"
     ],
     "codegenTemplates": {
-      "minimal": "<Menu><MenuTrigger><button>Open</button></MenuTrigger><MenuContent><MenuItem value=\"item1\">Item 1</MenuItem></MenuContent></Menu>",
-      "controlled": "<Menu v-model:open=\"open\">...</Menu>"
+      "minimal": "<Menu>\n  <MenuTrigger as-child><Button>Open</Button></MenuTrigger>\n  <MenuContent>\n    <MenuItem value=\"item1\"><MenuItemText>Item 1</MenuItemText></MenuItem>\n  </MenuContent>\n</Menu>",
+      "controlled": "<Menu v-model:open=\"open\">\n  <MenuTrigger as-child><Button>Toggle</Button></MenuTrigger>\n  <MenuContent>\n    <MenuItem value=\"copy\"><MenuItemText>Copy</MenuItemText></MenuItem>\n  </MenuContent>\n</Menu>",
+      "checkbox": "<Menu>\n  <MenuTrigger as-child><Button>Checkbox Menu</Button></MenuTrigger>\n  <MenuContent>\n    <MenuCheckboxItem v-for=\"v in items\" :key=\"v\" :value=\"v\" :checked=\"checked.includes(v)\" @update:checked=\"(val) => toggle(v, val)\">\n      <MenuItemText>{{ v }}</MenuItemText>\n    </MenuCheckboxItem>\n  </MenuContent>\n</Menu>",
+      "radio": "<Menu>\n  <MenuTrigger as-child><Button>Radio Menu</Button></MenuTrigger>\n  <MenuContent>\n    <MenuRadioItemGroup v-model=\"selected\">\n      <MenuRadioItem v-for=\"v in items\" :key=\"v\" :value=\"v\">\n        <MenuItemText>{{ v }}</MenuItemText>\n      </MenuRadioItem>\n    </MenuRadioItemGroup>\n  </MenuContent>\n</Menu>",
+      "submenu": "<Menu>\n  <MenuTrigger as-child><Button>Submenu</Button></MenuTrigger>\n  <MenuContent>\n    <MenuArrow />\n    <Menu :positioning=\"{ placement: 'right', offset: { mainAxis: 10 } }\">\n      <MenuTriggerItem value=\"sub1\">Submenu 1</MenuTriggerItem>\n      <Teleport to=\"body\">\n        <MenuContent>\n          <MenuItem value=\"a\"><MenuItemText>A</MenuItemText></MenuItem>\n        </MenuContent>\n      </Teleport>\n    </Menu>\n  </MenuContent>\n</Menu>",
+      "context-trigger": "<Menu @select=\"selected = $event.value\">\n  <MenuContextTrigger as-child>\n    <div>Right click here</div>\n  </MenuContextTrigger>\n  <MenuContent>\n    <MenuItem v-for=\"v in items\" :key=\"v\" :value=\"v\">\n      <MenuItemText>{{ v }}</MenuItemText>\n    </MenuItem>\n  </MenuContent>\n</Menu>"
     },
     "antiPatterns": [
-      "混用同一组选项状态模型于 checkbox 与 radio",
-      "子菜单未独立 Menu 实例导致层级菜单遮挡"
+      "<Menu><MenuContent><MenuRadioItemGroup v-model=\"selected\"><MenuCheckboxItem v-for=\"v in items\" :key=\"v\" :value=\"v\" :checked=\"selected.includes(v)\" @update:checked=\"toggle\"><MenuItemText>{{ v }}</MenuItemText></MenuCheckboxItem></MenuRadioItemGroup></MenuContent></Menu>",
+      "<Menu><MenuTrigger><Button>Open</Button></MenuTrigger><MenuContent><MenuTriggerItem value=\"sub\">Sub</MenuTriggerItem><MenuContent><MenuItem value=\"a\"><MenuItemText>A</MenuItemText></MenuItem></MenuContent></Menu></MenuContent></Menu>"
     ]
   },
   "provenance": {
@@ -265,12 +858,27 @@
       { "path": "./menu.doc.mdx", "kind": "doc" },
       { "path": "./props.ts", "kind": "type" },
       { "path": "./Menu.vue", "kind": "runtime" },
+      { "path": "./MenuContent.vue", "kind": "runtime" },
+      { "path": "./MenuItem.vue", "kind": "runtime" },
+      { "path": "./MenuItemGroup.vue", "kind": "runtime" },
+      { "path": "./MenuCheckboxItem.vue", "kind": "runtime" },
+      { "path": "./MenuRadioItem.vue", "kind": "runtime" },
+      { "path": "./MenuRadioItemGroup.vue", "kind": "runtime" },
+      { "path": "./MenuTriggerItem.vue", "kind": "runtime" },
       { "path": "./menu.stories.ts", "kind": "story" }
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
+      "contracts.props.open.conflictsWith": "doc",
+      "contracts.props.defaultOpen.conflictsWith": "doc",
       "contracts.themeConfiguration.fields.size.default": "doc",
-      "contracts.themeConfiguration.fields.bordered.default": "doc"
+      "contracts.themeConfiguration.fields.bordered.default": "doc",
+      "contracts.uiConfiguration.fields": "doc",
+      "subComponents.MenuItem.props.disabled.default": "doc",
+      "subComponents.MenuTriggerItem.props.disabled.default": "doc",
+      "subComponents.MenuRadioItem.props.variant.default": "runtime",
+      "subComponents.MenuCheckboxItem.events": "doc",
+      "subComponents.MenuRadioItemGroup.events": "doc"
     }
   }
 }

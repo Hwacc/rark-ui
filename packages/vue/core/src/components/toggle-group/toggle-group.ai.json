@@ -8,7 +8,7 @@
     "importPath": "@rark-ui/vue/core",
     "exportName": "ToggleGroup",
     "category": "core",
-    "description": "用于管理一组可切换按钮，适合文本样式工具栏、视图模式切换、筛选条件等场景。基于 Ark UI Toggle Group 原语构建，支持单选/多选模式、受控/非受控值管理，并扩展 Rark UI 的 theme 样式能力。",
+    "description": "用于管理一组可切换按钮，适合文本样式工具栏、视图模式切换、筛选条件等场景。基于 Ark UI Toggle Group 原语构建，支持单选/多选模式、受控/非受控值管理，并扩展 Rark UI 的 theme 样式能力。由 ToggleGroup（根）与 ToggleGroupItem（子组件）组成；ToggleGroupItem 承载单项内容，继承组上下文状态。",
     "basePrimitive": {
       "library": "@ark-ui/vue/toggle-group",
       "primitive": "ToggleGroup.RootProvider",
@@ -24,7 +24,8 @@
       "single-multiple",
       "orientation",
       "composite-item"
-    ]
+    ],
+    "subComponents": ["ToggleGroupItem"]
   },
   "contracts": {
     "props": [
@@ -247,9 +248,46 @@
       ]
     },
     "uiConfiguration": {
-      "fields": [
+      "fields": []
+    }
+  },
+  "subComponents": {
+    "ToggleGroupItem": {
+      "props": [
+        {
+          "name": "value",
+          "required": true,
+          "requiredSource": "doc",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "项值（必填）"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "禁用当前项"
+        },
         {
           "name": "class",
+          "required": false,
+          "requiredSource": "type",
           "typeText": "string | array | object",
           "typeSchema": {
             "anyOf": [
@@ -260,9 +298,49 @@
           },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "当前组件未提供 ui.* 分槽位配置，建议使用 class 覆盖"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "项节点附加 class"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承或覆盖主题上下文"
         }
-      ]
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "单项内容插槽，可放文本、图标或混合内容"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": []
+      },
+      "uiConfiguration": {
+        "fields": []
+      }
     }
   },
   "behaviorModel": {
@@ -280,9 +358,9 @@
         "on": "item_toggle",
         "guard": "disabled !== true",
         "effects": [
-          "update modelValue based on type",
-          "emit(update:modelValue, value)",
-          "emit(valueChange, details)"
+          "setModelValue(newValue)",
+          "emit:update:modelValue",
+          "emit:valueChange"
         ]
       }
     ]
@@ -368,13 +446,15 @@
       "value 类型需一致"
     ],
     "codegenTemplates": {
-      "minimal": "<ToggleGroup v-model=\"value\"><ToggleGroupItem value=\"a\">A</ToggleGroupItem><ToggleGroupItem value=\"b\">B</ToggleGroupItem></ToggleGroup>",
-      "multiple": "<ToggleGroup v-model=\"values\" type=\"multiple\">...</ToggleGroup>"
+      "minimal": "<ToggleGroup v-model=\"value\">\n  <ToggleGroupItem value=\"a\">A</ToggleGroupItem>\n  <ToggleGroupItem value=\"b\">B</ToggleGroupItem>\n  <ToggleGroupItem value=\"c\">C</ToggleGroupItem>\n</ToggleGroup>",
+      "multiple": "<ToggleGroup v-model=\"values\" type=\"multiple\">\n  <ToggleGroupItem value=\"a\">A</ToggleGroupItem>\n  <ToggleGroupItem value=\"b\">B</ToggleGroupItem>\n  <ToggleGroupItem value=\"c\">C</ToggleGroupItem>\n</ToggleGroup>",
+      "controlled": "<ToggleGroup v-model=\"value\" type=\"single\">\n  <ToggleGroupItem value=\"a\">A</ToggleGroupItem>\n  <ToggleGroupItem value=\"b\">B</ToggleGroupItem>\n</ToggleGroup>",
+      "withTheme": "<ToggleGroup v-model=\"value\" :theme=\"{ size: 'sm' }\">\n  <ToggleGroupItem value=\"a\">A</ToggleGroupItem>\n  <ToggleGroupItem value=\"b\">B</ToggleGroupItem>\n</ToggleGroup>"
     },
     "antiPatterns": [
-      "互斥选择误用 type=\"multiple\"",
-      "仅靠视觉样式模拟禁用",
-      "同一组内 value 类型不一致"
+      "<ToggleGroup type=\"multiple\"><ToggleGroupItem value=\"a\">A</ToggleGroupItem><ToggleGroupItem value=\"b\">B</ToggleGroupItem></ToggleGroup> 用于互斥选择（应使用 type=\"single\"）",
+      "<ToggleGroupItem value=\"a\" class=\"opacity-50\">A</ToggleGroupItem> 仅靠视觉样式模拟禁用（应使用 disabled）",
+      "<ToggleGroup><ToggleGroupItem value=\"1\">1</ToggleGroupItem><ToggleGroupItem value=\"two\">2</ToggleGroupItem></ToggleGroup> 同一组内 value 类型不一致（应统一为 string）"
     ]
   },
   "provenance": {
@@ -387,9 +467,16 @@
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
-      "contracts.props.orientation.default": "runtime",
+      "contracts.props.modelValue": "type",
+      "contracts.props.defaultValue": "type",
       "contracts.props.type.default": "doc",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.props.orientation.default": "runtime",
+      "contracts.props.rovingFocus.default": "doc",
+      "contracts.events.update:modelValue.order": "runtime",
+      "contracts.events.valueChange.order": "runtime",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.uiConfiguration.fields": "doc",
+      "subComponents.ToggleGroupItem.props.value.required": "doc"
     }
   }
 }

@@ -76,10 +76,10 @@ const collection = computed(() =>
   }),
 )
 
-const expandedValue = ref<string[]>(['branch-0', 'branch-1'])
+const expandedValue = ref<string[]>([])
 const selectedValue = ref<string[]>(['branch-0-0'])
 
-const expandedCheckbox = ref<string[]>(['branch-0', 'branch-1'])
+const expandedCheckbox = ref<string[]>([])
 const checkedValue = ref<string[]>(['branch-0-0'])
 </script>
 

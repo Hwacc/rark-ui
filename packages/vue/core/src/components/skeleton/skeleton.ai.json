@@ -15,7 +15,15 @@
       "nativeElement": "div"
     },
     "passThrough": {
-      "htmlAttributes": ["aria-*", "data-*", "data-shape", "data-variant"],
+      "htmlAttributes": [
+        "id",
+        "style",
+        "title",
+        "role",
+        "tabindex",
+        "aria-*",
+        "data-*"
+      ],
       "notes": "原生 HTML div 的通用属性可透传使用；variant、shape 与 theme 为 Rark UI 扩展能力。"
     },
     "capabilities": [
@@ -220,8 +228,8 @@
       "withChildren": "<Skeleton><div class=\"h-4 w-32\">Loading...</div></Skeleton>"
     },
     "antiPatterns": [
-      "未用 class 明确占位块宽高，导致加载前后布局跳动。",
-      "同一区域混用不同 variant 导致动画节奏不一致。"
+      "<Skeleton /> 或 <Skeleton><span>占位</span></Skeleton> — 未用 class 明确宽高，导致加载前后布局跳动。",
+      "<div class=\"flex gap-2\"><Skeleton variant=\"pulse\" class=\"h-4 w-20\" /><Skeleton variant=\"wave\" class=\"h-4 w-20\" /></div> — 同一区域混用 variant 导致动画节奏不一致。"
     ]
   },
   "provenance": {
@@ -234,7 +242,13 @@
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.variant.default": "runtime",
-      "contracts.props.shape.default": "runtime"
+      "contracts.props.shape.default": "runtime",
+      "contracts.themeConfiguration.fields.skin.default": "doc",
+      "contracts.themeConfiguration.fields.surface.default": "doc",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.themeConfiguration.fields.unstyled.default": "doc",
+      "contracts.themeConfiguration.fields.bordered.default": "doc",
+      "contracts.themeConfiguration.fields.crafts.default": "doc"
     }
   }
 }

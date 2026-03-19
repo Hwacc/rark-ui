@@ -16,7 +16,7 @@
     },
     "passThrough": {
       "htmlAttributes": ["aria-*", "data-*"],
-      "notes": "组件族（Tabs、TabsList、TabsTrigger、TabsIndicator、TabsContent）基于 Ark UI Tabs 原语封装。"
+      "notes": "组件族（Tabs、TabsList、TabsTrigger、TabsIndicator、TabsContent）基于 Ark UI Tabs 原语封装。样式覆盖通过各组件 class prop 实现，不提供 ui 或 ui.* 配置入口。"
     },
     "capabilities": [
       "v-model",
@@ -24,7 +24,8 @@
       "orientation",
       "lazy-mount",
       "composite-item"
-    ]
+    ],
+    "subComponents": ["TabsList", "TabsTrigger", "TabsIndicator", "TabsContent"]
   },
   "contracts": {
     "props": [
@@ -229,23 +230,31 @@
       ]
     },
     "uiConfiguration": {
-      "fields": [
+      "fields": []
+    }
+  },
+  "subComponents": {
+    "TabsList": {
+      "props": [
         {
-          "name": "Tabs.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "根节点样式覆盖"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承根主题，也可局部覆盖通用主题参数"
         },
         {
-          "name": "TabsList.class",
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
           "typeText": "string | array | object",
           "typeSchema": {
             "anyOf": [
@@ -256,51 +265,243 @@
           },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "标签列表样式覆盖"
-        },
-        {
-          "name": "TabsTrigger.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "触发项样式覆盖"
-        },
-        {
-          "name": "TabsIndicator.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "指示器样式覆盖"
-        },
-        {
-          "name": "TabsContent.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "内容区样式覆盖"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "标签列表容器 class"
         }
-      ]
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "标签列表内容，通常组合多个 TabsTrigger 与可选 TabsIndicator"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "TabsTrigger": {
+      "props": [
+        {
+          "name": "value",
+          "required": true,
+          "requiredSource": "doc",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "触发项标识，需与对应 TabsContent.value 对齐"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "requiredSource": "doc",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "禁用当前触发项"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承根主题，也可局部覆盖通用主题参数"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "标签触发项 class"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "标签文本或自定义触发内容"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "TabsIndicator": {
+      "props": [
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承根主题，也可局部覆盖通用主题参数"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "指示器 class"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "自定义指示器内容（可选）"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "TabsContent": {
+      "props": [
+        {
+          "name": "value",
+          "required": true,
+          "requiredSource": "doc",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "面板标识，需与对应 TabsTrigger.value 对齐"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承根主题，也可局部覆盖通用主题参数"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "内容区 class"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "当前标签对应的内容区域"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
     }
   },
   "behaviorModel": {
@@ -316,8 +517,8 @@
         "on": "trigger_click",
         "guard": "trigger.disabled !== true",
         "effects": [
-          "set modelValue = trigger.value",
-          "emit(update:modelValue, value)"
+          "setModelValue(trigger.value)",
+          "emit:update:modelValue"
         ]
       }
     ]
@@ -392,13 +593,16 @@
       "TabsIndicator 可选，但建议保留选中态反馈"
     ],
     "codegenTemplates": {
-      "minimal": "<Tabs v-model=\"tab\"><TabsList><TabsTrigger value=\"a\">A</TabsTrigger><TabsTrigger value=\"b\">B</TabsTrigger></TabsList><TabsContent value=\"a\">内容 A</TabsContent><TabsContent value=\"b\">内容 B</TabsContent></Tabs>",
-      "controlled": "<Tabs v-model=\"activeTab\" :orientation=\"'vertical'\">...</Tabs>"
+      "minimal": "<Tabs default-value=\"tab-1\"><TabsList><TabsTrigger value=\"tab-1\">Tab 1</TabsTrigger><TabsTrigger value=\"tab-2\">Tab 2</TabsTrigger></TabsList><TabsContent value=\"tab-1\">内容 1</TabsContent><TabsContent value=\"tab-2\">内容 2</TabsContent></Tabs>",
+      "withIndicator": "<Tabs default-value=\"tab-1\"><TabsList><TabsTrigger value=\"tab-1\">Tab 1</TabsTrigger><TabsTrigger value=\"tab-2\">Tab 2</TabsTrigger><TabsIndicator /></TabsList><TabsContent value=\"tab-1\">内容 1</TabsContent><TabsContent value=\"tab-2\">内容 2</TabsContent></Tabs>",
+      "controlled": "<Tabs v-model=\"activeTab\" :orientation=\"'vertical'\"><TabsList><TabsTrigger value=\"a\">A</TabsTrigger><TabsTrigger value=\"b\">B</TabsTrigger></TabsList><TabsContent value=\"a\">内容 A</TabsContent><TabsContent value=\"b\">内容 B</TabsContent></Tabs>",
+      "scrollableList": "<Tabs default-value=\"tab-1\"><TabsList class=\"w-80\"><TabsTrigger value=\"tab-1\">Tab 1</TabsTrigger><TabsTrigger value=\"tab-2\">Tab 2</TabsTrigger><TabsIndicator /></TabsList><TabsContent value=\"tab-1\">...</TabsContent><TabsContent value=\"tab-2\">...</TabsContent></Tabs>",
+      "disabledAndNoIndicator": "<Tabs default-value=\"tab-1\"><TabsList><TabsTrigger value=\"tab-1\">Tab 1</TabsTrigger><TabsTrigger value=\"tab-2\" disabled>Tab 2</TabsTrigger></TabsList><TabsContent value=\"tab-1\">...</TabsContent><TabsContent value=\"tab-2\">...</TabsContent></Tabs>"
     },
     "antiPatterns": [
-      "TabsTrigger.value 与 TabsContent.value 不一致导致可点击无面板",
-      "内容较重时未使用 lazyMount 与 unmountOnExit",
-      "样式定制直接改内部结构而非 theme/class"
+      "<Tabs default-value=\"a\"><TabsList><TabsTrigger value=\"a\">A</TabsTrigger><TabsTrigger value=\"b\">B</TabsTrigger></TabsList><TabsContent value=\"a\">内容</TabsContent><TabsContent value=\"c\">内容</TabsContent></Tabs>",
+      "<Tabs default-value=\"tab-1\"><TabsList><TabsTrigger value=\"tab-1\">Tab 1</TabsTrigger></TabsList><TabsContent value=\"tab-1\"><HeavyComponent /></TabsContent></Tabs>",
+      "<Tabs><TabsList><div class=\"custom-wrapper\"><TabsTrigger value=\"a\">A</TabsTrigger></div></TabsList><TabsContent value=\"a\">内容</TabsContent></Tabs>"
     ]
   },
   "provenance": {
@@ -406,12 +610,21 @@
       { "path": "./tabs.doc.mdx", "kind": "doc" },
       { "path": "./props.ts", "kind": "type" },
       { "path": "./Tabs.vue", "kind": "runtime" },
+      { "path": "./TabsList.vue", "kind": "runtime" },
+      { "path": "./TabsTrigger.vue", "kind": "runtime" },
+      { "path": "./TabsIndicator.vue", "kind": "runtime" },
+      { "path": "./TabsContent.vue", "kind": "runtime" },
       { "path": "./tabs.stories.ts", "kind": "story" }
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.orientation.default": "runtime",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.uiConfiguration.fields": "doc",
+      "subComponents.TabsTrigger.props.disabled.default": "doc",
+      "subComponents.TabsTrigger.props.value.required": "doc",
+      "subComponents.TabsContent.props.value.required": "doc",
+      "behaviorModel.transitions.effects": "runtime"
     }
   }
 }

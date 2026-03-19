@@ -44,7 +44,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultValue"],
         "description": "受控输入值（配合 v-model）。"
       },
       {
@@ -59,7 +59,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["modelValue"],
         "description": "非受控模式下的初始值。"
       },
       {
@@ -153,6 +153,51 @@
         "description": "是否为错误态样式。"
       },
       {
+        "name": "locale",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "string",
+        "typeSchema": { "type": "string" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "数值格式化所使用的区域设置（默认浏览器语言）。"
+      },
+      {
+        "name": "formatOptions",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "Intl.NumberFormatOptions",
+        "typeSchema": { "type": "object" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "传递给 Intl.NumberFormat 的格式化参数。"
+      },
+      {
+        "name": "clampValueOnBlur",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "boolean",
+        "typeSchema": { "type": "boolean" },
+        "default": true,
+        "defaultKind": "explicit-doc",
+        "nullable": false,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "失焦时是否自动钳制到 min/max 范围内。"
+      },
+      {
         "name": "showTrigger",
         "required": false,
         "requiredSource": "runtime",
@@ -238,7 +283,7 @@
         "payload": { "typeText": "(details: { value: string; valueAsNumber: number | null })", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "value_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:valueChange"],
         "description": "数值变化事件（Ark UI 详情对象）。"
       },
       {
@@ -246,7 +291,7 @@
         "payload": { "typeText": "(details: { reason: string; value: string })", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "value_invalid", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:valueInvalid"],
         "description": "输入值无效时触发。"
       },
       {
@@ -254,15 +299,31 @@
         "payload": { "typeText": "(details: { focused: boolean; value: string })", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "focus_state_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:focusChange"],
         "description": "聚焦状态变化时触发。"
+      },
+      {
+        "name": "inputFocus",
+        "payload": { "typeText": "(event: FocusEvent)", "typeSchema": { "type": "object", "x-ts-type": "FocusEvent" } },
+        "emitWhen": [{ "expr": "input_focused", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:inputFocus"],
+        "description": "输入框聚焦时触发（模板监听 @input-focus）。"
+      },
+      {
+        "name": "inputBlur",
+        "payload": { "typeText": "(event: FocusEvent)", "typeSchema": { "type": "object", "x-ts-type": "FocusEvent" } },
+        "emitWhen": [{ "expr": "input_blurred", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:inputBlur"],
+        "description": "输入框失焦时触发（模板监听 @input-blur）。"
       },
       {
         "name": "focus",
         "payload": { "typeText": "(event: FocusEvent)", "typeSchema": { "type": "object", "x-ts-type": "FocusEvent" } },
         "emitWhen": [{ "expr": "input_focused", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:focus"],
         "description": "Rark UI 额外透出的输入框 focus 事件。"
       },
       {
@@ -270,7 +331,7 @@
         "payload": { "typeText": "(event: FocusEvent)", "typeSchema": { "type": "object", "x-ts-type": "FocusEvent" } },
         "emitWhen": [{ "expr": "input_blurred", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:blur"],
         "description": "Rark UI 额外透出的输入框 blur 事件。"
       }
     ],
@@ -331,6 +392,14 @@
           "default": null,
           "defaultKind": "unknown",
           "description": "是否移除内置样式。"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "覆盖 tvInput / tvNumberInput crafts。"
         }
       ]
     },
@@ -357,12 +426,12 @@
       {
         "on": "increment",
         "guard": "!disabled",
-        "effects": ["value += step", "emit(valueChange)"]
+        "effects": ["setValue(value+step)", "emit:update:modelValue", "emit:valueChange"]
       },
       {
         "on": "decrement",
         "guard": "!disabled",
-        "effects": ["value -= step", "emit(valueChange)"]
+        "effects": ["setValue(value-step)", "emit:update:modelValue", "emit:valueChange"]
       }
     ]
   },
@@ -379,7 +448,8 @@
     "preferredUsageOrder": ["modelValue/defaultValue", "min/max/step", "showTrigger", "theme"],
     "safeDefaults": {
       "showTrigger": false,
-      "step": 1
+      "step": 1,
+      "clampValueOnBlur": true
     },
     "a11yChecklist": [
       "范围明确的业务建议始终设置 min/max/step",
@@ -390,8 +460,9 @@
       "withTrigger": "<NumberInput v-model=\"value\" :show-trigger=\"true\" />"
     },
     "antiPatterns": [
-      "范围明确的业务未设置 min/max/step 导致非法值进入",
-      "手写字符串格式化导致输入态与展示态不一致"
+      "<NumberInput v-model=\"qty\" /> — 在数量场景未设置 :min=\"0\" :max=\"99\" :step=\"1\" 导致非法值进入",
+      "使用自定义 @update:modelValue 做 toFixed(2) — 应使用 formatOptions 保持输入态与展示态一致",
+      "<NumberInput v-model=\"val\" :default-value=\"0\" /> — 同时使用 modelValue 与 defaultValue 导致冲突"
     ]
   },
   "provenance": {
@@ -404,7 +475,13 @@
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.showTrigger.default": "runtime",
-      "contracts.props.step.default": "doc"
+      "contracts.props.step.default": "doc",
+      "contracts.props.modelValue.conflictsWith": "doc",
+      "contracts.props.defaultValue.conflictsWith": "doc",
+      "contracts.props.clampValueOnBlur.default": "doc",
+      "contracts.props.locale": "doc",
+      "contracts.props.formatOptions": "doc",
+      "themeConfiguration.fields.crafts": "doc"
     }
   }
 }

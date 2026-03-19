@@ -44,7 +44,7 @@
           { "expr": "child_overlay_open_state_changed", "kind": "runtime-bridge" }
         ],
         "notEmitWhen": [],
-        "order": ["invoke_close_when_open_false"],
+        "order": ["invoke:close(id)"],
         "description": "监听子浮层打开状态变化；当 open=false 时触发内部 close(id)。"
       },
       {
@@ -57,7 +57,7 @@
           { "expr": "child_overlay_exit_animation_complete", "kind": "runtime-bridge" }
         ],
         "notEmitWhen": [],
-        "order": ["invoke_unmount"],
+        "order": ["invoke:unmount(id)"],
         "description": "监听子浮层退出完成；触发内部 unmount(id) 回收挂载状态。"
       }
     ],
@@ -99,7 +99,7 @@
         "args": { "framework": "vue", "componentName": "Overlay" },
         "exampleId": "basic"
       },
-      "description": "基础用法（useOverlay + create + open）"
+      "description": "基础用法（useOverlay + create + open，对应 Basic story）"
     }
   ],
   "generationHints": {
@@ -110,7 +110,8 @@
     ],
     "safeDefaults": {
       "create_options.defaultOpen": false,
-      "create_options.destroyOnClose": false
+      "create_options.destroyOnClose": false,
+      "create_options.props": {}
     },
     "a11yChecklist": [
       "承载浮层组件（如 Dialog）需自行保证可访问性。",
@@ -118,11 +119,11 @@
     ],
     "codegenTemplates": {
       "minimal": "<OverlayProvider />\nconst overlay = useOverlay()\nconst instance = overlay.create(MyDialog)\ninstance.open({ title: 'Title' })",
-      "withDestroyOnClose": "overlay.create(MyDialog, { destroyOnClose: true })"
+      "withDestroyOnClose": "const instance = overlay.create(MyDialog, { destroyOnClose: true })\ninstance.open({ title: 'Title' })"
     },
     "antiPatterns": [
-      "在应用内放置多个 OverlayProvider 导致状态分散。",
-      "未在应用根部放置 OverlayProvider 即调用 useOverlay().create()。"
+      "在 App.vue 中同时渲染多个 <OverlayProvider>，导致 useOverlay() 状态分散",
+      "在未挂载 OverlayProvider 的组件树中调用 useOverlay().create(MyDialog)"
     ]
   },
   "provenance": {
@@ -136,8 +137,11 @@
     "fieldSourceMap": {
       "contracts.events.open-change.description": "doc",
       "contracts.events.exit-complete.description": "doc",
+      "contracts.events.open-change.order": "runtime",
+      "contracts.events.exit-complete.order": "runtime",
       "useOverlay.create.options.defaultOpen": "runtime",
-      "useOverlay.create.options.destroyOnClose": "runtime"
+      "useOverlay.create.options.destroyOnClose": "runtime",
+      "useOverlay.create.options.props": "runtime"
     }
   }
 }

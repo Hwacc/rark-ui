@@ -65,7 +65,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultValue"],
         "description": "受控值（配合 v-model 使用）"
       },
       {
@@ -82,7 +82,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["modelValue"],
         "description": "非受控模式初始值"
       },
       {
@@ -363,9 +363,9 @@
           "typeSchema": {
             "enum": ["xs", "sm", "base", "lg"]
           },
-          "default": null,
-          "defaultKind": "unknown",
-          "description": "尺寸主题变体"
+          "default": "base",
+          "defaultKind": "explicit-doc",
+          "description": "尺寸主题变体（crafts tvInput defaultVariants）"
         },
         {
           "name": "skin",
@@ -476,22 +476,22 @@
       {
         "on": "focus",
         "guard": "disabled !== true",
-        "effects": ["set isFocus = true", "emit(focus, Event)"]
+        "effects": ["setIsFocus(true)", "emit:focus"]
       },
       {
         "on": "blur",
         "guard": "!rejectBlur",
-        "effects": ["set isFocus = false", "emit(blur, Event)"]
+        "effects": ["setIsFocus(false)", "emit:blur"]
       },
       {
         "on": "input",
         "guard": "always",
-        "effects": ["update modelValue", "emit(update:modelValue)", "emit(input, Event, value)"]
+        "effects": ["updateModelValue(value)", "emit:update:modelValue", "emit:input"]
       },
       {
         "on": "clearable_click",
         "guard": "showClearable",
-        "effects": ["set modelValue = ''", "focus input"]
+        "effects": ["setModelValue('')", "focusInput"]
       }
     ]
   },
@@ -548,7 +548,8 @@
     "safeDefaults": {
       "clearable": false,
       "disabled": false,
-      "readonly": false
+      "readonly": false,
+      "defaultValue": ""
     },
     "a11yChecklist": [
       "placeholder 不能替代 label，需配合 label 或 aria-label 使用",
@@ -560,9 +561,9 @@
       "controlled": "<Input v-model=\"value\" placeholder=\"请输入\" :clearable=\"true\" />"
     },
     "antiPatterns": [
-      "仅用 placeholder 作为唯一说明，缺少 label 或 aria-label",
-      "readonly 与 disabled 混用导致语义不清",
-      "clearable 启用时未监听 update:modelValue 导致业务状态不同步"
+      "<Input placeholder=\"请输入\" /> 未配合 label 或 aria-label",
+      "同时设置 :readonly=\"true\" :disabled=\"true\" 导致语义不清",
+      "<Input v-model=\"q\" :clearable=\"true\" /> 未监听 @update:modelValue 导致业务状态不同步"
     ]
   },
   "provenance": {
@@ -575,8 +576,12 @@
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.clearable.default": "runtime",
+      "contracts.props.modelValue.conflictsWith": "doc",
+      "contracts.props.defaultValue.conflictsWith": "doc",
       "contracts.events.order": "runtime",
-      "contracts.slots.prefix.description": "doc"
+      "contracts.slots.prefix.description": "doc",
+      "behaviorModel.transitions.effects": "runtime",
+      "themeConfiguration.fields.size.default": "runtime"
     }
   }
 }

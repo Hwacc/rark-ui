@@ -108,7 +108,14 @@
         "required": false,
         "requiredSource": "type",
         "typeText": "SelectValueType",
-        "typeSchema": {},
+        "typeSchema": {
+          "anyOf": [
+            { "type": "string" },
+            { "type": "number" },
+            { "type": "object" }
+          ],
+          "x-ts-type": "SelectValueType"
+        },
         "default": null,
         "defaultKind": "implicit-undefined",
         "nullable": true,

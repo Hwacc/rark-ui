@@ -26,14 +26,16 @@ description: 生成或更新 Rark UI 组件的 AI 文档 JSON（*.ai.json）。U
 
 按如下顺序组织：
 
-1. `schemaVersion`（固定 `2.0.0`）
+1. `schemaVersion`
 2. `docId`
 3. `component`
 4. `contracts`
-5. `behaviorModel`
-6. `examples`
-7. `generationHints`
-8. `provenance`
+5. `subComponents`（可选，仅当主组件包含子组件时存在）
+6. `parentComponents`（可选，仅当主组件被父组件包裹时存在）
+7. `behaviorModel`
+8. `examples`
+9. `generationHints`
+10. `provenance`
 
 除非用户明确要求，不要新增顶层字段。**不要**在 `*.ai.json` 产物中包含 `quality` 字段。
 
@@ -43,6 +45,15 @@ description: 生成或更新 Rark UI 组件的 AI 文档 JSON（*.ai.json）。U
 - 必填：`basePrimitive.library`、`basePrimitive.primitive`、`basePrimitive.nativeElement`。
 - 必填：`passThrough.htmlAttributes`（数组）与 `passThrough.notes`。
 - 必填：`capabilities`（如 `click`、`loading`、`ripple`、`theme`、`ui-override`）。
+- **当存在子组件时**：必填 `subComponents`（字符串数组），明确列出子组件名称，如 `["TreeNode", "TreeCheckboxNode"]`。
+- **当存在父组件时**：必填 `parentComponents`（字符串数组），明确列出父组件名称，如 `["SpinProvider"]`、`["CheckboxGroup"]`。
+
+### 4.1 子组件与父组件的推断规则
+
+**应以实际使用方式推断**主组件外的关联组件是 `subComponents`（子组件）还是 `parentComponents`（父组件）：
+
+- **subComponents（子组件）**：放置于主组件**内部**、作为主组件子节点的组件。例如：`<DatePicker><DatePickerControl>...</DatePickerControl></DatePicker>` 中，DatePickerControl 是 DatePicker 的子组件。
+- **parentComponents（父组件）**：**包裹**主组件、主组件作为其子节点的组件。例如：`<SpinProvider><Spin :show="loading" /></SpinProvider>` 中，SpinProvider 是 Spin 的父组件；`<CheckboxGroup><Checkbox value="a" /></CheckboxGroup>` 中，CheckboxGroup 是 Checkbox 的父组件。
 
 ## 5. contracts 字段要求（重点）
 
@@ -96,6 +107,77 @@ description: 生成或更新 Rark UI 组件的 AI 文档 JSON（*.ai.json）。U
 
 - 使用 `fields` 数组表达。
 - 每个字段至少包含：`name`、`typeText`、`typeSchema`、`default`、`defaultKind`、`description`。
+- **主组件的 themeConfiguration/uiConfiguration 仅描述主组件自身**，不包含子组件相关内容；子组件的 theme/ui 配置放在 `subComponents` 中对应子组件的 `themeConfiguration`/`uiConfiguration` 里。
+
+### 5.5 子组件（subComponents）
+
+当组件由多个子组件组合而成（如 Tree + TreeNode + TreeCheckboxNode、VirtualList + VirtualListItem + VirtualGrid 等）时：
+
+1. 在 `component` 中增加 `subComponents` 数组，明确列出子组件名称。
+2. 新增顶层字段 `subComponents`（对象），以子组件名为 key，每个子组件拥有与主组件 `contracts` 相同的结构：`props`、`slots`、`events`、`themeConfiguration`、`uiConfiguration`。
+3. 子组件各字段的**结构规范与主组件相同**（props 遵循 5.1、events 遵循 5.2、slots 遵循 5.3、themeConfiguration/uiConfiguration 遵循 5.4）。
+4. 主组件的 `contracts` 仅描述主组件自身，不混入子组件的 props/slots/events；主组件的 `themeConfiguration`/`uiConfiguration` 不描述子组件相关内容。
+
+**subComponents 结构示例**：
+
+```json
+{
+  "subComponents": {
+    "TreeNode": {
+      "props": [...],
+      "slots": [...],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [...] }
+    },
+    "TreeCheckboxNode": {
+      "props": [...],
+      "slots": [...],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [...] }
+    }
+  }
+}
+```
+
+**generationHints.codegenTemplates**：
+
+- 为不同子组件组合提供对应的 `codegenTemplates` 键（如 `minimal`、`checkbox`、`customDatatype`）。
+- 确保模板中正确引用子组件及其关键 props（如 `keyMap`、`node`、`indexPath`）。
+
+**参考实现**：
+
+- `packages/vue/core/src/components/tree/tree.ai.json`（Tree、TreeNode、TreeCheckboxNode）
+
+### 5.6 父组件（parentComponents）
+
+当主组件被父组件包裹使用时（如 Spin 被 SpinProvider 包裹、Checkbox 被 CheckboxGroup 包裹）：
+
+1. 在 `component` 中增加 `parentComponents` 数组，明确列出父组件名称。
+2. 新增顶层字段 `parentComponents`（对象），以父组件名为 key，每个父组件拥有与 `subComponents` 相同的结构：`props`、`slots`、`events`、`themeConfiguration`、`uiConfiguration`。
+3. 父组件各字段的**结构规范与主组件相同**。
+
+**parentComponents 结构示例**：
+
+```json
+{
+  "parentComponents": {
+    "SpinProvider": {
+      "props": [],
+      "slots": [...],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    }
+  }
+}
+```
+
+**参考实现**：
+
+- `packages/vue/core/src/components/spin/spin.ai.json`（Spin、SpinProvider）
+- `packages/vue/core/src/components/checkbox/checkbox.ai.json`（Checkbox、CheckboxGroup）
 
 ## 6. behaviorModel 字段要求
 
@@ -197,3 +279,5 @@ description: 生成或更新 Rark UI 组件的 AI 文档 JSON（*.ai.json）。U
 - `examples[].mcp` 是否与 MCP 工具签名一致（server、tool、args、exampleId）。
 - `provenance.precedence` 是否存在且合理。
 - JSON 是否可被标准解析器直接解析。
+- **若存在子组件**：`component.subComponents` 是否明确列出子组件；顶层 `subComponents` 对象是否完整描述各子组件的 props/slots/events/themeConfiguration/uiConfiguration；主组件 `contracts` 与 `themeConfiguration`/`uiConfiguration` 是否不混入子组件内容；`codegenTemplates` 是否覆盖主要子组件用法。
+- **若存在父组件**：`component.parentComponents` 是否明确列出父组件；顶层 `parentComponents` 对象是否完整描述各父组件的 props/slots/events/themeConfiguration/uiConfiguration；是否根据实际使用方式正确区分 subComponents 与 parentComponents。

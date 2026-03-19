@@ -172,7 +172,7 @@
         },
         "emitWhen": [{ "expr": "pressed_state_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": ["emit_update_pressed"],
+        "order": ["emit:update:pressed"],
         "description": "受控状态同步事件（用于 v-model:pressed）。"
       },
       {
@@ -183,7 +183,7 @@
         },
         "emitWhen": [{ "expr": "pressed_state_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": ["emit_pressedChange"],
+        "order": ["emit:pressedChange"],
         "description": "底层 Ark UI 状态变更事件，参数结构与 Ark UI 保持一致。"
       }
     ],
@@ -232,7 +232,11 @@
       {
         "on": "click",
         "guard": "disabled !== true",
-        "effects": ["togglePressed", "emit_pressedChange"]
+        "effects": [
+          "setPressed(!pressed)",
+          "emit:update:pressed",
+          "emit:pressedChange"
+        ]
       }
     ]
   },
@@ -291,7 +295,9 @@
   "generationHints": {
     "preferredUsageOrder": ["pressed", "defaultPressed", "theme.size", "disabled"],
     "safeDefaults": {
-      "asChild": false
+      "asChild": false,
+      "defaultPressed": false,
+      "theme.size": "base"
     },
     "a11yChecklist": [
       "仅图标的 toggle 建议提供 aria-label 或可见文本。",
@@ -303,8 +309,9 @@
       "controlled": "<Toggle v-model:pressed=\"muted\">Mute</Toggle>"
     },
     "antiPatterns": [
-      "仅靠 UI 禁用造成状态不一致，业务逻辑层未同时阻断动作。",
-      "多个互斥或集合选择未交给 ToggleGroup 管理。"
+      "<Toggle :pressed=\"muted\" :default-pressed=\"true\">Mute</Toggle> — 同时使用 pressed 与 defaultPressed 导致冲突。",
+      "<Toggle @update:pressed=\"submit\">Save</Toggle> — 异步提交时未设置 disabled，导致重复点击触发多次 submit。",
+      "<div v-for=\"opt in options\"><Toggle>{{ opt }}</Toggle></div> — 互斥选择应使用 ToggleGroup 管理。"
     ]
   },
   "provenance": {
@@ -317,7 +324,11 @@
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.asChild.default": "doc",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.props.defaultPressed.default": "type",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.themeConfiguration.fields.crafts.default": "doc",
+      "contracts.events.update:pressed.order": "runtime",
+      "contracts.events.pressedChange.order": "runtime"
     }
   }
 }

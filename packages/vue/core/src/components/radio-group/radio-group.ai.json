@@ -8,17 +8,14 @@
     "importPath": "@rark-ui/vue/core",
     "exportName": "RadioGroup",
     "category": "core",
-    "description": "用于管理单选集合场景，适合筛选条件、配置项切换、设置面板等只允许选择一个值的交互。基于 Ark UI Radio Group 原语构建，支持受控/非受控值管理，并扩展 theme、variant 以及 ui 样式入口。需配合 RadioGroupItem 使用。",
+    "description": "用于管理单选集合场景，适合筛选条件、配置项切换、设置面板等只允许选择一个值的交互。基于 Ark UI Radio Group 原语构建，支持受控/非受控值管理，并扩展 theme、variant 以及 ui 样式入口。由 RadioGroup（根）与 RadioGroupItem（子组件）组成；RadioGroupItem 承载单选项，扩展 label、variant 与 ui 样式入口。",
     "basePrimitive": {
       "library": "@ark-ui/vue/radio-group",
       "primitive": "RadioGroup.RootProvider",
       "nativeElement": "div"
     },
     "passThrough": {
-      "htmlAttributes": [
-        "aria-*",
-        "data-*"
-      ],
+      "htmlAttributes": ["aria-*", "data-*"],
       "notes": "组件基于 Ark UI Radio Group 封装，通过 useRadioGroup 承接组值状态。"
     },
     "capabilities": [
@@ -27,7 +24,8 @@
       "ui-override",
       "orientation",
       "composite-item"
-    ]
+    ],
+    "subComponents": ["RadioGroupItem"]
   },
   "contracts": {
     "props": [
@@ -51,7 +49,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultValue"],
         "description": "受控模式下的当前值（配合 v-model）"
       },
       {
@@ -74,7 +72,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["modelValue"],
         "description": "非受控模式下的初始值"
       },
       {
@@ -174,9 +172,7 @@
             ]
           }
         },
-        "emitWhen": [
-          { "expr": "value_changed", "kind": "runtime-hook" }
-        ],
+        "emitWhen": [{ "expr": "value_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
         "order": ["emit:update:modelValue"],
         "description": "组值变化时触发，用于 v-model 同步"
@@ -198,9 +194,7 @@
             }
           }
         },
-        "emitWhen": [
-          { "expr": "radio_checked", "kind": "runtime-hook" }
-        ],
+        "emitWhen": [{ "expr": "radio_checked", "kind": "runtime-hook" }],
         "notEmitWhen": [],
         "order": ["emit:valueChange"],
         "description": "单选值变化详情事件"
@@ -253,51 +247,86 @@
       ]
     },
     "uiConfiguration": {
-      "fields": [
+      "fields": []
+    }
+  },
+  "subComponents": {
+    "RadioGroupItem": {
+      "props": [
         {
-          "name": "RadioGroupItem.ui.root.class",
-          "typeText": "string | array | object",
+          "name": "value",
+          "required": true,
+          "requiredSource": "doc",
+          "typeText": "string | number | symbol | bigint | null",
           "typeSchema": {
             "anyOf": [
               { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
+              { "type": "number" },
+              { "type": "symbol" },
+              { "type": "bigint" },
+              { "type": "null" }
             ]
           },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "单选项根节点 class 覆盖"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "单选项值（必填）"
         },
         {
-          "name": "RadioGroupItem.ui.control.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
+          "name": "label",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "控制区 class 覆盖"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "默认文本标签；也可用默认插槽完全自定义"
         },
         {
-          "name": "RadioGroupItem.ui.indicator.class",
-          "typeText": "string | array | object",
+          "name": "variant",
+          "required": false,
+          "requiredSource": "runtime",
+          "typeText": "'default' | 'checkbox'",
           "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
+            "enum": ["default", "checkbox"]
           },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "指示器 class 覆盖"
+          "default": "default",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "指示器样式变体（圆点或勾选）"
         },
         {
-          "name": "RadioGroupItem.ui.text.class",
+          "name": "disabled",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "禁用当前项（Ark UI Item 能力）"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
           "typeText": "string | array | object",
           "typeSchema": {
             "anyOf": [
@@ -308,9 +337,144 @@
           },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "文本节点 class 覆盖"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "单选项根节点附加 class"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承或覆盖主题上下文"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ root?: HTMLAttributes['class']; control?: HTMLAttributes['class']; indicator?: HTMLAttributes['class']; text?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "root": {},
+              "control": {},
+              "indicator": {},
+              "text": {}
+            }
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "UI 覆盖入口：root、control、indicator、text"
         }
-      ]
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {
+              "checked": { "type": "boolean" }
+            },
+            "additionalProperties": true
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "自定义文本区，作用域含 Ark item context（如 checked）"
+        },
+        {
+          "name": "control",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {
+              "checked": { "type": "boolean" }
+            },
+            "additionalProperties": true
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "自定义控制区，作用域含 Ark item context（如 checked）"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": []
+      },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "root",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "单选项根节点 class 覆盖"
+          },
+          {
+            "name": "control",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "控制区 class 覆盖"
+          },
+          {
+            "name": "indicator",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "指示器 class 覆盖"
+          },
+          {
+            "name": "text",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "文本节点 class 覆盖"
+          }
+        ]
+      }
     }
   },
   "behaviorModel": {
@@ -327,9 +491,9 @@
         "on": "item_select",
         "guard": "disabled !== true",
         "effects": [
-          "set modelValue = item.value",
-          "emit(update:modelValue, value)",
-          "emit(valueChange, { value })"
+          "setModelValue(item.value)",
+          "emit:update:modelValue",
+          "emit:valueChange"
         ]
       }
     ]
@@ -392,7 +556,8 @@
       "orientation",
       "theme.size",
       "RadioGroupItem.value",
-      "RadioGroupItem.variant"
+      "RadioGroupItem.variant",
+      "RadioGroupItem.ui"
     ],
     "safeDefaults": {
       "orientation": "horizontal",
@@ -405,12 +570,15 @@
     ],
     "codegenTemplates": {
       "minimal": "<RadioGroup v-model=\"value\">\n  <RadioGroupItem value=\"a\" label=\"A\" />\n  <RadioGroupItem value=\"b\" label=\"B\" />\n</RadioGroup>",
-      "controlled": "<RadioGroup v-model=\"selected\" orientation=\"vertical\">\n  <RadioGroupItem value=\"1\" label=\"选项 1\" />\n  <RadioGroupItem value=\"2\" label=\"选项 2\" />\n</RadioGroup>"
+      "controlled": "<RadioGroup v-model=\"selected\" orientation=\"vertical\">\n  <RadioGroupItem value=\"1\" label=\"选项 1\" />\n  <RadioGroupItem value=\"2\" label=\"选项 2\" />\n</RadioGroup>",
+      "withUi": "<RadioGroup v-model=\"value\">\n  <RadioGroupItem value=\"a\" label=\"A\" :ui=\"{ indicator: 'ring-2' }\" />\n  <RadioGroupItem value=\"b\" label=\"B\" />\n</RadioGroup>",
+      "customSlots": "<RadioGroup v-model=\"value\">\n  <RadioGroupItem value=\"a\">\n    <template #default=\"{ checked }\">{{ checked ? '已选 A' : 'A' }}</template>\n  </RadioGroupItem>\n  <RadioGroupItem value=\"b\" label=\"B\" />\n</RadioGroup>"
     },
     "antiPatterns": [
-      "同一组内 value 类型混用（字符串与数字混用）",
-      "未使用 label 或默认插槽导致选项无文本",
-      "样式定制直接改内部结构而非 theme/ui"
+      "<RadioGroup v-model=\"v\" :default-value=\"'x'\">...</RadioGroup> modelValue 与 defaultValue 同时使用（受控与非受控互斥）",
+      "<RadioGroup><RadioGroupItem value=\"1\" /> <RadioGroupItem value=\"two\" /> </RadioGroup> 同一组内 value 类型混用（应统一为 string 或 number）",
+      "<RadioGroupItem value=\"a\" /> 未使用 label 或默认插槽导致选项无文本（应提供 label 或 default slot）",
+      "<RadioGroupItem value=\"a\" class=\"opacity-50\" /> 仅靠视觉样式模拟禁用（应使用 disabled）"
     ]
   },
   "provenance": {
@@ -423,9 +591,18 @@
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
+      "contracts.props.modelValue": "type",
+      "contracts.props.defaultValue": "type",
+      "contracts.props.modelValue.conflictsWith": "doc",
+      "contracts.props.defaultValue.conflictsWith": "doc",
       "contracts.props.orientation.default": "doc",
-      "RadioGroupItem.variant.default": "runtime",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.uiConfiguration.fields": "doc",
+      "subComponents.RadioGroupItem.props.value.required": "doc",
+      "subComponents.RadioGroupItem.props.variant.default": "runtime",
+      "subComponents.RadioGroupItem.uiConfiguration.fields": "doc",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.events.update:modelValue.order": "runtime",
+      "contracts.events.valueChange.order": "runtime"
     }
   }
 }

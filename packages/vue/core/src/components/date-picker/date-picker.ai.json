@@ -32,6 +32,13 @@
       "theme",
       "disabled-date",
       "slot-composition"
+    ],
+    "subComponents": [
+      "DatePickerControl",
+      "DatePickerContent",
+      "DatePickerDayView",
+      "DatePickerMonthView",
+      "DatePickerYearView"
     ]
   },
   "contracts": {
@@ -54,7 +61,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultValue"],
         "description": "当前选中值；单选通常为 1 个元素，范围选择通常为 2 个元素。"
       },
       {
@@ -88,7 +95,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultOpen"],
         "description": "面板是否打开（受控）。"
       },
       {
@@ -105,7 +112,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultView"],
         "description": "当前视图（受控）。"
       },
       {
@@ -123,7 +130,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultFocusedValue"],
         "description": "当前聚焦日期（受控）。"
       },
       {
@@ -459,78 +466,320 @@
           "default": null,
           "defaultKind": "implicit-undefined",
           "description": "覆盖根组件与内容容器的 crafts slots。"
-        },
-        {
-          "name": "DatePickerControl.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "定制控制区布局与间距。"
-        },
-        {
-          "name": "DatePickerContent.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "定制弹层外观（边框、阴影、宽度等）。"
-        },
-        {
-          "name": "DatePickerDayView.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "日视图根节点 class 覆盖。"
-        },
-        {
-          "name": "DatePickerMonthView.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "月视图根节点 class 覆盖。"
-        },
-        {
-          "name": "DatePickerYearView.class",
-          "typeText": "string | array | object",
-          "typeSchema": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "array" },
-              { "type": "object" }
-            ]
-          },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "年视图根节点 class 覆盖。"
         }
       ]
+    }
+  },
+  "subComponents": {
+    "DatePickerControl": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "控制区容器类名覆盖；透传 Ark DatePickerControlBaseProps。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "控制区插槽，通常放置 DatePickerTrigger 或自定义触发内容。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "class",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "定制控制区布局与间距。"
+          }
+        ]
+      }
+    },
+    "DatePickerContent": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "弹层内容容器类名覆盖；透传 Ark DatePickerContentBaseProps。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "prefix",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "内容区前置插槽，渲染在视图主体前。"
+        },
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "内容区主体插槽，放置 DatePickerDayView / DatePickerMonthView / DatePickerYearView。"
+        },
+        {
+          "name": "suffix",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "内容区后置插槽，渲染在视图主体后。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "class",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "定制弹层外观（边框、阴影、宽度等）。"
+          }
+        ]
+      }
+    },
+    "DatePickerDayView": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "日视图根节点类名覆盖。"
+        },
+        {
+          "name": "weekDayType",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "'short' | 'long' | 'narrow'",
+          "typeSchema": {
+            "enum": ["short", "long", "narrow"]
+          },
+          "default": "short",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "星期抬头显示格式。"
+        }
+      ],
+      "slots": [],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "class",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "日视图根节点 class 覆盖。"
+          }
+        ]
+      }
+    },
+    "DatePickerMonthView": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "月视图根节点类名覆盖。"
+        },
+        {
+          "name": "monthType",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "'short' | 'long'",
+          "typeSchema": {
+            "enum": ["short", "long"]
+          },
+          "default": "short",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "月份文案显示格式。"
+        }
+      ],
+      "slots": [],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "class",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "月视图根节点 class 覆盖。"
+          }
+        ]
+      }
+    },
+    "DatePickerYearView": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "年视图根节点类名覆盖。"
+        }
+      ],
+      "slots": [],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "class",
+            "typeText": "string | array | object",
+            "typeSchema": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
+            },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "年视图根节点 class 覆盖。"
+          }
+        ]
+      }
     }
   },
   "behaviorModel": {
@@ -550,22 +799,22 @@
       {
         "on": "valueChange",
         "guard": "!disabled",
-        "effects": ["updateModelValue", "emit:valueChange", "emit:update:modelValue"]
+        "effects": ["emit:update:modelValue", "emit:valueChange"]
       },
       {
         "on": "openChange",
         "guard": "always",
-        "effects": ["updateOpen", "emit:openChange", "emit:update:open"]
+        "effects": ["emit:update:open", "emit:openChange"]
       },
       {
         "on": "viewChange",
         "guard": "always",
-        "effects": ["updateView", "emit:viewChange", "emit:update:view"]
+        "effects": ["emit:update:view", "emit:viewChange"]
       },
       {
         "on": "focusChange",
         "guard": "always",
-        "effects": ["updateFocusedValue", "emit:focusChange", "emit:update:focusedValue"]
+        "effects": ["emit:update:focusedValue", "emit:focusChange"]
       }
     ]
   },
@@ -663,9 +912,9 @@
       "range": "<DatePicker v-model=\"value\" selection-mode=\"range\">\n  <DatePickerControl><DatePickerTrigger><DatePickerValueText placeholder=\"选择日期范围\" /></DatePickerTrigger></DatePickerControl>\n  <DatePickerContent><DatePickerDayView /><DatePickerMonthView /></DatePickerContent>\n</DatePicker>"
     },
     "antiPatterns": [
-      "直接跳过 DatePickerControl 导致可访问性和交互语义不完整。",
-      "范围选择未显式设置 selectionMode=\"range\"。",
-      "禁用日期逻辑散落在业务层而非统一使用 isDateUnavailable。"
+      "<DatePicker><DatePickerContent><DatePickerDayView /></DatePickerContent></DatePicker> — 跳过 DatePickerControl 导致可访问性和交互语义不完整",
+      "<DatePicker v-model=\"range\" /> — 范围选择未设置 selection-mode=\"range\"，v-model 应为 DateValue[] 且需显式 selection-mode",
+      "在业务层用 date.getDay() 判断周末并单独禁用单元格，而非传入 isDateUnavailable — 应使用 isDateUnavailable 回调统一处理"
     ]
   },
   "provenance": {
@@ -710,8 +959,13 @@
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.selectionMode.default": "doc",
+      "contracts.props.modelValue.conflictsWith": "doc",
+      "contracts.props.open.conflictsWith": "doc",
+      "contracts.props.view.conflictsWith": "doc",
+      "contracts.props.focusedValue.conflictsWith": "doc",
       "contracts.themeConfiguration.fields.size.default": "doc",
       "contracts.props.theme.description": "doc",
+      "subComponents": "doc",
       "DatePickerDayView.weekDayType.default": "runtime",
       "DatePickerMonthView.monthType.default": "runtime"
     }

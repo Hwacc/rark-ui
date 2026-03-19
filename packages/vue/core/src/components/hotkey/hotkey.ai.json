@@ -166,7 +166,7 @@
         },
         "emitWhen": [{ "expr": "hotkey_value_changed", "kind": "runtime-machine" }],
         "notEmitWhen": [],
-        "order": ["internalStateUpdate", "emit:update:hotkey"],
+        "order": ["emit:update:hotkey"],
         "description": "热键值更新（用于 v-model:hotkey）。"
       },
       {
@@ -335,12 +335,12 @@
       {
         "on": "keyup",
         "guard": "canRecord",
-        "effects": ["finalizeOrReset", "emit(change) | emit(cancel)"]
+        "effects": ["finalizeOrReset", "emit:update:hotkey", "emit:cancel", "emit:change"]
       },
       {
         "on": "blur",
         "guard": "always",
-        "effects": ["setInnerHotkey", "resetData", "emit(blur)"]
+        "effects": ["setInnerHotkey", "resetData", "emit:blur"]
       }
     ]
   },
@@ -419,8 +419,8 @@
       "withPlaceholder": "<Hotkey v-model:hotkey=\"hotkey\" placeholder=\"Press hotkey\" />"
     },
     "antiPatterns": [
-      "仅用 class 模拟 disabled，而不设置 disabled/readonly 语义。",
-      "在 change 之外做持久化，导致与 v-model 状态不同步。"
+      "<Hotkey class=\"opacity-50\" /> 未设置 :disabled=\"true\"，仅用 class 模拟 disabled。",
+      "在 @focus 或 @blur 中持久化热键，而非 @change，导致与 v-model 状态不同步。"
     ]
   },
   "provenance": {
@@ -433,8 +433,12 @@
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.placeholder.default": "runtime",
+      "contracts.events.cancel.order": "runtime",
       "contracts.events.change.order": "runtime",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "behaviorModel.transitions": "runtime",
+      "behaviorModel.transitions[].effects": "runtime",
+      "generationHints.antiPatterns": "doc"
     }
   }
 }

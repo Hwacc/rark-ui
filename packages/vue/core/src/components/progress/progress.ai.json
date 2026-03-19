@@ -26,7 +26,8 @@
       "theme",
       "ui-override",
       "variant"
-    ]
+    ],
+    "subComponents": ["ProgressLinear", "ProgressCircle", "ProgressArc"]
   },
   "contracts": {
     "props": [
@@ -175,7 +176,7 @@
         },
         "emitWhen": [{ "expr": "value_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": ["emit_update_modelValue"],
+        "order": ["emit:update:modelValue"],
         "description": "受控进度值同步。"
       },
       {
@@ -186,7 +187,7 @@
         },
         "emitWhen": [{ "expr": "value_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": ["emit_valueChange"],
+        "order": ["emit:valueChange"],
         "description": "进度值变化时触发（Ark UI Root 事件）。"
       }
     ],
@@ -252,48 +253,321 @@
       ]
     },
     "uiConfiguration": {
-      "fields": [
+      "fields": []
+    }
+  },
+  "subComponents": {
+    "ProgressLinear": {
+      "props": [
         {
-          "name": "ProgressLinear.ui.track",
-          "typeText": "string | array | object",
-          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "线性轨道 class 覆盖。"
+          "name": "variant",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "'default' | 'robbin' | 'transfer'",
+          "typeSchema": { "enum": ["default", "robbin", "transfer"] },
+          "default": "default",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "线性范围条视觉变体。"
         },
         {
-          "name": "ProgressLinear.ui.range",
-          "typeText": "string | array | object",
-          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "线性范围 class 覆盖。"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承根主题，也可局部覆盖通用主题参数（不含 crafts）。"
         },
         {
-          "name": "ProgressCircle.ui.circle",
-          "typeText": "string | array | object",
-          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ track?: class; range?: class }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "track": {},
+              "range": {}
+            }
+          },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "圆形根节点 class 覆盖。"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "轨道与范围节点 class 覆盖。"
         },
         {
-          "name": "ProgressCircle.ui.circleTrack",
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
           "typeText": "string | array | object",
           "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "圆形轨道 class 覆盖。"
-        },
-        {
-          "name": "ProgressCircle.ui.circleRange",
-          "typeText": "string | array | object",
-          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
-          "default": null,
-          "defaultKind": "implicit-undefined",
-          "description": "圆形范围 class 覆盖。"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "附加到轨道节点的 class。"
         }
-      ]
+      ],
+      "slots": [],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "track",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "线性轨道 class 覆盖。"
+          },
+          {
+            "name": "range",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "线性范围 class 覆盖。"
+          }
+        ]
+      }
+    },
+    "ProgressCircle": {
+      "props": [
+        {
+          "name": "variant",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "'default' | 'transfer'",
+          "typeSchema": { "enum": ["default", "transfer"] },
+          "default": "default",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "圆形进度视觉变体。"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "Omit<ProgressCircleTheme, 'crafts'>",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "圆形局部主题参数（不支持在子组件传入 crafts）；theme.size 支持 'xs'|'sm'|'base'|'lg' 或 number 像素值。"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ circle?: class; circleTrack?: class; circleRange?: class }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "circle": {},
+              "circleTrack": {},
+              "circleRange": {}
+            }
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "圆形根节点、轨道、范围 class 覆盖。"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "圆形根节点附加 class。"
+        }
+      ],
+      "slots": [],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "circle",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "圆形根节点 class 覆盖。"
+          },
+          {
+            "name": "circleTrack",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "圆形轨道 class 覆盖。"
+          },
+          {
+            "name": "circleRange",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "圆形范围 class 覆盖。"
+          }
+        ]
+      }
+    },
+    "ProgressArc": {
+      "props": [
+        {
+          "name": "theta",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number",
+          "typeSchema": { "type": "number" },
+          "default": 60,
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "弧形留白角度（单位：度）。"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "'default' | 'transfer'",
+          "typeSchema": { "enum": ["default", "transfer"] },
+          "default": "default",
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "弧形范围视觉变体。"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "Omit<ProgressCircleTheme, 'crafts'>",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "弧形局部主题参数；theme.size 支持 'xs'|'sm'|'base'|'lg' 或 number 像素值。"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ circle?: class; circleTrack?: class; circleRange?: class }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "circle": {},
+              "circleTrack": {},
+              "circleRange": {}
+            }
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "弧形根节点、轨道、范围 class 覆盖。"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "弧形根节点附加 class。"
+        }
+      ],
+      "slots": [],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "circle",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "弧形根节点 class 覆盖。"
+          },
+          {
+            "name": "circleTrack",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "弧形轨道 class 覆盖。"
+          },
+          {
+            "name": "circleRange",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "弧形范围 class 覆盖。"
+          }
+        ]
+      }
     }
   },
   "behaviorModel": {
@@ -310,7 +584,7 @@
       {
         "on": "value_update",
         "guard": "always",
-        "effects": ["updateValue", "emit_valueChange"]
+        "effects": ["updateValue(newValue)", "emit:update:modelValue", "emit:valueChange"]
       }
     ]
   },
@@ -380,11 +654,15 @@
     ],
     "codegenTemplates": {
       "minimal": "<Progress :model-value=\"50\">\n  <ProgressLinear />\n</Progress>",
-      "controlled": "<Progress v-model=\"value\">\n  <ProgressLinear variant=\"transfer\" />\n</Progress>"
+      "linear": "<Progress v-model=\"value\">\n  <ProgressLinear variant=\"transfer\" />\n</Progress>",
+      "circle": "<Progress v-model=\"value\">\n  <ProgressCircle variant=\"default\" />\n</Progress>",
+      "arc": "<Progress v-model=\"value\">\n  <ProgressArc :theta=\"60\" variant=\"transfer\" />\n</Progress>",
+      "controlled": "<Progress v-model=\"value\" @value-change=\"onChange\">\n  <ProgressLinear variant=\"transfer\" />\n</Progress>"
     },
     "antiPatterns": [
-      "同时混用受控和非受控。",
-      "纵向进度未设置容器高度导致无法体现方向差异。"
+      "<Progress v-model=\"value\" :default-value=\"50\" />",
+      "<Progress orientation=\"vertical\"><ProgressLinear /></Progress>",
+      "<ProgressLinear />"
     ]
   },
   "provenance": {
@@ -392,6 +670,9 @@
       { "path": "./progress.doc.mdx", "kind": "doc" },
       { "path": "./props.ts", "kind": "type" },
       { "path": "./Progress.vue", "kind": "runtime" },
+      { "path": "./ProgressLinear.vue", "kind": "runtime" },
+      { "path": "./ProgressCircle.vue", "kind": "runtime" },
+      { "path": "./ProgressArc.vue", "kind": "runtime" },
       { "path": "./progress.stories.ts", "kind": "story" }
     ],
     "precedence": ["runtime", "type", "doc"],
@@ -399,7 +680,14 @@
       "contracts.props.orientation.default": "runtime",
       "contracts.props.defaultValue.default": "doc",
       "contracts.props.min.default": "doc",
-      "contracts.props.max.default": "doc"
+      "contracts.props.max.default": "doc",
+      "contracts.uiConfiguration.fields": "doc",
+      "subComponents.ProgressLinear.props": "runtime",
+      "subComponents.ProgressCircle.props": "runtime",
+      "subComponents.ProgressArc.props": "runtime",
+      "subComponents.ProgressArc.props.theta.default": "runtime",
+      "behaviorModel.transitions.effects": "runtime",
+      "events.order": "doc"
     }
   }
 }

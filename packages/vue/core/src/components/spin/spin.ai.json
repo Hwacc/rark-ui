@@ -24,7 +24,8 @@
       "fullscreen-inline",
       "delay-hide",
       "provider-icon"
-    ]
+    ],
+    "parentComponents": ["SpinProvider"]
   },
   "contracts": {
     "props": [
@@ -115,61 +116,37 @@
         "name": "ui",
         "required": false,
         "requiredSource": "type",
-        "typeText": "{ root?: { class?: string | array | object }, mask?: { class?: string | array | object }, indicator?: { class?: string | array | object }, text?: { class?: string | array | object } }",
+        "typeText": "{ root?: string | array | object; mask?: string | array | object; indicator?: string | array | object; text?: string | array | object }",
         "typeSchema": {
           "type": "object",
           "properties": {
             "root": {
-              "type": "object",
-              "properties": {
-                "class": {
-                  "anyOf": [
-                    { "type": "string" },
-                    { "type": "array" },
-                    { "type": "object" }
-                  ]
-                }
-              },
-              "additionalProperties": true
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
             },
             "mask": {
-              "type": "object",
-              "properties": {
-                "class": {
-                  "anyOf": [
-                    { "type": "string" },
-                    { "type": "array" },
-                    { "type": "object" }
-                  ]
-                }
-              },
-              "additionalProperties": true
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
             },
             "indicator": {
-              "type": "object",
-              "properties": {
-                "class": {
-                  "anyOf": [
-                    { "type": "string" },
-                    { "type": "array" },
-                    { "type": "object" }
-                  ]
-                }
-              },
-              "additionalProperties": true
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
             },
             "text": {
-              "type": "object",
-              "properties": {
-                "class": {
-                  "anyOf": [
-                    { "type": "string" },
-                    { "type": "array" },
-                    { "type": "object" }
-                  ]
-                }
-              },
-              "additionalProperties": true
+              "anyOf": [
+                { "type": "string" },
+                { "type": "array" },
+                { "type": "object" }
+              ]
             }
           },
           "additionalProperties": true
@@ -181,7 +158,7 @@
         "deprecated": false,
         "dependsOn": [],
         "conflictsWith": [],
-        "description": "局部样式覆盖配置"
+        "description": "局部样式覆盖配置（ui.root、ui.mask、ui.indicator、ui.text 为 class 覆盖）"
       }
     ],
     "events": [],
@@ -236,13 +213,16 @@
         },
         {
           "name": "surface",
-          "typeText": "'light' | 'dark'",
+          "typeText": "'light' | 'dark' | string",
           "typeSchema": {
-            "enum": ["light", "dark"]
+            "anyOf": [
+              { "enum": ["light", "dark"] },
+              { "type": "string" }
+            ]
           },
           "default": null,
           "defaultKind": "unknown",
-          "description": "表面语义"
+          "description": "表面语义（亮/暗或自定义语义）"
         },
         {
           "name": "unstyled",
@@ -258,7 +238,7 @@
           "typeSchema": { "type": "boolean" },
           "default": null,
           "defaultKind": "unknown",
-          "description": "启用边框语义"
+          "description": "启用边框语义（是否生效取决于 tvSpin 具体实现）"
         },
         {
           "name": "crafts",
@@ -273,7 +253,7 @@
     "uiConfiguration": {
       "fields": [
         {
-          "name": "ui.root.class",
+          "name": "ui.root",
           "typeText": "string | array | object",
           "typeSchema": {
             "anyOf": [
@@ -287,7 +267,7 @@
           "description": "根容器样式覆盖"
         },
         {
-          "name": "ui.mask.class",
+          "name": "ui.mask",
           "typeText": "string | array | object",
           "typeSchema": {
             "anyOf": [
@@ -301,7 +281,7 @@
           "description": "遮罩层样式覆盖"
         },
         {
-          "name": "ui.indicator.class",
+          "name": "ui.indicator",
           "typeText": "string | array | object",
           "typeSchema": {
             "anyOf": [
@@ -315,7 +295,7 @@
           "description": "指示器容器样式覆盖"
         },
         {
-          "name": "ui.text.class",
+          "name": "ui.text",
           "typeText": "string | array | object",
           "typeSchema": {
             "anyOf": [
@@ -331,6 +311,52 @@
       ]
     }
   },
+  "parentComponents": {
+    "SpinProvider": {
+      "props": [],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "包裹业务内容并向后代 Spin 提供图标渲染上下文"
+        },
+        {
+          "name": "icon",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {
+              "mode": { "type": "string" },
+              "theme": { "type": "object" },
+              "class": {
+                "anyOf": [
+                  { "type": "string" },
+                  { "type": "array" },
+                  { "type": "object" }
+                ]
+              }
+            },
+            "additionalProperties": true
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": "LoaderCircle",
+          "description": "全局自定义图标渲染，插槽参数为 { mode, theme, class }"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": []
+      },
+      "uiConfiguration": {
+        "fields": []
+      }
+    }
+  },
   "behaviorModel": {
     "stateVars": {
       "show": "boolean",
@@ -344,12 +370,12 @@
       {
         "on": "show_true",
         "guard": "always",
-        "effects": ["set isVisible = true", "update parent position"]
+        "effects": ["setIsVisible(true)", "updateParentPosition()"]
       },
       {
         "on": "show_false",
-        "guard": "delay ? setTimeout : immediate",
-        "effects": ["set isVisible = false after delay", "restore parent position"]
+        "guard": "delay ? scheduleHide : immediate",
+        "effects": ["scheduleHide(delay)", "setIsVisible(false)", "restoreParentPosition()"]
       }
     ]
   },
@@ -424,12 +450,13 @@
     ],
     "codegenTemplates": {
       "minimal": "<Spin :show=\"loading\" />",
-      "withText": "<Spin :show=\"loading\"><template #text>加载中...</template></Spin>"
+      "withText": "<Spin :show=\"loading\"><template #text>加载中...</template></Spin>",
+      "withProvider": "<SpinProvider><template #icon=\"{ class: klass }\"><CustomIcon :class=\"klass\" /></template><div>业务内容</div><Spin :show=\"loading\" /></SpinProvider>"
     },
     "antiPatterns": [
-      "全屏加载用于非阻塞式流程",
-      "未使用 delay 导致请求瞬时结束闪烁",
-      "inline 模式父容器无尺寸导致遮罩抖动"
+      "<Spin :show=\"loading\" mode=\"fullscreen\" /> — 全屏加载用于非阻塞式流程（如局部 tab 切换）应使用 mode=\"inline\"",
+      "<Spin :show=\"loading\" /> — 请求瞬时结束导致闪烁时应使用 delay 参数",
+      "<div><Spin :show=\"true\" mode=\"inline\" /></div> — inline 模式父容器无尺寸导致遮罩抖动，父 div 需设 height/min-height"
     ]
   },
   "provenance": {
@@ -444,7 +471,12 @@
     "fieldSourceMap": {
       "contracts.props.show.default": "doc",
       "contracts.props.mode.default": "doc",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.props.ui.typeSchema": "type",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.uiConfiguration.fields": "doc",
+      "parentComponents.SpinProvider.props": "doc",
+      "parentComponents.SpinProvider.slots": "doc",
+      "behaviorModel.transitions.effects": "runtime"
     }
   }
 }

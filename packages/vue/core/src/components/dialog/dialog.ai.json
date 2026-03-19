@@ -11,7 +11,7 @@
     "description": "复合弹窗组件，用于承载确认、表单编辑、详情展示等临时交互内容。基于 Ark UI Dialog 构建，支持受控/非受控状态、关闭来源追踪（from）、主题配置。",
     "basePrimitive": {
       "library": "@ark-ui/vue/dialog",
-      "primitive": "ark.dialog",
+      "primitive": "Dialog.RootProvider",
       "nativeElement": "div"
     },
     "passThrough": {
@@ -23,7 +23,8 @@
       "controlled-open",
       "from-tracking",
       "structured-content"
-    ]
+    ],
+    "subComponents": ["DialogTrigger", "DialogCloseTrigger", "DialogBackdrop", "DialogContent", "DialogHeader", "DialogBody", "DialogFooter"]
   },
   "contracts": {
     "props": [
@@ -39,7 +40,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultOpen"],
         "description": "受控打开状态（配合 v-model:open）"
       },
       {
@@ -54,7 +55,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["open"],
         "description": "非受控初始状态"
       },
       {
@@ -255,6 +256,520 @@
       "fields": []
     }
   },
+  "subComponents": {
+    "DialogTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "将触发能力合并到子元素"
+        },
+        {
+          "name": "from",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "TriggerFrom | string | null | undefined",
+          "typeSchema": { "type": ["string", "object", "null"] },
+          "default": "open_trigger",
+          "defaultKind": "explicit-runtime",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "自定义触发来源，透传到 openChange.details.from"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "触发元素（通常配合 asChild）"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "DialogCloseTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "将关闭能力合并到子元素"
+        },
+        {
+          "name": "from",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "TriggerFrom | string | null | undefined",
+          "typeSchema": { "type": ["string", "object", "null"] },
+          "default": "close_trigger",
+          "defaultKind": "explicit-runtime",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "自定义关闭来源，透传到 openChange.details.from"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "任意关闭触发元素（可记录来源）"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "DialogBackdrop": {
+      "props": [
+        {
+          "name": "asChild",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "将 backdrop props 合并到子元素"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "遮罩层 class（通常由 DialogContent.ui.backdrop 统一控制）"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "自定义遮罩层内容（通常无需使用）"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "DialogContent": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "内容容器附加 class"
+        },
+        {
+          "name": "showClose",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": true,
+          "defaultKind": "explicit-runtime",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "未使用 DialogHeader 时，是否显示右上角默认关闭按钮"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ backdrop?: HTMLAttributes['class']; positioner?: HTMLAttributes['class']; content?: HTMLAttributes['class']; close?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "backdrop": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "positioner": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "content": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "close": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "遮罩、定位容器、内容容器、关闭按钮样式覆盖"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "弹窗主体内容（Header/Body/Footer）"
+        },
+        {
+          "name": "close",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "自定义右上角关闭区域，覆盖默认关闭按钮"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "ui.backdrop",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "遮罩层 class"
+          },
+          {
+            "name": "ui.positioner",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "定位容器 class"
+          },
+          {
+            "name": "ui.content",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "内容容器 class"
+          },
+          {
+            "name": "ui.close",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "右上角关闭按钮 class"
+          }
+        ]
+      }
+    },
+    "DialogHeader": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "头部容器 class"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ root?: HTMLAttributes['class']; title?: HTMLAttributes['class']; close?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "root": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "title": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "close": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "头部容器、标题与关闭按钮 class"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "标题文本或自定义头部内容"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "ui.root",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "头部容器 class"
+          },
+          {
+            "name": "ui.title",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "标题 class"
+          },
+          {
+            "name": "ui.close",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "关闭按钮 class"
+          }
+        ]
+      }
+    },
+    "DialogBody": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "内容主体区域 class"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "正文区域"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "DialogFooter": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "底部容器 class"
+        },
+        {
+          "name": "widget",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ cancel?: ButtonProps & { text?: string }; ok?: ButtonProps & { text?: string } }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "cancel": { "type": "object" },
+              "ok": { "type": "object" }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "取消/确认按钮属性与文案"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ root?: HTMLAttributes['class']; cancel?: HTMLAttributes['class']; ok?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "root": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "cancel": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "ok": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "底部容器与按钮 class"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "自定义底部；不传时渲染默认取消/确认按钮"
+        }
+      ],
+      "events": [
+        {
+          "name": "ok",
+          "payload": { "typeText": "(event: MouseEvent)", "typeSchema": { "type": "object", "x-ts-type": "MouseEvent" } },
+          "emitWhen": [{ "expr": "ok_button_click", "kind": "runtime-hook" }],
+          "notEmitWhen": [],
+          "order": ["emit:ok"],
+          "description": "点击确认按钮时触发"
+        },
+        {
+          "name": "cancel",
+          "payload": { "typeText": "(event: MouseEvent)", "typeSchema": { "type": "object", "x-ts-type": "MouseEvent" } },
+          "emitWhen": [{ "expr": "cancel_button_click", "kind": "runtime-hook" }],
+          "notEmitWhen": [],
+          "order": ["emit:cancel"],
+          "description": "点击取消按钮时触发"
+        }
+      ],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "ui.root",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "底部容器 class"
+          },
+          {
+            "name": "ui.cancel",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "取消按钮 class"
+          },
+          {
+            "name": "ui.ok",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "确认按钮 class"
+          }
+        ]
+      }
+    }
+  },
   "behaviorModel": {
     "stateVars": {
       "open": "boolean"
@@ -264,12 +779,12 @@
       {
         "on": "trigger_click",
         "guard": "open === false",
-        "effects": ["setOpen(true)", "emit(openChange)"]
+        "effects": ["setOpen(true)", "emit:openChange"]
       },
       {
         "on": "close_trigger",
         "guard": "open === true",
-        "effects": ["setOpen(false)", "emit(openChange)", "emit(exitComplete) on animation end"]
+        "effects": ["setOpen(false)", "emit:openChange", "emit:exitComplete"]
       }
     ]
   },
@@ -293,12 +808,16 @@
       "内容较长时限制 DialogBody 高度并开启滚动"
     ],
     "codegenTemplates": {
-      "minimal": "<Dialog><DialogTrigger><button>Open</button></DialogTrigger><DialogContent><DialogHeader>Title</DialogHeader><DialogBody>...</DialogBody></DialogContent></Dialog>",
-      "controlled": "<Dialog v-model:open=\"open\">...</Dialog>"
+      "minimal": "<Dialog>\n  <DialogTrigger asChild><button>Open</button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>Title</DialogHeader>\n    <DialogBody>...</DialogBody>\n  </DialogContent>\n</Dialog>",
+      "controlled": "<Dialog v-model:open=\"open\">\n  <DialogTrigger asChild><button>Toggle</button></DialogTrigger>\n  <DialogContent>...</DialogContent>\n</Dialog>",
+      "withFooter": "<Dialog>\n  <DialogTrigger asChild><button>Open</button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader>Title</DialogHeader>\n    <DialogBody>Content</DialogBody>\n    <DialogFooter @ok=\"handleOk\" @cancel=\"handleCancel\" />\n  </DialogContent>\n</Dialog>",
+      "contentCloseSlot": "<DialogContent :show-close=\"false\">\n  <template #close><DialogCloseTrigger asChild><button>×</button></DialogCloseTrigger></template>\n  ...\n</DialogContent>"
     },
     "antiPatterns": [
-      "自定义关闭区时未显式设置 show-close=\"false\"，导致重复关闭按钮",
-      "复杂表单使用函数式 API 而非组件式组合"
+      "<Dialog><button>Open</button><DialogContent>...</DialogContent></Dialog>",
+      "<DialogContent><DialogHeader>Title</DialogHeader><template #close><span>×</span></template></DialogContent>",
+      "<Dialog v-model:open=\"open\" :default-open=\"false\">...</Dialog>",
+      "<DialogContent :show-close=\"true\"><DialogHeader>Title</DialogHeader><template #close><DialogCloseTrigger asChild><button>×</button></DialogCloseTrigger></template></DialogContent>"
     ]
   },
   "provenance": {
@@ -306,12 +825,32 @@
       { "path": "./dialog.doc.mdx", "kind": "doc" },
       { "path": "./props.ts", "kind": "type" },
       { "path": "./Dialog.vue", "kind": "runtime" },
+      { "path": "./DialogContent.vue", "kind": "runtime" },
+      { "path": "./DialogHeader.vue", "kind": "runtime" },
+      { "path": "./DialogFooter.vue", "kind": "runtime" },
+      { "path": "./DialogTrigger.vue", "kind": "runtime" },
+      { "path": "./DialogCloseTrigger.vue", "kind": "runtime" },
+      { "path": "./DialogBackdrop.vue", "kind": "runtime" },
+      { "path": "./DialogBody.vue", "kind": "runtime" },
       { "path": "./dialog.stories.ts", "kind": "story" }
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.defaultOpen.default": "doc",
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.props.open.conflictsWith": "doc",
+      "contracts.props.defaultOpen.conflictsWith": "doc",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.uiConfiguration.fields": "doc",
+      "component.basePrimitive.primitive": "runtime",
+      "component.subComponents": "doc",
+      "subComponents.DialogTrigger.props.from.default": "runtime",
+      "subComponents.DialogCloseTrigger.props.from.default": "runtime",
+      "subComponents.DialogContent.props.showClose.default": "runtime",
+      "subComponents.DialogContent.uiConfiguration": "doc",
+      "subComponents.DialogHeader.uiConfiguration": "doc",
+      "subComponents.DialogFooter.uiConfiguration": "doc",
+      "subComponents.DialogFooter.events": "runtime",
+      "behaviorModel.transitions.effects": "doc"
     }
   }
 }

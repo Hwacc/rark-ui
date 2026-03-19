@@ -18,6 +18,7 @@
       "htmlAttributes": [
         "disabled",
         "readOnly",
+        "maxLength",
         "aria-*",
         "data-*"
       ],
@@ -29,7 +30,8 @@
       "theme",
       "ui-override",
       "programmatic-api"
-    ]
+    ],
+    "subComponents": ["EditableInput", "EditablePreview"]
   },
   "contracts": {
     "props": [
@@ -45,7 +47,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultValue"],
         "description": "受控文本值（配合 v-model）。"
       },
       {
@@ -60,7 +62,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["modelValue"],
         "description": "非受控初始值。"
       },
       {
@@ -75,7 +77,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultEdit"],
         "description": "受控编辑态（配合 v-model:edit）。"
       },
       {
@@ -90,7 +92,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["edit"],
         "description": "非受控初始编辑态。"
       },
       {
@@ -174,6 +176,21 @@
         "description": "只读模式（可聚焦但不提交修改）。"
       },
       {
+        "name": "maxLength",
+        "required": false,
+        "requiredSource": "doc",
+        "typeText": "number",
+        "typeSchema": { "type": "number" },
+        "default": null,
+        "defaultKind": "implicit-undefined",
+        "nullable": true,
+        "passthrough": true,
+        "deprecated": false,
+        "dependsOn": [],
+        "conflictsWith": [],
+        "description": "最大输入长度。"
+      },
+      {
         "name": "clearable",
         "required": false,
         "requiredSource": "doc",
@@ -253,7 +270,7 @@
         "payload": { "typeText": "(details: ValueChangeDetails)", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "value_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:valueChange"],
         "description": "值变化时触发。"
       },
       {
@@ -261,7 +278,7 @@
         "payload": { "typeText": "(details: ValueChangeDetails)", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "value_committed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:valueCommit"],
         "description": "提交编辑值时触发。"
       },
       {
@@ -269,7 +286,7 @@
         "payload": { "typeText": "(details: ValueChangeDetails)", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "value_reverted", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:valueRevert"],
         "description": "回退编辑值时触发。"
       },
       {
@@ -285,8 +302,24 @@
         "payload": { "typeText": "(details: EditChangeDetails)", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "edit_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:editChange"],
         "description": "编辑态变化时触发。"
+      },
+      {
+        "name": "focusOutside",
+        "payload": { "typeText": "(event: FocusOutsideEvent)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "focus_outside", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:focusOutside"],
+        "description": "焦点移出组件时触发。"
+      },
+      {
+        "name": "pointerDownOutside",
+        "payload": { "typeText": "(event: PointerDownOutsideEvent)", "typeSchema": { "type": "object" } },
+        "emitWhen": [{ "expr": "pointer_down_outside", "kind": "runtime-hook" }],
+        "notEmitWhen": [],
+        "order": ["emit:pointerDownOutside"],
+        "description": "外部按下指针时触发。"
       }
     ],
     "slots": [
@@ -374,6 +407,14 @@
           "default": null,
           "defaultKind": "unknown",
           "description": "移除内置样式。"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object | (() => tv)",
+          "typeSchema": { "anyOf": [{ "type": "object" }, { "type": "function" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "description": "覆盖 tvEditable crafts（根组件）。"
         }
       ]
     },
@@ -382,6 +423,115 @@
         { "name": "ui.root", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "Editable 根节点附加 class" },
         { "name": "ui.area", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "Editable 编辑区域容器附加 class" }
       ]
+    }
+  },
+  "subComponents": {
+    "EditableInput": {
+      "props": [
+        {
+          "name": "clearable",
+          "required": false,
+          "requiredSource": "doc",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "编辑态且非空时显示清空按钮。"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承主题上下文，也可局部覆盖通用主题参数（不含 crafts）。"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "输入区域附加 class。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "clearable",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "clearable && editing && !empty" }],
+          "fallback": "默认 CircleX 图标",
+          "description": "自定义清空按钮区域，覆盖默认清空图标。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    },
+    "EditablePreview": {
+      "props": [
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承主题上下文，也可局部覆盖通用主题参数。"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "预览区域附加 class。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "!editing" }],
+          "fallback": null,
+          "description": "预览文本内容插槽。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
     }
   },
   "behaviorModel": {
@@ -398,17 +548,17 @@
       {
         "on": "activation",
         "guard": "!disabled",
-        "effects": ["editing = true"]
+        "effects": ["setEditing(true)"]
       },
       {
         "on": "submit",
         "guard": "!disabled && !readOnly",
-        "effects": ["value = inputValue", "editing = false", "emit(valueCommit)"]
+        "effects": ["setValue(inputValue)", "setEditing(false)", "emit:valueCommit"]
       },
       {
         "on": "cancel",
         "guard": "!disabled",
-        "effects": ["editing = false", "emit(valueRevert)"]
+        "effects": ["setEditing(false)", "emit:valueRevert"]
       }
     ]
   },
@@ -434,12 +584,13 @@
       "activation-mode=\"none\" 时需提供明确提交/取消入口"
     ],
     "codegenTemplates": {
-      "minimal": "<Editable><EditableInput /><EditablePreview /></Editable>",
-      "controlled": "<Editable v-model=\"value\" v-model:edit=\"editing\">...</Editable>"
+      "minimal": "<Editable placeholder=\"Edit me\">\n  <EditableInput />\n  <EditablePreview />\n</Editable>",
+      "controlled": "<Editable v-model=\"value\" v-model:edit=\"editing\" placeholder=\"Edit me\">\n  <EditableInput clearable />\n  <EditablePreview />\n</Editable>",
+      "withControls": "<Editable activation-mode=\"none\" placeholder=\"Edit me\">\n  <EditableInput clearable />\n  <EditablePreview />\n  <template #suffix=\"{ editing }\">\n    <EditableControl>\n      <EditableEditTrigger v-if=\"!editing\" as-child><Button>Edit</Button></EditableEditTrigger>\n      <EditableSubmitTrigger v-if=\"editing\" as-child><Button>Submit</Button></EditableSubmitTrigger>\n      <EditableCancelTrigger v-if=\"editing\" as-child><Button>Cancel</Button></EditableCancelTrigger>\n    </EditableControl>\n  </template>\n</Editable>"
     },
     "antiPatterns": [
-      "缺失 EditableInput 或 EditablePreview 导致交互不完整",
-      "仅依赖 valueChange 做持久化，应监听 valueCommit"
+      "<Editable><EditableInput /></Editable> — 缺少 EditablePreview，预览态无法展示",
+      "<Editable @value-change=\"persist\">...</Editable> — 在 @value-change 中持久化，应监听 @value-commit"
     ]
   },
   "provenance": {
@@ -447,12 +598,24 @@
       { "path": "./editable.doc.mdx", "kind": "doc" },
       { "path": "./props.ts", "kind": "type" },
       { "path": "./Editable.vue", "kind": "runtime" },
+      { "path": "./EditableInput.vue", "kind": "runtime" },
+      { "path": "./EditablePreview.vue", "kind": "runtime" },
       { "path": "./editable.stories.ts", "kind": "story" }
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.edit.defaultEdit.activationMode.submitMode.default": "doc",
-      "contracts.props.clearable.default": "doc"
+      "contracts.props.clearable.default": "doc",
+      "contracts.props.modelValue.conflictsWith": "doc",
+      "contracts.props.defaultValue.conflictsWith": "doc",
+      "contracts.props.edit.conflictsWith": "doc",
+      "contracts.props.defaultEdit.conflictsWith": "doc",
+      "contracts.props.maxLength": "doc",
+      "contracts.events.focusOutside.pointerDownOutside": "doc",
+      "themeConfiguration.fields.crafts": "doc",
+      "component.subComponents": "runtime",
+      "subComponents.EditableInput": "runtime",
+      "subComponents.EditablePreview": "runtime"
     }
   }
 }

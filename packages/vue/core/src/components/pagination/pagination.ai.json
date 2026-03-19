@@ -8,7 +8,7 @@
     "importPath": "@rark-ui/vue/core",
     "exportName": "Pagination",
     "category": "core",
-    "description": "用于列表、表格等长数据场景的页码导航，支持上一页/下一页、首尾页、省略页码展示以及受控分页状态管理。基于 Ark UI Pagination 构建，扩展 theme 与 ui 配置。",
+    "description": "用于列表、表格等长数据场景的页码导航，支持上一页/下一页、首尾页、省略页码展示以及受控分页状态管理。基于 Ark UI Pagination 构建，扩展 theme 与 ui 配置。由 Pagination（根）、PaginationGoTo、PaginationGoToTrigger、PaginationPageSize 组成。",
     "basePrimitive": {
       "library": "@ark-ui/vue/pagination",
       "primitive": "Pagination.RootProvider",
@@ -27,7 +27,8 @@
       "theme",
       "ui-override",
       "programmatic-api"
-    ]
+    ],
+    "subComponents": ["PaginationGoTo", "PaginationGoToTrigger", "PaginationPageSize"]
   },
   "contracts": {
     "props": [
@@ -43,7 +44,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultPage"],
         "description": "受控当前页（配合 v-model:page）。"
       },
       {
@@ -58,7 +59,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultPageSize"],
         "description": "受控每页条数（配合 v-model:page-size）。"
       },
       {
@@ -88,7 +89,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["page"],
         "description": "非受控模式下的初始页码。"
       },
       {
@@ -103,7 +104,7 @@
         "passthrough": false,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["pageSize"],
         "description": "非受控模式下的初始每页条数。"
       },
       {
@@ -233,7 +234,7 @@
         "payload": { "typeText": "(details: { page: number; pageSize: number })", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "page_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:page-change"],
         "description": "页码变化回调。"
       },
       {
@@ -241,7 +242,7 @@
         "payload": { "typeText": "(details: { pageSize: number })", "typeSchema": { "type": "object" } },
         "emitWhen": [{ "expr": "page_size_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": [],
+        "order": ["emit:page-size-change"],
         "description": "每页条数变化回调。"
       }
     ],
@@ -287,6 +288,14 @@
           "default": null,
           "defaultKind": "unknown",
           "description": "移除默认样式。"
+        },
+        {
+          "name": "crafts",
+          "typeText": "object",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "unknown",
+          "description": "覆盖分页相关 crafts 细节"
         }
       ]
     },
@@ -301,6 +310,270 @@
         { "name": "ui.item", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "页码项 class" },
         { "name": "ui.ellipsis", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "省略节点 class" }
       ]
+    }
+  },
+  "subComponents": {
+    "PaginationGoTo": {
+      "props": [
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "跳页输入区主题参数，继承父级 theme 上下文。"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "根节点自定义 class。"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ root?: HTMLAttributes['class']; input?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "root": {},
+              "input": {}
+            }
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "跳页容器与输入区域 class 覆盖。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "prefix",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "跳页输入框前置内容。"
+        },
+        {
+          "name": "suffix",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "跳页输入框后置内容，常用于放置 PaginationGoToTrigger。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": []
+      },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "ui.root",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "跳页容器 class"
+          },
+          {
+            "name": "ui.input",
+            "typeText": "string | array | object",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "跳页输入框 class"
+          }
+        ]
+      }
+    },
+    "PaginationGoToTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "required": false,
+          "requiredSource": "doc",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": false,
+          "defaultKind": "explicit-doc",
+          "nullable": false,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "Ark Polymorphic 能力：将触发行为合并到子元素。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {
+              "go": {
+                "type": "function",
+                "description": "执行跳页的函数"
+              }
+            },
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "触发器内容，作用域包含 { go }。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": []
+      },
+      "uiConfiguration": {
+        "fields": []
+      }
+    },
+    "PaginationPageSize": {
+      "props": [
+        {
+          "name": "sizes",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number[]",
+          "typeSchema": { "type": "array", "items": { "type": "number" } },
+          "default": [10, 20, 30, 50],
+          "defaultKind": "explicit-runtime",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "可选每页条数列表（内部会去重）。"
+        },
+        {
+          "name": "placeholder",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": "Page size",
+          "defaultKind": "explicit-runtime",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "未选中时显示文案。"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "每页条数选择器主题参数，继承父级 theme 上下文。"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "根节点自定义 class。"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ root?: class; control?: class; trigger?: class; value?: class; content?: class; item?: class }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "root": {},
+              "control": {},
+              "trigger": {},
+              "value": {},
+              "content": {},
+              "item": {}
+            }
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "Select 各结构节点 class 覆盖。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "prefix",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "每页条数选择器前置内容。"
+        },
+        {
+          "name": "suffix",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "每页条数选择器后置内容。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": []
+      },
+      "uiConfiguration": {
+        "fields": [
+          { "name": "ui.root", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "每页条数根容器 class" },
+          { "name": "ui.control", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "Select 控制区 class" },
+          { "name": "ui.trigger", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "Select 触发器 class" },
+          { "name": "ui.value", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "Select 值展示区 class" },
+          { "name": "ui.content", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "Select 下拉内容区 class" },
+          { "name": "ui.item", "typeText": "string | array | object", "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }, "default": null, "defaultKind": "implicit-undefined", "description": "Select 选项项 class" }
+        ]
+      }
     }
   },
   "behaviorModel": {
@@ -318,22 +591,22 @@
       {
         "on": "goToFirstPage",
         "guard": "page > 1",
-        "effects": ["page = 1", "emit(update:page)"]
+        "effects": ["setPage(1)", "emit:update:page"]
       },
       {
         "on": "goToLastPage",
         "guard": "page < totalPages",
-        "effects": ["page = totalPages", "emit(update:page)"]
+        "effects": ["setPage(totalPages)", "emit:update:page"]
       },
       {
         "on": "prevPage",
         "guard": "canGoPrev",
-        "effects": ["page -= 1", "emit(update:page)"]
+        "effects": ["setPage(page - 1)", "emit:update:page"]
       },
       {
         "on": "nextPage",
         "guard": "canGoNext",
-        "effects": ["page += 1", "emit(update:page)"]
+        "effects": ["setPage(page + 1)", "emit:update:page"]
       }
     ]
   },
@@ -346,19 +619,27 @@
     { "id": "link-type", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Pagination" }, "exampleId": "link-type" }, "description": "Link 模式" }
   ],
   "generationHints": {
-    "preferredUsageOrder": ["count", "page/pageSize", "defaultPage/defaultPageSize", "theme"],
-    "safeDefaults": {},
+    "preferredUsageOrder": ["count", "page/pageSize", "defaultPage/defaultPageSize", "theme", "PaginationGoTo", "PaginationPageSize"],
+    "safeDefaults": {
+      "defaultPage": 1,
+      "defaultPageSize": 10
+    },
     "a11yChecklist": [
       "type='link' 场景建议始终提供 getPageUrl",
       "分页状态需要与 URL 同步时优先使用受控模式"
     ],
     "codegenTemplates": {
       "minimal": "<Pagination :count=\"100\" />",
-      "controlled": "<Pagination v-model:page=\"page\" v-model:page-size=\"pageSize\" :count=\"total\" />"
+      "controlled": "<Pagination v-model:page=\"page\" v-model:page-size=\"pageSize\" :count=\"total\" />",
+      "withGoTo": "<Pagination v-model:page=\"page\" :count=\"80\" :default-page-size=\"10\">\n  <PaginationGoTo>\n    <template #suffix>\n      <PaginationGoToTrigger>GO</PaginationGoToTrigger>\n    </template>\n  </PaginationGoTo>\n</Pagination>",
+      "withPageSize": "<Pagination v-model:page=\"page\" v-model:page-size=\"pageSize\" :count=\"total\">\n  <PaginationPageSize>\n    <template #prefix><span>每页</span></template>\n    <template #suffix><span>条</span></template>\n  </PaginationPageSize>\n</Pagination>",
+      "full": "<Pagination v-model:page=\"page\" :count=\"80\" :default-page-size=\"10\">\n  <PaginationGoTo>\n    <template #suffix>\n      <PaginationGoToTrigger>GO</PaginationGoToTrigger>\n    </template>\n  </PaginationGoTo>\n  <PaginationPageSize>\n    <template #prefix><span>每页</span></template>\n    <template #suffix><span>条</span></template>\n  </PaginationPageSize>\n</Pagination>"
     },
     "antiPatterns": [
-      "type='link' 未提供 getPageUrl 导致无法生成跳转链接",
-      "数据量变化后未同步重置 page 导致空页展示"
+      "<Pagination v-model:page=\"page\" :default-page=\"1\" /> — 同时使用 page 与 defaultPage 导致冲突",
+      "<Pagination v-model:page-size=\"pageSize\" :default-page-size=\"10\" /> — 同时使用 pageSize 与 defaultPageSize 导致冲突",
+      "<Pagination type=\"link\" :count=\"100\" /> — type='link' 未提供 getPageUrl 导致无法生成跳转链接",
+      "<Pagination :count=\"0\" v-model:page=\"page\" /> — 数据量变化后未同步重置 page 导致空页展示"
     ]
   },
   "provenance": {
@@ -366,11 +647,24 @@
       { "path": "./pagination.doc.mdx", "kind": "doc" },
       { "path": "./props.ts", "kind": "type" },
       { "path": "./Pagination.vue", "kind": "runtime" },
+      { "path": "./PaginationGoTo.vue", "kind": "runtime" },
+      { "path": "./PaginationGoToTrigger.vue", "kind": "runtime" },
+      { "path": "./PaginationPageSize.vue", "kind": "runtime" },
       { "path": "./pagination.stories.ts", "kind": "story" }
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
-      "contracts.themeConfiguration.fields.size.default": "doc"
+      "contracts.props.page.conflictsWith": "doc",
+      "contracts.props.defaultPage.conflictsWith": "doc",
+      "contracts.props.pageSize.conflictsWith": "doc",
+      "contracts.props.defaultPageSize.conflictsWith": "doc",
+      "contracts.themeConfiguration.fields.size.default": "doc",
+      "contracts.themeConfiguration.fields.crafts": "doc",
+      "subComponents.PaginationGoTo.props": "runtime",
+      "subComponents.PaginationGoToTrigger.props.asChild": "doc",
+      "subComponents.PaginationPageSize.props.sizes.default": "runtime",
+      "subComponents.PaginationPageSize.props.placeholder.default": "runtime",
+      "behaviorModel.transitions.effects": "runtime"
     }
   }
 }

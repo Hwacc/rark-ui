@@ -35,7 +35,8 @@
       "ui-override",
       "form-participation",
       "group-selection"
-    ]
+    ],
+    "parentComponents": ["CheckboxGroup"]
   },
   "contracts": {
     "props": [
@@ -56,7 +57,7 @@
         "passthrough": true,
         "deprecated": false,
         "dependsOn": [],
-        "conflictsWith": [],
+        "conflictsWith": ["defaultChecked"],
         "description": "受控选中状态。"
       },
       {
@@ -473,6 +474,185 @@
       ]
     }
   },
+  "parentComponents": {
+    "CheckboxGroup": {
+      "props": [
+        {
+          "name": "modelValue",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "CheckboxValueType[]",
+          "typeSchema": {
+            "type": "array",
+            "items": { "anyOf": [{ "type": "string" }, { "type": "number" }, { "type": "null" }] }
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": ["defaultValue"],
+          "description": "受控模式下的选中值集合，配合 v-model。"
+        },
+        {
+          "name": "defaultValue",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "CheckboxValueType[]",
+          "typeSchema": {
+            "type": "array",
+            "items": { "anyOf": [{ "type": "string" }, { "type": "number" }, { "type": "null" }] }
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": ["modelValue"],
+          "description": "非受控初始值集合。"
+        },
+        {
+          "name": "name",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string",
+          "typeSchema": { "type": "string" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "组内输入项共享的字段名。"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "是否禁用整组。"
+        },
+        {
+          "name": "readOnly",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "是否只读整组。"
+        },
+        {
+          "name": "invalid",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "boolean",
+          "typeSchema": { "type": "boolean" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": true,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "是否为校验错误态。"
+        },
+        {
+          "name": "maxSelectedValues",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "number",
+          "typeSchema": { "type": "number" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "允许选择的最大数量。"
+        },
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "string | array | object",
+          "typeSchema": {
+            "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "根节点 class 覆盖。"
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "payload": {
+            "typeText": "CheckboxValueType[]",
+            "typeSchema": {
+              "type": "array",
+              "items": { "anyOf": [{ "type": "string" }, { "type": "number" }, { "type": "null" }] }
+            }
+          },
+          "emitWhen": [{ "expr": "group_value_changes", "kind": "runtime-machine" }],
+          "notEmitWhen": [],
+          "order": ["internalStateUpdate", "emit:update:modelValue"],
+          "description": "组内值集合变化时触发，用于 v-model。"
+        },
+        {
+          "name": "valueChange",
+          "payload": {
+            "typeText": "CheckboxValueType[]",
+            "typeSchema": {
+              "type": "array",
+              "items": { "anyOf": [{ "type": "string" }, { "type": "number" }, { "type": "null" }] }
+            }
+          },
+          "emitWhen": [{ "expr": "group_value_changes", "kind": "runtime-machine" }],
+          "notEmitWhen": [],
+          "order": ["internalStateUpdate", "emit:valueChange"],
+          "description": "对外暴露的组值变更事件。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "组内容器插槽，通常放置多个 Checkbox。"
+        }
+      ],
+      "themeConfiguration": { "fields": [] },
+      "uiConfiguration": { "fields": [] }
+    }
+  },
   "behaviorModel": {
     "stateVars": {
       "checked": "boolean | 'indeterminate' | undefined",
@@ -491,9 +671,8 @@
         "on": "toggle-request",
         "guard": "isInteractive",
         "effects": [
-          "computeNextCheckedState",
-          "emit(update:checked, nextState)",
-          "emit(checkedChange, details)"
+          "emit:update:checked",
+          "emit:checkedChange"
         ]
       }
     ]
@@ -594,8 +773,8 @@
       "group": "<CheckboxGroup v-model=\"values\"><Checkbox value=\"a\" label=\"A\" /><Checkbox value=\"b\" label=\"B\" /></CheckboxGroup>"
     },
     "antiPatterns": [
-      "在受控模式同时传 checked 和 defaultChecked，导致状态来源混乱。",
-      "仅用 class 模拟 disabled，而不设置 disabled/readOnly 语义。"
+      "<Checkbox :checked=\"true\" :default-checked=\"false\" /> — 同时传 checked 和 defaultChecked，状态来源冲突",
+      "<Checkbox class=\"opacity-50\" /> — 用 class 模拟禁用；应使用 disabled 语义"
     ]
   },
   "provenance": {
@@ -610,7 +789,9 @@
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
       "contracts.props.label": "type",
-      "contracts.props.value.default": "doc",
+      "contracts.props.checked.conflictsWith": "doc",
+      "contracts.props.defaultChecked.conflictsWith": "doc",
+      "contracts.props.value.default": "type",
       "contracts.events.update:checked.order": "runtime",
       "contracts.slots.label.renderWhen": "runtime",
       "contracts.themeConfiguration.fields.size.default": "doc"

@@ -8,7 +8,7 @@
     "importPath": "@rark-ui/vue/core",
     "exportName": "Icon",
     "category": "core",
-    "description": "基于 Iconify 的通用图标组件，用于在按钮、表单、列表和状态提示中统一渲染图标。提供 theme 入口（tvIcon）与 class 样式覆写能力。",
+    "description": "基于 Iconify 的通用图标组件，用于在按钮、表单、列表和状态提示中统一渲染图标。提供 theme 入口（tvIcon）与 class 样式覆写能力。不对应 Ark UI 官方组件，不支持 ui 配置，请使用 class 或 theme.crafts 覆写。",
     "basePrimitive": {
       "library": "@iconify/vue",
       "primitive": "Icon",
@@ -16,7 +16,7 @@
     },
     "passThrough": {
       "htmlAttributes": ["aria-*", "data-*"],
-      "notes": "组件不对应 Ark UI 官方组件，底层由 @iconify/vue Icon 渲染。"
+      "notes": "组件不对应 Ark UI 官方组件，底层由 @iconify/vue Icon 渲染。不支持 ui，请使用 class 或 theme.crafts 覆写。"
     },
     "capabilities": [
       "theme",
@@ -70,7 +70,7 @@
         "name": "theme",
         "required": false,
         "requiredSource": "type",
-        "typeText": "ThemeCrafts<'tvIcon'>",
+        "typeText": "Omit<ThemeCrafts<'tvIcon'>, 'size'>",
         "typeSchema": { "type": "object" },
         "default": null,
         "defaultKind": "implicit-undefined",
@@ -79,7 +79,7 @@
         "deprecated": false,
         "dependsOn": [],
         "conflictsWith": [],
-        "description": "主题与 crafts 覆写入口"
+        "description": "主题与 crafts 覆写入口（IconProps 对 ThemeCrafts<'tvIcon'> 做了 Omit<'size'>，不提供 theme.size）"
       }
     ],
     "events": [],
@@ -138,9 +138,36 @@
     "transitions": []
   },
   "examples": [
-    { "id": "basic", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Icon" }, "exampleId": "basic" }, "description": "基础用法" },
-    { "id": "sizes", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Icon" }, "exampleId": "sizes" }, "description": "尺寸与排版联动" },
-    { "id": "color-and-class", "mcp": { "server": "rark-ui", "tool": "get-example", "args": { "framework": "vue", "componentName": "Icon" }, "exampleId": "color-and-class" }, "description": "颜色与样式覆写" }
+    {
+      "id": "basic",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Icon" },
+        "exampleId": "basic"
+      },
+      "description": "基础用法"
+    },
+    {
+      "id": "sizes",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Icon" },
+        "exampleId": "sizes"
+      },
+      "description": "尺寸与排版联动"
+    },
+    {
+      "id": "color-and-class",
+      "mcp": {
+        "server": "rark-ui",
+        "tool": "get-example",
+        "args": { "framework": "vue", "componentName": "Icon" },
+        "exampleId": "color-and-class"
+      },
+      "description": "颜色与样式覆写"
+    }
   ],
   "generationHints": {
     "preferredUsageOrder": ["icon", "class", "theme.crafts"],
@@ -154,8 +181,8 @@
       "withClass": "<Icon icon=\"lucide:check\" class=\"text-green-500\" />"
     },
     "antiPatterns": [
-      "团队内多套图标源并行导致视觉不一致",
-      "直接使用 Icon 承载点击等交互语义"
+      "混用 lucide:check、heroicons:check、mdi:check 等不同命名空间",
+      "<Icon icon=\"lucide:check\" @click=\"...\" /> 应包裹在 <button> 或 <a> 内"
     ]
   },
   "provenance": {
@@ -167,7 +194,10 @@
     ],
     "precedence": ["runtime", "type", "doc"],
     "fieldSourceMap": {
-      "contracts.props.icon.required": "type"
+      "contracts.props.icon.required": "type",
+      "contracts.props.theme.typeText": "type",
+      "contracts.themeConfiguration.omitSize": "doc",
+      "contracts.uiConfiguration.fieldsEmpty": "doc"
     }
   }
 }

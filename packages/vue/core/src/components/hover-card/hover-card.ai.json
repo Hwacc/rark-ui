@@ -27,7 +27,8 @@
       "ui-override",
       "lazyMount",
       "unmountOnExit"
-    ]
+    ],
+    "subComponents": ["HoverCardContent", "HoverCardArrow"]
   },
   "contracts": {
     "props": [
@@ -161,7 +162,7 @@
         },
         "emitWhen": [{ "expr": "open_state_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": ["emit_openChange"],
+        "order": ["emit:openChange"],
         "description": "打开状态变化时触发（Ark UI Root 事件）。"
       },
       {
@@ -172,7 +173,7 @@
         },
         "emitWhen": [{ "expr": "open_state_changed", "kind": "runtime-hook" }],
         "notEmitWhen": [],
-        "order": ["emit_update_open"],
+        "order": ["emit:update:open"],
         "description": "用于 v-model:open 双向绑定。"
       }
     ],
@@ -238,32 +239,274 @@
       ]
     },
     "uiConfiguration": {
-      "fields": [
+      "fields": []
+    }
+  },
+  "subComponents": {
+    "HoverCardContent": {
+      "props": [
         {
-          "name": "ui.positioner",
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
           "typeText": "HTMLAttributes['class']",
-          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "覆盖定位层容器 class（HoverCardContent）。"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "内容节点 class 覆盖。"
         },
         {
-          "name": "ui.content",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "覆盖内容容器 class（HoverCardContent）。"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "继承根组件主题，也可局部覆盖（不含 crafts）。"
         },
         {
-          "name": "ui.inner",
-          "typeText": "HTMLAttributes['class']",
-          "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ positioner?: HTMLAttributes['class']; content?: HTMLAttributes['class']; inner?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "positioner": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "content": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "inner": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
           "default": null,
           "defaultKind": "implicit-undefined",
-          "description": "覆盖内容内层容器 class（HoverCardContent）。"
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "定位层、内容层、内容内层 class 覆盖。"
         }
-      ]
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "浮层内容；可放置 HoverCardArrow 与任意业务节点。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": [
+          {
+            "name": "size",
+            "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+            "typeSchema": { "enum": ["xs", "sm", "base", "lg"] },
+            "default": "base",
+            "defaultKind": "explicit-doc",
+            "description": "内容尺寸（继承根 theme）。"
+          },
+          {
+            "name": "skin",
+            "typeText": "'razer' | 'shadcn'",
+            "typeSchema": { "enum": ["razer", "shadcn"] },
+            "default": null,
+            "defaultKind": "unknown",
+            "description": "皮肤语义（继承根 theme）。"
+          },
+          {
+            "name": "surface",
+            "typeText": "'light' | 'dark'",
+            "typeSchema": { "enum": ["light", "dark"] },
+            "default": null,
+            "defaultKind": "unknown",
+            "description": "表面语义（继承根 theme）。"
+          },
+          {
+            "name": "bordered",
+            "typeText": "boolean",
+            "typeSchema": { "type": "boolean" },
+            "default": true,
+            "defaultKind": "explicit-doc",
+            "description": "边框语义（继承根 theme）。"
+          }
+        ]
+      },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "ui.positioner",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "覆盖定位层容器 class。"
+          },
+          {
+            "name": "ui.content",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "覆盖内容容器 class。"
+          },
+          {
+            "name": "ui.inner",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "覆盖内容内层容器 class。"
+          }
+        ]
+      }
+    },
+    "HoverCardArrow": {
+      "props": [
+        {
+          "name": "class",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "HTMLAttributes['class']",
+          "typeSchema": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "array" },
+              { "type": "object" }
+            ]
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "箭头根节点 class 覆盖。"
+        },
+        {
+          "name": "theme",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "ThemeNoCrafts",
+          "typeSchema": { "type": "object" },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "箭头主题参数（如 size、surface、bordered）。"
+        },
+        {
+          "name": "ui",
+          "required": false,
+          "requiredSource": "type",
+          "typeText": "{ arrow?: HTMLAttributes['class']; arrowTip?: HTMLAttributes['class'] }",
+          "typeSchema": {
+            "type": "object",
+            "properties": {
+              "arrow": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+              "arrowTip": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] }
+            },
+            "additionalProperties": false
+          },
+          "default": null,
+          "defaultKind": "implicit-undefined",
+          "nullable": true,
+          "passthrough": false,
+          "deprecated": false,
+          "dependsOn": [],
+          "conflictsWith": [],
+          "description": "箭头容器与尖端节点 class 覆盖。"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "slotPropsSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+          "renderWhen": [{ "expr": "always" }],
+          "fallback": null,
+          "description": "箭头无默认插槽内容；作为 HoverCardContent 的子节点使用。"
+        }
+      ],
+      "events": [],
+      "themeConfiguration": {
+        "fields": [
+          {
+            "name": "size",
+            "typeText": "'xs' | 'sm' | 'base' | 'lg'",
+            "typeSchema": { "enum": ["xs", "sm", "base", "lg"] },
+            "default": "base",
+            "defaultKind": "explicit-doc",
+            "description": "箭头尺寸（继承根 theme）。"
+          },
+          {
+            "name": "skin",
+            "typeText": "'razer' | 'shadcn'",
+            "typeSchema": { "enum": ["razer", "shadcn"] },
+            "default": null,
+            "defaultKind": "unknown",
+            "description": "皮肤语义（继承根 theme）。"
+          },
+          {
+            "name": "surface",
+            "typeText": "'light' | 'dark'",
+            "typeSchema": { "enum": ["light", "dark"] },
+            "default": null,
+            "defaultKind": "unknown",
+            "description": "表面语义（继承根 theme）。"
+          },
+          {
+            "name": "bordered",
+            "typeText": "boolean",
+            "typeSchema": { "type": "boolean" },
+            "default": true,
+            "defaultKind": "explicit-doc",
+            "description": "箭头边框表现（继承根 theme）。"
+          }
+        ]
+      },
+      "uiConfiguration": {
+        "fields": [
+          {
+            "name": "ui.arrow",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "覆盖箭头容器 class。"
+          },
+          {
+            "name": "ui.arrowTip",
+            "typeText": "HTMLAttributes['class']",
+            "typeSchema": { "anyOf": [{ "type": "string" }, { "type": "array" }, { "type": "object" }] },
+            "default": null,
+            "defaultKind": "implicit-undefined",
+            "description": "覆盖箭头尖端节点 class。"
+          }
+        ]
+      }
     }
   },
   "behaviorModel": {
@@ -353,11 +596,12 @@
     ],
     "codegenTemplates": {
       "minimal": "<HoverCard>\n  <HoverCardTrigger asChild><Button>Hover</Button></HoverCardTrigger>\n  <HoverCardContent>Content</HoverCardContent>\n</HoverCard>",
-      "controlled": "<HoverCard v-model:open=\"open\">...</HoverCard>"
+      "controlled": "<HoverCard v-model:open=\"open\">\n  <HoverCardTrigger asChild><Button>Toggle</Button></HoverCardTrigger>\n  <HoverCardContent>Content</HoverCardContent>\n</HoverCard>",
+      "withArrow": "<HoverCard>\n  <HoverCardTrigger asChild><Button>Hover</Button></HoverCardTrigger>\n  <HoverCardContent>\n    <HoverCardArrow />\n    Content\n  </HoverCardContent>\n</HoverCard>"
     },
     "antiPatterns": [
-      "悬停态承载复杂流程，应改用 Dialog/Drawer。",
-      "密集列表中未调整 openDelay/closeDelay 导致误触和抖动。"
+      "<HoverCard><HoverCardTrigger asChild><Button>Hover</Button></HoverCardTrigger><HoverCardContent><form><input/><input/><button>Submit</button></form></HoverCardContent></HoverCard>",
+      "<HoverCard v-for=\"item in items\"><HoverCardTrigger>{{item.name}}</HoverCardTrigger><HoverCardContent>{{item.desc}}</HoverCardContent></HoverCard>"
     ]
   },
   "provenance": {
@@ -365,6 +609,8 @@
       { "path": "./hover-card.doc.mdx", "kind": "doc" },
       { "path": "./props.ts", "kind": "type" },
       { "path": "./HoverCard.vue", "kind": "runtime" },
+      { "path": "./HoverCardContent.vue", "kind": "runtime" },
+      { "path": "../arrow/createArrow.tsx", "kind": "runtime" },
       { "path": "./hover-card.stories.ts", "kind": "story" }
     ],
     "precedence": ["runtime", "type", "doc"],
@@ -372,8 +618,14 @@
       "contracts.props.defaultOpen.default": "doc",
       "contracts.props.openDelay.default": "doc",
       "contracts.props.closeDelay.default": "doc",
+      "contracts.events.order": "doc",
       "contracts.themeConfiguration.fields.size.default": "doc",
-      "contracts.themeConfiguration.fields.bordered.default": "doc"
+      "contracts.themeConfiguration.fields.bordered.default": "doc",
+      "contracts.uiConfiguration.fields": "doc",
+      "subComponents.HoverCardContent.props.ui": "runtime",
+      "subComponents.HoverCardContent.uiConfiguration.fields": "doc",
+      "subComponents.HoverCardArrow.props.ui": "runtime",
+      "subComponents.HoverCardArrow.uiConfiguration.fields": "doc"
     }
   }
 }
